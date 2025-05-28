@@ -10,6 +10,8 @@ jobs:
 
       - uses: ./.github/actions/setup-node-env
 
+      - name: Build
+        run: npm run-script build
       - name: Run unit tests
         run: npm run-script test:unit
 
