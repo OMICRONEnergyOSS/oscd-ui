@@ -20,7 +20,7 @@
     "inlineSources": true,
     "strict": true,
     "target": "ES2022",
-    "types": ["lit"],
+    "types": ["lit", "jasmine"],
     "lib": ["DOM", "ES2022"],
     "strictNullChecks": true,
     "skipLibCheck": true
