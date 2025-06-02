@@ -1,6 +1,6 @@
 {
   "name": "@omicronenergy/oscd-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "UI Web Components set for OpenSCD",
   "type": "module",
   "scripts": {
