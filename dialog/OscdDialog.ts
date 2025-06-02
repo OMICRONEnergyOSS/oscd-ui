@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { CSSResultOrNative } from "lit";
+import { css, CSSResultOrNative } from "lit";
 import { Dialog } from "@material/web/dialog/internal/dialog.js";
 import { styles } from "@material/web/dialog/internal/dialog-styles.js";
 
@@ -19,6 +19,12 @@ declare global {
     "oscd-dialog": OscdDialog;
   }
 }
+
+const styleOverrides = css`
+  .scrim {
+    z-index: 6;
+  }
+`;
 
 /**
  * @summary Dialogs can require an action, communicate information, or help
@@ -48,5 +54,5 @@ declare global {
  * @suppress {visibility}
  */
 export class OscdDialog extends Dialog {
-  static override styles: CSSResultOrNative[] = [styles];
+  static override styles: CSSResultOrNative[] = [styles, styleOverrides];
 }
