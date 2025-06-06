@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.5](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.4...oscd-ui-v0.0.5) (2025-06-06)
+
+
+### Features
+
+* enable custom-elements.json creation and enable storybook to consume it ([4a1e0b3](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/4a1e0b3d708ccc87ddf1b7a5221be4e9f48622bb))
+
 ## [0.0.4](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.3...oscd-ui-v0.0.4) (2025-06-02)
 
 
