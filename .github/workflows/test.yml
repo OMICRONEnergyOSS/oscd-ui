@@ -14,8 +14,3 @@ jobs:
         run: npm run-script build
       - name: Run unit tests
         run: npm run-script test:unit
-
-      ## Not quite ready yet
-      # - name: Run visual regression tests on PR
-      #   if: github.event_name == 'pull_request'
-      #   run: npm run-script test:visual

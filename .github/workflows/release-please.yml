@@ -33,7 +33,31 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node-env
         with:
-          registry-url: "https://registry.npmjs.org"
+          registry-url: 'https://registry.npmjs.org'
       - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  deploy-storybook:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
+    environment:
+      name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: build-publish
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+        with:
+          path: storybook-static
+          install_command: npm install
+          build_command: npm run build-storybook
+      - name: Output Storybook URL
+        if: always()
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### OpenSCD UI Component library catalog (Storybook) published to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "Page URL: ${{ steps.build-publish.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "Commit SHA: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "Branch: ${{ github.ref }}" >> $GITHUB_STEP_SUMMARY
+          echo "Repository: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
