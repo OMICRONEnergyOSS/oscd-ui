@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.6](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.5...oscd-ui-v0.0.6) (2025-06-16)
+
+
+### Bug Fixes
+
+* correct eslint to work reliably with prettier ([d5867c6](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/d5867c690b1334f8c10f9db05b9f651eae3d31ee))
+
 ## [0.0.5](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.4...oscd-ui-v0.0.5) (2025-06-13)
 
 
