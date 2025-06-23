@@ -56,7 +56,6 @@ export const getStorybookHelpers = <T>(
           ...argTypeValue,
           control: { type: argTypeKey.includes('color') ? 'color' : 'text' },
           table: {
-            // @ts-ignore
             category: 'CSS Variables',
           },
         };

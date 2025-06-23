@@ -31,6 +31,7 @@ const meta: Meta<OscdMenu> = {
       handles: ['click', ...events],
     },
   },
+  //eslint-disable-next-line
   render: argz => {
     const [_, updateArgs] = useArgs();
     return html`
@@ -62,7 +63,6 @@ export const Default: Story = {
     anchor: 'menu-button',
     open: false, // Default state of the menu
     '[@closed]': () => {
-      // eslint-disable-next-line dot-notation
       args['open'] = false;
     }, // Close the menu when the closed event is triggered),
   },

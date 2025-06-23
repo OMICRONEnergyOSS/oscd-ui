@@ -4,104 +4,6 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "app-bar/OscdAppBar.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.",
-          "name": "OscdAppBar",
-          "cssProperties": [
-            {
-              "description": "The elevation level of the app bar.",
-              "name": "--oscd-app-bar-elevation"
-            },
-            {
-              "description": "The shadow color of the app bar.",
-              "name": "--oscd-app-bar-shadow-color"
-            },
-            {
-              "description": "The color of the app bar.",
-              "name": "--oscd-app-bar-color"
-            },
-            {
-              "description": "The background color of the app bar.",
-              "name": "--oscd-app-bar-background-color"
-            },
-            {
-              "description": "The font family of the app bar title.",
-              "name": "--oscd-app-bar-title-font-family"
-            },
-            {
-              "description": "The font size of the app bar title.",
-              "name": "--oscd-app-bar-title-font-size"
-            },
-            {
-              "description": "The line height of the app bar title.",
-              "name": "--oscd-app-bar-title-line-height"
-            },
-            {
-              "description": "The font weight of the app bar title.",
-              "name": "--oscd-app-bar-title-font-weight"
-            },
-            {
-              "description": "The color of the icon button in the app bar.",
-              "name": "--md-icon-button-icon-color"
-            }
-          ],
-          "slots": [
-            {
-              "description": "Slot for action icons at the start of the app bar.",
-              "name": "actionStart"
-            },
-            {
-              "description": "Slot for the title of the app bar.",
-              "name": "title"
-            },
-            {
-              "description": "Slot for action icons at the end of the app bar.",
-              "name": "actionEnd"
-            },
-            {
-              "description": "Slot for additional content which will appear immediately under the main app bar.",
-              "name": "Default"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "static": true,
-              "readonly": true
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "oscd-app-bar",
-          "customElement": true,
-          "summary": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdAppBar",
-          "declaration": {
-            "name": "OscdAppBar",
-            "module": "app-bar/OscdAppBar.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "button/OscdFilledButton.spec.ts",
       "declarations": [
         {
@@ -1855,6 +1757,104 @@
     },
     {
       "kind": "javascript-module",
+      "path": "app-bar/OscdAppBar.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.",
+          "name": "OscdAppBar",
+          "cssProperties": [
+            {
+              "description": "The elevation level of the app bar.",
+              "name": "--oscd-app-bar-elevation"
+            },
+            {
+              "description": "The shadow color of the app bar.",
+              "name": "--oscd-app-bar-shadow-color"
+            },
+            {
+              "description": "The color of the app bar.",
+              "name": "--oscd-app-bar-color"
+            },
+            {
+              "description": "The background color of the app bar.",
+              "name": "--oscd-app-bar-background-color"
+            },
+            {
+              "description": "The font family of the app bar title.",
+              "name": "--oscd-app-bar-title-font-family"
+            },
+            {
+              "description": "The font size of the app bar title.",
+              "name": "--oscd-app-bar-title-font-size"
+            },
+            {
+              "description": "The line height of the app bar title.",
+              "name": "--oscd-app-bar-title-line-height"
+            },
+            {
+              "description": "The font weight of the app bar title.",
+              "name": "--oscd-app-bar-title-font-weight"
+            },
+            {
+              "description": "The color of the icon button in the app bar.",
+              "name": "--md-icon-button-icon-color"
+            }
+          ],
+          "slots": [
+            {
+              "description": "Slot for action icons at the start of the app bar.",
+              "name": "actionStart"
+            },
+            {
+              "description": "Slot for the title of the app bar.",
+              "name": "title"
+            },
+            {
+              "description": "Slot for action icons at the end of the app bar.",
+              "name": "actionEnd"
+            },
+            {
+              "description": "Slot for additional content which will appear immediately under the main app bar.",
+              "name": "Default"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "static": true,
+              "readonly": true
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-app-bar",
+          "customElement": true,
+          "summary": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdAppBar",
+          "declaration": {
+            "name": "OscdAppBar",
+            "module": "app-bar/OscdAppBar.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "dialog/OscdDialog.ts",
       "declarations": [
         {
@@ -2752,35 +2752,6 @@
           "declaration": {
             "name": "OscdElevation",
             "module": "elevation/OscdElevation.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "icon/OscdIcon.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "An icon is a graphical representation of an object, action, or concept.\nIcons can be used to represent actions, such as \"add\" or \"delete\", or to\nrepresent objects, such as \"folder\" or \"file\".",
-          "name": "OscdIcon",
-          "members": [],
-          "superclass": {
-            "name": "Icon",
-            "package": "@material/web/icon/internal/icon.js"
-          },
-          "tagName": "oscd-icon",
-          "customElement": true,
-          "summary": "An icon is a graphical representation of an object, action, or concept.\nIcons can be used to represent actions, such as \"add\" or \"delete\", or to\nrepresent objects, such as \"folder\" or \"file\"."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdIcon",
-          "declaration": {
-            "name": "OscdIcon",
-            "module": "icon/OscdIcon.ts"
           }
         }
       ]
@@ -4091,6 +4062,35 @@
     },
     {
       "kind": "javascript-module",
+      "path": "icon/OscdIcon.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "An icon is a graphical representation of an object, action, or concept.\nIcons can be used to represent actions, such as \"add\" or \"delete\", or to\nrepresent objects, such as \"folder\" or \"file\".",
+          "name": "OscdIcon",
+          "members": [],
+          "superclass": {
+            "name": "Icon",
+            "package": "@material/web/icon/internal/icon.js"
+          },
+          "tagName": "oscd-icon",
+          "customElement": true,
+          "summary": "An icon is a graphical representation of an object, action, or concept.\nIcons can be used to represent actions, such as \"add\" or \"delete\", or to\nrepresent objects, such as \"folder\" or \"file\"."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdIcon",
+          "declaration": {
+            "name": "OscdIcon",
+            "module": "icon/OscdIcon.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "list/OscdList.ts",
       "declarations": [
         {
@@ -4214,7 +4214,7 @@
           "name": "ListItemType",
           "declaration": {
             "name": "ListItemType",
-            "module": "\"@material/web/list/internal/listitem/list-item.js\""
+            "package": "@material/web/list/internal/listitem/list-item.js"
           }
         },
         {
@@ -4223,6 +4223,174 @@
           "declaration": {
             "name": "OscdListItem",
             "module": "list/OscdListItem.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "navigation-drawer/OscdNavigationDrawer.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Navigation drawers are temporary surfaces that display a list of\nchoices.",
+          "name": "OscdNavigationDrawer",
+          "members": [
+            {
+              "kind": "field",
+              "name": "opened",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "opened",
+              "inheritedFrom": {
+                "name": "NavigationDrawerModal",
+                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "pivot",
+              "type": {
+                "text": "'start' | 'end'"
+              },
+              "default": "'end'",
+              "attribute": "pivot",
+              "inheritedFrom": {
+                "name": "NavigationDrawerModal",
+                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getScrimClasses",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "NavigationDrawerModal",
+                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getRenderClasses",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "NavigationDrawerModal",
+                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "NavigationDrawerModal",
+                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleScrimClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "NavigationDrawerModal",
+                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "NavigationDrawerModal",
+            "package": "@material/web/labs/navigationdrawer/internal/navigation-drawer-modal.js"
+          },
+          "tagName": "oscd-navigation-drawer",
+          "customElement": true,
+          "summary": "Navigation drawers are temporary surfaces that display a list of\nchoices.",
+          "attributes": [
+            {
+              "name": "opened",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "opened",
+              "inheritedFrom": {
+                "name": "NavigationDrawerModal",
+                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
+              }
+            },
+            {
+              "name": "pivot",
+              "type": {
+                "text": "'start' | 'end'"
+              },
+              "default": "'end'",
+              "fieldName": "pivot",
+              "inheritedFrom": {
+                "name": "NavigationDrawerModal",
+                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "navigation-drawer-changed",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "{CustomEvent<{opened: boolean}>} Dispatched whenever the drawer opens or closes --bubbles --composed",
+              "inheritedFrom": {
+                "name": "NavigationDrawerModal",
+                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdNavigationDrawer",
+          "declaration": {
+            "name": "OscdNavigationDrawer",
+            "module": "navigation-drawer/OscdNavigationDrawer.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "navigation-drawer/OscdNavigationDrawerHeader.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A header for the navigation drawer.",
+          "name": "OscdNavigationDrawerHeader",
+          "members": [],
+          "superclass": {
+            "name": "ListItem",
+            "package": "@material/web/list/internal/listitem/list-item.js"
+          },
+          "tagName": "oscd-navigation-drawer-header",
+          "customElement": true,
+          "summary": "A header for the navigation drawer."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdNavigationDrawerHeader",
+          "declaration": {
+            "name": "OscdNavigationDrawerHeader",
+            "module": "navigation-drawer/OscdNavigationDrawerHeader.ts"
           }
         }
       ]
@@ -5334,7 +5502,7 @@
           "name": "ListItem",
           "declaration": {
             "name": "ListItem",
-            "module": "\"@material/web/list/internal/list-navigation-helpers.js\""
+            "package": "@material/web/list/internal/list-navigation-helpers.js"
           }
         },
         {
@@ -5342,7 +5510,7 @@
           "name": "MenuItem",
           "declaration": {
             "name": "MenuItem",
-            "module": "\"@material/web/menu/internal/controllers/menuItemController.js\""
+            "package": "@material/web/menu/internal/controllers/menuItemController.js"
           }
         },
         {
@@ -5350,7 +5518,7 @@
           "name": "CloseReason",
           "declaration": {
             "name": "CloseReason",
-            "module": "\"@material/web/menu/internal/controllers/shared.js\""
+            "package": "@material/web/menu/internal/controllers/shared.js"
           }
         },
         {
@@ -5358,7 +5526,7 @@
           "name": "FocusState",
           "declaration": {
             "name": "FocusState",
-            "module": "\"@material/web/menu/internal/controllers/shared.js\""
+            "package": "@material/web/menu/internal/controllers/shared.js"
           }
         },
         {
@@ -5366,7 +5534,7 @@
           "name": "CloseMenuEvent",
           "declaration": {
             "name": "CloseMenuEvent",
-            "module": "\"@material/web/menu/internal/controllers/shared.js\""
+            "package": "@material/web/menu/internal/controllers/shared.js"
           }
         },
         {
@@ -5374,7 +5542,7 @@
           "name": "Menu",
           "declaration": {
             "name": "Menu",
-            "module": "\"@material/web/menu/internal/controllers/shared.js\""
+            "package": "@material/web/menu/internal/controllers/shared.js"
           }
         },
         {
@@ -5382,7 +5550,7 @@
           "name": "Corner",
           "declaration": {
             "name": "Corner",
-            "module": "\"@material/web/menu/internal/menu.js\""
+            "package": "@material/web/menu/internal/menu.js"
           }
         },
         {
@@ -5772,7 +5940,7 @@
           "name": "MenuItem",
           "declaration": {
             "name": "MenuItem",
-            "module": "\"@material/web/menu/internal/controllers/menuItemController.js\""
+            "package": "@material/web/menu/internal/controllers/menuItemController.js"
           }
         },
         {
@@ -5780,7 +5948,7 @@
           "name": "CloseMenuEvent",
           "declaration": {
             "name": "CloseMenuEvent",
-            "module": "\"@material/web/menu/internal/controllers/shared.js\""
+            "package": "@material/web/menu/internal/controllers/shared.js"
           }
         },
         {
@@ -5789,2254 +5957,6 @@
           "declaration": {
             "name": "OscdMenuItem",
             "module": "menu/OscdMenuItem.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "iconbutton/OscdFilledIconButton.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
-          "name": "OscdFilledIconButton",
-          "members": [
-            {
-              "kind": "method",
-              "name": "getRenderClasses",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "readonly": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "ShadowRootInit"
-              },
-              "static": true,
-              "default": "{ mode: 'open', delegatesFocus: true, }",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the icon button and makes it non-interactive.",
-              "attribute": "disabled",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "softDisabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
-              "attribute": "soft-disabled",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "flipIconInRtl",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flips the icon if it is in an RTL context at startup.",
-              "attribute": "flip-icon-in-rtl",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "href",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
-              "attribute": "href",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "download",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
-              "attribute": "download",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "target",
-              "type": {
-                "text": "LinkTarget | ''"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
-              "attribute": "target",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "ariaLabelSelected",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The `aria-label` of the button when the button is toggleable and selected.",
-              "attribute": "aria-label-selected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "toggle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, the button will toggle between selected and unselected\nstates",
-              "attribute": "toggle",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
-              "attribute": "selected",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "FormSubmitterType"
-              },
-              "default": "'submit'",
-              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
-              "attribute": "type",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The value added to a form with the button's name when the button submits a\nform.",
-              "attribute": "value",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "form",
-              "description": "The associated form element with which this element's value will submit.",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "labels",
-              "description": "The labels this element is associated with.",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "flipIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderLink",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderSelectedIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderTouchTarget",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderFocusRing",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderRipple",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClick",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "MouseEvent"
-                  }
-                }
-              ],
-              "description": "Handles a click on this element.",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClickOnChild",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "description": "Handles a click on the child <div> or <button> element within this\nelement's shadow DOM.",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "IconButton",
-            "package": "@material/web/iconbutton/internal/icon-button.js"
-          },
-          "tagName": "oscd-filled-icon-button",
-          "customElement": true,
-          "summary": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
-          "attributes": [
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the icon button and makes it non-interactive.",
-              "fieldName": "disabled",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "soft-disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
-              "fieldName": "softDisabled",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "flip-icon-in-rtl",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flips the icon if it is in an RTL context at startup.",
-              "fieldName": "flipIconInRtl",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "href",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
-              "fieldName": "href",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "download",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
-              "fieldName": "download",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "target",
-              "type": {
-                "text": "LinkTarget | ''"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
-              "fieldName": "target",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "aria-label-selected",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The `aria-label` of the button when the button is toggleable and selected.",
-              "fieldName": "ariaLabelSelected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "toggle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, the button will toggle between selected and unselected\nstates",
-              "fieldName": "toggle",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
-              "fieldName": "selected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "FormSubmitterType"
-              },
-              "default": "'submit'",
-              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
-              "fieldName": "type",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The value added to a form with the button's name when the button submits a\nform.",
-              "fieldName": "value",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              },
-              "description": "{InputEvent} Dispatched when a toggle button toggles --bubbles --composed",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "change",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when a toggle button toggles --bubbles",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdFilledIconButton",
-          "declaration": {
-            "name": "OscdFilledIconButton",
-            "module": "iconbutton/OscdFilledIconButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "iconbutton/OscdFilledTonalIconButton.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
-          "name": "OscdFilledTonalIconButton",
-          "members": [
-            {
-              "kind": "method",
-              "name": "getRenderClasses",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "readonly": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "ShadowRootInit"
-              },
-              "static": true,
-              "default": "{ mode: 'open', delegatesFocus: true, }",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the icon button and makes it non-interactive.",
-              "attribute": "disabled",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "softDisabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
-              "attribute": "soft-disabled",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "flipIconInRtl",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flips the icon if it is in an RTL context at startup.",
-              "attribute": "flip-icon-in-rtl",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "href",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
-              "attribute": "href",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "download",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
-              "attribute": "download",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "target",
-              "type": {
-                "text": "LinkTarget | ''"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
-              "attribute": "target",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "ariaLabelSelected",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The `aria-label` of the button when the button is toggleable and selected.",
-              "attribute": "aria-label-selected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "toggle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, the button will toggle between selected and unselected\nstates",
-              "attribute": "toggle",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
-              "attribute": "selected",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "FormSubmitterType"
-              },
-              "default": "'submit'",
-              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
-              "attribute": "type",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The value added to a form with the button's name when the button submits a\nform.",
-              "attribute": "value",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "form",
-              "description": "The associated form element with which this element's value will submit.",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "labels",
-              "description": "The labels this element is associated with.",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "flipIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderLink",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderSelectedIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderTouchTarget",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderFocusRing",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderRipple",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClick",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "MouseEvent"
-                  }
-                }
-              ],
-              "description": "Handles a click on this element.",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClickOnChild",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "description": "Handles a click on the child <div> or <button> element within this\nelement's shadow DOM.",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "IconButton",
-            "package": "@material/web/iconbutton/internal/icon-button.js"
-          },
-          "tagName": "oscd-filled-tonal-icon-button",
-          "customElement": true,
-          "summary": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
-          "attributes": [
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the icon button and makes it non-interactive.",
-              "fieldName": "disabled",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "soft-disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
-              "fieldName": "softDisabled",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "flip-icon-in-rtl",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flips the icon if it is in an RTL context at startup.",
-              "fieldName": "flipIconInRtl",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "href",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
-              "fieldName": "href",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "download",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
-              "fieldName": "download",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "target",
-              "type": {
-                "text": "LinkTarget | ''"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
-              "fieldName": "target",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "aria-label-selected",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The `aria-label` of the button when the button is toggleable and selected.",
-              "fieldName": "ariaLabelSelected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "toggle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, the button will toggle between selected and unselected\nstates",
-              "fieldName": "toggle",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
-              "fieldName": "selected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "FormSubmitterType"
-              },
-              "default": "'submit'",
-              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
-              "fieldName": "type",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The value added to a form with the button's name when the button submits a\nform.",
-              "fieldName": "value",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              },
-              "description": "{InputEvent} Dispatched when a toggle button toggles --bubbles --composed",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "change",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when a toggle button toggles --bubbles",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdFilledTonalIconButton",
-          "declaration": {
-            "name": "OscdFilledTonalIconButton",
-            "module": "iconbutton/OscdFilledTonalIconButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "iconbutton/OscdIconButton.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
-          "name": "OscdIconButton",
-          "members": [
-            {
-              "kind": "method",
-              "name": "getRenderClasses",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "readonly": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "ShadowRootInit"
-              },
-              "static": true,
-              "default": "{ mode: 'open', delegatesFocus: true, }",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the icon button and makes it non-interactive.",
-              "attribute": "disabled",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "softDisabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
-              "attribute": "soft-disabled",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "flipIconInRtl",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flips the icon if it is in an RTL context at startup.",
-              "attribute": "flip-icon-in-rtl",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "href",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
-              "attribute": "href",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "download",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
-              "attribute": "download",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "target",
-              "type": {
-                "text": "LinkTarget | ''"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
-              "attribute": "target",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "ariaLabelSelected",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The `aria-label` of the button when the button is toggleable and selected.",
-              "attribute": "aria-label-selected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "toggle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, the button will toggle between selected and unselected\nstates",
-              "attribute": "toggle",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
-              "attribute": "selected",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "FormSubmitterType"
-              },
-              "default": "'submit'",
-              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
-              "attribute": "type",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The value added to a form with the button's name when the button submits a\nform.",
-              "attribute": "value",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "form",
-              "description": "The associated form element with which this element's value will submit.",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "labels",
-              "description": "The labels this element is associated with.",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "flipIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderLink",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderSelectedIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderTouchTarget",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderFocusRing",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderRipple",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClick",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "MouseEvent"
-                  }
-                }
-              ],
-              "description": "Handles a click on this element.",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClickOnChild",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "description": "Handles a click on the child <div> or <button> element within this\nelement's shadow DOM.",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "IconButton",
-            "package": "@material/web/iconbutton/internal/icon-button.js"
-          },
-          "tagName": "oscd-icon-button",
-          "customElement": true,
-          "summary": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
-          "attributes": [
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the icon button and makes it non-interactive.",
-              "fieldName": "disabled",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "soft-disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
-              "fieldName": "softDisabled",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "flip-icon-in-rtl",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flips the icon if it is in an RTL context at startup.",
-              "fieldName": "flipIconInRtl",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "href",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
-              "fieldName": "href",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "download",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
-              "fieldName": "download",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "target",
-              "type": {
-                "text": "LinkTarget | ''"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
-              "fieldName": "target",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "aria-label-selected",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The `aria-label` of the button when the button is toggleable and selected.",
-              "fieldName": "ariaLabelSelected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "toggle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, the button will toggle between selected and unselected\nstates",
-              "fieldName": "toggle",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
-              "fieldName": "selected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "FormSubmitterType"
-              },
-              "default": "'submit'",
-              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
-              "fieldName": "type",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The value added to a form with the button's name when the button submits a\nform.",
-              "fieldName": "value",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              },
-              "description": "{InputEvent} Dispatched when a toggle button toggles --bubbles --composed",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "change",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when a toggle button toggles --bubbles",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdIconButton",
-          "declaration": {
-            "name": "OscdIconButton",
-            "module": "iconbutton/OscdIconButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "iconbutton/OscdOutlinedIconButton.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
-          "name": "OscdOutlinedIconButton",
-          "members": [
-            {
-              "kind": "method",
-              "name": "getRenderClasses",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "readonly": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "ShadowRootInit"
-              },
-              "static": true,
-              "default": "{ mode: 'open', delegatesFocus: true, }",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the icon button and makes it non-interactive.",
-              "attribute": "disabled",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "softDisabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
-              "attribute": "soft-disabled",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "flipIconInRtl",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flips the icon if it is in an RTL context at startup.",
-              "attribute": "flip-icon-in-rtl",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "href",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
-              "attribute": "href",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "download",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
-              "attribute": "download",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "target",
-              "type": {
-                "text": "LinkTarget | ''"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
-              "attribute": "target",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "ariaLabelSelected",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The `aria-label` of the button when the button is toggleable and selected.",
-              "attribute": "aria-label-selected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "toggle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, the button will toggle between selected and unselected\nstates",
-              "attribute": "toggle",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
-              "attribute": "selected",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "FormSubmitterType"
-              },
-              "default": "'submit'",
-              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
-              "attribute": "type",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The value added to a form with the button's name when the button submits a\nform.",
-              "attribute": "value",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "form",
-              "description": "The associated form element with which this element's value will submit.",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "labels",
-              "description": "The labels this element is associated with.",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "flipIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderLink",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderSelectedIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderTouchTarget",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderFocusRing",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderRipple",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClick",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "MouseEvent"
-                  }
-                }
-              ],
-              "description": "Handles a click on this element.",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClickOnChild",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "description": "Handles a click on the child <div> or <button> element within this\nelement's shadow DOM.",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "IconButton",
-            "package": "@material/web/iconbutton/internal/icon-button.js"
-          },
-          "tagName": "oscd-outlined-icon-button",
-          "customElement": true,
-          "summary": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
-          "attributes": [
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the icon button and makes it non-interactive.",
-              "fieldName": "disabled",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "soft-disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
-              "fieldName": "softDisabled",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "flip-icon-in-rtl",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Flips the icon if it is in an RTL context at startup.",
-              "fieldName": "flipIconInRtl",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "href",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
-              "fieldName": "href",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "download",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
-              "fieldName": "download",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "target",
-              "type": {
-                "text": "LinkTarget | ''"
-              },
-              "default": "''",
-              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
-              "fieldName": "target",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "aria-label-selected",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The `aria-label` of the button when the button is toggleable and selected.",
-              "fieldName": "ariaLabelSelected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "toggle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, the button will toggle between selected and unselected\nstates",
-              "fieldName": "toggle",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
-              "fieldName": "selected",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "FormSubmitterType"
-              },
-              "default": "'submit'",
-              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
-              "fieldName": "type",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The value added to a form with the button's name when the button submits a\nform.",
-              "fieldName": "value",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              },
-              "description": "{InputEvent} Dispatched when a toggle button toggles --bubbles --composed",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            },
-            {
-              "name": "change",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when a toggle button toggles --bubbles",
-              "inheritedFrom": {
-                "name": "IconButton",
-                "module": "iconbutton/internal/icon-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdOutlinedIconButton",
-          "declaration": {
-            "name": "OscdOutlinedIconButton",
-            "module": "iconbutton/OscdOutlinedIconButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "navigation-drawer/OscdNavigationDrawer.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Navigation drawers are temporary surfaces that display a list of\nchoices.",
-          "name": "OscdNavigationDrawer",
-          "members": [
-            {
-              "kind": "field",
-              "name": "opened",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "opened",
-              "inheritedFrom": {
-                "name": "NavigationDrawerModal",
-                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "pivot",
-              "type": {
-                "text": "'start' | 'end'"
-              },
-              "default": "'end'",
-              "attribute": "pivot",
-              "inheritedFrom": {
-                "name": "NavigationDrawerModal",
-                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getScrimClasses",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "NavigationDrawerModal",
-                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getRenderClasses",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "NavigationDrawerModal",
-                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleKeyDown",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "NavigationDrawerModal",
-                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleScrimClick",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "NavigationDrawerModal",
-                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "NavigationDrawerModal",
-            "package": "@material/web/labs/navigationdrawer/internal/navigation-drawer-modal.js"
-          },
-          "tagName": "oscd-navigation-drawer",
-          "customElement": true,
-          "summary": "Navigation drawers are temporary surfaces that display a list of\nchoices.",
-          "attributes": [
-            {
-              "name": "opened",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "opened",
-              "inheritedFrom": {
-                "name": "NavigationDrawerModal",
-                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
-              }
-            },
-            {
-              "name": "pivot",
-              "type": {
-                "text": "'start' | 'end'"
-              },
-              "default": "'end'",
-              "fieldName": "pivot",
-              "inheritedFrom": {
-                "name": "NavigationDrawerModal",
-                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "navigation-drawer-changed",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "{CustomEvent<{opened: boolean}>} Dispatched whenever the drawer opens or closes --bubbles --composed",
-              "inheritedFrom": {
-                "name": "NavigationDrawerModal",
-                "module": "labs/navigationdrawer/internal/navigation-drawer-modal.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdNavigationDrawer",
-          "declaration": {
-            "name": "OscdNavigationDrawer",
-            "module": "navigation-drawer/OscdNavigationDrawer.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "navigation-drawer/OscdNavigationDrawerHeader.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "A header for the navigation drawer.",
-          "name": "OscdNavigationDrawerHeader",
-          "members": [],
-          "superclass": {
-            "name": "ListItem",
-            "package": "@material/web/list/internal/listitem/list-item.js"
-          },
-          "tagName": "oscd-navigation-drawer-header",
-          "customElement": true,
-          "summary": "A header for the navigation drawer."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdNavigationDrawerHeader",
-          "declaration": {
-            "name": "OscdNavigationDrawerHeader",
-            "module": "navigation-drawer/OscdNavigationDrawerHeader.ts"
           }
         }
       ]
@@ -10860,7 +8780,7 @@
           "name": "SelectOption",
           "declaration": {
             "name": "SelectOption",
-            "module": "\"@material/web/select/internal/selectoption/select-option.js\""
+            "package": "@material/web/select/internal/selectoption/select-option.js"
           }
         },
         {
@@ -11820,6 +9740,2086 @@
           "declaration": {
             "name": "OscdTabs",
             "module": "tabs/OscdTabs.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "iconbutton/OscdFilledIconButton.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
+          "name": "OscdFilledIconButton",
+          "members": [
+            {
+              "kind": "method",
+              "name": "getRenderClasses",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "readonly": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "ShadowRootInit"
+              },
+              "static": true,
+              "default": "{ mode: 'open', delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the icon button and makes it non-interactive.",
+              "attribute": "disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "softDisabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
+              "attribute": "soft-disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "flipIconInRtl",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flips the icon if it is in an RTL context at startup.",
+              "attribute": "flip-icon-in-rtl",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
+              "attribute": "href",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "download",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
+              "attribute": "download",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "LinkTarget | ''"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
+              "attribute": "target",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "ariaLabelSelected",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The `aria-label` of the button when the button is toggleable and selected.",
+              "attribute": "aria-label-selected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, the button will toggle between selected and unselected\nstates",
+              "attribute": "toggle",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
+              "attribute": "selected",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "FormSubmitterType"
+              },
+              "default": "'submit'",
+              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
+              "attribute": "type",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The value added to a form with the button's name when the button submits a\nform.",
+              "attribute": "value",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "form",
+              "description": "The associated form element with which this element's value will submit.",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "labels",
+              "description": "The labels this element is associated with.",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "flipIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLink",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSelectedIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderTouchTarget",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderFocusRing",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderRipple",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ],
+              "description": "Handles a click on this element.",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClickOnChild",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "description": "Handles a click on the child <div> or <button> element within this\nelement's shadow DOM.",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "IconButton",
+            "package": "@material/web/iconbutton/internal/icon-button.js"
+          },
+          "tagName": "oscd-filled-icon-button",
+          "customElement": true,
+          "summary": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the icon button and makes it non-interactive.",
+              "fieldName": "disabled",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "soft-disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
+              "fieldName": "softDisabled",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "flip-icon-in-rtl",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flips the icon if it is in an RTL context at startup.",
+              "fieldName": "flipIconInRtl",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
+              "fieldName": "href",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "download",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
+              "fieldName": "download",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "target",
+              "type": {
+                "text": "LinkTarget | ''"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
+              "fieldName": "target",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "aria-label-selected",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The `aria-label` of the button when the button is toggleable and selected.",
+              "fieldName": "ariaLabelSelected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, the button will toggle between selected and unselected\nstates",
+              "fieldName": "toggle",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
+              "fieldName": "selected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "FormSubmitterType"
+              },
+              "default": "'submit'",
+              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
+              "fieldName": "type",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The value added to a form with the button's name when the button submits a\nform.",
+              "fieldName": "value",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "{InputEvent} Dispatched when a toggle button toggles --bubbles --composed",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when a toggle button toggles --bubbles",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdFilledIconButton",
+          "declaration": {
+            "name": "OscdFilledIconButton",
+            "module": "iconbutton/OscdFilledIconButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "iconbutton/OscdFilledTonalIconButton.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
+          "name": "OscdFilledTonalIconButton",
+          "members": [
+            {
+              "kind": "method",
+              "name": "getRenderClasses",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "readonly": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "ShadowRootInit"
+              },
+              "static": true,
+              "default": "{ mode: 'open', delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the icon button and makes it non-interactive.",
+              "attribute": "disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "softDisabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
+              "attribute": "soft-disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "flipIconInRtl",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flips the icon if it is in an RTL context at startup.",
+              "attribute": "flip-icon-in-rtl",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
+              "attribute": "href",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "download",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
+              "attribute": "download",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "LinkTarget | ''"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
+              "attribute": "target",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "ariaLabelSelected",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The `aria-label` of the button when the button is toggleable and selected.",
+              "attribute": "aria-label-selected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, the button will toggle between selected and unselected\nstates",
+              "attribute": "toggle",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
+              "attribute": "selected",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "FormSubmitterType"
+              },
+              "default": "'submit'",
+              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
+              "attribute": "type",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The value added to a form with the button's name when the button submits a\nform.",
+              "attribute": "value",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "form",
+              "description": "The associated form element with which this element's value will submit.",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "labels",
+              "description": "The labels this element is associated with.",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "flipIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLink",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSelectedIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderTouchTarget",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderFocusRing",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderRipple",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ],
+              "description": "Handles a click on this element.",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClickOnChild",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "description": "Handles a click on the child <div> or <button> element within this\nelement's shadow DOM.",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "IconButton",
+            "package": "@material/web/iconbutton/internal/icon-button.js"
+          },
+          "tagName": "oscd-filled-tonal-icon-button",
+          "customElement": true,
+          "summary": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the icon button and makes it non-interactive.",
+              "fieldName": "disabled",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "soft-disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
+              "fieldName": "softDisabled",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "flip-icon-in-rtl",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flips the icon if it is in an RTL context at startup.",
+              "fieldName": "flipIconInRtl",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
+              "fieldName": "href",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "download",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
+              "fieldName": "download",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "target",
+              "type": {
+                "text": "LinkTarget | ''"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
+              "fieldName": "target",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "aria-label-selected",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The `aria-label` of the button when the button is toggleable and selected.",
+              "fieldName": "ariaLabelSelected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, the button will toggle between selected and unselected\nstates",
+              "fieldName": "toggle",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
+              "fieldName": "selected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "FormSubmitterType"
+              },
+              "default": "'submit'",
+              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
+              "fieldName": "type",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The value added to a form with the button's name when the button submits a\nform.",
+              "fieldName": "value",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "{InputEvent} Dispatched when a toggle button toggles --bubbles --composed",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when a toggle button toggles --bubbles",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdFilledTonalIconButton",
+          "declaration": {
+            "name": "OscdFilledTonalIconButton",
+            "module": "iconbutton/OscdFilledTonalIconButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "iconbutton/OscdIconButton.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
+          "name": "OscdIconButton",
+          "members": [
+            {
+              "kind": "method",
+              "name": "getRenderClasses",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "readonly": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "ShadowRootInit"
+              },
+              "static": true,
+              "default": "{ mode: 'open', delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the icon button and makes it non-interactive.",
+              "attribute": "disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "softDisabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
+              "attribute": "soft-disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "flipIconInRtl",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flips the icon if it is in an RTL context at startup.",
+              "attribute": "flip-icon-in-rtl",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
+              "attribute": "href",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "download",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
+              "attribute": "download",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "LinkTarget | ''"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
+              "attribute": "target",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "ariaLabelSelected",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The `aria-label` of the button when the button is toggleable and selected.",
+              "attribute": "aria-label-selected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, the button will toggle between selected and unselected\nstates",
+              "attribute": "toggle",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
+              "attribute": "selected",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "FormSubmitterType"
+              },
+              "default": "'submit'",
+              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
+              "attribute": "type",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The value added to a form with the button's name when the button submits a\nform.",
+              "attribute": "value",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "form",
+              "description": "The associated form element with which this element's value will submit.",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "labels",
+              "description": "The labels this element is associated with.",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "flipIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLink",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSelectedIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderTouchTarget",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderFocusRing",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderRipple",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ],
+              "description": "Handles a click on this element.",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClickOnChild",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "description": "Handles a click on the child <div> or <button> element within this\nelement's shadow DOM.",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "IconButton",
+            "package": "@material/web/iconbutton/internal/icon-button.js"
+          },
+          "tagName": "oscd-icon-button",
+          "customElement": true,
+          "summary": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the icon button and makes it non-interactive.",
+              "fieldName": "disabled",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "soft-disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
+              "fieldName": "softDisabled",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "flip-icon-in-rtl",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flips the icon if it is in an RTL context at startup.",
+              "fieldName": "flipIconInRtl",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
+              "fieldName": "href",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "download",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
+              "fieldName": "download",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "target",
+              "type": {
+                "text": "LinkTarget | ''"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
+              "fieldName": "target",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "aria-label-selected",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The `aria-label` of the button when the button is toggleable and selected.",
+              "fieldName": "ariaLabelSelected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, the button will toggle between selected and unselected\nstates",
+              "fieldName": "toggle",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
+              "fieldName": "selected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "FormSubmitterType"
+              },
+              "default": "'submit'",
+              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
+              "fieldName": "type",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The value added to a form with the button's name when the button submits a\nform.",
+              "fieldName": "value",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "{InputEvent} Dispatched when a toggle button toggles --bubbles --composed",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when a toggle button toggles --bubbles",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdIconButton",
+          "declaration": {
+            "name": "OscdIconButton",
+            "module": "iconbutton/OscdIconButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "iconbutton/OscdOutlinedIconButton.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
+          "name": "OscdOutlinedIconButton",
+          "members": [
+            {
+              "kind": "method",
+              "name": "getRenderClasses",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "readonly": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "ShadowRootInit"
+              },
+              "static": true,
+              "default": "{ mode: 'open', delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the icon button and makes it non-interactive.",
+              "attribute": "disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "softDisabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
+              "attribute": "soft-disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "flipIconInRtl",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flips the icon if it is in an RTL context at startup.",
+              "attribute": "flip-icon-in-rtl",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
+              "attribute": "href",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "download",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
+              "attribute": "download",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "LinkTarget | ''"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
+              "attribute": "target",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "ariaLabelSelected",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The `aria-label` of the button when the button is toggleable and selected.",
+              "attribute": "aria-label-selected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, the button will toggle between selected and unselected\nstates",
+              "attribute": "toggle",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
+              "attribute": "selected",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "FormSubmitterType"
+              },
+              "default": "'submit'",
+              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
+              "attribute": "type",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The value added to a form with the button's name when the button submits a\nform.",
+              "attribute": "value",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "form",
+              "description": "The associated form element with which this element's value will submit.",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "labels",
+              "description": "The labels this element is associated with.",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "flipIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLink",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSelectedIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderTouchTarget",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderFocusRing",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderRipple",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ],
+              "description": "Handles a click on this element.",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClickOnChild",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "description": "Handles a click on the child <div> or <button> element within this\nelement's shadow DOM.",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "IconButton",
+            "package": "@material/web/iconbutton/internal/icon-button.js"
+          },
+          "tagName": "oscd-outlined-icon-button",
+          "customElement": true,
+          "summary": "Icon buttons help people take supplementary actions with a single\ntap.\n\n__Emphasis:__ Low emphasis – For optional or supplementary actions with the\nleast amount of prominence.\n\n__Rationale:__ The most compact and unobtrusive type of button, icon buttons\nare used for optional supplementary actions such as \"Bookmark\" or \"Star.\"\n\n__Example usages:__\n- Add to Favorites\n- Print",
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the icon button and makes it non-interactive.",
+              "fieldName": "disabled",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "soft-disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "\"Soft-disables\" the icon button (disabled but still focusable).\n\nUse this when an icon button needs increased visibility when disabled. See\nhttps://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_disabled_controls\nfor more guidance on when this is needed.",
+              "fieldName": "softDisabled",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "flip-icon-in-rtl",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Flips the icon if it is in an RTL context at startup.",
+              "fieldName": "flipIconInRtl",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.",
+              "fieldName": "href",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "download",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The filename to use when downloading the linked resource.\nIf not specified, the browser will determine a filename.\nThis is only applicable when the icon button is used as a link (`href` is set).",
+              "fieldName": "download",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "target",
+              "type": {
+                "text": "LinkTarget | ''"
+              },
+              "default": "''",
+              "description": "Sets the underlying `HTMLAnchorElement`'s `target` attribute.",
+              "fieldName": "target",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "aria-label-selected",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The `aria-label` of the button when the button is toggleable and selected.",
+              "fieldName": "ariaLabelSelected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, the button will toggle between selected and unselected\nstates",
+              "fieldName": "toggle",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the selected state. When false, displays the default icon. When true,\ndisplays the selected icon, or the default icon If no `slot=\"selected\"`\nicon is provided.",
+              "fieldName": "selected",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "FormSubmitterType"
+              },
+              "default": "'submit'",
+              "description": "The default behavior of the button. May be \"button\", \"reset\", or \"submit\"\n(default).",
+              "fieldName": "type",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The value added to a form with the button's name when the button submits a\nform.",
+              "fieldName": "value",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "{InputEvent} Dispatched when a toggle button toggles --bubbles --composed",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when a toggle button toggles --bubbles",
+              "inheritedFrom": {
+                "name": "IconButton",
+                "module": "iconbutton/internal/icon-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdOutlinedIconButton",
+          "declaration": {
+            "name": "OscdOutlinedIconButton",
+            "module": "iconbutton/OscdOutlinedIconButton.ts"
           }
         }
       ]

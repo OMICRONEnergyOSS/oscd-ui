@@ -14,7 +14,7 @@ import { action } from '@storybook/addon-actions';
 
 const { args, argTypes, events } = getStorybookHelpers('oscd-dialog');
 
-const { open: openArgType, otherArgTypes } = argTypes;
+const { open: openArgType, ...otherArgTypes } = argTypes;
 
 // It isn't possible to use the storybookHelper template function,because
 // the open attribute is unfortunately not being typed correclty in the manifest.
@@ -33,6 +33,7 @@ const meta: Meta<OscdDialog> = {
       handles: events,
     },
   },
+  //eslint-disable-next-line
   render: argz => {
     const [_, updateArgs] = useArgs();
     return html`

@@ -32,6 +32,7 @@ export const scopedWcDecorator: DecoratorFunction = (storyFn, context) => {
       @property({ type: Object })
       declare storyArgs: Record<string, unknown>;
 
+      // eslint-disable-next-line class-methods-use-this
       override render() {
         return html`${storyFn()}`;
       }

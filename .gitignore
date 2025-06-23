@@ -1,15 +1,16 @@
 node_modules
 *.js
-!scripts/*
-!web-test-runner.config.js
-!commitlint.config.js
 *.css
 *-styles.ts
 *.map
 *.d.ts
-!types/*.d.ts
-.wireit/
-*.tsbuildinfo
+
+
+!scripts/*
+!web-test-runner.config.js
+!commitlint.config.js
+!eslint.config.js
+!web-test-runner.config.js
 !.storybook/*.js
 !custom-elements-manifest.config.js
 !test-runner.config.js
@@ -19,6 +20,9 @@ node_modules
 /.vscode
 
 ## build artifacts
+!types/*.d.ts
+*.tsbuildinfo
+.wireit/
 dist
 build
 coverage

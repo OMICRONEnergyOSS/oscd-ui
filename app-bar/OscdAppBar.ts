@@ -132,6 +132,7 @@ export class OscdAppBar extends ScopedElementsMixin(LitElement) {
     }
   `;
 
+  // eslint-disable-next-line class-methods-use-this
   override render() {
     return html`
       <header>
