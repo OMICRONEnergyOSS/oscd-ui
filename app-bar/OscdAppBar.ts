@@ -137,10 +137,11 @@ export class OscdAppBar extends ScopedElementsMixin(LitElement) {
       <header>
         <div>
           <div class="main-header">
-            <slot name="actionStart"></slot>
-            <slot name="title"></slot>
+            <slot name="alignStart"></slot>
             <span class="spacer"></span>
-            <slot name="actionEnd"></slot>
+            <slot name="alignMiddle"></slot>
+            <span class="spacer"></span>
+            <slot name="alignEnd"></slot>
           </div>
           <div class="sub-header">
             <slot></slot>
