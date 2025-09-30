@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.7](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.6...oscd-ui-v0.0.7) (2025-09-30)
+
+
+### Features
+
+* added alignStart, alignMiddle and alignEnd to AppBar ([3124e3b](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/3124e3b2e48761e9d743c64c744b59245eaf45ed))
+* added Radio component (plus all infrastructure to support it) ([53190ad](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/53190ad442c9a284703fa24f2bad9ae1f72f5af4))
+
 ## [0.0.6](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.5...oscd-ui-v0.0.6) (2025-06-16)
 
 
