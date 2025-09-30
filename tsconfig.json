@@ -6,6 +6,7 @@
     "declarationMap": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "importHelpers": true,
     "module": "ES2022",
     "moduleResolution": "node",

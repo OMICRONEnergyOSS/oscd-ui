@@ -11,11 +11,10 @@
  */
 import { CSSResultOrNative } from 'lit';
 
-import { Elevation } from '@material/web/elevation/internal/elevation.js';
-import { styles } from '@material/web/elevation/internal/elevation-styles.js';
+import { Elevation } from './internal/elevation.js';
+import { styles } from './internal/elevation-styles.js';
 
 /**
- * @tag oscd-elevation
  * @summary The `<oscd-elevation>` custom element with default styles.
  *
  * Elevation is the relative distance between two surfaces along the z-axis.

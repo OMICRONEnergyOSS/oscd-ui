@@ -68,7 +68,11 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@custom-elements-manifest/analyzer": "^0.10.4",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.31.0",
+    "@lit-labs/analyzer": "^0.12.1",
     "@open-wc/eslint-config": "^13.0.0",
+    "@open-wc/testing": "^4.0.0",
     "@storybook/addon-actions": "^8.6.14",
     "@storybook/addon-essentials": "^8.6.14",
     "@storybook/addon-interactions": "^8.6.14",
@@ -79,25 +83,33 @@
     "@storybook/web-components-vite": "^8.6.14",
     "@types/jasmine": "^5.1.8",
     "@types/node": "^24.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.34.1",
-    "@typescript-eslint/parser": "^8.34.1",
+    "@typescript-eslint/eslint-plugin": "^8.36.0",
+    "@typescript-eslint/parser": "^8.36.0",
     "@wc-toolkit/cem-inheritance": "^1.1.0",
     "@wc-toolkit/storybook-helpers": "^1.1.4",
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-core": "^0.13.4",
     "@web/test-runner-playwright": "^0.11.1",
     "concurrently": "^9.2.0",
-    "eslint": "^9.29.0",
+    "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.5.0",
+    "eslint-plugin-html": "^8.1.3",
+    "eslint-plugin-lit": "^2.1.1",
+    "eslint-plugin-lit-a11y": "^5.1.0",
+    "eslint-plugin-no-only-tests": "^3.3.0",
+    "eslint-plugin-prettier": "^5.5.1",
     "eslint-plugin-tsdoc": "^0.4.0",
+    "eslint-plugin-wc": "^3.0.1",
+    "gunzip": "^1.2.2",
     "husky": "^9.1.7",
     "jasmine": "^5.8.0",
     "lint-staged": "^16.1.2",
     "playwright": "^1.53.1",
     "prettier": "^3.6.0",
+    "sass": "^1.52.3",
+    "sass-true": "^6.1.0",
     "storybook": "^8.6.14",
-    "typescript": "^5.5.3",
+    "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",
     "web-test-runner-jasmine": "^0.1.2",
     "wireit": "^0.14.12"
@@ -133,7 +145,52 @@
         "!.storybook/"
       ],
       "clean": "if-file-deleted",
-      "dependencies": []
+      "dependencies": [
+        "build:css-to-ts"
+      ]
+    },
+    "build:css-to-ts": {
+      "command": "find . \\( -path ./.wireit -o -path ./node_modules -o -path ./catalog \\) -prune -o -name '*-styles.css' -print | xargs -L1 node scripts/css-to-ts.js",
+      "files": [
+        "**/*-styles.css",
+        "!catalog/"
+      ],
+      "output": [
+        "**/*-styles.ts",
+        "!catalog/"
+      ],
+      "dependencies": [
+        "build:scripts",
+        "build:sass"
+      ]
+    },
+    "build:sass": {
+      "command": "sass --style=compressed --load-path=node_modules --load-path=node_modules/sass-true/sass $(ls -d */ | grep -vE 'node_modules|catalog')",
+      "files": [
+        "**/*.scss",
+        "!catalog/"
+      ],
+      "output": [
+        "**/*.css",
+        "**/*.css.map",
+        "!catalog/"
+      ]
+    },
+    "build:scripts": {
+      "command": "tsc -b scripts/tsconfig.json --pretty",
+      "files": [
+        "scripts/tsconfig.json",
+        "scripts/**/*.ts",
+        "!**/*.d.ts",
+        "!**/*-styles.ts"
+      ],
+      "output": [
+        "scripts/.tsbuildinfo",
+        "scripts/**/*.js",
+        "scripts/**/*.js.map",
+        "scripts/**/*.d.ts"
+      ],
+      "clean": "if-file-deleted"
     }
   },
   "prettier": {
