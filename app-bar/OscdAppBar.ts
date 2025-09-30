@@ -23,9 +23,9 @@ import { OscdElevation } from '../elevation/OscdElevation.js';
  * It can contain a title, navigation icons, and action icons.
  * The app bar is typically used in conjunction with a navigation drawer or bottom navigation.
  *
- * @slot actionStart - Slot for action icons at the start of the app bar.
- * @slot title - Slot for the title of the app bar.
- * @slot actionEnd - Slot for action icons at the end of the app bar.
+ * @slot alignStart - Slot for action icons at the start of the app bar.
+ * @slot alignMiddle - Slot for the middle content of the app bar.
+ * @slot alignEnd - Slot for action icons at the end of the app bar.
  * @slot Default - Slot for additional content which will appear immediately under the main app bar.
  *
  * @cssprop --oscd-app-bar-elevation - The elevation level of the app bar.
@@ -102,12 +102,12 @@ export class OscdAppBar extends ScopedElementsMixin(LitElement) {
       display: flex;
       flex-grow: 1;
       align-items: center;
-      height: 64px;
+      height: var(--app-bar-height, 54px);
     }
 
     @media (max-width: 599px) {
       .main-header {
-        height: 56px;
+        height: var(--app-bar-small-height, 48px);
       }
     }
 
@@ -138,10 +138,11 @@ export class OscdAppBar extends ScopedElementsMixin(LitElement) {
       <header>
         <div>
           <div class="main-header">
-            <slot name="actionStart"></slot>
-            <slot name="title"></slot>
+            <slot name="alignStart"></slot>
             <span class="spacer"></span>
-            <slot name="actionEnd"></slot>
+            <slot name="alignMiddle"></slot>
+            <span class="spacer"></span>
+            <slot name="alignEnd"></slot>
           </div>
           <div class="sub-header">
             <slot></slot>

@@ -44,7 +44,7 @@ const meta: Meta<OscdAppBar & typeof args> = {
     html` ${template(
       rest,
       html`<oscd-filled-icon-button
-          slot="actionStart"
+          slot="alignStart"
           aria-label="Menu"
           @click=${(event: Event) => {
             action('actionStart clicked')({ event });
@@ -52,12 +52,12 @@ const meta: Meta<OscdAppBar & typeof args> = {
         >
           <oscd-icon>menu</oscd-icon></oscd-filled-icon-button
         >
-        <div slot="title">${title}</div>
+        <div slot="alignMiddle">${title}</div>
         <oscd-filled-icon-button
-          slot="actionEnd"
+          slot="alignEnd"
           aria-label="Menu"
           @click=${(event: Event) => {
-            action('actionEnd clicked')({ event });
+            action('alignEnd clicked')({ event });
           }}
         >
           <oscd-icon>more_vert</oscd-icon></oscd-filled-icon-button
