@@ -6,6 +6,7 @@ import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
 import eslintPluginTSDoc from 'eslint-plugin-tsdoc';
 import openWcConfig from '@open-wc/eslint-config';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -88,7 +89,6 @@ export default [
           ],
         },
       ],
-      curly: ['error', 'all'],
       'import-x/no-unresolved': 'off',
       'import-x/extensions': [
         'error',
@@ -97,6 +97,18 @@ export default [
           ignorePackages: true,
         },
       ],
+    },
+  },
+  eslintPluginPrettierRecommended,
+  {
+    rules: {
+      curly: ['error', 'all'],
+    },
+  },
+  {
+    files: ['**/*.test.ts', '**/*.spec.ts'],
+    rules: {
+      '@typescript-eslint/no-unused-expressions': 'off',
     },
   },
 ];

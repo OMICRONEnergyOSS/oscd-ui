@@ -7,7 +7,7 @@ import { OscdOutlinedButton } from './OscdOutlinedButton.js';
 
 declare global {
   interface HTMLElementTagNameMap {
-    'md-outlined-button': OscdOutlinedButton;
+    'oscd-outlined-button': OscdOutlinedButton;
   }
 }
 

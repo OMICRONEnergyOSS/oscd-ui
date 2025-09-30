@@ -6,7 +6,6 @@ node_modules
 *.d.ts
 
 
-!scripts/*
 !web-test-runner.config.js
 !commitlint.config.js
 !eslint.config.js

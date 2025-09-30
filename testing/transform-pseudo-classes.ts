@@ -1,4 +1,3 @@
-/* eslint-disable */
 /**
  * @license
  * Copyright 2021 Google LLC

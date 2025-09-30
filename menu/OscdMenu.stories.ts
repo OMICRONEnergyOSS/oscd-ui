@@ -31,7 +31,6 @@ const meta: Meta<OscdMenu> = {
       handles: ['click', ...events],
     },
   },
-  //eslint-disable-next-line
   render: argz => {
     const [_, updateArgs] = useArgs();
     return html`

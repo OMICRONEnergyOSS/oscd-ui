@@ -33,7 +33,7 @@ const meta: Meta<OscdDialog> = {
       handles: events,
     },
   },
-  //eslint-disable-next-line
+
   render: argz => {
     const [_, updateArgs] = useArgs();
     return html`
