@@ -11,11 +11,11 @@
  */
 import { CSSResultOrNative } from 'lit';
 
-import { Radio } from '@material/web/radio/internal/radio.js';
-import { styles } from '@material/web/radio/internal/radio-styles.js';
+import { Radio } from './internal/radio.js';
+import { styles } from './internal/radio-styles.js';
 
 /**
- * @tagname oscd-radio
+ * @tag oscd-radio
  * @summary Radio buttons allow users to select one option from a set.
  *
  * Radio buttons are the recommended way to allow users to make a single

@@ -10,11 +10,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { css, CSSResultOrNative } from 'lit';
-import { ListItemEl as ListItem } from '@material/web/list/internal/listitem/list-item.js';
-import { styles } from '@material/web/list/internal/listitem/list-item-styles.js';
-import { property } from 'lit/decorators.js';
+import { ListItemEl as ListItem } from './internal/listitem/list-item.js';
+import { styles } from './internal/listitem/list-item-styles.js';
 
-export { type ListItemType } from '@material/web/list/internal/listitem/list-item.js';
+export { type ListItemType } from './internal/listitem/list-item.js';
 
 const styleOverrides = css`
   :host([activated]) {
@@ -79,11 +78,5 @@ const styleOverrides = css`
  * @suppress {visibility}
  */
 export class OscdListItem extends ListItem {
-  /**
-   * Boolean indicating whether the item is activated.
-   */
-  @property({ type: Boolean, reflect: true })
-  activated = false;
-
   static override styles: CSSResultOrNative[] = [styles, styleOverrides];
 }

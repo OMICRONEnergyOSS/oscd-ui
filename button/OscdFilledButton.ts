@@ -10,14 +10,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { FilledButton } from '@material/web/button/internal/filled-button.js';
-import { styles as filledStyles } from '@material/web/button/internal/filled-styles.js';
-import { styles as sharedElevationStyles } from '@material/web/button/internal/shared-elevation-styles.js';
-import { styles as sharedStyles } from '@material/web/button/internal/shared-styles.js';
+import { FilledButton } from './internal/filled-button.js';
+import { styles as filledStyles } from './internal/filled-styles.js';
+import { styles as sharedElevationStyles } from './internal/shared-elevation-styles.js';
+import { styles as sharedStyles } from './internal/shared-styles.js';
 import { CSSResult } from '@lit/reactive-element';
 
 /**
- * @tag "oscd-filled-button"
+ * @tag oscd-filled-button
  * @summary Buttons help people take action, such as sending an email, sharing a
  * document, or liking a comment.
  *

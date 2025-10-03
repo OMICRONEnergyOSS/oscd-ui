@@ -11,8 +11,8 @@
  */
 
 import { css, CSSResultOrNative } from 'lit';
-import { Dialog } from '@material/web/dialog/internal/dialog.js';
-import { styles } from '@material/web/dialog/internal/dialog-styles.js';
+import { Dialog } from './internal/dialog.js';
+import { styles } from './internal/dialog-styles.js';
 
 const styleOverrides = css`
   .scrim {

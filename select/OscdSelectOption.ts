@@ -10,11 +10,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { CSSResultOrNative } from 'lit';
-import { styles } from '@material/web/menu/internal/menuitem/menu-item-styles.js';
+import { styles } from '../menu/internal/menuitem/menu-item-styles.js';
 
-import { SelectOptionEl } from '@material/web/select/internal/selectoption/select-option.js';
+import { SelectOptionEl } from './internal/selectoption/select-option.js';
 
-export { type SelectOption } from '@material/web/select/internal/selectoption/select-option.js';
+export { type SelectOption } from './internal/selectoption/select-option.js';
 
 /**
  * @tag oscd-select-option

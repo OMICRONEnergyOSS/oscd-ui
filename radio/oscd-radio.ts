@@ -7,8 +7,8 @@
 import { CSSResultOrNative } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-import { Radio } from '@material/web/radio/internal/radio.js';
-import { styles } from '@material/web/radio/internal/radio-styles.js';
+import { Radio } from './internal/radio.js';
+import { styles } from './internal/radio-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -17,7 +17,7 @@ declare global {
 }
 
 /**
- * @tag oscd-radio
+ *
  * @summary Radio buttons allow users to select one option from a set.
  *
  * @description

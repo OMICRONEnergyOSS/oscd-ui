@@ -10,9 +10,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { CSSResultOrNative } from 'lit';
-import { OutlinedSelect } from '@material/web/select/internal/outlined-select.js';
-import { styles } from '@material/web/select/internal/outlined-select-styles.js';
-import { styles as sharedStyles } from '@material/web/select/internal/shared-styles.js';
+import { OutlinedSelect } from './internal/outlined-select.js';
+import { styles } from './internal/outlined-select-styles.js';
+import { styles as sharedStyles } from './internal/shared-styles.js';
 
 /**
  * @tag oscd-outlined-select

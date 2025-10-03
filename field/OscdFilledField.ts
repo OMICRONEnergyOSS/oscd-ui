@@ -10,9 +10,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { CSSResultOrNative } from 'lit';
-import { FilledField } from '@material/web/field/internal/filled-field.js';
-import { styles as filledStyles } from '@material/web/field/internal/filled-styles.js';
-import { styles as sharedStyles } from '@material/web/field/internal/shared-styles.js';
+import { FilledField } from './internal/filled-field.js';
+import { styles as filledStyles } from './internal/filled-styles.js';
+import { styles as sharedStyles } from './internal/shared-styles.js';
 
 /**
  * @tag oscd-filled-field

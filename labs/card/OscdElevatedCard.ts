@@ -10,9 +10,10 @@ import { Card } from './internal/card.js';
 import { styles as elevatedStyles } from './internal/elevated-styles.js';
 import { styles as sharedStyles } from './internal/shared-styles.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
-import { OscdElevation } from 'elevation/OscdElevation.js';
+import { OscdElevation } from '../../elevation/OscdElevation.js';
 
 /**
+ * @tag oscd-elevated-card
  * @final
  * @suppress {visibility}
  */

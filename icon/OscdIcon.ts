@@ -10,8 +10,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { CSSResultOrNative } from 'lit';
-import { Icon } from '@material/web/icon/internal/icon.js';
-import { styles } from '@material/web/icon/internal/icon-styles.js';
+import { Icon } from './internal/icon.js';
+import { styles } from './internal/icon-styles.js';
 
 /**
  * @tag oscd-icon

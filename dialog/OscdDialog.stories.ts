@@ -1,8 +1,9 @@
+/* eslint-disable lit/binding-positions */
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { withActions } from '@storybook/addon-actions/decorator';
 
-import { OscdDialog } from 'dialog/OscdDialog';
+import { OscdDialog } from 'dialog/OscdDialog.js';
 import { OscdFilledButton } from 'button/OscdFilledButton';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
 import { useArgs } from '@storybook/preview-api';
@@ -54,14 +55,14 @@ const meta: Meta<OscdDialog> = {
             Are you sure you want to proceed with this operation? This action
             cannot be undone.
           </div>
-          <div slot="actions">
+          <!-- <div slot="actions">
             <oscd-filled-button @click=${() => updateArgs({ open: false })}
               >Cancel</oscd-filled-button
             >
             <oscd-filled-button @click=${() => updateArgs({ open: false })}
               >Confirm</oscd-filled-button
             >
-          </div>
+          </div> -->
         </oscd-dialog>
       </div>
     `;

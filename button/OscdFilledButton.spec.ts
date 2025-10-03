@@ -13,7 +13,7 @@
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-import { ButtonHarness } from '@material/web/button/harness.js';
+import { ButtonHarness } from './harness.js';
 import { Environment } from '../testing/environment.js';
 
 import { OscdFilledButton as Button } from './OscdFilledButton.js';

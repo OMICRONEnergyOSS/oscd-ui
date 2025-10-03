@@ -10,9 +10,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { CSSResultOrNative } from 'lit';
-import { styles as sharedStyles } from '@material/web/button/internal/shared-styles.js';
-import { TextButton } from '@material/web/button/internal/text-button.js';
-import { styles as textStyles } from '@material/web/button/internal/text-styles.js';
+import { styles as sharedStyles } from './internal/shared-styles.js';
+import { TextButton } from './internal/text-button.js';
+import { styles as textStyles } from './internal/text-styles.js';
 
 /**
  * @tag "oscd-text-button"

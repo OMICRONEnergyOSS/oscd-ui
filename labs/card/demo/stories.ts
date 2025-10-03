@@ -5,10 +5,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import '@material/web/button/filled-button.js';
-import '@material/web/labs/card/elevated-card.js';
-import '@material/web/labs/card/filled-card.js';
-import '@material/web/labs/card/outlined-card.js';
+import '.ed-button.js';
+import '../elevated-card.js';
+import '../filled-card.js';
+import '../outlined-card.js';
 
 import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
 import { css, html } from 'lit';

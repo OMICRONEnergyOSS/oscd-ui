@@ -1,0 +1,17 @@
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { html } from 'lit';
+import { Button } from './button.js';
+
+/**
+ * A filled button component.
+ */
+export class FilledButton extends Button {
+  static renderElevationOrOutline() {
+    return html`<md-elevation part="elevation"></md-elevation>`;
+  }
+}

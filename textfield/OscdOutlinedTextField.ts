@@ -12,12 +12,11 @@
 import { CSSResultOrNative } from 'lit';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 import { literal } from 'lit/static-html.js';
-import { styles as outlinedStyles } from '@material/web/textfield/internal/outlined-styles.js';
-import { OutlinedTextField } from '@material/web/textfield/internal/outlined-text-field.js';
-import { styles as sharedStyles } from '@material/web/textfield/internal/shared-styles.js';
-import { OscdOutlinedField } from '../field/OscdOutlinedField.js';
+import { styles as outlinedStyles } from './internal/outlined-styles.js';
+import { OutlinedTextField } from './internal/outlined-text-field.js';
+import { styles as sharedStyles } from './internal/shared-styles.js';
 
-// export { type TextFieldType } from "@material/web/textfield/internal/text-field.js";
+// export { type TextFieldType } from "../internal/text-field.js";
 
 /**
  * @tag oscd-outlined-text-field
@@ -29,12 +28,6 @@ export class OscdOutlinedTextField extends ScopedElementsMixin(
   OutlinedTextField,
 ) {
   static override styles: CSSResultOrNative[] = [sharedStyles, outlinedStyles];
-
-  static get scopedElements() {
-    return {
-      'oscd-outlined-field': OscdOutlinedField,
-    };
-  }
 
   protected override readonly fieldTag = literal`oscd-outlined-field`;
 }

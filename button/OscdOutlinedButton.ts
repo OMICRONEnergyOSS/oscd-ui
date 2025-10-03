@@ -11,9 +11,9 @@
  */
 import { CSSResultOrNative } from 'lit';
 
-import { OutlinedButton } from '@material/web/button/internal/outlined-button.js';
-import { styles as outlinedStyles } from '@material/web/button/internal/outlined-styles.js';
-import { styles as sharedStyles } from '@material/web/button/internal/shared-styles.js';
+import { OutlinedButton } from './internal/outlined-button.js';
+import { styles as outlinedStyles } from './internal/outlined-styles.js';
+import { styles as sharedStyles } from './internal/shared-styles.js';
 
 /**
  * @tag "oscd-outlined-button"

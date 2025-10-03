@@ -10,9 +10,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { CSSResultOrNative } from 'lit';
-import { FilledSelect } from '@material/web/select/internal/filled-select.js';
-import { styles } from '@material/web/select/internal/filled-select-styles.js';
-import { styles as sharedStyles } from '@material/web/select/internal/shared-styles.js';
+import { FilledSelect } from './internal/filled-select.js';
+import { styles } from './internal/filled-select-styles.js';
+import { styles as sharedStyles } from './internal/shared-styles.js';
 
 /**
  * @tag oscd-filled-select
