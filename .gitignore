@@ -5,7 +5,6 @@ node_modules
 *.map
 *.d.ts
 
-
 !web-test-runner.config.js
 !commitlint.config.js
 !eslint.config.js

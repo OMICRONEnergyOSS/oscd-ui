@@ -24,7 +24,8 @@
     "types": ["lit", "jasmine"],
     "lib": ["DOM", "ES2022"],
     "strictNullChecks": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "dist"
   },
-  "exclude": []
+  "exclude": ["dist"]
 }

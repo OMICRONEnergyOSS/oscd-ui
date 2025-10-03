@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import '@material/web/radio/radio.js';
+import '../oscd-radio.js';
 
 import { css, html } from 'lit';
 import {

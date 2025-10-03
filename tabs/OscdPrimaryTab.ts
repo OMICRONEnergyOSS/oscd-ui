@@ -10,9 +10,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { CSSResultOrNative } from 'lit';
-import { PrimaryTab } from '@material/web/tabs/internal/primary-tab.js';
-import { styles as primaryStyles } from '@material/web/tabs/internal/primary-tab-styles.js';
-import { styles as sharedStyles } from '@material/web/tabs/internal/tab-styles.js';
+import { PrimaryTab } from './internal/primary-tab.js';
+import { styles as primaryStyles } from './internal/primary-tab-styles.js';
+import { styles as sharedStyles } from './internal/tab-styles.js';
 
 /**
  * @tag oscd-primary-tab

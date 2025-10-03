@@ -13,6 +13,7 @@ import { OscdElevation } from '../../elevation/OscdElevation.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 
 /**
+ * @tag oscd-outlined-card
  * @final
  * @suppress {visibility}
  */

@@ -1,7 +1,8 @@
-import { summaryToDescriptionPlugin } from './scripts/cem-summary-to-description-plugin.js';
+import { summaryToDescriptionPlugin } from './dist/scripts/cem-summary-to-description-plugin.js';
+import { cemInheritancePlugin } from '@wc-toolkit/cem-inheritance';
 
 export default {
-  globs: ['**/Oscd*.ts'],
+  globs: ['**/Oscd*.ts', '**/internal/**/*.ts'],
   exclude: [
     '**/*.stories.ts',
     '**/*.d.ts',
@@ -17,5 +18,5 @@ export default {
   litelement: true,
   dependencies: true,
   dev: false,
-  plugins: [summaryToDescriptionPlugin()],
+  plugins: [cemInheritancePlugin({}), summaryToDescriptionPlugin()],
 };

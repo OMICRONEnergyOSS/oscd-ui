@@ -5,8 +5,8 @@ import {
   getStorybookHelpers,
   storybookHelperDecorator,
 } from 'utils/storybook/getStorybookHelpers.js';
-import './oscd-radio.js';
-import { OscdRadio } from 'radio/OscdRadio';
+
+import { OscdRadio } from 'radio/OscdRadio.js';
 
 const { args, argTypes, template, events } = getStorybookHelpers('oscd-radio');
 

@@ -1,10 +1,10 @@
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { withActions } from '@storybook/addon-actions/decorator';
-import { OscdTabs } from 'tabs/OscdTabs';
-import { OscdPrimaryTab } from 'tabs/OscdPrimaryTab';
-import { OscdSecondaryTab } from 'tabs/OscdSecondaryTab';
-import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
+import { OscdTabs } from './OscdTabs.js';
+import { OscdPrimaryTab } from './OscdPrimaryTab.js';
+import { OscdSecondaryTab } from './OscdSecondaryTab.js';
+import { scopedWcDecorator } from '../utils/storybook/scopedWcDecorator.js';
 import {
   getStorybookHelpers,
   storybookHelperDecorator,

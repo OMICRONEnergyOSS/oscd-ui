@@ -4,11 +4,9 @@
     "types": ["node"],
     "allowSyntheticDefaultImports": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "outDir": "../dist/scripts"
   },
-  "exclude": [
-    "catalog",
-    "**/demo"
-  ],
+  "exclude": ["../dist", "../catalog"],
   "include": ["**/*"]
 }

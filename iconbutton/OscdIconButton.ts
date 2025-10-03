@@ -10,9 +10,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { CSSResultOrNative } from 'lit';
-import { IconButton } from '@material/web/iconbutton/internal/icon-button.js';
-import { styles as sharedStyles } from '@material/web/iconbutton/internal/shared-styles.js';
-import { styles } from '@material/web/iconbutton/internal/standard-styles.js';
+import { IconButton } from './internal/icon-button.js';
+import { styles as sharedStyles } from './internal/shared-styles.js';
+import { styles } from './internal/standard-styles.js';
 
 /**
  * @tag oscd-icon-button

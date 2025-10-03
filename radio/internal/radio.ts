@@ -4,9 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// import '../../focus/oscd-focus-ring.js';
 import { OscdFocusRing } from '../../focus/OscdFocusRing.js';
-// import '../../ripple/ripple.js';
 import { OscdRipple } from '../../ripple/OscdRipple.js';
 
 import { html, isServer, LitElement } from 'lit';

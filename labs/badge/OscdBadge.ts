@@ -10,6 +10,8 @@ import { Badge } from './internal/badge.js';
 import { styles } from './internal/badge-styles.js';
 
 /**
+ * @tag oscd-badge
+ * @summary Badges are small status descriptors for UI elements.
  * @final
  * @suppress {visibility}
  */

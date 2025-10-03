@@ -10,9 +10,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { CSSResultOrNative } from 'lit';
-import { OutlinedField } from '@material/web/field/internal/outlined-field.js';
-import { styles as outlinedStyles } from '@material/web/field/internal/outlined-styles.js';
-import { styles as sharedStyles } from '@material/web/field/internal/shared-styles.js';
+import { OutlinedField } from './internal/outlined-field.js';
+import { styles as outlinedStyles } from './internal/outlined-styles.js';
+import { styles as sharedStyles } from './internal/shared-styles.js';
 
 /**
  * @tag oscd-outlined-field

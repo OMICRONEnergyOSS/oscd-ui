@@ -32,24 +32,8 @@
   "author": "OMICRON Electronics GmbH",
   "license": "Apache-2.0",
   "files": [
-    "**/*.js",
-    "**/*.js.map",
-    "**/*.d.ts",
-    "**/*.scss",
-    "**/*.css",
-    "**/*.css.map",
-    "!custom-elements-manifest.config.js",
-    "!web-test-runner.config.js",
-    "!test-runner.config.js",
-    "!commitlint.config.js",
-    "!**/test/**",
-    "!**/*_test.*",
-    "!**/*.stories.*",
-    "!.wireit/**",
-    "!catalog/",
-    "!scripts/",
-    "!.storybook/",
-    "!**/testing/**"
+    "dist/**/*.js",
+    "!dist/scripts"
   ],
   "overrides": {
     "@material/web": {
@@ -68,6 +52,7 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@custom-elements-manifest/analyzer": "^0.10.4",
+    "@custom-elements-manifest/find-dependencies": "^0.0.6",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.31.0",
     "@lit-labs/analyzer": "^0.12.1",
@@ -85,7 +70,7 @@
     "@types/node": "^24.0.3",
     "@typescript-eslint/eslint-plugin": "^8.36.0",
     "@typescript-eslint/parser": "^8.36.0",
-    "@wc-toolkit/cem-inheritance": "^1.1.0",
+    "@wc-toolkit/cem-inheritance": "^1.2.2",
     "@wc-toolkit/storybook-helpers": "^1.1.4",
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-core": "^0.13.4",
@@ -128,21 +113,13 @@
         "!**/*.d.ts",
         "!**/*-styles.ts",
         "!catalog/",
-        "!scripts/"
+        "!scripts/",
+        "!dist/"
       ],
       "output": [
-        ".tsbuildinfo",
-        "**/*.js",
-        "**/*.js.map",
-        "**/*.d.ts",
-        "!custom-elements-manifest.config.js",
-        "!web-test-runner.config.js",
-        "!test-runner.config.js",
-        "!commitlint.config.js",
-        "!types/",
-        "!catalog/",
-        "!scripts/",
-        "!.storybook/"
+        "dist/**/*.js",
+        "dist/**/*.js.map",
+        "dist/**/*.d.ts"
       ],
       "clean": "if-file-deleted",
       "dependencies": [
@@ -150,14 +127,14 @@
       ]
     },
     "build:css-to-ts": {
-      "command": "find . \\( -path ./.wireit -o -path ./node_modules -o -path ./catalog \\) -prune -o -name '*-styles.css' -print | xargs -L1 node scripts/css-to-ts.js",
+      "command": "find ./ \\( -path ./.wireit -o -path ./node_modules -o -path ./catalog -o -path ./dist \\) -prune -o -name '*-styles.css' -print | xargs -L1 node dist/scripts/css-to-ts.js",
       "files": [
         "**/*-styles.css",
+        "!dist/",
         "!catalog/"
       ],
       "output": [
-        "**/*-styles.ts",
-        "!catalog/"
+        "dist/**/*-styles.ts"
       ],
       "dependencies": [
         "build:scripts",
@@ -165,15 +142,14 @@
       ]
     },
     "build:sass": {
-      "command": "sass --style=compressed --load-path=node_modules --load-path=node_modules/sass-true/sass $(ls -d */ | grep -vE 'node_modules|catalog')",
+      "command": "sass --style=compressed --load-path=node_modules --load-path=node_modules/sass-true/sass $(ls -d */ | grep -vE 'node_modules|catalog'):dist/",
       "files": [
         "**/*.scss",
         "!catalog/"
       ],
       "output": [
-        "**/*.css",
-        "**/*.css.map",
-        "!catalog/"
+        "dist/**/*.css",
+        "dist/**/*.css.map"
       ]
     },
     "build:scripts": {
@@ -185,10 +161,10 @@
         "!**/*-styles.ts"
       ],
       "output": [
-        "scripts/.tsbuildinfo",
-        "scripts/**/*.js",
-        "scripts/**/*.js.map",
-        "scripts/**/*.d.ts"
+        "./dist/scripts/.tsbuildinfo",
+        "./dist/scripts/**/*.js",
+        "./dist/scripts/**/*.js.map",
+        "./dist/scripts/**/*.d.ts"
       ],
       "clean": "if-file-deleted"
     }
