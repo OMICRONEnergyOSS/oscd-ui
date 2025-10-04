@@ -65,7 +65,7 @@
     "@typescript-eslint/eslint-plugin": "^8.36.0",
     "@typescript-eslint/parser": "^8.36.0",
     "@wc-toolkit/cem-inheritance": "^1.2.2",
-    "@wc-toolkit/storybook-helpers": "^1.1.4",
+    "@wc-toolkit/storybook-helpers": "^9.0.1",
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-core": "^0.13.4",
     "@web/test-runner-playwright": "^0.11.1",
