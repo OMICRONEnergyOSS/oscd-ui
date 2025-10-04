@@ -78,8 +78,8 @@ export class SubMenu extends LitElement {
   @queryAssignedElements({ slot: 'menu', flatten: true })
   private readonly menus!: Menu[];
 
-  private previousOpenTimeout: ReturnType<typeof setTimeout> | null = null;
-  private previousCloseTimeout: ReturnType<typeof setTimeout> | null = null;
+  private previousOpenTimeout: unknown;
+  private previousCloseTimeout: unknown;
 
   constructor() {
     super();
@@ -253,17 +253,9 @@ export class SubMenu extends LitElement {
    * menu due to pointerleave.
    */
   protected onMouseenter = () => {
-    if (this.previousOpenTimeout !== null) {
-      clearTimeout(this.previousOpenTimeout);
-      this.previousOpenTimeout = null;
-    }
-    if (this.previousCloseTimeout !== null) {
-      clearTimeout(this.previousCloseTimeout);
-      this.previousCloseTimeout = null;
-    }
-    if (this.menu?.open) {
-      return;
-    }
+    clearTimeout(this.previousOpenTimeout as number);
+    clearTimeout(this.previousCloseTimeout as number);
+    if (this.menu?.open) return;
 
     // Open synchronously if delay is 0. (screenshot tests infra
     // would never resolve otherwise)
@@ -286,14 +278,8 @@ export class SubMenu extends LitElement {
    * menu due to pointerleave.
    */
   protected onMouseleave = () => {
-    if (this.previousCloseTimeout !== null) {
-      clearTimeout(this.previousCloseTimeout);
-      this.previousCloseTimeout = null;
-    }
-    if (this.previousOpenTimeout !== null) {
-      clearTimeout(this.previousOpenTimeout);
-      this.previousOpenTimeout = null;
-    }
+    clearTimeout(this.previousCloseTimeout as number);
+    clearTimeout(this.previousOpenTimeout as number);
 
     // Close synchronously if delay is 0. (screenshot tests infra
     // would never resolve otherwise)

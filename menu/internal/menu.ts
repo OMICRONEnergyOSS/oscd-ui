@@ -211,7 +211,7 @@ export abstract class Menu extends ScopedElementsMixin(LitElement) {
    * if the menu would render outisde the viewport.
    * Use `no-horizontal-flip` or `no-vertical-flip` to force the usage of the value
    */
-  @property({ type: String, attribute: 'anchor-corner', reflect: true })
+  @property({ attribute: 'anchor-corner' })
   anchorCorner: Corner = Corner.END_START;
   /**
    * The corner of the menu which to align the anchor in the standard logical
@@ -221,7 +221,7 @@ export abstract class Menu extends ScopedElementsMixin(LitElement) {
    * if the menu would render outisde the viewport.
    * Use `no-horizontal-flip` or `no-vertical-flip` to force the usage of the value
    */
-  @property({ attribute: 'menu-corner', reflect: true }) menuCorner: Corner =
+  @property({ attribute: 'menu-corner' }) menuCorner: Corner =
     Corner.START_START;
   /**
    * Keeps the user clicks outside the menu.
