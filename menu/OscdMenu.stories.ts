@@ -60,6 +60,9 @@ export const Default: Story = {
   args: {
     ...args,
     anchor: 'menu-button',
+    //explicitly set to undefined to avoid empty space being set (which breaks the menu)
+    'anchor-corner': undefined,
+    'menu-corner': undefined,
     open: false, // Default state of the menu
     '[@closed]': () => {
       args['open'] = false;
