@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from "eslint-plugin-storybook";
+
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import path from 'node:path';
@@ -16,99 +19,90 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 });
 
-export default [
-  ...openWcConfig,
-  ...compat.extends(
-    'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-  ),
-  {
-    ignores: [
-      '**/*.js',
-      '**/*.d.ts',
-      '**/*.map.js',
-      'node_modules',
-      'coverage',
-      'doc',
-      '.wireit/',
-      'storybook-static/',
+export default [...openWcConfig, ...compat.extends(
+  'eslint:recommended',
+  'plugin:@typescript-eslint/eslint-recommended',
+  'plugin:@typescript-eslint/recommended',
+), {
+  ignores: [
+    '**/*.js',
+    '**/*.d.ts',
+    '**/*.map.js',
+    'node_modules',
+    'coverage',
+    'doc',
+    '.wireit/',
+    'storybook-static/',
+  ],
+}, {
+  plugins: {
+    '@typescript-eslint': typescriptEslint,
+    'eslint-plugin-tsdoc': eslintPluginTSDoc,
+  },
+
+  languageOptions: {
+    parser: tsParser,
+  },
+
+  rules: {
+    '@typescript-eslint/no-non-null-assertion': 'off',
+
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        args: 'all',
+        argsIgnorePattern: '^_',
+        caughtErrors: 'all',
+        caughtErrorsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      },
+    ],
+    'no-use-before-define': 'off',
+    'class-methods-use-this': [
+      'error',
+      {
+        exceptMethods: ['locale'],
+      },
+    ],
+    '@typescript-eslint/no-explicit-any': [
+      'error',
+      {
+        ignoreRestArgs: true,
+      },
+    ],
+    'import-x/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '**/*.test.ts',
+          '**/*.spec.ts',
+          '**/*.stories.ts',
+          'eslint.config.js',
+          'web-test-runner.config.js',
+          './scripts/**/*',
+          './utils/**/*',
+          './testing/**/*',
+        ],
+      },
+    ],
+    'import-x/no-unresolved': 'off',
+    'import-x/extensions': [
+      'error',
+      'always',
+      {
+        ignorePackages: true,
+      },
     ],
   },
-
-  {
-    plugins: {
-      '@typescript-eslint': typescriptEslint,
-      'eslint-plugin-tsdoc': eslintPluginTSDoc,
-    },
-
-    languageOptions: {
-      parser: tsParser,
-    },
-
-    rules: {
-      '@typescript-eslint/no-non-null-assertion': 'off',
-
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          args: 'all',
-          argsIgnorePattern: '^_',
-          caughtErrors: 'all',
-          caughtErrorsIgnorePattern: '^_',
-          destructuredArrayIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        },
-      ],
-      'no-use-before-define': 'off',
-      'class-methods-use-this': [
-        'error',
-        {
-          exceptMethods: ['locale'],
-        },
-      ],
-      '@typescript-eslint/no-explicit-any': [
-        'error',
-        {
-          ignoreRestArgs: true,
-        },
-      ],
-      'import-x/no-extraneous-dependencies': [
-        'error',
-        {
-          devDependencies: [
-            '**/*.test.ts',
-            '**/*.spec.ts',
-            '**/*.stories.ts',
-            'eslint.config.js',
-            'web-test-runner.config.js',
-            './scripts/**/*',
-            './utils/**/*',
-            './testing/**/*',
-          ],
-        },
-      ],
-      'import-x/no-unresolved': 'off',
-      'import-x/extensions': [
-        'error',
-        'always',
-        {
-          ignorePackages: true,
-        },
-      ],
-    },
+}, eslintPluginPrettierRecommended, {
+  rules: {
+    curly: ['error', 'all'],
   },
-  eslintPluginPrettierRecommended,
-  {
-    rules: {
-      curly: ['error', 'all'],
-    },
+}, {
+  files: ['**/*.test.ts', '**/*.spec.ts'],
+  rules: {
+    '@typescript-eslint/no-unused-expressions': 'off',
   },
-  {
-    files: ['**/*.test.ts', '**/*.spec.ts'],
-    rules: {
-      '@typescript-eslint/no-unused-expressions': 'off',
-    },
-  },
-];
+}, ...storybook.configs["flat/recommended"]];

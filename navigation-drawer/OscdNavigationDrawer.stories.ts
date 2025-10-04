@@ -1,15 +1,15 @@
 import { html } from 'lit';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
 import { OscdNavigationDrawer } from 'navigation-drawer/OscdNavigationDrawer';
 import { OscdList } from 'list/OscdList';
 import { OscdListItem } from 'list/OscdListItem';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 import { OscdIcon } from 'icon/OscdIcon';
 import { OscdAppBar } from 'app-bar/OscdAppBar';
 import { OscdFilledIconButton } from 'iconbutton/OscdFilledIconButton';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import { OscdNavigationDrawerHeader } from './OscdNavigationDrawerHeader.js';
 
 const meta: Meta<OscdNavigationDrawer & { label: string }> = {

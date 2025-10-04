@@ -1,16 +1,16 @@
 import { html } from 'lit';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
 import { OscdMenu } from 'menu/OscdMenu';
 import { OscdMenuItem } from 'menu/OscdMenuItem';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 import { OscdOutlinedButton } from 'button/OscdOutlinedButton';
 import {
   getStorybookHelpers,
   storybookHelperDecorator,
 } from 'utils/storybook/getStorybookHelpers.js';
-import { withActions } from '@storybook/addon-actions/decorator';
+import { withActions } from 'storybook/actions/decorator';
 // Import necessary components and utilities
 const { args, argTypes, template, events } = getStorybookHelpers('oscd-menu');
 

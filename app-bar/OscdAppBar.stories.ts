@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
 import { OscdList } from 'list/OscdList';
 import { OscdListItem } from 'list/OscdListItem';
@@ -12,7 +12,7 @@ import {
   getStorybookHelpers,
   storybookHelperDecorator,
 } from 'utils/storybook/getStorybookHelpers.js';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import { OscdDivider } from '../divider/OscdDivider.js';
 import { OscdAppBar } from './OscdAppBar.js';
 

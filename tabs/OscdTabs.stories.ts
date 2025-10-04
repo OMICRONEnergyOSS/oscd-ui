@@ -1,6 +1,6 @@
 import { html } from 'lit';
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { withActions } from '@storybook/addon-actions/decorator';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { withActions } from 'storybook/actions/decorator';
 import { OscdTabs } from './OscdTabs.js';
 import { OscdPrimaryTab } from './OscdPrimaryTab.js';
 import { OscdSecondaryTab } from './OscdSecondaryTab.js';

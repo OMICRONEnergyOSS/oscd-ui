@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { withActions } from '@storybook/addon-actions/decorator';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { withActions } from 'storybook/actions/decorator';
 import { OscdOutlinedTextField } from 'textfield/OscdOutlinedTextField.js';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
 import {
