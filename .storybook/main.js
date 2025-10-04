@@ -5,8 +5,11 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 const config = {
   stories: ['../**/*.mdx', '../**/*.stories.ts'],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
-
+  addons: ['@storybook/addon-docs'],
+  core: {
+    disableTelemetry: true, // 👈 Disables telemetry
+    disableWhatsNewNotifications: true,
+  },
   framework: {
     name: '@storybook/web-components-vite',
     options: {},

@@ -1,17 +1,17 @@
 /* eslint-disable lit/binding-positions */
 import { html } from 'lit';
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { withActions } from '@storybook/addon-actions/decorator';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { withActions } from 'storybook/actions/decorator';
 
 import { OscdDialog } from 'dialog/OscdDialog.js';
 import { OscdFilledButton } from 'button/OscdFilledButton';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 import {
   getStorybookHelpers,
   storybookHelperDecorator,
 } from 'utils/storybook/getStorybookHelpers.js';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 const { args, argTypes, events } = getStorybookHelpers('oscd-dialog');
 

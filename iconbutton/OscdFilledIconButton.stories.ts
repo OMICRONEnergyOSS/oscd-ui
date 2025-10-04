@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
-import { withActions } from '@storybook/addon-actions/decorator';
+import { withActions } from 'storybook/actions/decorator';
 import { OscdIcon } from 'icon/OscdIcon';
 import { OscdFilledIconButton } from 'iconbutton/OscdFilledIconButton';
 import {

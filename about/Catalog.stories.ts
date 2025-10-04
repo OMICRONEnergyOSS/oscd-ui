@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
 import { OscdAppBar } from 'app-bar/OscdAppBar';
 import { OscdFilledButton } from 'button/OscdFilledButton';
@@ -25,8 +25,8 @@ import { OscdTabs } from 'tabs/OscdTabs';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
 import { OscdOutlinedButton } from 'button/OscdOutlinedButton';
 import { OscdElevation } from 'elevation/OscdElevation';
-import { useArgs } from '@storybook/preview-api';
-import { action } from '@storybook/addon-actions';
+import { useArgs } from 'storybook/preview-api';
+import { action } from 'storybook/actions';
 
 const meta: Meta = {
   title: 'Open SCD/All Components',
