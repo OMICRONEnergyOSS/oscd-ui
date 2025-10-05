@@ -1,0 +1,208 @@
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { join, dirname } from 'path';
+// import { Project, SyntaxKind } from 'ts-morph';
+
+const materialRepoPath = '../material-components/material-web';
+const targetSourcePath = './';
+
+// const customElementsJsonPath = join(materialRepoPath, 'custom-elements.json');
+const customElementsJsonPath = './md-custom-elements.json'; // For testing
+
+// Copyright block to append
+const omicronCopyright = `
+/**
+ * @license
+ * Copyright 2025 Omicron Energy GmbH
+ * SPDX-License-Identifier: Apache-2.0
+ */
+`;
+
+function kebabToPascal(str: string) {
+  return str
+    .split('-')
+    .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+    .join('');
+}
+
+function capitalizeWords(str: string) {
+  return str.replace(/(^\w|\s\w|-\w|\/\w)/g, m =>
+    m.replace(/[-/]/, ' ').toUpperCase(),
+  );
+}
+
+function pluralize(word: string) {
+  // Simple pluralization: add 's' unless it already ends with 's'
+  return word.endsWith('s') ? word : word + 's';
+}
+
+function modulePathToTitle(modulePath: string) {
+  // Split by '/', pluralize the first segment, capitalize all words, join with ' / '
+  const segments = modulePath.split('/');
+  if (segments.length === 0) {
+    return '';
+  }
+  segments[0] = pluralize(segments[0]);
+  return segments
+    .map(s => capitalizeWords(s.replace(/-/g, ' ')).trim())
+    .join(' / ');
+}
+
+// function kebabToCamel(str: string) {
+//   const pascal = kebabToPascal(str);
+//   return pascal.charAt(0).toLowerCase() + pascal.slice(1);
+// }
+
+function fixImportPaths(content: string, modulePath: string) {
+  // Replace ./ and ../ imports with @material/web/...
+  return content.replace(
+    /from\s+['"](\.\/|\.\.\/)([^'"]+)['"]/g,
+    (_match, _dot, relPath) => {
+      let base = '@material/web/';
+      if (modulePath.includes('/')) {
+        base += modulePath.substring(0, modulePath.lastIndexOf('/') + 1);
+      }
+      return `from '${base}${relPath}'`;
+    },
+  );
+}
+
+function updateHeader(content: string) {
+  // Find the first copyright block and append Omicron's after it
+  const copyrightRegex = /\/\*\*[\s\S]*?Copyright[\s\S]*?\*\//;
+  const match = content.match(copyrightRegex);
+  if (match) {
+    return content.replace(match[0], match[0] + '\n' + omicronCopyright.trim());
+  }
+  // If not found, just prepend
+  return omicronCopyright.trim() + '\n' + content;
+}
+
+function updateJSDoc(jsdoc: string, newTagName: string) {
+  // Remove @description, add tag name at top
+  let lines = jsdoc.split('\n');
+  lines = lines.filter(line => !line.includes('@description'));
+  lines.splice(1, 0, ` * @tagname ${newTagName}`);
+  return lines.join('\n');
+}
+
+function generateStorybookStory(
+  storybookTitle: string,
+  oscdClassName: string,
+  oscdTagName: string,
+  pascalName: string,
+) {
+  // Import path for the Oscd* component (relative to the story file)
+  const importPath = `./Oscd${pascalName}.js`;
+  // Import path for the helper (adjust if needed)
+  const helperImportPath = '../utils/storybook/getStorybookMeta.js';
+
+  const storyContent = `import type { StoryObj } from '@storybook/web-components-vite';
+import { ${oscdClassName} } from '${importPath}';
+import { getStorybookMeta } from '${helperImportPath}';
+
+const { args, argTypes, meta } = getStorybookMeta<${oscdClassName}>({
+  title: '${storybookTitle}',
+  tag: '${oscdTagName}',
+});
+
+export default meta;
+
+export const Default: StoryObj = {
+  argTypes: { ...argTypes },
+  args: {
+    ...args,
+    // Placeholder for overrides
+  },
+};
+`;
+
+  return storyContent;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function processComponent(module: any) {
+  const tagName = module.declarations[0].tagName; // e.g. md-elevated-button
+  const className = module.declarations[0].name; // e.g. MdElevatedButton
+  const modulePath = module.path.replace(/\.ts$/, ''); // e.g. button/elevated-button
+
+  // Read original source file
+  const srcPath = join(materialRepoPath, module.path);
+  let content = readFileSync(srcPath, 'utf8');
+
+  // Fix import paths
+  content = fixImportPaths(content, modulePath);
+
+  // Remove import { customElement }
+  content = content.replace(
+    /import\s+\{\s*customElement\s*\}\s+from\s+['"][^'"]+['"];\n?/g,
+    '',
+  );
+
+  // Remove @customElement decorator
+  content = content.replace(/@customElement\([^)]+\)\s*/g, '');
+
+  // Replace class and tag names
+  const oscdClassName = className.replace(/^Md/, 'Oscd');
+  const oscdTagName = tagName.replace(/^md-/, 'oscd-');
+  content = content.replace(new RegExp(className, 'g'), oscdClassName);
+  content = content.replace(new RegExp(tagName, 'g'), oscdTagName);
+
+  // Update global HTMLElementTagNameMap
+  content = content.replace(
+    /interface HTMLElementTagNameMap\s*{[^}]+}/,
+    `interface HTMLElementTagNameMap {
+      '${oscdTagName}': ${oscdClassName};
+    }`,
+  );
+
+  // Update JSDoc for the class
+  content = content.replace(/\/\*\*[\s\S]+?\*\//, (jsdoc: string) =>
+    updateJSDoc(jsdoc, oscdTagName),
+  );
+
+  // Append Omicron copyright
+  content = updateHeader(content);
+
+  // Write Oscd* scoped component
+  const pascalName = kebabToPascal(tagName.replace(/^md-/, ''));
+  const scopedFileName = `Oscd${pascalName}.ts`;
+  const componentTargetPath = join(targetSourcePath, dirname(modulePath));
+  mkdirSync(join(componentTargetPath), { recursive: true });
+  writeFileSync(join(componentTargetPath, scopedFileName), content);
+
+  // Write oscd-* registrar component
+  const registrarContent = `import { Oscd${pascalName} } from './Oscd${pascalName}.js';
+
+customElements.define('${oscdTagName}', Oscd${pascalName});
+export { Oscd${pascalName} };
+`;
+  writeFileSync(
+    join(componentTargetPath, `${oscdTagName}.ts`),
+    registrarContent,
+  );
+
+  // Write Storybook story
+  const storybookTitle = modulePathToTitle(modulePath); // e.g. "Buttons"
+  const storyContent = generateStorybookStory(
+    storybookTitle,
+    oscdClassName,
+    oscdTagName,
+    pascalName,
+  );
+  writeFileSync(
+    join(componentTargetPath, `Oscd${pascalName}.stories.ts`),
+    storyContent,
+  );
+}
+
+// Main
+const customElements = JSON.parse(readFileSync(customElementsJsonPath, 'utf8'));
+for (const module of customElements.modules) {
+  if (module.kind === 'javascript-module' && module.declarations) {
+    for (const decl of module.declarations) {
+      if (decl.tagName && decl.tagName.startsWith('md-')) {
+        processComponent(module);
+      }
+    }
+  }
+}
