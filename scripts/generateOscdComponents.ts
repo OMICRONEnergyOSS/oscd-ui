@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
-// import { Project, SyntaxKind } from 'ts-morph';
+
+const colouredList = ['md-test-table', 'md-navigation-drawer'];
 
 const materialRepoPath = '../material-components/material-web';
 const targetSourcePath = './';
@@ -56,9 +57,10 @@ function fixImportPaths(content: string, modulePath: string) {
   // Replace ./ and ../ imports with @material/web/...
   return content.replace(
     /from\s+['"](\.\/|\.\.\/)([^'"]+)['"]/g,
-    (_match, _dot, relPath) => {
+    (_match, dot, relPath) => {
       let base = '@material/web/';
-      if (modulePath.includes('/')) {
+
+      if (modulePath.includes('/') && dot !== '../') {
         base += modulePath.substring(0, modulePath.lastIndexOf('/') + 1);
       }
       return `from '${base}${relPath}'`;
@@ -94,18 +96,23 @@ function generateStorybookStory(
   // Import path for the Oscd* component (relative to the story file)
   const importPath = `./Oscd${pascalName}.js`;
   // Import path for the helper (adjust if needed)
-  const helperImportPath = '../utils/storybook/getStorybookMeta.js';
+  const helperImportPath = '@/utils/storybook/getStorybookMeta.js';
 
-  const storyContent = `import type { StoryObj } from '@storybook/web-components-vite';
+  const storyContent = `
+import type { StoryObj } from '@storybook/web-components-vite';
+import './${oscdTagName}.js';
 import { ${oscdClassName} } from '${importPath}';
 import { getStorybookMeta } from '${helperImportPath}';
 
 const { args, argTypes, meta } = getStorybookMeta<${oscdClassName}>({
-  title: '${storybookTitle}',
-  tag: '${oscdTagName}',
+  tagName: '${oscdTagName}',
 });
 
-export default meta;
+export default {
+  title: '${storybookTitle}',
+  tags: ['autodocs'],
+  ...meta,
+};
 
 export const Default: StoryObj = {
   argTypes: { ...argTypes },
@@ -156,9 +163,16 @@ function processComponent(module: any) {
   );
 
   // Update JSDoc for the class
-  content = content.replace(/\/\*\*[\s\S]+?\*\//, (jsdoc: string) =>
-    updateJSDoc(jsdoc, oscdTagName),
-  );
+  const jsdocBlocks = content.match(/\/\*\*[\s\S]*?\*\//g);
+
+  if (jsdocBlocks) {
+    for (const block of jsdocBlocks) {
+      if (block.includes('@final')) {
+        content = content.replace(block, updateJSDoc(block, oscdTagName));
+        break; // Only replace the first matching block
+      }
+    }
+  }
 
   // Append Omicron copyright
   content = updateHeader(content);
@@ -200,7 +214,11 @@ const customElements = JSON.parse(readFileSync(customElementsJsonPath, 'utf8'));
 for (const module of customElements.modules) {
   if (module.kind === 'javascript-module' && module.declarations) {
     for (const decl of module.declarations) {
-      if (decl.tagName && decl.tagName.startsWith('md-')) {
+      if (
+        decl.tagName &&
+        decl.tagName.startsWith('md-') &&
+        !colouredList.includes(decl.tagName)
+      ) {
         processComponent(module);
       }
     }

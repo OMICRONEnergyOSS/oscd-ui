@@ -3,27 +3,25 @@
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
-import { css, CSSResultOrNative } from 'lit';
-import { List } from './internal/list.js';
-import { styles } from './internal/list-styles.js';
 
-const overrideStyles = css`
-  :host {
-    --md-list-container-color: var(
-      --oscd-list-container-color,
-      var(--md-sys-color-surface-container, #fef7ff)
-    );
+import { CSSResultOrNative } from 'lit';
+
+import { List } from '@material/web/list/internal/list.js';
+import { styles } from '@material/web/list/internal/list-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-list': OscdList;
   }
-`;
+}
 
 /**
- * @tag oscd-list
+ * @tagname oscd-list
  * @summary Lists are continuous, vertical indexes of text or images.
  *
  * Lists consist of one or more list items, and can contain actions represented
@@ -42,5 +40,5 @@ const overrideStyles = css`
  * @suppress {visibility}
  */
 export class OscdList extends List {
-  static override styles: CSSResultOrNative[] = [styles, overrideStyles];
+  static override styles: CSSResultOrNative[] = [styles];
 }

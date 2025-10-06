@@ -3,20 +3,26 @@
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import { CSSResultOrNative } from 'lit';
 
-import { OutlinedButton } from './internal/outlined-button.js';
-import { styles as outlinedStyles } from './internal/outlined-styles.js';
-import { styles as sharedStyles } from './internal/shared-styles.js';
+import { OutlinedButton } from '@material/web/button/internal/outlined-button.js';
+import { styles as outlinedStyles } from '@material/web/button/internal/outlined-styles.js';
+import { styles as sharedStyles } from '@material/web/button/internal/shared-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-outlined-button': OscdOutlinedButton;
+  }
+}
 
 /**
- * @tag "oscd-outlined-button"
+ * @tagname oscd-outlined-button
  * @summary Buttons help people take action, such as sending an email, sharing a
  * document, or liking a comment.
  *
@@ -34,11 +40,8 @@ import { styles as sharedStyles } from './internal/shared-styles.js';
  * - Add to cart
  * - Take out of trash
  *
- * @event click Fired when the user clicks the button.
- *
  * @final
  * @suppress {visibility}
- *
  */
 export class OscdOutlinedButton extends OutlinedButton {
   static override styles: CSSResultOrNative[] = [sharedStyles, outlinedStyles];

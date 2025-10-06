@@ -3,46 +3,27 @@
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
-import { css, CSSResultOrNative } from 'lit';
-import { ListItemEl as ListItem } from './internal/listitem/list-item.js';
-import { styles } from './internal/listitem/list-item-styles.js';
 
-export { type ListItemType } from './internal/listitem/list-item.js';
+import { CSSResultOrNative } from 'lit';
 
-const styleOverrides = css`
-  :host([activated]) {
-    --md-list-item-label-text-color: var(
-      --oscd-list-item-activated-color,
-      var(--md-sys-color-primary, #6750a4)
-    );
+import { ListItemEl as ListItem } from '@material/web/list/internal/listitem/list-item.js';
+import { styles } from '@material/web/list/internal/listitem/list-item-styles.js';
 
-    background-color: var(
-      --oscd-list-item-activated-background-color,
-      var(--md-sys-color-surface-bright, #eaddff)
-    );
+export { type ListItemType } from '@material/web/list/internal/listitem/list-item.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-list-item': OscdListItem;
   }
-  [slot='start'] {
-    color: var(
-      --md-list-item-leading-icon-color,
-      var(--md-sys-color-on-surface, #49454f)
-    );
-  }
-  [slot='end'] {
-    color: var(
-      --md-list-item-trailing-icon-color,
-      var(--md-sys-color-on-surface, #49454f)
-    );
-  }
-`;
+}
 
 /**
- * @tag oscd-list-item
+ * @tagname oscd-list-item
  * @summary
  * Lists are continuous, vertical indexes of text or images. Items are placed
  * inside the list.
@@ -69,14 +50,16 @@ const styleOverrides = css`
  * <oscd-list-item
  *     headline="User Name"
  *     supportingText="user@name.com">
- *   <oscd-icon slot="start">account_circle</oscd-icon>
- *   <oscd-icon slot="end">check</oscd-icon>
+ *   <md-icon slot="start">account_circle</md-icon>
+ *   <md-icon slot="end">check</md-icon>
  * </oscd-list-item>
  * ```
+ *
+ * @example
  *
  * @final
  * @suppress {visibility}
  */
 export class OscdListItem extends ListItem {
-  static override styles: CSSResultOrNative[] = [styles, styleOverrides];
+  static override styles: CSSResultOrNative[] = [styles];
 }

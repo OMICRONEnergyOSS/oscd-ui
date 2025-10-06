@@ -25,7 +25,10 @@
     "lib": ["DOM", "ES2022"],
     "strictNullChecks": true,
     "skipLibCheck": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@/*":[ "./*"],
+    }
   },
   "exclude": ["dist"]
 }

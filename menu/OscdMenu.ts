@@ -3,28 +3,35 @@
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
-import { CSSResultOrNative } from 'lit';
-import { Menu } from './internal/menu.js';
-import { styles } from './internal/menu-styles.js';
 
-export { type ListItem } from '../list/internal/list-navigation-helpers.js';
-export { type MenuItem } from './internal/controllers/menuItemController.js';
+import { CSSResultOrNative } from 'lit';
+
+import { Menu } from '@material/web/menu/internal/menu.js';
+import { styles } from '@material/web/menu/internal/menu-styles.js';
+
+export { type ListItem } from '@material/web/list/internal/list-navigation-helpers.js';
+export { type MenuItem } from '@material/web/menu/internal/controllers/menuItemController.js';
 export {
   CloseReason,
   FocusState,
   type CloseMenuEvent,
   type Menu,
-} from './internal/controllers/shared.js';
-export { Corner } from './internal/menu.js';
+} from '@material/web/menu/internal/controllers/shared.js';
+export { Corner } from '@material/web/menu/internal/menu.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-menu': OscdMenu;
+  }
+}
 
 /**
- * @tag oscd-menu
+ * @tagname oscd-menu
  * @summary Menus display a list of choices on a temporary surface.
  *
  * Menus appear when users interact with a button, action, or other control.
@@ -55,7 +62,7 @@ export { Corner } from './internal/menu.js';
  *   -->
  *   <oscd-menu anchor="anchor" has-overflow ${ref(menuRef)}>
  *     <oscd-menu-item headline="This is a headline"></oscd-menu-item>
- *     <oscd-sub-menu>
+ *     <md-sub-menu>
  *       <oscd-menu-item
  *           slot="item"
  *           headline="this is a submenu item">
@@ -64,7 +71,7 @@ export { Corner } from './internal/menu.js';
  *         <oscd-menu-item headline="This is an item inside a submenu">
  *         </oscd-menu-item>
  *       </oscd-menu>
- *     </oscd-sub-menu>
+ *     </md-sub-menu>
  *   </oscd-menu>
  * </div>
  * ```

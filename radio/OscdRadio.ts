@@ -3,19 +3,25 @@
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import { CSSResultOrNative } from 'lit';
 
-import { Radio } from './internal/radio.js';
-import { styles } from './internal/radio-styles.js';
+import { Radio } from '@material/web/radio/internal/radio.js';
+import { styles } from '@material/web/radio/internal/radio-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-radio': OscdRadio;
+  }
+}
 
 /**
- * @tag oscd-radio
+ * @tagname oscd-radio
  * @summary Radio buttons allow users to select one option from a set.
  *
  * Radio buttons are the recommended way to allow users to make a single

@@ -1,33 +1,25 @@
-import type {
-  Meta,
-  WebComponentsRenderer,
-} from '@storybook/web-components-vite';
+import type { Meta } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { DecoratorFunction } from 'storybook/internal/types';
+// // import { DecoratorFunction } from 'storybook/internal/types';
 import {
   getStorybookHelpers,
   storybookHelperDecorator,
-} from 'utils/storybook/getStorybookHelpers.js';
-
-type GetStorybookMetaOptions = {
-  title: string;
-  tag: string;
-};
+} from './getStorybookHelpers.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getStorybookMeta<T extends { [key: string]: any }>({
-  title,
-  tag,
-}: GetStorybookMetaOptions) {
-  const { args, argTypes, template, events } = getStorybookHelpers<T>(tag);
+  tagName,
+}: {
+  tagName: string;
+}) {
+  const { args, argTypes, template, events } = getStorybookHelpers<T>(tagName);
 
   const meta: Meta<T> = {
-    title,
-    component: 'oscd-menu-item',
+    component: tagName,
     tags: ['autodocs'],
-    decorators: [
-      storybookHelperDecorator as DecoratorFunction<WebComponentsRenderer, T>,
-    ],
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    decorators: [storybookHelperDecorator as any],
     parameters: {
       layout: 'centered',
       actions: {
@@ -41,7 +33,4 @@ export function getStorybookMeta<T extends { [key: string]: any }>({
 }
 
 // Example usage:
-// const { args, argTypes, meta } = getStorybookMeta<YourComponentType>({
-//   title: 'Your/Component/Title',
-//   tag: 'your-component-tag',
-// });
+// const { args, argTypes, meta } = getStorybookMeta<YourComponentType>( 'your-component-tag' );

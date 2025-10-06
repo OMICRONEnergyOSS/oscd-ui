@@ -1,12 +1,27 @@
+/**
+ * @license
+ * Copyright 2023 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @license
+ * Copyright 2025 Omicron Energy GmbH
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import { CSSResultOrNative } from 'lit';
 
-import { Item } from './internal/item.js';
-import { styles } from './internal/item-styles.js';
+import { Item } from '@material/web/labs/item/internal/item.js';
+import { styles } from '@material/web/labs/item/internal/item-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-item': OscdItem;
+  }
+}
 
 /**
- *
- * @tag oscd-item
- * @summary
+ * @tagname oscd-item
  * An item layout component that can be used inside list items to give them
  * their customizable structure.
  *
@@ -16,7 +31,6 @@ import { styles } from './internal/item-styles.js';
  * All text will wrap unless `white-space: nowrap` is set on the item or any of
  * its children.
  *
- * for example:
  * Slots available:
  * - `<default>`: The headline, or custom content.
  * - `headline`: The first line.
@@ -27,6 +41,7 @@ import { styles } from './internal/item-styles.js';
  * - `container`: Background container content, intended for adding additional
  *     styles, such as ripples or focus rings.
  *
+ * @example
  * ```html
  * <oscd-item>Single line</oscd-item>
  *
@@ -36,19 +51,19 @@ import { styles } from './internal/item-styles.js';
  *
  * <!-- Classic 1 to 3+ line list items -->
  * <oscd-item>
- *   <oscd-icon slot="start">image</oscd-icon>
+ *   <md-icon slot="start">image</md-icon>
  *   <div slot="overline">Overline</div>
  *   <div slot="headline">Headline</div>
  *   <div="supporting-text">Supporting text</div>
  *   <div="trailing-supporting-text">Trailing</div>
- *   <oscd-icon slot="end">image</oscd-icon>
+ *   <md-icon slot="end">image</md-icon>
  * </oscd-item>
  * ```
  *
  * When wrapping `<oscd-item>`, forward the available slots to use the same slot
- * structure for the wrapping component (this is what `<oscd-list-item>` does).
+ * structure for the wrapping component (this is what `<md-list-item>` does).
  *
- * for example:
+ * @example
  * ```html
  * <oscd-item>
  *   <slot></slot>

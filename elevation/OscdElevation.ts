@@ -3,20 +3,26 @@
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import { CSSResultOrNative } from 'lit';
 
-import { Elevation } from './internal/elevation.js';
-import { styles } from './internal/elevation-styles.js';
+import { Elevation } from '@material/web/elevation/internal/elevation.js';
+import { styles } from '@material/web/elevation/internal/elevation-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-elevation': OscdElevation;
+  }
+}
 
 /**
- * @tag oscd-elevation
- * @summary The `<oscd-elevation>` custom element with default styles.
+ * @tagname oscd-elevation
+ * The `<oscd-elevation>` custom element with default styles.
  *
  * Elevation is the relative distance between two surfaces along the z-axis.
  *

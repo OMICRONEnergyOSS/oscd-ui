@@ -1,65 +1,21 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import { withActions } from 'storybook/actions/decorator';
-import { OscdIconButton } from 'iconbutton/OscdIconButton';
-import { OscdIcon } from 'icon/OscdIcon';
-import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
-import { OscdOutlinedIconButton } from 'iconbutton/OscdOutlinedIconButton.js';
-import {
-  getStorybookHelpers,
-  storybookHelperDecorator,
-} from 'utils/storybook/getStorybookHelpers.js';
+import type { StoryObj } from '@storybook/web-components-vite';
+import './oscd-outlined-icon-button.js';
+import { OscdOutlinedIconButton } from './OscdOutlinedIconButton.js';
+import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
 
-const { args, argTypes, template, events } = getStorybookHelpers(
-  'oscd-outlined-icon-button',
-);
+const { args, argTypes, meta } = getStorybookMeta<OscdOutlinedIconButton>({
+  tagName: 'oscd-outlined-icon-button',
+});
 
-const meta: Meta<
-  OscdIconButton & { icon: string; selectedIcon: string; label: string }
-> = {
-  title: 'Library/Icon Buttons/Outlined Icon Button',
-  component: 'oscd-outlined-icon-button',
-  tags: ['autodocs'],
-  decorators: [withActions, scopedWcDecorator, storybookHelperDecorator],
-  parameters: {
-    layout: 'centered',
-    scopedElements: {
-      'oscd-outlined-icon-button': OscdOutlinedIconButton,
-      'oscd-icon': OscdIcon,
-    },
-    actions: {
-      handles: ['click', ...events],
-    },
-  },
-  render: ({ icon, selectedIcon, ...argz }) =>
-    template(
-      argz,
-      html`
-        <oscd-icon>${icon}</oscd-icon>
-        <oscd-icon slot="selected">${selectedIcon}</oscd-icon>
-      `,
-    ),
-
-  argTypes: {
-    ...argTypes,
-    icon: {
-      control: { type: 'text' },
-      description: 'Icon name',
-    },
-    selectedIcon: {
-      control: { type: 'text' },
-      description: 'Icon name',
-    },
-  },
+export default {
+  title: 'Iconbuttons / Outlined Icon Button',
+  ...meta,
 };
 
-export default meta;
-type Story = StoryObj;
-
-export const Default: Story = {
+export const Default: StoryObj = {
+  argTypes: { ...argTypes },
   args: {
     ...args,
-    icon: 'light_mode',
-    selectedIcon: 'dark_mode',
+    // Placeholder for overrides
   },
 };

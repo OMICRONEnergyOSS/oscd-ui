@@ -89,9 +89,10 @@
     "sass": "^1.52.3",
     "sass-true": "^6.1.0",
     "storybook": "^9.1.10",
+    "ts-morph": "^27.0.0",
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",
-    "web-test-runner-jasmine": "^0.1.2",
+    "web-test-runner-jasmine": "^0.1.4",
     "wireit": "^0.14.12"
   },
   "wireit": {

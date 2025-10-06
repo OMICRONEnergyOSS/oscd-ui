@@ -3,19 +3,27 @@
  * Copyright 2023 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
-import { CSSResultOrNative } from 'lit';
-import { PrimaryTab } from './internal/primary-tab.js';
-import { styles as primaryStyles } from './internal/primary-tab-styles.js';
-import { styles as sharedStyles } from './internal/tab-styles.js';
 
+import { CSSResultOrNative } from 'lit';
+
+import { PrimaryTab } from '@material/web/tabs/internal/primary-tab.js';
+import { styles as primaryStyles } from '@material/web/tabs/internal/primary-tab-styles.js';
+import { styles as sharedStyles } from '@material/web/tabs/internal/tab-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-primary-tab': OscdPrimaryTab;
+  }
+}
+
+// TODO(b/267336507): add docs
 /**
- * @tag oscd-primary-tab
+ * @tagname oscd-primary-tab
  * @summary Tab allow users to display a tab within a Tabs.
  *
  * @final

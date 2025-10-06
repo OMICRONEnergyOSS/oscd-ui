@@ -3,19 +3,26 @@
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import { CSSResultOrNative } from 'lit';
-import { IconButton } from './internal/icon-button.js';
-import { styles as sharedStyles } from './internal/shared-styles.js';
-import { styles } from './internal/standard-styles.js';
+
+import { IconButton } from '@material/web/iconbutton/internal/icon-button.js';
+import { styles as sharedStyles } from '@material/web/iconbutton/internal/shared-styles.js';
+import { styles } from '@material/web/iconbutton/internal/standard-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-icon-button': OscdIconButton;
+  }
+}
 
 /**
- * @tag oscd-icon-button
+ * @tagname oscd-icon-button
  * @summary Icon buttons help people take supplementary actions with a single
  * tap.
  *

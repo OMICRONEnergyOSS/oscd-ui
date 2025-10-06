@@ -3,15 +3,25 @@
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
+/**
+ * @license
+ * Copyright 2025 Omicron Energy GmbH
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
 import { CSSResultOrNative } from 'lit';
 
-import { Badge } from './internal/badge.js';
-import { styles } from './internal/badge-styles.js';
+import { Badge } from '@material/web/labs/badge/internal/badge.js';
+import { styles } from '@material/web/labs/badge/internal/badge-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-badge': OscdBadge;
+  }
+}
 
 /**
- * @tag oscd-badge
- * @summary Badges are small status descriptors for UI elements.
+ * @tagname oscd-badge
  * @final
  * @suppress {visibility}
  */

@@ -3,17 +3,27 @@
  * Copyright 2023 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
+/**
+ * @license
+ * Copyright 2025 Omicron Energy GmbH
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
 import { CSSResultOrNative } from 'lit';
 
-import { SubMenu } from './internal/submenu/sub-menu.js';
-import { styles } from './internal/submenu/sub-menu-styles.js';
+import { SubMenu } from '@material/web/menu/internal/submenu/sub-menu.js';
+import { styles } from '@material/web/menu/internal/submenu/sub-menu-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-sub-menu': OscdSubMenu;
+  }
+}
 
 /**
- * @tag oscd-sub-menu
+ * @tagname oscd-sub-menu
  * @summary Menus display a list of choices on a temporary surface.
  *
- * @description
  * Menu items are the selectable choices within the menu. Menu items must
  * implement the `Menu` interface and also have the `md-menu`
  * attribute. Additionally menu items are list items so they must also have the
@@ -41,7 +51,7 @@ import { styles } from './internal/submenu/sub-menu-styles.js';
  *   -->
  *   <md-menu anchor="anchor" has-overflow ${ref(menuRef)}>
  *     <md-menu-item headline="This is a headline"></md-menu-item>
- *     <md-sub-menu>
+ *     <oscd-sub-menu>
  *       <md-menu-item
  *           slot="item"
  *           headline="this is a submenu item">
@@ -50,7 +60,7 @@ import { styles } from './internal/submenu/sub-menu-styles.js';
  *         <md-menu-item headline="This is an item inside a submenu">
  *         </md-menu-item>
  *       </md-menu>
- *     </md-sub-menu>
+ *     </oscd-sub-menu>
  *   </md-menu>
  * </div>
  * ```

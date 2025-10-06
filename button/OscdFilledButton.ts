@@ -3,21 +3,27 @@
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { FilledButton } from './internal/filled-button.js';
-import { styles as filledStyles } from './internal/filled-styles.js';
-import { styles as sharedElevationStyles } from './internal/shared-elevation-styles.js';
-import { styles as sharedStyles } from './internal/shared-styles.js';
-import { CSSResult } from '@lit/reactive-element';
+import { CSSResultOrNative } from 'lit';
+
+import { FilledButton } from '@material/web/button/internal/filled-button.js';
+import { styles as filledStyles } from '@material/web/button/internal/filled-styles.js';
+import { styles as sharedElevationStyles } from '@material/web/button/internal/shared-elevation-styles.js';
+import { styles as sharedStyles } from '@material/web/button/internal/shared-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-filled-button': OscdFilledButton;
+  }
+}
 
 /**
- * @tag oscd-filled-button
+ * @tagname oscd-filled-button
  * @summary Buttons help people take action, such as sending an email, sharing a
  * document, or liking a comment.
  *
@@ -33,14 +39,11 @@ import { CSSResult } from '@lit/reactive-element';
  * - Confirm
  * - Done
  *
- * @event click Fired when the user clicks the button.
- *
  * @final
  * @suppress {visibility}
- *
  */
 export class OscdFilledButton extends FilledButton {
-  static override styles: CSSResult[] = [
+  static override styles: CSSResultOrNative[] = [
     sharedStyles,
     sharedElevationStyles,
     filledStyles,

@@ -3,19 +3,26 @@
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import { CSSResultOrNative } from 'lit';
-import { styles as sharedStyles } from './internal/shared-styles.js';
-import { TextButton } from './internal/text-button.js';
-import { styles as textStyles } from './internal/text-styles.js';
+
+import { styles as sharedStyles } from '@material/web/button/internal/shared-styles.js';
+import { TextButton } from '@material/web/button/internal/text-button.js';
+import { styles as textStyles } from '@material/web/button/internal/text-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-text-button': OscdTextButton;
+  }
+}
 
 /**
- * @tag "oscd-text-button"
+ * @tagname oscd-text-button
  * @summary Buttons help people take action, such as sending an email, sharing a
  * document, or liking a comment.
  *
@@ -31,11 +38,8 @@ import { styles as textStyles } from './internal/text-styles.js';
  * - Change account
  * - Turn on
  *
- * @event click Fired when the user clicks the button.
- *
  * @final
  * @suppress {visibility}
- *
  */
 export class OscdTextButton extends TextButton {
   static override styles: CSSResultOrNative[] = [sharedStyles, textStyles];

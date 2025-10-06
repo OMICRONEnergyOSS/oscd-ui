@@ -1,23 +1,27 @@
 /**
  * @license
- * Copyright 2021 Google LLC
+ * Copyright 2022 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import { CSSResultOrNative } from 'lit';
-import { Icon } from './internal/icon.js';
-import { styles } from './internal/icon-styles.js';
+
+import { Icon } from '@material/web/icon/internal/icon.js';
+import { styles } from '@material/web/icon/internal/icon-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-icon': OscdIcon;
+  }
+}
 
 /**
- * @tag oscd-icon
- * @summary An icon is a graphical representation of an object, action, or concept.
- * Icons can be used to represent actions, such as "add" or "delete", or to
- * represent objects, such as "folder" or "file".
+ * @tagname oscd-icon
  * @final
  * @suppress {visibility}
  */

@@ -3,20 +3,27 @@
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import { CSSResultOrNative } from 'lit';
-import { FilledField } from './internal/filled-field.js';
-import { styles as filledStyles } from './internal/filled-styles.js';
-import { styles as sharedStyles } from './internal/shared-styles.js';
+
+import { FilledField } from '@material/web/field/internal/filled-field.js';
+import { styles as filledStyles } from '@material/web/field/internal/filled-styles.js';
+import { styles as sharedStyles } from '@material/web/field/internal/shared-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-filled-field': OscdFilledField;
+  }
+}
 
 /**
- * @tag oscd-filled-field
- * @summary A Material Design filled field component.
+ * @tagname oscd-filled-field
+ * TODO(b/228525797): add docs
  * @final
  * @suppress {visibility}
  */

@@ -1,27 +1,27 @@
 /**
  * @license
- * Copyright 2021 Google LLC
+ * Copyright 2023 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { css, CSSResultOrNative } from 'lit';
-import { Dialog } from './internal/dialog.js';
-import { styles } from './internal/dialog-styles.js';
+import { CSSResultOrNative } from 'lit';
 
-const styleOverrides = css`
-  .scrim {
-    z-index: 6;
+import { Dialog } from '@material/web/dialog/internal/dialog.js';
+import { styles } from '@material/web/dialog/internal/dialog-styles.js';
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'oscd-dialog': OscdDialog;
   }
-`;
+}
 
 /**
- * @tag oscd-dialog
+ * @tagname oscd-dialog
  * @summary Dialogs can require an action, communicate information, or help
  * users accomplish a task. There are two types of dialogs: basic and
  * full-screen.
@@ -48,5 +48,5 @@ const styleOverrides = css`
  * @suppress {visibility}
  */
 export class OscdDialog extends Dialog {
-  static override styles: CSSResultOrNative[] = [styles, styleOverrides];
+  static override styles: CSSResultOrNative[] = [styles];
 }
