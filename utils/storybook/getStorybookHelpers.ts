@@ -1,7 +1,7 @@
 import { getStorybookHelpers as wcToolkitGetStorybookHelpers } from '@wc-toolkit/storybook-helpers';
 import type { StoryOptions, StoryHelpers } from '@wc-toolkit/storybook-helpers';
 
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { DecoratorFunction } from 'storybook/internal/types';
 
 /*
@@ -23,11 +23,15 @@ export const storybookHelperDecorator: DecoratorFunction = (
     .filter(([key]) => key.startsWith('--'))
     .map(([key, value]) => `${key.replace(/-state$/, '')}: ${value};`)
     .join('\n');
-  const styles = `* {\n${variableDeclarations}\n}`;
+  const styles = variableDeclarations.length
+    ? `* {\n${variableDeclarations}\n}`
+    : undefined;
   return html`
-    <style>
-      ${styles}
-    </style>
+    ${styles
+      ? html`<style>
+          ${styles}
+        </style>`
+      : nothing}
     ${storyFn()}
   `;
 };

@@ -1,21 +1,33 @@
+import { html, nothing } from 'lit';
 import type { StoryObj } from '@storybook/web-components-vite';
-import './oscd-primary-tab.js';
 import { OscdPrimaryTab } from './OscdPrimaryTab.js';
 import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
+import './oscd-primary-tab.js';
+import '../icon/oscd-icon.js';
 
-const { args, argTypes, meta } = getStorybookMeta<OscdPrimaryTab>({
+const { args, argTypes, meta, template } = getStorybookMeta<OscdPrimaryTab>({
   tagName: 'oscd-primary-tab',
 });
 
 export default {
-  title: 'Tabs / Primary Tab',
   ...meta,
+  title: 'Tabs / Primary Tab',
+  tags: ['autodocs'],
+  render: ({ textContent, ...argz }: typeof args) =>
+    template(
+      argz,
+      html`
+        ${argz['has-icon']
+          ? html`<oscd-icon>shop</oscd-icon>`
+          : nothing}${textContent}
+      `,
+    ),
 };
 
 export const Default: StoryObj = {
-  argTypes: { ...argTypes },
+  argTypes,
   args: {
     ...args,
-    // Placeholder for overrides
+    textContent: 'Primary Tab',
   },
 };

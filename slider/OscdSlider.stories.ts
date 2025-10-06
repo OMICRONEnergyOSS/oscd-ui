@@ -1,3 +1,9 @@
+/*
+ * GENERATED SOURCE FILE. DO NOT MODIFY.
+ * Modifications will be overwritten.
+ * To prevent this file from being overwritten, remove this comment entirely.
+ */
+
 import type { StoryObj } from '@storybook/web-components-vite';
 import './oscd-slider.js';
 import { OscdSlider } from './OscdSlider.js';
@@ -9,13 +15,11 @@ const { args, argTypes, meta } = getStorybookMeta<OscdSlider>({
 
 export default {
   title: 'Sliders / Slider',
+  tags: ['autodocs'],
   ...meta,
 };
 
 export const Default: StoryObj = {
-  argTypes: { ...argTypes },
-  args: {
-    ...args,
-    // Placeholder for overrides
-  },
+  argTypes,
+  args,
 };

@@ -1,3 +1,9 @@
+/*
+ * GENERATED SOURCE FILE. DO NOT MODIFY.
+ * Modifications will be overwritten.
+ * To prevent this file from being overwritten, remove this comment entirely.
+ */
+
 import type { StoryObj } from '@storybook/web-components-vite';
 import './oscd-outlined-segmented-button-set.js';
 import { OscdOutlinedSegmentedButtonSet } from './OscdOutlinedSegmentedButtonSet.js';
@@ -10,13 +16,11 @@ const { args, argTypes, meta } =
 
 export default {
   title: 'Labs / Segmentedbuttonset / Outlined Segmented Button Set',
+  tags: ['autodocs'],
   ...meta,
 };
 
 export const Default: StoryObj = {
-  argTypes: { ...argTypes },
-  args: {
-    ...args,
-    // Placeholder for overrides
-  },
+  argTypes,
+  args,
 };

@@ -2,20 +2,25 @@ import type { StoryObj } from '@storybook/web-components-vite';
 import './oscd-select-option.js';
 import { OscdSelectOption } from './OscdSelectOption.js';
 import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
+import { html } from 'lit';
 
-const { args, argTypes, meta } = getStorybookMeta<OscdSelectOption>({
+const { args, argTypes, meta, template } = getStorybookMeta<OscdSelectOption>({
   tagName: 'oscd-select-option',
 });
 
 export default {
-  title: 'Selects / Select Option',
   ...meta,
+  title: 'Selects / Select Option',
+  tags: ['autodocs'],
+  render: ({ textContent, ...argz }: typeof args) => html`
+    <div style="position: relative;--md-elevation-level: 2;">
+      ${template(argz, html`${textContent}`)}
+      <oscd-elevation></oscd-elevation>
+    </div>
+  `,
 };
 
 export const Default: StoryObj = {
-  argTypes: { ...argTypes },
-  args: {
-    ...args,
-    // Placeholder for overrides
-  },
+  argTypes,
+  args: { ...args, textContent: 'My List Option' },
 };

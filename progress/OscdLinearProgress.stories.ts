@@ -9,13 +9,11 @@ const { args, argTypes, meta } = getStorybookMeta<OscdLinearProgress>({
 
 export default {
   title: 'Progress / Linear Progress',
+  tags: ['autodocs'],
   ...meta,
 };
 
 export const Default: StoryObj = {
-  argTypes: { ...argTypes },
-  args: {
-    ...args,
-    // Placeholder for overrides
-  },
+  argTypes,
+  args: { ...args, indeterminate: true, value: 5, max: 10, 'four-color': true },
 };

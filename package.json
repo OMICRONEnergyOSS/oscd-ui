@@ -13,7 +13,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test:visual": "test-storybook",
-    "copy-material-custom-elements": "cp md-custom-elements.json node_modules/@material/web/custom-elements.json",
+    "generate-oscd": "node dist/scripts/generateOscdComponents.js && npm run format",
     "custom-elements-manifest": "npm run copy-material-custom-elements && cem analyze",
     "prepare": "husky"
   },

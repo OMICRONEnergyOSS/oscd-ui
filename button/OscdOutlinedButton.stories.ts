@@ -1,3 +1,9 @@
+/*
+ * GENERATED SOURCE FILE. DO NOT MODIFY.
+ * Modifications will be overwritten.
+ * To prevent this file from being overwritten, remove this comment entirely.
+ */
+
 import type { StoryObj } from '@storybook/web-components-vite';
 import './oscd-outlined-button.js';
 import { OscdOutlinedButton } from './OscdOutlinedButton.js';
@@ -9,13 +15,11 @@ const { args, argTypes, meta } = getStorybookMeta<OscdOutlinedButton>({
 
 export default {
   title: 'Buttons / Outlined Button',
+  tags: ['autodocs'],
   ...meta,
 };
 
 export const Default: StoryObj = {
-  argTypes: { ...argTypes },
-  args: {
-    ...args,
-    // Placeholder for overrides
-  },
+  argTypes,
+  args,
 };

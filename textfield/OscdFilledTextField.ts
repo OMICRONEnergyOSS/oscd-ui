@@ -9,16 +9,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import '../field/filled-field.js';
-
 import { CSSResultOrNative } from 'lit';
 import { literal } from 'lit/static-html.js';
 
 import { styles as filledStyles } from '@material/web/textfield/internal/filled-styles.js';
 import { FilledTextField } from '@material/web/textfield/internal/filled-text-field.js';
 import { styles as sharedStyles } from '@material/web/textfield/internal/shared-styles.js';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+import { OscdFilledField } from '../field/OscdFilledField.js';
 
-export { type TextFieldType } from '@material/web/textfield/internal/text-field.js';
+export { type TextFieldType as OscdTextFieldType } from '@material/web/textfield/internal/text-field.js';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -27,13 +27,19 @@ declare global {
 }
 
 /**
- * @tagname oscd-filled-text-field
- * TODO(b/228525797): Add docs
+ * @tag oscd-filled-text-field
+ * @summary A Material Design filled text field component.
+ * This component is a wrapper around the `FilledTextField` from Material Web Components,
+ * providing a scoped element that uses the `OscdFilledField` as its field.
  * @final
  * @suppress {visibility}
  */
-export class OscdFilledTextField extends FilledTextField {
+export class OscdFilledTextField extends ScopedElementsMixin(FilledTextField) {
   static override styles: CSSResultOrNative[] = [sharedStyles, filledStyles];
 
-  protected override readonly fieldTag = literal`md-filled-field`;
+  static scopedElements = {
+    'oscd-filled-field': OscdFilledField,
+  };
+
+  protected override readonly fieldTag = literal`oscd-filled-field`;
 }

@@ -1,22 +1,61 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 
-const colouredList = ['md-test-table', 'md-navigation-drawer'];
+// List of components to exclude
+const colouredList = [
+  'md-test-table',
+  'md-navigation-drawer',
+  'md-navigation-drawer-modal',
+];
 
-const materialRepoPath = '../material-components/material-web';
+const materialRepoPath = '../oscd-material-web-base';
 const targetSourcePath = './';
 
-// const customElementsJsonPath = join(materialRepoPath, 'custom-elements.json');
-const customElementsJsonPath = './md-custom-elements.json'; // For testing
+const customElementsJsonPath =
+  './node_modules/@material/web/custom-elements.json';
+
+const generatedMarker = 'GENERATED SOURCE FILE. DO NOT MODIFY';
+// Copyright block to append
+const generatedComment = `
+/*
+ * ${generatedMarker}.
+ * Modifications will be overwritten.
+ * To prevent this file from being overwritten, remove this comment entirely.
+ */
+
+`;
 
 // Copyright block to append
 const omicronCopyright = `
+
 /**
  * @license
  * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
 `;
+
+/**
+ * Writes content to a file only if it contains the GENERATED SOURCE FILE comment.
+ * If the file does not exist, it will be created.
+ * If the file exists but does not contain the comment, it will not be overwritten.
+ * @param {string} targetPath - The path to the file to write.
+ * @param {string} content - The content to write to the file.
+ */
+function writeFileIfPermitted(targetPath: string, content: string) {
+  if (!existsSync(targetPath)) {
+    writeFileSync(targetPath, generatedComment + content);
+    return;
+  }
+  const current = readFileSync(targetPath, 'utf8');
+  if (current.includes(generatedMarker)) {
+    writeFileSync(targetPath, generatedComment + content);
+  } else {
+    console.log(
+      `File '${targetPath}' does not contain the required comment, so it was not updated.`,
+    );
+  }
+}
 
 function kebabToPascal(str: string) {
   return str
@@ -95,14 +134,12 @@ function generateStorybookStory(
 ) {
   // Import path for the Oscd* component (relative to the story file)
   const importPath = `./Oscd${pascalName}.js`;
-  // Import path for the helper (adjust if needed)
-  const helperImportPath = '@/utils/storybook/getStorybookMeta.js';
 
   const storyContent = `
 import type { StoryObj } from '@storybook/web-components-vite';
 import './${oscdTagName}.js';
 import { ${oscdClassName} } from '${importPath}';
-import { getStorybookMeta } from '${helperImportPath}';
+import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
 
 const { args, argTypes, meta } = getStorybookMeta<${oscdClassName}>({
   tagName: '${oscdTagName}',
@@ -115,11 +152,8 @@ export default {
 };
 
 export const Default: StoryObj = {
-  argTypes: { ...argTypes },
-  args: {
-    ...args,
-    // Placeholder for overrides
-  },
+  argTypes,
+  args,
 };
 `;
 
@@ -182,7 +216,7 @@ function processComponent(module: any) {
   const scopedFileName = `Oscd${pascalName}.ts`;
   const componentTargetPath = join(targetSourcePath, dirname(modulePath));
   mkdirSync(join(componentTargetPath), { recursive: true });
-  writeFileSync(join(componentTargetPath, scopedFileName), content);
+  writeFileIfPermitted(join(componentTargetPath, scopedFileName), content);
 
   // Write oscd-* registrar component
   const registrarContent = `import { Oscd${pascalName} } from './Oscd${pascalName}.js';
@@ -190,7 +224,7 @@ function processComponent(module: any) {
 customElements.define('${oscdTagName}', Oscd${pascalName});
 export { Oscd${pascalName} };
 `;
-  writeFileSync(
+  writeFileIfPermitted(
     join(componentTargetPath, `${oscdTagName}.ts`),
     registrarContent,
   );
@@ -203,7 +237,8 @@ export { Oscd${pascalName} };
     oscdTagName,
     pascalName,
   );
-  writeFileSync(
+
+  writeFileIfPermitted(
     join(componentTargetPath, `Oscd${pascalName}.stories.ts`),
     storyContent,
   );

@@ -8,14 +8,12 @@ const { args, argTypes, meta } = getStorybookMeta<OscdCircularProgress>({
 });
 
 export default {
-  title: 'Progress / Circular Progress',
   ...meta,
+  title: 'Progress / Circular Progress',
+  tags: ['autodocs'],
 };
 
 export const Default: StoryObj = {
-  argTypes: { ...argTypes },
-  args: {
-    ...args,
-    // Placeholder for overrides
-  },
+  argTypes,
+  args: { ...args, indeterminate: true, value: 5, max: 10, 'four-color': true },
 };

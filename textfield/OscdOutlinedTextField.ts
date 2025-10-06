@@ -9,16 +9,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import '../field/outlined-field.js';
-
 import { CSSResultOrNative } from 'lit';
 import { literal } from 'lit/static-html.js';
 
 import { styles as outlinedStyles } from '@material/web/textfield/internal/outlined-styles.js';
 import { OutlinedTextField } from '@material/web/textfield/internal/outlined-text-field.js';
 import { styles as sharedStyles } from '@material/web/textfield/internal/shared-styles.js';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+import { OscdOutlinedField } from '../field/OscdOutlinedField.js';
 
-export { type TextFieldType } from '@material/web/textfield/internal/text-field.js';
+export { type TextFieldType as OscdTextFieldType } from '@material/web/textfield/internal/text-field.js';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -27,13 +27,21 @@ declare global {
 }
 
 /**
- * @tagname oscd-outlined-text-field
- * TODO(b/228525797): Add docs
+ * @tag oscd-outlined-text-field
+ * @summary A Material Design outlined text field component.
+ * This component is a wrapper around the `OutlinedTextField` from Material Web Components,
+ * providing a scoped element that uses the `OscdOutlinedField` as its field.
  * @final
  * @suppress {visibility}
  */
-export class OscdOutlinedTextField extends OutlinedTextField {
+export class OscdOutlinedTextField extends ScopedElementsMixin(
+  OutlinedTextField,
+) {
   static override styles: CSSResultOrNative[] = [sharedStyles, outlinedStyles];
 
-  protected override readonly fieldTag = literal`md-outlined-field`;
+  static scopedElements = {
+    'oscd-outlined-field': OscdOutlinedField,
+  };
+
+  protected override readonly fieldTag = literal`oscd-outlined-field`;
 }
