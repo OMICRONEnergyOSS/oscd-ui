@@ -1,14 +1,14 @@
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
-import { OscdNavigationDrawer } from 'navigation-drawer/OscdNavigationDrawer';
-import { OscdList } from 'list/OscdList';
-import { OscdListItem } from 'list/OscdListItem';
+import { OscdNavigationDrawer } from 'navigation-drawer/OscdNavigationDrawer.js';
+import { OscdList } from 'list/OscdList.js';
+import { OscdListItem } from 'list/OscdListItem.js';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
 import { useArgs } from 'storybook/preview-api';
-import { OscdIcon } from 'icon/OscdIcon';
-import { OscdAppBar } from 'app-bar/OscdAppBar';
-import { OscdFilledIconButton } from 'iconbutton/OscdFilledIconButton';
+import { OscdIcon } from 'icon/OscdIcon.js';
+import { OscdAppBar } from 'app-bar/OscdAppBar.js';
+import { OscdFilledIconButton } from 'iconbutton/OscdFilledIconButton.js';
 import { action } from 'storybook/actions';
 import { OscdNavigationDrawerHeader } from './OscdNavigationDrawerHeader.js';
 

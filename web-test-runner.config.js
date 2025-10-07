@@ -5,11 +5,19 @@
  */
 
 import { playwrightLauncher } from '@web/test-runner-playwright';
-import { jasmineTestRunnerConfig } from 'web-test-runner-jasmine';
+import { polyfill } from '@web/dev-server-polyfill';
 
-export default {
-  ...jasmineTestRunnerConfig(),
-  nodeResolve: true,
+export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
+  plugins: [
+    polyfill({
+      scopedCustomElementRegistry: true,
+    }),
+  ],
+  /** Resolve bare module imports */
+  nodeResolve: {
+    exportConditions: ['browser', 'development'],
+  },
+
   files: ['**/*spec.js', '!node_modules/'],
   browsers: [
     playwrightLauncher({
@@ -20,4 +28,4 @@ export default {
       // product: 'webkit',
     }),
   ],
-};
+});

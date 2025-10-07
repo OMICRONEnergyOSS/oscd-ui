@@ -8,8 +8,9 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "importHelpers": true,
-    "module": "ES2022",
-    "moduleResolution": "node",
+    "target": "es2021",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitOverride": true,
@@ -20,14 +21,13 @@
     "sourceMap": true,
     "inlineSources": true,
     "strict": true,
-    "target": "ES2022",
-    "types": ["lit", "jasmine"],
-    "lib": ["DOM", "ES2022"],
+    "types": ["lit", "mocha"],
+    "lib": ["es2021", "dom", "DOM.Iterable"],
     "strictNullChecks": true,
     "skipLibCheck": true,
     "outDir": "dist",
     "paths": {
-      "@/*":[ "./*"],
+      "@/*": ["./*"]
     }
   },
   "exclude": ["dist"]

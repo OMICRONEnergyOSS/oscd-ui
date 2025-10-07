@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
-import { OscdNavigationDrawerHeader } from 'navigation-drawer/OscdNavigationDrawerHeader';
-import { OscdElevation } from 'elevation/OscdElevation';
+import { OscdNavigationDrawerHeader } from 'navigation-drawer/OscdNavigationDrawerHeader.js';
+import { OscdElevation } from 'elevation/OscdElevation.js';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
 import {
   getStorybookHelpers,

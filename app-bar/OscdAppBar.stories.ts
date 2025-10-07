@@ -1,11 +1,11 @@
 import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
-import { OscdList } from 'list/OscdList';
-import { OscdListItem } from 'list/OscdListItem';
-import { OscdIcon } from 'icon/OscdIcon';
-import { OscdTabs } from 'tabs/OscdTabs';
-import { OscdSecondaryTab } from 'tabs/OscdSecondaryTab';
+import { OscdList } from 'list/OscdList.js';
+import { OscdListItem } from 'list/OscdListItem.js';
+import { OscdIcon } from 'icon/OscdIcon.js';
+import { OscdTabs } from 'tabs/OscdTabs.js';
+import { OscdSecondaryTab } from 'tabs/OscdSecondaryTab.js';
 import { scopedWcDecorator } from 'utils/storybook/scopedWcDecorator.js';
 import { OscdFilledIconButton } from 'iconbutton/OscdFilledIconButton.js';
 import {
