@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.8](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.7...oscd-ui-v0.0.8) (2025-10-08)
+
+
+### Features
+
+* add unit tests to ensure all components are side-effect free ([269ac5a](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/269ac5a75268da233ea3915029d0681d922514ac))
+* added internal code for button, dialog, iconbutton,list, select, tabs and text fields ([bef569b](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/bef569b3890888c2ab5f83f7b364c7ac8eaec241))
+* changed over to generated md-* wrapper classes and stories - for ALL components ([fc23816](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/fc23816b330dfa7c2c700fd882854b75004c4094))
+
+
+### Bug Fixes
+
+* menu errors on storybook ([29fb549](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/29fb54933c4b67aa91b62b4a58acb6937f0798d9))
+
 ## [0.0.7](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.6...oscd-ui-v0.0.7) (2025-09-30)
 
 
