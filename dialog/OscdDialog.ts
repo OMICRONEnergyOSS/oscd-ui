@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2023 Google LLC
@@ -15,11 +9,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdDivider } from '@omicronenergy/oscd-material-web-base/divider/MdDivider.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { Dialog } from '@material/web/dialog/internal/dialog.js';
-import { styles } from '@material/web/dialog/internal/dialog-styles.js';
+import { Dialog } from '@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/dialog/internal/dialog-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-dialog': OscdDialog;
@@ -53,6 +50,9 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdDialog extends Dialog {
+export class OscdDialog extends ScopedElementsMixin(Dialog) {
+  static scopedElements = {
+    'md-divider': MdDivider,
+  };
   static override styles: CSSResultOrNative[] = [styles];
 }

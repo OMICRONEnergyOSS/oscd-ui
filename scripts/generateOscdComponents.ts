@@ -12,7 +12,7 @@ const materialRepoPath = '../oscd-material-web-base';
 const targetSourcePath = './';
 
 const customElementsJsonPath =
-  './node_modules/@material/web/custom-elements.json';
+  './node_modules/@omicronenergy/oscd-material-web-base/custom-elements.json';
 
 const generatedMarker = 'GENERATED SOURCE FILE. DO NOT MODIFY';
 // Copyright block to append
@@ -93,17 +93,21 @@ function modulePathToTitle(modulePath: string) {
 // }
 
 function fixImportPaths(content: string, modulePath: string) {
-  // Replace ./ and ../ imports with @material/web/...
-  return content.replace(
+  // Replace ./ and ../ imports with @omicronenergy/oscd-material-web-base/...
+  const fixedRelativePaths = content.replace(
     /from\s+['"](\.\/|\.\.\/)([^'"]+)['"]/g,
     (_match, dot, relPath) => {
-      let base = '@material/web/';
+      let base = '@omicronenergy/oscd-material-web-base/';
 
       if (modulePath.includes('/') && dot !== '../') {
         base += modulePath.substring(0, modulePath.lastIndexOf('/') + 1);
       }
       return `from '${base}${relPath}'`;
     },
+  );
+  return fixedRelativePaths.replace(
+    /@material\/web\//g,
+    '@omicronenergy/oscd-material-web-base/',
   );
 }
 
@@ -124,6 +128,58 @@ function updateJSDoc(jsdoc: string, newTagName: string) {
   lines = lines.filter(line => !line.includes('@description'));
   lines.splice(1, 0, ` * @tagname ${newTagName}`);
   return lines.join('\n');
+}
+
+function generateUnitTest(
+  oscdClassName: string,
+  oscdTagName: string,
+  pascalName: string,
+) {
+  return `
+import { expect, fixture, fixtureCleanup } from '@open-wc/testing';
+import { html } from 'lit';
+import { spy, SinonSpy } from 'sinon';
+
+describe('${oscdClassName} side-effect free', () => {
+  let defineSpy: SinonSpy;
+  // let harness: ScopingTestHarness;
+
+  beforeEach(async () => {
+    // Spy on customElements.define before dynamic import
+    defineSpy = spy(window.customElements, 'define');
+  });
+
+  afterEach(() => {
+    // Restore the spy
+    defineSpy.restore();
+    // Clean up DOM
+    fixtureCleanup();
+  });
+
+  it('should not call customElements.define as a side effect during import/instantiation', async () => {
+    // Dynamically import the component
+    const { ${oscdClassName} } = await import('./${oscdClassName}.js');
+
+    // Instantiate the component
+    const oscd${pascalName} = await fixture(
+      html\`<${oscdTagName}></${oscdTagName}>\`,
+      { scopedElements: { '${oscdTagName}': ${oscdClassName} } },
+    );
+
+    // Verify it's upgraded (not just a dummy tag)
+    expect(oscd${pascalName}.shadowRoot).not.to.be.null;
+    expect(oscd${pascalName}.constructor.name).to.equal('${oscdClassName}');
+
+    const globallyDefinedElements = defineSpy.args
+      .filter(
+        ([tagName]) => !tagName.startsWith('scoped-elements-test-wrapper'),
+      )
+      .map(([tagName]) => tagName);
+
+    expect(globallyDefinedElements).to.deep.equal([]);
+  });
+});
+`;
 }
 
 function generateStorybookStory(
@@ -188,6 +244,59 @@ function processComponent(module: any) {
   content = content.replace(new RegExp(className, 'g'), oscdClassName);
   content = content.replace(new RegExp(tagName, 'g'), oscdTagName);
 
+  // Add ScopedElementsMixin import if not already present
+  // if (!content.includes('import { ScopedElementsMixin }')) {
+  //   // Find the last import statement and add the ScopedElementsMixin import after it
+  //   const lastImportMatch = content.match(
+  //     /import\s+[^;]+from\s+['"][^'"]+['"];[\s]*\n/g,
+  //   );
+  //   if (lastImportMatch) {
+  //     const lastImport = lastImportMatch[lastImportMatch.length - 1];
+  //     const scopedElementsImport =
+  //       "import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';\n";
+  //     content = content.replace(lastImport, lastImport + scopedElementsImport);
+  //   }
+  // }
+
+  // // Find and modify class declaration to wrap extended class with ScopedElementsMixin
+  // const classDeclarationRegex = new RegExp(
+  //   `(export\\s+class\\s+${oscdClassName}\\s+extends\\s+)([^\\s{]+)(\\s*{)`,
+  //   'g',
+  // );
+  // content = content.replace(
+  //   classDeclarationRegex,
+  //   (match, beforeExtends, extendedClass, afterExtends) => {
+  //     // Check if ScopedElementsMixin is already applied
+  //     if (extendedClass.includes('ScopedElementsMixin')) {
+  //       return match; // Already wrapped, don't modify
+  //     }
+  //     return `${beforeExtends}ScopedElementsMixin(${extendedClass})${afterExtends}`;
+  //   },
+  // );
+
+  // // Insert static scopedElements block after class declaration
+  // const classBodyRegex = new RegExp(
+  //   `(export\\s+class\\s+${oscdClassName}\\s+extends\\s+ScopedElementsMixin\\([^)]+\\)\\s*{)`,
+  //   'g',
+  // );
+  // content = content.replace(classBodyRegex, match => {
+  //   // Check if scopedElements is already present
+  //   const classEndRegex = new RegExp(`${match}[\\s\\S]*?(?=export\\s+class|$)`);
+  //   const classContent = content.match(classEndRegex);
+  //   if (classContent && classContent[0].includes('static scopedElements')) {
+  //     return match; // Already has scopedElements, don't modify
+  //   }
+
+  //   const scopedElementsBlock = `
+  // static scopedElements = {
+  //   //  "md-ripple": MdRipple,
+  //   //  "md-focus-ring": MdFocusRing,
+  //   //  "md-elevation": MdElevation,
+  // };`;
+
+  //   return match + scopedElementsBlock;
+  // });
+
   // Update global HTMLElementTagNameMap
   content = content.replace(
     /interface HTMLElementTagNameMap\s*{[^}]+}/,
@@ -242,9 +351,39 @@ export { Oscd${pascalName} };
     join(componentTargetPath, `Oscd${pascalName}.stories.ts`),
     storyContent,
   );
+
+  const unitTestContent = generateUnitTest(
+    oscdClassName,
+    oscdTagName,
+    pascalName,
+  );
+
+  writeFileIfPermitted(
+    join(componentTargetPath, `Oscd${pascalName}.spec.ts`),
+    unitTestContent,
+  );
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function listExports(module: any) {
+  const tagName = module.declarations[0].tagName; // e.g. md-elevated-button
+  const className = module.declarations[0].name; // e.g. MdElevatedButton
+  const modulePath = module.path.replace(/\.ts$/, ''); // e.g. button/elevated-button
+
+  const oscdClassName = className.replace(/^Md/, 'Oscd');
+  const oscdTagName = tagName.replace(/^md-/, 'oscd-');
+
+  const scopedFileName = `${oscdClassName}.js`;
+  const unScopedFileName = `${oscdTagName}.js`;
+
+  const targetDir = dirname(modulePath);
+
+  return `"./${targetDir}/${scopedFileName}": "./dist/${targetDir}/${scopedFileName}",
+"./${targetDir}/${unScopedFileName}": "./dist/${targetDir}/${unScopedFileName}",`;
 }
 
 // Main
+let packageJsonExports = '';
 const customElements = JSON.parse(readFileSync(customElementsJsonPath, 'utf8'));
 for (const module of customElements.modules) {
   if (module.kind === 'javascript-module' && module.declarations) {
@@ -255,7 +394,10 @@ for (const module of customElements.modules) {
         !colouredList.includes(decl.tagName)
       ) {
         processComponent(module);
+        packageJsonExports += listExports(module);
       }
     }
   }
 }
+
+writeFileSync('./packageExports.json', packageJsonExports);

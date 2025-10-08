@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { ChipSet } from '@material/web/chips/internal/chip-set.js';
-import { styles } from '@material/web/chips/internal/chip-set-styles.js';
+import { ChipSet } from '@omicronenergy/oscd-material-web-base/chips/internal/chip-set.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/chips/internal/chip-set-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

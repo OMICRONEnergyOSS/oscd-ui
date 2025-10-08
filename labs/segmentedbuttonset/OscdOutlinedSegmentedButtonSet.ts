@@ -17,9 +17,9 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { OutlinedSegmentedButtonSet } from '@material/web/labs/segmentedbuttonset/internal/outlined-segmented-button-set.js';
-import { styles as outlinedStyles } from '@material/web/labs/segmentedbuttonset/internal/outlined-styles.js';
-import { styles as sharedStyles } from '@material/web/labs/segmentedbuttonset/internal/shared-styles.js';
+import { OutlinedSegmentedButtonSet } from '@omicronenergy/oscd-material-web-base/labs/segmentedbuttonset/internal/outlined-segmented-button-set.js';
+import { styles as outlinedStyles } from '@omicronenergy/oscd-material-web-base/labs/segmentedbuttonset/internal/outlined-styles.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/labs/segmentedbuttonset/internal/shared-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

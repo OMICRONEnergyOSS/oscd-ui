@@ -14,7 +14,7 @@
     "build-storybook": "storybook build",
     "generate-oscd": "node dist/scripts/generateOscdComponents.js && npm run format",
     "custom-elements-manifest": "npm run copy-material-custom-elements && cem analyze",
-    "copy-material-custom-elements": "cp md-custom-elements.json node_modules/@material/web/custom-elements.json",
+    "copy-material-custom-elements": "cp md-custom-elements.json node_modules/@omicronenergy/oscd-material-web-base/custom-elements.json",
     "prepare": "husky"
   },
   "repository": {
@@ -33,19 +33,124 @@
   "license": "Apache-2.0",
   "files": [
     "dist/**/*.js",
-    "!dist/scripts"
+    "!dist/scripts",
+    "!catalog"
   ],
-  "overrides": {
-    "@material/web": {
-      "lit": "^3.0.0"
-    }
+  "exports": {
+    "./app-bar/OscdAppBar.js": "./dist/app-bar/OscdAppBar.js",
+    "./app-bar/oscd-app-bar.js": "./dist/app-bar/oscd-app-bar.js",
+    "./navigation-drawer/OscdNavigationDrawer.js": "./dist/navigation-drawer/OscdNavigationDrawer.js",
+    "./navigation-drawer/oscd-navigation-drawer.js": "./dist/navigation-drawer/oscd-navigation-drawer.js",
+    "./button/OscdElevatedButton.js": "./dist/button/OscdElevatedButton.js",
+    "./button/oscd-elevated-button.js": "./dist/button/oscd-elevated-button.js",
+    "./button/OscdFilledButton.js": "./dist/button/OscdFilledButton.js",
+    "./button/oscd-filled-button.js": "./dist/button/oscd-filled-button.js",
+    "./button/OscdFilledTonalButton.js": "./dist/button/OscdFilledTonalButton.js",
+    "./button/oscd-filled-tonal-button.js": "./dist/button/oscd-filled-tonal-button.js",
+    "./button/OscdOutlinedButton.js": "./dist/button/OscdOutlinedButton.js",
+    "./button/oscd-outlined-button.js": "./dist/button/oscd-outlined-button.js",
+    "./button/OscdTextButton.js": "./dist/button/OscdTextButton.js",
+    "./button/oscd-text-button.js": "./dist/button/oscd-text-button.js",
+    "./checkbox/OscdCheckbox.js": "./dist/checkbox/OscdCheckbox.js",
+    "./checkbox/oscd-checkbox.js": "./dist/checkbox/oscd-checkbox.js",
+    "./chips/OscdAssistChip.js": "./dist/chips/OscdAssistChip.js",
+    "./chips/oscd-assist-chip.js": "./dist/chips/oscd-assist-chip.js",
+    "./chips/OscdChipSet.js": "./dist/chips/OscdChipSet.js",
+    "./chips/oscd-chip-set.js": "./dist/chips/oscd-chip-set.js",
+    "./chips/OscdFilterChip.js": "./dist/chips/OscdFilterChip.js",
+    "./chips/oscd-filter-chip.js": "./dist/chips/oscd-filter-chip.js",
+    "./chips/OscdInputChip.js": "./dist/chips/OscdInputChip.js",
+    "./chips/oscd-input-chip.js": "./dist/chips/oscd-input-chip.js",
+    "./chips/OscdSuggestionChip.js": "./dist/chips/OscdSuggestionChip.js",
+    "./chips/oscd-suggestion-chip.js": "./dist/chips/oscd-suggestion-chip.js",
+    "./dialog/OscdDialog.js": "./dist/dialog/OscdDialog.js",
+    "./dialog/oscd-dialog.js": "./dist/dialog/oscd-dialog.js",
+    "./divider/OscdDivider.js": "./dist/divider/OscdDivider.js",
+    "./divider/oscd-divider.js": "./dist/divider/oscd-divider.js",
+    "./fab/OscdBrandedFab.js": "./dist/fab/OscdBrandedFab.js",
+    "./fab/oscd-branded-fab.js": "./dist/fab/oscd-branded-fab.js",
+    "./fab/OscdFab.js": "./dist/fab/OscdFab.js",
+    "./fab/oscd-fab.js": "./dist/fab/oscd-fab.js",
+    "./field/OscdFilledField.js": "./dist/field/OscdFilledField.js",
+    "./field/oscd-filled-field.js": "./dist/field/oscd-filled-field.js",
+    "./field/OscdOutlinedField.js": "./dist/field/OscdOutlinedField.js",
+    "./field/oscd-outlined-field.js": "./dist/field/oscd-outlined-field.js",
+    "./focus/OscdFocusRing.js": "./dist/focus/OscdFocusRing.js",
+    "./focus/oscd-focus-ring.js": "./dist/focus/oscd-focus-ring.js",
+    "./elevation/OscdElevation.js": "./dist/elevation/OscdElevation.js",
+    "./elevation/oscd-elevation.js": "./dist/elevation/oscd-elevation.js",
+    "./icon/OscdIcon.js": "./dist/icon/OscdIcon.js",
+    "./icon/oscd-icon.js": "./dist/icon/oscd-icon.js",
+    "./list/OscdListItem.js": "./dist/list/OscdListItem.js",
+    "./list/oscd-list-item.js": "./dist/list/oscd-list-item.js",
+    "./list/OscdList.js": "./dist/list/OscdList.js",
+    "./list/oscd-list.js": "./dist/list/oscd-list.js",
+    "./iconbutton/OscdFilledIconButton.js": "./dist/iconbutton/OscdFilledIconButton.js",
+    "./iconbutton/oscd-filled-icon-button.js": "./dist/iconbutton/oscd-filled-icon-button.js",
+    "./iconbutton/OscdFilledTonalIconButton.js": "./dist/iconbutton/OscdFilledTonalIconButton.js",
+    "./iconbutton/oscd-filled-tonal-icon-button.js": "./dist/iconbutton/oscd-filled-tonal-icon-button.js",
+    "./iconbutton/OscdIconButton.js": "./dist/iconbutton/OscdIconButton.js",
+    "./iconbutton/oscd-icon-button.js": "./dist/iconbutton/oscd-icon-button.js",
+    "./iconbutton/OscdOutlinedIconButton.js": "./dist/iconbutton/OscdOutlinedIconButton.js",
+    "./iconbutton/oscd-outlined-icon-button.js": "./dist/iconbutton/oscd-outlined-icon-button.js",
+    "./menu/OscdMenuItem.js": "./dist/menu/OscdMenuItem.js",
+    "./menu/oscd-menu-item.js": "./dist/menu/oscd-menu-item.js",
+    "./menu/OscdMenu.js": "./dist/menu/OscdMenu.js",
+    "./menu/oscd-menu.js": "./dist/menu/oscd-menu.js",
+    "./menu/OscdSubMenu.js": "./dist/menu/OscdSubMenu.js",
+    "./menu/oscd-sub-menu.js": "./dist/menu/oscd-sub-menu.js",
+    "./progress/OscdCircularProgress.js": "./dist/progress/OscdCircularProgress.js",
+    "./progress/oscd-circular-progress.js": "./dist/progress/oscd-circular-progress.js",
+    "./progress/OscdLinearProgress.js": "./dist/progress/OscdLinearProgress.js",
+    "./progress/oscd-linear-progress.js": "./dist/progress/oscd-linear-progress.js",
+    "./ripple/OscdRipple.js": "./dist/ripple/OscdRipple.js",
+    "./ripple/oscd-ripple.js": "./dist/ripple/oscd-ripple.js",
+    "./radio/OscdRadio.js": "./dist/radio/OscdRadio.js",
+    "./radio/oscd-radio.js": "./dist/radio/oscd-radio.js",
+    "./slider/OscdSlider.js": "./dist/slider/OscdSlider.js",
+    "./slider/oscd-slider.js": "./dist/slider/oscd-slider.js",
+    "./switch/OscdSwitch.js": "./dist/switch/OscdSwitch.js",
+    "./switch/oscd-switch.js": "./dist/switch/oscd-switch.js",
+    "./tabs/OscdPrimaryTab.js": "./dist/tabs/OscdPrimaryTab.js",
+    "./tabs/oscd-primary-tab.js": "./dist/tabs/oscd-primary-tab.js",
+    "./tabs/OscdSecondaryTab.js": "./dist/tabs/OscdSecondaryTab.js",
+    "./tabs/oscd-secondary-tab.js": "./dist/tabs/oscd-secondary-tab.js",
+    "./tabs/OscdTabs.js": "./dist/tabs/OscdTabs.js",
+    "./tabs/oscd-tabs.js": "./dist/tabs/oscd-tabs.js",
+    "./select/OscdFilledSelect.js": "./dist/select/OscdFilledSelect.js",
+    "./select/oscd-filled-select.js": "./dist/select/oscd-filled-select.js",
+    "./select/OscdOutlinedSelect.js": "./dist/select/OscdOutlinedSelect.js",
+    "./select/oscd-outlined-select.js": "./dist/select/oscd-outlined-select.js",
+    "./select/OscdSelectOption.js": "./dist/select/OscdSelectOption.js",
+    "./select/oscd-select-option.js": "./dist/select/oscd-select-option.js",
+    "./textfield/OscdFilledTextField.js": "./dist/textfield/OscdFilledTextField.js",
+    "./textfield/oscd-filled-text-field.js": "./dist/textfield/oscd-filled-text-field.js",
+    "./textfield/OscdOutlinedTextField.js": "./dist/textfield/OscdOutlinedTextField.js",
+    "./textfield/oscd-outlined-text-field.js": "./dist/textfield/oscd-outlined-text-field.js",
+    "./labs/badge/OscdBadge.js": "./dist/labs/badge/OscdBadge.js",
+    "./labs/badge/oscd-badge.js": "./dist/labs/badge/oscd-badge.js",
+    "./labs/item/OscdItem.js": "./dist/labs/item/OscdItem.js",
+    "./labs/item/oscd-item.js": "./dist/labs/item/oscd-item.js",
+    "./labs/card/OscdElevatedCard.js": "./dist/labs/card/OscdElevatedCard.js",
+    "./labs/card/oscd-elevated-card.js": "./dist/labs/card/oscd-elevated-card.js",
+    "./labs/card/OscdFilledCard.js": "./dist/labs/card/OscdFilledCard.js",
+    "./labs/card/oscd-filled-card.js": "./dist/labs/card/oscd-filled-card.js",
+    "./labs/card/OscdOutlinedCard.js": "./dist/labs/card/OscdOutlinedCard.js",
+    "./labs/card/oscd-outlined-card.js": "./dist/labs/card/oscd-outlined-card.js",
+    "./labs/navigationbar/OscdNavigationBar.js": "./dist/labs/navigationbar/OscdNavigationBar.js",
+    "./labs/navigationbar/oscd-navigation-bar.js": "./dist/labs/navigationbar/oscd-navigation-bar.js",
+    "./labs/navigationtab/OscdNavigationTab.js": "./dist/labs/navigationtab/OscdNavigationTab.js",
+    "./labs/navigationtab/oscd-navigation-tab.js": "./dist/labs/navigationtab/oscd-navigation-tab.js",
+    "./labs/segmentedbutton/OscdOutlinedSegmentedButton.js": "./dist/labs/segmentedbutton/OscdOutlinedSegmentedButton.js",
+    "./labs/segmentedbutton/oscd-outlined-segmented-button.js": "./dist/labs/segmentedbutton/oscd-outlined-segmented-button.js",
+    "./labs/segmentedbuttonset/OscdOutlinedSegmentedButtonSet.js": "./dist/labs/segmentedbuttonset/OscdOutlinedSegmentedButtonSet.js",
+    "./labs/segmentedbuttonset/oscd-outlined-segmented-button-set.js": "./dist/labs/segmentedbuttonset/oscd-outlined-segmented-button-set.js"
   },
   "dependencies": {
-    "@lit/reactive-element": "^2.1.0",
-    "@material/web": "2.3.0",
+    "@omicronenergy/oscd-material-web-base": "^2.4.0",
     "@open-wc/scoped-elements": "^3.0.5",
     "@webcomponents/scoped-custom-element-registry": "^0.0.10",
-    "lit": "^3.0.0",
+    "lit": "^3.3.0",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
@@ -116,33 +221,7 @@
       ],
       "clean": "if-file-deleted",
       "dependencies": [
-        "build:css-to-ts"
-      ]
-    },
-    "build:css-to-ts": {
-      "command": "find ./ \\( -path ./.wireit -o -path ./node_modules -o -path ./catalog -o -path ./dist \\) -prune -o -name '*-styles.css' -print | xargs -L1 node dist/scripts/css-to-ts.js",
-      "files": [
-        "**/*-styles.css",
-        "!dist/",
-        "!catalog/"
-      ],
-      "output": [
-        "dist/**/*-styles.ts"
-      ],
-      "dependencies": [
-        "build:scripts",
-        "build:sass"
-      ]
-    },
-    "build:sass": {
-      "command": "sass --style=compressed --load-path=node_modules --load-path=node_modules/sass-true/sass $(ls -d */ | grep -vE 'node_modules|catalog'):dist/",
-      "files": [
-        "**/*.scss",
-        "!catalog/"
-      ],
-      "output": [
-        "dist/**/*.css",
-        "dist/**/*.css.map"
+        "build:scripts"
       ]
     },
     "build:scripts": {

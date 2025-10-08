@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2022 Google LLC
@@ -15,15 +9,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+import { MdElevation } from '@omicronenergy/oscd-material-web-base/elevation/MdElevation.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { Fab } from '@material/web/fab/internal/fab.js';
-import { styles } from '@material/web/fab/internal/fab-styles.js';
-import { styles as forcedColors } from '@material/web/fab/internal/forced-colors-styles.js';
-import { styles as sharedStyles } from '@material/web/fab/internal/shared-styles.js';
+import { Fab } from '@omicronenergy/oscd-material-web-base/fab/internal/fab.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/fab/internal/fab-styles.js';
+import { styles as forcedColors } from '@omicronenergy/oscd-material-web-base/fab/internal/forced-colors-styles.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/fab/internal/shared-styles.js';
 
-export { type FabVariant } from '@material/web/fab/internal/fab.js';
-export { type FabSize } from '@material/web/fab/internal/shared.js';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+export { type FabVariant } from '@omicronenergy/oscd-material-web-base/fab/internal/fab.js';
+export { type FabSize } from '@omicronenergy/oscd-material-web-base/fab/internal/shared.js';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -58,7 +57,12 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdFab extends Fab {
+export class OscdFab extends ScopedElementsMixin(Fab) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+    'md-elevation': MdElevation,
+  };
   static override styles: CSSResultOrNative[] = [
     sharedStyles,
     styles,

@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2022 Google LLC
@@ -15,20 +9,28 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+import { MdElevation } from '@omicronenergy/oscd-material-web-base/elevation/MdElevation.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { Menu } from '@material/web/menu/internal/menu.js';
-import { styles } from '@material/web/menu/internal/menu-styles.js';
+import { Menu } from '@omicronenergy/oscd-material-web-base/menu/internal/menu.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/menu/internal/menu-styles.js';
 
-export { type ListItem } from '@material/web/list/internal/list-navigation-helpers.js';
-export { type MenuItem } from '@material/web/menu/internal/controllers/menuItemController.js';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+export { type ListItem } from '@omicronenergy/oscd-material-web-base/list/internal/list-navigation-helpers.js';
+export { type MenuItem } from '@omicronenergy/oscd-material-web-base/menu/internal/controllers/menuItemController.js';
 export {
   CloseReason,
   FocusState,
   type CloseMenuEvent,
   type Menu,
-} from '@material/web/menu/internal/controllers/shared.js';
-export { Corner } from '@material/web/menu/internal/menu.js';
+} from '@omicronenergy/oscd-material-web-base/menu/internal/controllers/shared.js';
+export { Corner } from '@omicronenergy/oscd-material-web-base/menu/internal/menu.js';
+
+class InternalMenu extends Menu {
+  static override styles: CSSResultOrNative[] = [styles];
+}
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -85,6 +87,10 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdMenu extends Menu {
+export class OscdMenu extends ScopedElementsMixin(InternalMenu) {
+  static scopedElements = {
+    'md-focus-ring': MdFocusRing,
+    'md-elevation': MdElevation,
+  };
   static override styles: CSSResultOrNative[] = [styles];
 }

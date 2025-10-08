@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { Elevation } from '@material/web/elevation/internal/elevation.js';
-import { styles } from '@material/web/elevation/internal/elevation-styles.js';
+import { Elevation } from '@omicronenergy/oscd-material-web-base/elevation/internal/elevation.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/elevation/internal/elevation-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

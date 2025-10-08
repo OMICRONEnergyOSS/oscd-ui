@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { Ripple } from '@material/web/ripple/internal/ripple.js';
-import { styles } from '@material/web/ripple/internal/ripple-styles.js';
+import { Ripple } from '@omicronenergy/oscd-material-web-base/ripple/internal/ripple.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/ripple/internal/ripple-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

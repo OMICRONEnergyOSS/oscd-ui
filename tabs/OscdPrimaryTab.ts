@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2023 Google LLC
@@ -15,12 +9,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+import { MdElevation } from '@omicronenergy/oscd-material-web-base/elevation/MdElevation.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { PrimaryTab } from '@material/web/tabs/internal/primary-tab.js';
-import { styles as primaryStyles } from '@material/web/tabs/internal/primary-tab-styles.js';
-import { styles as sharedStyles } from '@material/web/tabs/internal/tab-styles.js';
+import { PrimaryTab } from '@omicronenergy/oscd-material-web-base/tabs/internal/primary-tab.js';
+import { styles as primaryStyles } from '@omicronenergy/oscd-material-web-base/tabs/internal/primary-tab-styles.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/tabs/internal/tab-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-primary-tab': OscdPrimaryTab;
@@ -35,6 +34,11 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdPrimaryTab extends PrimaryTab {
+export class OscdPrimaryTab extends ScopedElementsMixin(PrimaryTab) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+    'md-elevation': MdElevation,
+  };
   static override styles: CSSResultOrNative[] = [sharedStyles, primaryStyles];
 }

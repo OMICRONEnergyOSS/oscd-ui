@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { Icon } from '@material/web/icon/internal/icon.js';
-import { styles } from '@material/web/icon/internal/icon-styles.js';
+import { Icon } from '@omicronenergy/oscd-material-web-base/icon/internal/icon.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/icon/internal/icon-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

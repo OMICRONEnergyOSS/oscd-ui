@@ -1,12 +1,6 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
 /**
@@ -15,12 +9,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { styles } from '@material/web/iconbutton/internal/filled-styles.js';
-import { IconButton } from '@material/web/iconbutton/internal/icon-button.js';
-import { styles as sharedStyles } from '@material/web/iconbutton/internal/shared-styles.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/iconbutton/internal/filled-styles.js';
+import { IconButton } from '@omicronenergy/oscd-material-web-base/iconbutton/internal/icon-button.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/iconbutton/internal/shared-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-filled-icon-button': OscdFilledIconButton;
@@ -45,7 +43,11 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdFilledIconButton extends IconButton {
+export class OscdFilledIconButton extends ScopedElementsMixin(IconButton) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+  };
   static override styles: CSSResultOrNative[] = [sharedStyles, styles];
 
   protected override getRenderClasses() {

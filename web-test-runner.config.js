@@ -7,6 +7,13 @@
 import { playwrightLauncher } from '@web/test-runner-playwright';
 import { polyfill } from '@web/dev-server-polyfill';
 
+const filteredLogs = [
+  'Running in dev mode',
+  'Lit is in dev mode',
+  'scheduled an update',
+  'Multiple versions of Lit loaded',
+];
+
 export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   plugins: [
     polyfill({
@@ -28,4 +35,14 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
       // product: 'webkit',
     }),
   ],
+
+  /** Filter out lit dev mode logs */
+  filterBrowserLogs(log) {
+    for (const arg of log.args) {
+      if (typeof arg === 'string' && filteredLogs.some(l => arg.includes(l))) {
+        return false;
+      }
+    }
+    return true;
+  },
 });

@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { SubMenu } from '@material/web/menu/internal/submenu/sub-menu.js';
-import { styles } from '@material/web/menu/internal/submenu/sub-menu-styles.js';
+import { SubMenu } from '@omicronenergy/oscd-material-web-base/menu/internal/submenu/sub-menu.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/menu/internal/submenu/sub-menu-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

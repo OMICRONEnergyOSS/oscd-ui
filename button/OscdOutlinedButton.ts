@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2021 Google LLC
@@ -15,12 +9,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { OutlinedButton } from '@material/web/button/internal/outlined-button.js';
-import { styles as outlinedStyles } from '@material/web/button/internal/outlined-styles.js';
-import { styles as sharedStyles } from '@material/web/button/internal/shared-styles.js';
+import { OutlinedButton } from '@omicronenergy/oscd-material-web-base/button/internal/outlined-button.js';
+import { styles as outlinedStyles } from '@omicronenergy/oscd-material-web-base/button/internal/outlined-styles.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/button/internal/shared-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-outlined-button': OscdOutlinedButton;
@@ -49,6 +47,10 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdOutlinedButton extends OutlinedButton {
+export class OscdOutlinedButton extends ScopedElementsMixin(OutlinedButton) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+  };
   static override styles: CSSResultOrNative[] = [sharedStyles, outlinedStyles];
 }

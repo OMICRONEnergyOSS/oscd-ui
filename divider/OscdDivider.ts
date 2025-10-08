@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { Divider } from '@material/web/divider/internal/divider.js';
-import { styles } from '@material/web/divider/internal/divider-styles.js';
+import { Divider } from '@omicronenergy/oscd-material-web-base/divider/internal/divider.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/divider/internal/divider-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

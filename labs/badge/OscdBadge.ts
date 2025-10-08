@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { Badge } from '@material/web/labs/badge/internal/badge.js';
-import { styles } from '@material/web/labs/badge/internal/badge-styles.js';
+import { Badge } from '@omicronenergy/oscd-material-web-base/labs/badge/internal/badge.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/labs/badge/internal/badge-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

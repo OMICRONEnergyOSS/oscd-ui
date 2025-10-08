@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2021 Google LLC
@@ -14,14 +8,18 @@
  * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+import { MdElevation } from '@omicronenergy/oscd-material-web-base/elevation/MdElevation.js';
 
 import { CSSResultOrNative } from 'lit';
 
-import { FilledButton } from '@material/web/button/internal/filled-button.js';
-import { styles as filledStyles } from '@material/web/button/internal/filled-styles.js';
-import { styles as sharedElevationStyles } from '@material/web/button/internal/shared-elevation-styles.js';
-import { styles as sharedStyles } from '@material/web/button/internal/shared-styles.js';
+import { FilledButton } from '@omicronenergy/oscd-material-web-base/button/internal/filled-button.js';
+import { styles as filledStyles } from '@omicronenergy/oscd-material-web-base/button/internal/filled-styles.js';
+import { styles as sharedElevationStyles } from '@omicronenergy/oscd-material-web-base/button/internal/shared-elevation-styles.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/button/internal/shared-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-filled-button': OscdFilledButton;
@@ -48,7 +46,12 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdFilledButton extends FilledButton {
+export class OscdFilledButton extends ScopedElementsMixin(FilledButton) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+    'md-elevation': MdElevation,
+  };
   static override styles: CSSResultOrNative[] = [
     sharedStyles,
     sharedElevationStyles,

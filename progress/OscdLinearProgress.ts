@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { LinearProgress } from '@material/web/progress/internal/linear-progress.js';
-import { styles } from '@material/web/progress/internal/linear-progress-styles.js';
+import { LinearProgress } from '@omicronenergy/oscd-material-web-base/progress/internal/linear-progress.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/progress/internal/linear-progress-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2021 Google LLC
@@ -15,12 +9,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { styles as sharedStyles } from '@material/web/button/internal/shared-styles.js';
-import { TextButton } from '@material/web/button/internal/text-button.js';
-import { styles as textStyles } from '@material/web/button/internal/text-styles.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/button/internal/shared-styles.js';
+import { TextButton } from '@omicronenergy/oscd-material-web-base/button/internal/text-button.js';
+import { styles as textStyles } from '@omicronenergy/oscd-material-web-base/button/internal/text-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-text-button': OscdTextButton;
@@ -47,6 +45,10 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdTextButton extends TextButton {
+export class OscdTextButton extends ScopedElementsMixin(TextButton) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+  };
   static override styles: CSSResultOrNative[] = [sharedStyles, textStyles];
 }

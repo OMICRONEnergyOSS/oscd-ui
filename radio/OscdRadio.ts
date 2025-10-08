@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2022 Google LLC
@@ -15,11 +9,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { Radio } from '@material/web/radio/internal/radio.js';
-import { styles } from '@material/web/radio/internal/radio-styles.js';
+import { Radio } from '@omicronenergy/oscd-material-web-base/radio/internal/radio.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/radio/internal/radio-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-radio': OscdRadio;
@@ -42,6 +40,10 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdRadio extends Radio {
+export class OscdRadio extends ScopedElementsMixin(Radio) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+  };
   static override styles: CSSResultOrNative[] = [styles];
 }

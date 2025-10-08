@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2021 Google LLC
@@ -14,13 +8,16 @@
  * Copyright 2025 Omicron Energy GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
 
 import { CSSResultOrNative } from 'lit';
 
-import { OutlinedSegmentedButton } from '@material/web/labs/segmentedbutton/internal/outlined-segmented-button.js';
-import { styles as outlinedStyles } from '@material/web/labs/segmentedbutton/internal/outlined-styles.js';
-import { styles as sharedStyles } from '@material/web/labs/segmentedbutton/internal/shared-styles.js';
+import { OutlinedSegmentedButton } from '@omicronenergy/oscd-material-web-base/labs/segmentedbutton/internal/outlined-segmented-button.js';
+import { styles as outlinedStyles } from '@omicronenergy/oscd-material-web-base/labs/segmentedbutton/internal/outlined-styles.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/labs/segmentedbutton/internal/shared-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-outlined-segmented-button': OscdOutlinedSegmentedButton;
@@ -34,6 +31,12 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdOutlinedSegmentedButton extends OutlinedSegmentedButton {
+export class OscdOutlinedSegmentedButton extends ScopedElementsMixin(
+  OutlinedSegmentedButton,
+) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+  };
   static override styles: CSSResultOrNative[] = [sharedStyles, outlinedStyles];
 }

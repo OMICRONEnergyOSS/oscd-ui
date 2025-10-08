@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2022 Google LLC
@@ -15,13 +9,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdItem } from '@omicronenergy/oscd-material-web-base/labs/item/MdItem.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { MenuItemEl } from '@material/web/menu/internal/menuitem/menu-item.js';
-import { styles } from '@material/web/menu/internal/menuitem/menu-item-styles.js';
+import { MenuItemEl } from '@omicronenergy/oscd-material-web-base/menu/internal/menuitem/menu-item.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/menu/internal/menuitem/menu-item-styles.js';
 
-export { type MenuItem } from '@material/web/menu/internal/controllers/menuItemController.js';
-export { type CloseMenuEvent } from '@material/web/menu/internal/controllers/shared.js';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+export { type MenuItem } from '@omicronenergy/oscd-material-web-base/menu/internal/controllers/menuItemController.js';
+export { type CloseMenuEvent } from '@omicronenergy/oscd-material-web-base/menu/internal/controllers/shared.js';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -44,6 +43,11 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdMenuItem extends MenuItemEl {
+export class OscdMenuItem extends ScopedElementsMixin(MenuItemEl) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-item': MdItem,
+    'md-focus-ring': MdFocusRing,
+  };
   static override styles: CSSResultOrNative[] = [styles];
 }

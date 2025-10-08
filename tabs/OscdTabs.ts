@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2023 Google LLC
@@ -15,11 +9,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdDivider } from '@omicronenergy/oscd-material-web-base/divider/MdDivider.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { Tabs } from '@material/web/tabs/internal/tabs.js';
-import { styles } from '@material/web/tabs/internal/tabs-styles.js';
+import { Tabs } from '@omicronenergy/oscd-material-web-base/tabs/internal/tabs.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/tabs/internal/tabs-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-tabs': OscdTabs;
@@ -34,6 +31,9 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdTabs extends Tabs {
+export class OscdTabs extends ScopedElementsMixin(Tabs) {
+  static scopedElements = {
+    'md-divider': MdDivider,
+  };
   static override styles: CSSResultOrNative[] = [styles];
 }

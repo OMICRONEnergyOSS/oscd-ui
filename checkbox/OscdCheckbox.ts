@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2018 Google LLC
@@ -15,11 +9,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { Checkbox } from '@material/web/checkbox/internal/checkbox.js';
-import { styles } from '@material/web/checkbox/internal/checkbox-styles.js';
+import { Checkbox } from '@omicronenergy/oscd-material-web-base/checkbox/internal/checkbox.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/checkbox/internal/checkbox-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-checkbox': OscdCheckbox;
@@ -39,6 +37,10 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdCheckbox extends Checkbox {
+export class OscdCheckbox extends ScopedElementsMixin(Checkbox) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+  };
   static override styles: CSSResultOrNative[] = [styles];
 }

@@ -26,3 +26,4 @@ build
 coverage
 storybook-static
 
+packageExports.json

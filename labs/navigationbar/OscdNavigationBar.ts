@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2021 Google LLC
@@ -15,11 +9,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdElevation } from '@omicronenergy/oscd-material-web-base/elevation/MdElevation.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { NavigationBar } from '@material/web/labs/navigationbar/internal/navigation-bar.js';
-import { styles } from '@material/web/labs/navigationbar/internal/navigation-bar-styles.js';
+import { NavigationBar } from '@omicronenergy/oscd-material-web-base/labs/navigationbar/internal/navigation-bar.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/labs/navigationbar/internal/navigation-bar-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-navigation-bar': OscdNavigationBar;
@@ -31,6 +28,9 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdNavigationBar extends NavigationBar {
+export class OscdNavigationBar extends ScopedElementsMixin(NavigationBar) {
+  static scopedElements = {
+    'md-elevation': MdElevation,
+  };
   static override styles: CSSResultOrNative[] = [styles];
 }

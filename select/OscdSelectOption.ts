@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2023 Google LLC
@@ -15,13 +9,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
+import { MdItem } from '@omicronenergy/oscd-material-web-base/labs/item/MdItem.js';
+import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { styles } from '@material/web/menu/internal/menuitem/menu-item-styles.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/menu/internal/menuitem/menu-item-styles.js';
 
-import { SelectOptionEl } from '@material/web/select/internal/selectoption/select-option.js';
+import { SelectOptionEl } from '@omicronenergy/oscd-material-web-base/select/internal/selectoption/select-option.js';
 
-export { type SelectOption } from '@material/web/select/internal/selectoption/select-option.js';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+export { type SelectOption } from '@omicronenergy/oscd-material-web-base/select/internal/selectoption/select-option.js';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -59,6 +58,11 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdSelectOption extends SelectOptionEl {
+export class OscdSelectOption extends ScopedElementsMixin(SelectOptionEl) {
+  static scopedElements = {
+    'md-ripple': MdRipple,
+    'md-focus-ring': MdFocusRing,
+    'md-item': MdItem,
+  };
   static override styles: CSSResultOrNative[] = [styles];
 }

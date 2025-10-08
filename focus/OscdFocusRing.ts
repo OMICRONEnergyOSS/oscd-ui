@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { FocusRing } from '@material/web/focus/internal/focus-ring.js';
-import { styles } from '@material/web/focus/internal/focus-ring-styles.js';
+import { FocusRing } from '@omicronenergy/oscd-material-web-base/focus/internal/focus-ring.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/focus/internal/focus-ring-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

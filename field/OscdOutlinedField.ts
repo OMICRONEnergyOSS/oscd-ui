@@ -17,9 +17,9 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { OutlinedField } from '@material/web/field/internal/outlined-field.js';
-import { styles as outlinedStyles } from '@material/web/field/internal/outlined-styles.js';
-import { styles as sharedStyles } from '@material/web/field/internal/shared-styles.js';
+import { OutlinedField } from '@omicronenergy/oscd-material-web-base/field/internal/outlined-field.js';
+import { styles as outlinedStyles } from '@omicronenergy/oscd-material-web-base/field/internal/outlined-styles.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/field/internal/shared-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

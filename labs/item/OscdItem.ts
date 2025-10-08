@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { Item } from '@material/web/labs/item/internal/item.js';
-import { styles } from '@material/web/labs/item/internal/item-styles.js';
+import { Item } from '@omicronenergy/oscd-material-web-base/labs/item/internal/item.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/labs/item/internal/item-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

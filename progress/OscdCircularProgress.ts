@@ -17,8 +17,8 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { CircularProgress } from '@material/web/progress/internal/circular-progress.js';
-import { styles } from '@material/web/progress/internal/circular-progress-styles.js';
+import { CircularProgress } from '@omicronenergy/oscd-material-web-base/progress/internal/circular-progress.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/progress/internal/circular-progress-styles.js';
 
 declare global {
   interface HTMLElementTagNameMap {

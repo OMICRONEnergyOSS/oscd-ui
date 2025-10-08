@@ -1,4 +1,4 @@
-# Regenerating this library from @material/web
+# Regenerating this library from @omicronenergy/oscd-material-web-base
 
 This library is generated from a [Material Web](https://github.com/material-components/material-web) repository (@omicronenergy/oscd-material-web-base). It was not intended to regenerate from the Original source, but a modified fork of Material Web.
 

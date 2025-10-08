@@ -12,13 +12,13 @@
 import { CSSResultOrNative } from 'lit';
 import { literal } from 'lit/static-html.js';
 
-import { styles as outlinedStyles } from '@material/web/textfield/internal/outlined-styles.js';
-import { OutlinedTextField } from '@material/web/textfield/internal/outlined-text-field.js';
-import { styles as sharedStyles } from '@material/web/textfield/internal/shared-styles.js';
+import { styles as outlinedStyles } from '@omicronenergy/oscd-material-web-base/textfield/internal/outlined-styles.js';
+import { OutlinedTextField } from '@omicronenergy/oscd-material-web-base/textfield/internal/outlined-text-field.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/textfield/internal/shared-styles.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 import { OscdOutlinedField } from '../field/OscdOutlinedField.js';
 
-export { type TextFieldType as OscdTextFieldType } from '@material/web/textfield/internal/text-field.js';
+export { type TextFieldType as OscdTextFieldType } from '@omicronenergy/oscd-material-web-base/textfield/internal/text-field.js';
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2023 Google LLC
@@ -15,16 +9,24 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { MdMenu } from '@omicronenergy/oscd-material-web-base/menu/MdMenu.js';
+import { MdFilledField } from '@omicronenergy/oscd-material-web-base/field/MdFilledField.js';
+
 import { CSSResultOrNative } from 'lit';
 
-import { FilledSelect } from '@material/web/select/internal/filled-select.js';
-import { styles } from '@material/web/select/internal/filled-select-styles.js';
-import { styles as sharedStyles } from '@material/web/select/internal/shared-styles.js';
+import { FilledSelect } from '@omicronenergy/oscd-material-web-base/select/internal/filled-select.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/select/internal/filled-select-styles.js';
+import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/select/internal/shared-styles.js';
 
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-filled-select': OscdFilledSelect;
   }
+}
+
+class InternalFilledSelect extends FilledSelect {
+  static override styles: CSSResultOrNative[] = [sharedStyles, styles];
 }
 
 /**
@@ -54,6 +56,12 @@ declare global {
  * @final
  * @suppress {visibility}
  */
-export class OscdFilledSelect extends FilledSelect {
+export class OscdFilledSelect extends ScopedElementsMixin(
+  InternalFilledSelect,
+) {
+  static scopedElements = {
+    'md-menu': MdMenu,
+    'md-filled-field': MdFilledField,
+  };
   static override styles: CSSResultOrNative[] = [sharedStyles, styles];
 }
