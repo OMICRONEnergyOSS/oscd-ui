@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.9](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.8...oscd-ui-v0.0.9) (2025-10-08)
+
+
+### Bug Fixes
+
+* correct package.json files for correct npm publishing ([a720c8c](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/a720c8c1cf8cafbe8a0af23439ceca3eafb821ea))
+
 ## [0.0.8](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.7...oscd-ui-v0.0.8) (2025-10-08)
 
 
