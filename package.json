@@ -9,6 +9,7 @@
     "build": "wireit",
     "build:watch": "tsc --pretty --watch",
     "test": "wtr",
+    "test:unit": "wtr",
     "test:watch": "wtr --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
