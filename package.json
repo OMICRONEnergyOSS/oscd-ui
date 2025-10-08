@@ -33,7 +33,9 @@
   "author": "OMICRON Electronics GmbH",
   "license": "Apache-2.0",
   "files": [
-    "dist/**/*.js",
+    "custom-elements.json",
+    "**/*.md",
+    "dist/**/*",
     "!dist/scripts",
     "!catalog"
   ],
