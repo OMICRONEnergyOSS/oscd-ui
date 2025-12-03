@@ -228,15 +228,14 @@
       ]
     },
     "build:scripts": {
-      "command": "tsc -b scripts/tsconfig.json --pretty",
+      "command": "tsc --project scripts/tsconfig.json --pretty",
       "files": [
         "scripts/tsconfig.json",
-        "scripts/**/*.ts",
+        "scripts/*.ts",
         "!**/*.d.ts",
         "!**/*-styles.ts"
       ],
       "output": [
-        "./dist/scripts/.tsbuildinfo",
         "./dist/scripts/**/*.js",
         "./dist/scripts/**/*.js.map",
         "./dist/scripts/**/*.d.ts"
