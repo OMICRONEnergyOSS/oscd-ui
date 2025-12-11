@@ -45,8 +45,8 @@ const meta: Meta<OscdNavigationDrawer & { label: string }> = {
     return html`
       <style>
         oscd-app-bar {
-          --oscd-app-bar-background-color: #6c71c4;
-          --oscd-app-bar-color: #073642;
+          --oscd-app-bar-background-color: var(--oscd-theme-primary);
+          --oscd-app-bar-color: var(--md-sys-color-on-primary);
         }
       </style>
 
@@ -77,13 +77,13 @@ const meta: Meta<OscdNavigationDrawer & { label: string }> = {
       </oscd-navigation-drawer>
       <oscd-app-bar>
         <oscd-filled-icon-button
-          slot="actionStart"
+          slot="alignStart"
           aria-label="Menu"
           @click=${() => updateArgs({ opened: true })}
         >
           <oscd-icon>menu</oscd-icon></oscd-filled-icon-button
         >
-        <div slot="title">Navigation Drawer Demo</div>
+        <div slot="alignMiddle">Navigation Drawer Demo</div>
       </oscd-app-bar>
 
       <section>
