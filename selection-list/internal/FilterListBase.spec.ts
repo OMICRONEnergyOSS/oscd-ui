@@ -6,6 +6,12 @@ import { OscdOutlinedTextField } from '../../textfield/OscdOutlinedTextField.js'
 
 @customElement('test-filterable-list')
 class TestFilterableList extends FilterListBase {
+  public override get searchRegex(): RegExp {
+    return super.searchRegex;
+  }
+  public override set searchRegex(value: RegExp) {
+    super.searchRegex = value;
+  }
   override render() {
     return html`
       ${this.renderSearchField()}

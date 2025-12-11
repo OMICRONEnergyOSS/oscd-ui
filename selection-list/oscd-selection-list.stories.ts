@@ -1,10 +1,14 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import './oscd-selection-list.js';
 import '../labs/card/oscd-elevated-card.js';
-import { OscdSelectionList } from './OscdSelectionList.js';
+import {
+  OscdSelectionList,
+  SelectionListChangeDetail,
+} from './OscdSelectionList.js';
 import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
 import { html } from 'lit';
 import { sampleDoc } from './storybook-utils.js';
+import { action } from 'storybook/internal/actions';
 
 const { args, argTypes, meta, template } = getStorybookMeta<OscdSelectionList>({
   tagName: 'oscd-selection-list',
@@ -15,46 +19,70 @@ export default {
   tags: ['autodocs'],
   ...meta,
   render: (argz: typeof args & { itemCount?: number }) => {
-    return html` <oscd-elevated-card
-      style="--md-elevated-card-container-color: var(--md-sys-color-surface); padding: 1em"
-    >
-      ${template(argz)}
-    </oscd-elevated-card>`;
+    return html` <style>
+        oscd-elevated-card {
+          --md-elevated-card-container-color: var(--md-sys-color-surface);
+        }
+        oscd-selection-list {
+          padding: 7px;
+        }
+      </style>
+      <oscd-elevated-card
+        @selection-list-change=${(
+          customEvent: CustomEvent<SelectionListChangeDetail>,
+        ) => {
+          action('selection-list-change')(
+            customEvent.detail.selectedElements.map(el =>
+              new XMLSerializer().serializeToString(el),
+            ),
+          );
+        }}
+      >
+        ${template(argz)}
+      </oscd-elevated-card>`;
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-delete (argTypes as any).items;
+const getListItems = (includeSupportingText?: boolean) => {
+  return Array.from(sampleDoc.querySelectorAll('GSEControl')).map(element => ({
+    headline: element.getAttribute('name') ?? 'unknown',
+    attachedElement: element,
+    ...(includeSupportingText
+      ? { supportingText: element.getAttribute('desc') ?? undefined }
+      : {}),
+  }));
+};
 
-export const Default: StoryObj = {
+export const SingleSelect: StoryObj = {
   argTypes: {
     ...argTypes,
   },
   args: {
     ...args,
-    ['.items']: Array.from(sampleDoc.querySelectorAll('GSEControl')).map(
-      element => ({
-        headline: element.getAttribute('name') ?? 'unknown',
-        attachedElement: element,
-      }),
-    ),
+    ['.items']: getListItems(),
     filterable: false,
   },
 };
 
-export const WithSupportingText: StoryObj = {
+export const MultiSelect: StoryObj = {
   argTypes: {
     ...argTypes,
   },
   args: {
     ...args,
-    ['.items']: Array.from(sampleDoc.querySelectorAll('GSEControl')).map(
-      element => ({
-        headline: element.getAttribute('name') ?? 'unknown',
-        supportingText: element.getAttribute('desc') ?? undefined,
-        attachedElement: element,
-      }),
-    ),
+    multiselect: true,
+    ['.items']: getListItems(),
+    filterable: false,
+  },
+};
+
+export const SingleSelectWithSupportingText: StoryObj = {
+  argTypes: {
+    ...argTypes,
+  },
+  args: {
+    ...args,
+    ['.items']: getListItems(true),
     filterable: true,
   },
 };
