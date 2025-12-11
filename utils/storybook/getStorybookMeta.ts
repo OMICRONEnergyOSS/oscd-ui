@@ -6,7 +6,6 @@ import {
   storybookHelperDecorator,
 } from './getStorybookHelpers.js';
 
-import { withActions } from 'storybook/actions/decorator';
 import { storybookOverrides } from './story-overrides/story-overrides.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,12 +31,9 @@ export function getStorybookMeta<T extends { [key: string]: any }>({
     component: tagName,
     tags: ['autodocs'],
 
-    decorators: [storybookHelperDecorator, withActions],
+    decorators: [storybookHelperDecorator],
     parameters: {
       layout: 'centered',
-      actions: {
-        handles: events,
-      },
     },
     argTypes: {
       textContent: {
