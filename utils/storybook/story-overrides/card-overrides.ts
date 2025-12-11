@@ -3,10 +3,10 @@ import { StorybookOverrides } from './story-overrides.js';
 import { html } from 'lit';
 import { getStorybookHelpers } from '../getStorybookHelpers.js';
 
-import { OscdFilledCard } from '@/labs/card/OscdFilledCard.js';
-import { OscdElevatedCard } from '@/labs/card/oscd-elevated-card.js';
-import { OscdOutlinedCard } from '@/labs/card/oscd-outlined-card.js';
-import '@/icon/oscd-icon.js';
+import { OscdFilledCard } from '../../../labs/card/OscdFilledCard.js';
+import { OscdElevatedCard } from '../../../labs/card/oscd-elevated-card.js';
+import { OscdOutlinedCard } from '../../../labs/card/oscd-outlined-card.js';
+import '../../../icon/oscd-icon.js';
 
 function getMeta<T>(tagName: string, title: string) {
   return {

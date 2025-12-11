@@ -31,13 +31,14 @@ const itemsList: SelectItem[] = gseControls.map(gseControl => ({
   selected: !!gseControl.getAttribute('desc'),
 }));
 
-const attachedItems: SelectItem[] = gseControls.map(gseControl => ({
-  headline: gseControl.getAttribute('name')!,
-  supportingText: gseControl.getAttribute('desc') ?? undefined,
-  attachedElement: gseControl,
-  selected: gseControl.getAttribute('name') === 'gse4',
-  disabled: gseControl.getAttribute('name') === 'gse1',
-}));
+const getAttachedItems = () =>
+  gseControls.map(gseControl => ({
+    headline: gseControl.getAttribute('name')!,
+    supportingText: gseControl.getAttribute('desc') ?? undefined,
+    attachedElement: gseControl,
+    selected: gseControl.getAttribute('name') === 'gse4',
+    disabled: gseControl.getAttribute('name') === 'gse1',
+  }));
 
 describe('Custom List component SelectionList', () => {
   describe('with attached elements not given', () => {
@@ -53,24 +54,53 @@ describe('Custom List component SelectionList', () => {
       expect(list.selectedElements.length).to.equal(0));
   });
 
-  describe('with attached elements given', () => {
+  describe('with multi-select Selection List', () => {
     let list: OscdSelectionList;
 
     beforeEach(async () => {
       list = await fixture(
         html`<oscd-selection-list
-          .items=${attachedItems}
+          ?multiselect=${true}
+          .items=${getAttachedItems()}
         ></oscd-selection-list>`,
       );
     });
 
-    it('return non empty array', async () => {
+    it('returns 2 selected items when an Item is clicked (items array already had 1 item pre-selected)', async () => {
+      //check pre-conditions are met
+      expect(list.selectedElements.length).to.equal(1);
+
       list.shadowRoot?.querySelectorAll('oscd-list-item')[0].click();
       await list.updateComplete;
 
       expect(list.selectedElements.length).to.equal(2);
       expect(list.selectedElements[0].getAttribute('name')).to.equal('gse0');
       expect(list.selectedElements[1].getAttribute('name')).to.equal('gse4');
+    });
+  });
+
+  describe('with single-select Selection List', () => {
+    let list: OscdSelectionList;
+
+    beforeEach(async () => {
+      list = await fixture(
+        html`<oscd-selection-list
+          .items=${getAttachedItems()}
+        ></oscd-selection-list>`,
+      );
+      await list.updateComplete;
+    });
+
+    it('returns 1 selected items when radio item is clicked (items array already has 1 item pre-selected)', async () => {
+      //check pre-conditions are met
+      expect(list.selectedElements.length).to.equal(1);
+      expect(list.selectedElements[0].getAttribute('name')).to.equal('gse4');
+
+      list.shadowRoot?.querySelectorAll('oscd-list-item')[0].click();
+      await list.updateComplete;
+
+      expect(list.selectedElements.length).to.equal(1);
+      expect(list.selectedElements[0].getAttribute('name')).to.equal('gse0');
     });
   });
 });
