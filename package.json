@@ -175,9 +175,9 @@
     "@wc-toolkit/cem-inheritance": "^1.2.2",
     "@wc-toolkit/storybook-helpers": "^9.0.1",
     "@web/dev-server-polyfill": "^1.0.6",
-    "@web/test-runner": "^0.20.2",
+    "@web/test-runner": "0.20.2",
     "@web/test-runner-core": "^0.13.4",
-    "@web/test-runner-playwright": "^0.11.1",
+    "@web/test-runner-playwright": "0.11.1",
     "concurrently": "^9.2.0",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
@@ -199,6 +199,11 @@
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",
     "wireit": "^0.14.12"
+  },
+  "overrides": {
+    "@web/test-runner-playwright": {
+      "playwright": "1.54.1"
+    }
   },
   "wireit": {
     "build": {
