@@ -1,14 +1,15 @@
-import { css, html, TemplateResult } from 'lit';
+import { css, html, nothing, TemplateResult } from 'lit';
 
 import { OscdSelectionList } from '../selection-list/OscdSelectionList.js';
 import { OscdDialog } from '../dialog/OscdDialog.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 import { Dialog } from '@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js';
-import { property, query } from 'lit/decorators.js';
+import { property, query, queryAssignedNodes } from 'lit/decorators.js';
 import { OscdOutlinedIconButton } from '../iconbutton/OscdOutlinedIconButton.js';
 import { OscdFilledButton } from '../button/OscdFilledButton.js';
 import { OscdIcon } from '../icon/OscdIcon.js';
 import { OscdOutlinedButton } from '../button/OscdOutlinedButton.js';
+import { OscdSclIcon } from '../scl-icon/OscdSclIcon.js';
 
 /**
  * @tag oscd-filter-button
@@ -21,6 +22,7 @@ export class OscdFilterButton extends ScopedElementsMixin(OscdSelectionList) {
     'oscd-dialog': OscdDialog,
     'oscd-outlined-icon-button': OscdOutlinedIconButton,
     'oscd-icon': OscdIcon,
+    'oscd-scl-icon': OscdSclIcon,
     'oscd-outlined-button': OscdOutlinedButton,
     'oscd-filled-button': OscdFilledButton,
   };
@@ -34,14 +36,14 @@ export class OscdFilterButton extends ScopedElementsMixin(OscdSelectionList) {
   @property()
   cancelButtonLabel: string = 'Cancel';
 
-  @property({ type: String })
-  icon: string = 'filter_list';
-
   @property({ type: Boolean })
   disabled = false;
 
   @query('oscd-dialog')
   private filterDialog!: Dialog;
+
+  @queryAssignedNodes({ slot: 'icon' })
+  private _iconSlot?: NodeListOf<HTMLElement>;
 
   private toggleList(): void {
     this.filterDialog.show();
@@ -57,8 +59,14 @@ export class OscdFilterButton extends ScopedElementsMixin(OscdSelectionList) {
         @click="${this.toggleList}"
         ?disabled="${this.disabled}"
       >
-        <oscd-icon>${this.icon}</oscd-icon>
-        <slot name="icon"></slot>
+        <slot
+          name="icon"
+          class="filter-button-icon-slot"
+          @slotchange=${() => this.requestUpdate()}
+        ></slot>
+        ${!this._iconSlot || this._iconSlot.length === 0
+          ? html`<oscd-icon class="default-icon">filter_list</oscd-icon>`
+          : nothing}
       </oscd-outlined-icon-button>
       <oscd-dialog @close="${() => this.onClose()}">
         <div slot="headline">${this.header}</div>
