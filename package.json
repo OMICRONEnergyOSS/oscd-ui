@@ -258,5 +258,6 @@
       "prettier --write",
       "eslint"
     ]
-  }
+  },
+  "customElements": "custom-elements.json"
 }
