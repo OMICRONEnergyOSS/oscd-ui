@@ -8,15 +8,23 @@ export default {
     '**/*.d.ts',
     '**/*.js',
     '**/*_test.ts',
+    '**/*.spec.ts',
     'node_modules',
     '.storybook',
     '.vscode',
     'utils',
     'theming',
+    'scl-icon/internal/icons/**',
   ],
   outdir: './',
   litelement: true,
-  dependencies: true,
+  dependencies: true, // Required for inheritance from third-party libraries
   dev: false,
-  plugins: [cemInheritancePlugin({}), summaryToDescriptionPlugin()],
+  plugins: [
+    cemInheritancePlugin({
+      // Provide the path to the base package's custom-elements.json
+      modulePath: 'node_modules/@omicronenergy/oscd-material-web-base/custom-elements.json',
+    }),
+    summaryToDescriptionPlugin(),
+  ],
 };
