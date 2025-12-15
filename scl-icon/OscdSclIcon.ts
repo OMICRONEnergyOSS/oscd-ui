@@ -81,6 +81,13 @@ export const SCL_ICONS: Record<string, SVGTemplateResult> = {
   powerTransformerLogicalNode: lnode.powerTransformerLogicalNode,
   furtherPowerSystemEquipmentLogicalNode:
     lnode.furtherPowerSystemEquipmentLogicalNode,
+  ...Object.keys(icons.pathsSVG).reduce(
+    (acc, key) => {
+      acc[key] = pathToSvg(key as iconType);
+      return acc;
+    },
+    {} as Record<string, SVGTemplateResult>,
+  ),
 };
 
 export type iconType =
@@ -103,31 +110,12 @@ export type iconProperty = {
   height: number;
 };
 
-export const iconProperties: Partial<Record<iconType, iconProperty>> = {
-  dAIcon: {
-    width: 26.5,
-    height: 24,
-  },
-  dOIcon: {
-    width: 26.5,
-    height: 24,
-  },
-  enumIcon: {
-    width: 26.5,
-    height: 24,
-  },
-  lNIcon: {
-    width: 26.5,
-    height: 24,
-  },
-};
-
 export const dataTypeTemplateIcons: Partial<Record<string, SVGTemplateResult>> =
   {
-    DAType: getIcon('dAIcon'),
-    DOType: getIcon('dOIcon'),
-    EnumType: getIcon('enumIcon'),
-    LNodeType: getIcon('lNIcon'),
+    DAType: pathToSvg('dAIcon'),
+    DOType: pathToSvg('dOIcon'),
+    EnumType: pathToSvg('enumIcon'),
+    LNodeType: pathToSvg('lNIcon'),
   };
 
 export const iconColors: { [key: string]: string } = {
@@ -137,41 +125,36 @@ export const iconColors: { [key: string]: string } = {
   action: '--blue',
 };
 
-export function getIcon(type: iconType): SVGTemplateResult {
-  if (type === 'reset') {
-    return svg``;
-  }
-  const height = iconProperties[type]?.height ?? 24;
-  const width = iconProperties[type]?.width ?? 24;
+export function pathToSvg(type: iconType): SVGTemplateResult {
   return svg`<svg
     xmlns="http://www.w3.org/2000/svg"
-    height="${height}"
-    viewBox="0 0 ${width} ${height}"
-    width="${width}"
+    height="24"
+    viewBox="0 0 26.5 24"
+    width="24"
   >
     ${icons.pathsSVG[type]}
   </svg> `;
 }
 
-export function getFilterIcon(
-  type: iconType,
-  state: boolean,
-): SVGTemplateResult {
-  if (type === 'reset') {
-    return svg``;
-  }
-  const height = iconProperties[type]?.height ?? 24;
-  const width = iconProperties[type]?.width ?? 24;
-  return svg`<svg
-    slot="${state ? 'onIcon' : 'offIcon'}"
-    xmlns="http://www.w3.org/2000/svg"
-    height="${height}"
-    viewBox="0 0 ${width} ${height}"
-    width="${width}"
-  >
-    ${icons.pathsSVG[type]}
-  </svg> `;
-}
+// export function getFilterIcon(
+//   type: iconType,
+//   state: boolean,
+// ): SVGTemplateResult {
+//   if (type === 'reset') {
+//     return svg``;
+//   }
+//   const height = iconProperties[type]?.height ?? 24;
+//   const width = iconProperties[type]?.width ?? 24;
+//   return svg`<svg
+//     slot="${state ? 'onIcon' : 'offIcon'}"
+//     xmlns="http://www.w3.org/2000/svg"
+//     height="${height}"
+//     viewBox="0 0 ${width} ${height}"
+//     width="${width}"
+//   >
+//     ${icons.pathsSVG[type]}
+//   </svg> `;
+// }
 
 /**
  * Returns an SVG template result for the given icon name.
