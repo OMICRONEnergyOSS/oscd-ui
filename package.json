@@ -42,6 +42,8 @@
   "exports": {
     "./action-list/OscdActionList.js": "./dist/action-list/OscdActionList.js",
     "./action-list/oscd-action-list.js": "./dist/action-list/oscd-action-list.js",
+    "./action-pane/OscdActionPane.js": "./dist/action-pane/OscdActionPane.js",
+    "./action-pane/oscd-action-pane.js": "./dist/action-pane/oscd-action-pane.js",
     "./action-tree/OscdActionTree.js": "./dist/action-tree/OscdActionTree.js",
     "./action-tree/oscd-action-tree.js": "./dist/action-tree/oscd-action-tree.js",
     "./app-bar/OscdAppBar.js": "./dist/app-bar/OscdAppBar.js",
