@@ -176,7 +176,7 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
     .contrasted {
       background-color: var(
         --oscd-action-pane-theme-on-primary,
-        var(--md-sys-color-on-primary)
+        var(--oscd-base2)
       );
     }
 
@@ -188,7 +188,7 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
         --oscd-action-pane-theme-on-surface,
         var(--md-sys-color-on-surface)
       );
-      font-family: var(--oscd-action-pane-theme-font, var(--md-sys-color-font));
+      font-family: var(--oscd-action-pane-theme-font, var(--oscd-text-font));
       font-weight: 300;
       overflow: clip visible;
       white-space: nowrap;
@@ -202,18 +202,11 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
       float: right;
     }
 
-    oscd-icon {
-      vertical-align: middle;
-      position: relative;
-      top: -0.1em;
-      --md-icon-size: 1em;
-    }
-
+    oscd-icon,
     ::slotted([slot='icon']) {
       vertical-align: middle;
       position: relative;
       top: -0.1em;
-      --md-icon-size: 1em;
     }
   `;
 }

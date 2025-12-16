@@ -40,6 +40,8 @@
     "!catalog"
   ],
   "exports": {
+    "./action-icon/OscdActionIcon.js": "./dist/action-icon/OscdActionIcon.js",
+    "./action-icon/oscd-action-icon.js": "./dist/action-icon/oscd-action-icon.js",
     "./action-list/OscdActionList.js": "./dist/action-list/OscdActionList.js",
     "./action-list/oscd-action-list.js": "./dist/action-list/oscd-action-list.js",
     "./action-pane/OscdActionPane.js": "./dist/action-pane/OscdActionPane.js",
