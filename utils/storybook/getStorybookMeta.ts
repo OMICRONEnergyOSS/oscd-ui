@@ -11,8 +11,10 @@ import { storybookOverrides } from './story-overrides/story-overrides.js';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getStorybookMeta<T extends { [key: string]: any }>({
   tagName,
+  defaultArgs = {},
 }: {
   tagName: string;
+  defaultArgs?: Partial<T>;
 }) {
   const { template, events, ...rest } = getStorybookHelpers<T>(tagName);
   const overrides = storybookOverrides[tagName] || {};
@@ -24,6 +26,7 @@ export function getStorybookMeta<T extends { [key: string]: any }>({
 
   const args = {
     ...rest.args,
+    ...defaultArgs,
     ...(overrides?.args ?? {}),
   };
 
