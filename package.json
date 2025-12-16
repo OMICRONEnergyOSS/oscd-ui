@@ -218,6 +218,7 @@
   "wireit": {
     "build": {
       "dependencies": [
+        "build:scripts",
         "build:ts"
       ]
     },
@@ -238,9 +239,7 @@
         "dist/**/*.d.ts"
       ],
       "clean": "if-file-deleted",
-      "dependencies": [
-        "build:scripts"
-      ]
+      "dependencies": []
     },
     "build:scripts": {
       "command": "tsc --project scripts/tsconfig.json --pretty",

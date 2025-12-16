@@ -110,7 +110,7 @@ const { args, argTypes, meta } = getStorybookMeta<OscdActionTree>({
 });
 
 export default {
-  title: 'Action Tree',
+  title: 'Action Controls/Action Tree',
   tags: ['autodocs'],
   ...meta,
 };

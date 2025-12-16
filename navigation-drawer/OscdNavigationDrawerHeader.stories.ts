@@ -14,7 +14,7 @@ const { args, argTypes, template } = getStorybookHelpers(
 );
 
 const meta: Meta<OscdNavigationDrawerHeader & { textContent: string }> = {
-  title: 'Library/Navigation Drawer/Navigation Drawer Header',
+  title: 'Navigation Drawer/Navigation Drawer Header',
   component: 'oscd-navigation-drawer-header',
   tags: ['autodocs'],
   decorators: [scopedWcDecorator, storybookHelperDecorator],

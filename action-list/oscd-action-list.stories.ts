@@ -26,7 +26,7 @@ const { args, argTypes, meta } = getStorybookMeta<OscdActionList>({
 
 export default {
   ...meta,
-  title: 'Filtering / Action List',
+  title: 'Action Controls/Action List',
   tags: ['autodocs'],
   argTypes: {
     ...argTypes,

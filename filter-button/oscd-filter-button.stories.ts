@@ -16,7 +16,7 @@ const { args, argTypes, meta, template } = getStorybookMeta<OscdFilterButton>({
 
 export default {
   ...meta,
-  title: 'Filtering / Filter Button',
+  title: 'Filtering/Filter Button',
   tags: ['autodocs'],
   render: (argz: typeof args & { itemCount?: number }) => {
     return html`<div

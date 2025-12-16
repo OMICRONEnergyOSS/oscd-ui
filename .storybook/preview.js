@@ -36,6 +36,11 @@ export const parameters = {
   controls: {
     expanded: true,
   },
+  options: {
+      storySort: {
+        order: ['Open SCD'],
+      },
+    },
 };
 
 export const globalTypes = {
