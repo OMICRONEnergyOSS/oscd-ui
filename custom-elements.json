@@ -4,6 +4,548 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "action-list/OscdActionList.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdActionList",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'oscd-outlined-text-field': OscdOutlinedTextField, 'oscd-icon': OscdIcon, 'oscd-list': OscdList, 'oscd-list-item': OscdListItem, 'oscd-divider': OscdDivider, 'oscd-menu': OscdMenu, 'oscd-menu-item': OscdMenuItem, }"
+            },
+            {
+              "kind": "field",
+              "name": "items",
+              "type": {
+                "text": "ActionItem[]"
+              },
+              "default": "[]",
+              "description": "ListItems and potential",
+              "attribute": "items"
+            },
+            {
+              "kind": "field",
+              "name": "height",
+              "type": {
+                "text": "number"
+              },
+              "default": "72",
+              "description": "Height of each list item",
+              "attribute": "height"
+            },
+            {
+              "kind": "method",
+              "name": "renderMoreVertItem",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "ActionItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderActionItem",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "ActionItem"
+                  }
+                },
+                {
+                  "name": "index",
+                  "default": "0"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderOtherActions",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderFirstAction",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderActions",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderActionListItem",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "ActionItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderListItem",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "ActionItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "filterable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether list items can be filtered on `headline` and `supportingText`",
+              "attribute": "filterable",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "searchhelper",
+              "type": {
+                "text": "string"
+              },
+              "default": "'search'",
+              "description": "Placeholder for search input field",
+              "attribute": "searchhelper",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "searchInput",
+              "type": {
+                "text": "OscdOutlinedTextField | undefined"
+              },
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_searchValue",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "protected",
+              "default": "''",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_cachedRegex",
+              "type": {
+                "text": "RegExp"
+              },
+              "privacy": "private",
+              "default": "/.*/i",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "searchValue",
+              "description": "Current search filter value. Updates search regex when changed.",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "searchValue",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "searchRegex",
+              "type": {
+                "text": "RegExp"
+              },
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onFilter",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSearchField",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "items",
+              "type": {
+                "text": "ActionItem[]"
+              },
+              "default": "[]",
+              "description": "ListItems and potential",
+              "fieldName": "items"
+            },
+            {
+              "name": "height",
+              "type": {
+                "text": "number"
+              },
+              "default": "72",
+              "description": "Height of each list item",
+              "fieldName": "height"
+            },
+            {
+              "name": "filterable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether list items can be filtered on `headline` and `supportingText`",
+              "fieldName": "filterable",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "name": "searchhelper",
+              "type": {
+                "text": "string"
+              },
+              "default": "'search'",
+              "description": "Placeholder for search input field",
+              "fieldName": "searchhelper",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "name": "searchValue",
+              "description": "Current search filter value. Updates search regex when changed.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "searchValue",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "FilterListBase",
+            "module": "/selection-list/internal/FilterListBase.js"
+          },
+          "tagName": "oscd-action-list",
+          "customElement": true,
+          "modulePath": "action-list/OscdActionList.ts",
+          "cssProperties": [],
+          "cssParts": [],
+          "cssStates": [],
+          "events": [],
+          "slots": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdActionList",
+          "declaration": {
+            "name": "OscdActionList",
+            "module": "action-list/OscdActionList.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "action-pane/OscdActionPane.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A responsive container rendering actions in a header.",
+          "name": "OscdActionPane",
+          "cssProperties": [
+            {
+              "description": "Color for border on even levels.",
+              "name": "--oscd-action-icon-theme-primary",
+              "default": "--oscd-theme-primary"
+            },
+            {
+              "description": "Pane color for the uneven levels.",
+              "name": "--oscd-action-icon-theme-on-primary",
+              "default": "--oscd-theme-on-primary"
+            },
+            {
+              "description": "Color for border on uneven levels.",
+              "name": "--oscd-action-icon-theme-secondary",
+              "default": "--oscd-theme-secondary"
+            },
+            {
+              "description": "Pane color for the even levels.",
+              "name": "--oscd-action-pane-theme-surface",
+              "default": "--oscd-theme-surface"
+            },
+            {
+              "description": "Icon and label color.",
+              "name": "--oscd-action-icon-theme-on-surface",
+              "default": "--oscd-theme-on-surface"
+            },
+            {
+              "description": "Font for label.",
+              "name": "--oscd-action-icon-theme-font",
+              "default": "--oscd-theme-font"
+            }
+          ],
+          "slots": [
+            {
+              "description": "May contain up to eight icon buttons.",
+              "name": "action"
+            },
+            {
+              "description": "If filled overrides the icon property.",
+              "name": "icon"
+            },
+            {
+              "description": "The default slot will be rendered into the pane body in a single column.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'oscd-icon': OscdIcon, }"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "caption text, displayed in the header",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "icon name, displayed unless the \"icon\" slot is filled",
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "secondary",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "color header with secondary theme color while focus is within",
+              "attribute": "secondary"
+            },
+            {
+              "kind": "field",
+              "name": "highlighted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "highlight pane with dotted outline",
+              "attribute": "highlighted"
+            },
+            {
+              "kind": "field",
+              "name": "level",
+              "type": {
+                "text": "number"
+              },
+              "default": "1",
+              "description": "nesting level, default (closest pane ancestor's level) + 1",
+              "attribute": "level"
+            },
+            {
+              "kind": "method",
+              "name": "renderHeader",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "caption text, displayed in the header",
+              "fieldName": "label"
+            },
+            {
+              "name": "icon",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "icon name, displayed unless the \"icon\" slot is filled",
+              "fieldName": "icon"
+            },
+            {
+              "name": "secondary",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "color header with secondary theme color while focus is within",
+              "fieldName": "secondary"
+            },
+            {
+              "name": "highlighted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "highlight pane with dotted outline",
+              "fieldName": "highlighted"
+            },
+            {
+              "name": "level",
+              "type": {
+                "text": "number"
+              },
+              "default": "1",
+              "description": "nesting level, default (closest pane ancestor's level) + 1",
+              "fieldName": "level"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-action-pane",
+          "customElement": true,
+          "summary": "A responsive container rendering actions in a header.",
+          "modulePath": "action-pane/OscdActionPane.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdActionPane",
+          "declaration": {
+            "name": "OscdActionPane",
+            "module": "action-pane/OscdActionPane.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "app-bar/OscdAppBar.ts",
       "declarations": [
         {
@@ -103,12 +645,12 @@
     },
     {
       "kind": "javascript-module",
-      "path": "checkbox/OscdCheckbox.ts",
+      "path": "action-tree/OscdActionTree.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "Checkboxes allow users to select one or more items from a set.\nCheckboxes can turn an option on or off.\n\nUse checkboxes to:\n- Select one or more options from a list\n- Present a list containing sub-selections\n- Turn an item on or off in a desktop environment",
-          "name": "OscdCheckbox",
+          "description": "",
+          "name": "OscdActionTree",
           "members": [
             {
               "kind": "field",
@@ -117,240 +659,145 @@
                 "text": "object"
               },
               "static": true,
-              "default": "{ 'md-ripple': MdRipple, 'md-focus-ring': MdFocusRing, }"
+              "default": "{ 'oscd-icon-button': OscdIconButton, }"
             },
             {
               "kind": "field",
-              "name": "shadowRootOptions",
+              "name": "data",
               "type": {
-                "text": "object"
+                "text": "TreeNode | null"
               },
-              "static": true,
-              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
+              "default": "null",
+              "attribute": "data"
             },
             {
               "kind": "field",
-              "name": "checked",
+              "name": "folded",
               "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Whether or not the checkbox is selected.",
-              "attribute": "checked",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Whether or not the checkbox is indeterminate.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes",
-              "attribute": "indeterminate",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, require the checkbox to be selected when participating in\nform submission.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#validation",
-              "attribute": "required",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "'on'",
-              "description": "The value of the checkbox that is submitted with a form when selected.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value",
-              "attribute": "value",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "prevChecked",
-              "type": {
-                "text": "boolean"
+                "text": "Set<string>"
               },
               "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
+              "default": "new Set()"
             },
             {
               "kind": "field",
-              "name": "prevDisabled",
+              "name": "knownPaths",
               "type": {
-                "text": "boolean"
+                "text": "Set<string>"
               },
               "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
+              "default": "new Set()"
             },
             {
               "kind": "field",
-              "name": "prevIndeterminate",
+              "name": "maxLeafCols",
               "type": {
-                "text": "boolean"
+                "text": "number"
               },
               "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "input",
-              "type": {
-                "text": "HTMLInputElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
+              "default": "0"
             },
             {
               "kind": "method",
-              "name": "handleInput",
+              "name": "pathKey",
               "privacy": "private",
               "parameters": [
                 {
-                  "name": "event",
+                  "name": "path",
                   "type": {
-                    "text": "Event"
+                    "text": "(string | number)[]"
                   }
                 }
-              ],
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
+              ]
             },
             {
               "kind": "method",
-              "name": "handleChange",
+              "name": "toggleFold",
               "privacy": "private",
               "parameters": [
                 {
-                  "name": "event",
+                  "name": "path",
                   "type": {
-                    "text": "Event"
+                    "text": "(string | number)[]"
+                  }
+                },
+                {
+                  "name": "node",
+                  "optional": true,
+                  "type": {
+                    "text": "TreeNode"
                   }
                 }
-              ],
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
+              ]
             },
             {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
+              "kind": "method",
+              "name": "renderLeadingIcon",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
               },
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "[getFormValue]",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "[getFormState]",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formStateRestoreCallback",
               "parameters": [
                 {
-                  "name": "state",
+                  "name": "node",
                   "type": {
-                    "text": "string"
+                    "text": "TreeNode"
                   }
                 }
-              ],
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
+              ]
             },
             {
               "kind": "method",
-              "name": "[createValidator]",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
+              "name": "renderRows",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "ReturnType<typeof html>[]"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "node",
+                  "type": {
+                    "text": "TreeNode | null"
+                  }
+                },
+                {
+                  "name": "path",
+                  "default": "[]",
+                  "type": {
+                    "text": "(string | number)[]"
+                  }
+                },
+                {
+                  "name": "level",
+                  "default": "0"
+                },
+                {
+                  "name": "parentFolded",
+                  "default": "false"
+                }
+              ]
+            }
+          ],
+          "events": [
             {
-              "kind": "method",
-              "name": "[getValidityAnchor]",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
+              "name": "unfold",
+              "type": {
+                "text": "CustomEvent"
               }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "data",
+              "type": {
+                "text": "TreeNode | null"
+              },
+              "default": "null",
+              "fieldName": "data"
             }
           ],
           "mixins": [
@@ -360,94 +807,21 @@
             }
           ],
           "superclass": {
-            "name": "Checkbox",
-            "package": "@omicronenergy/oscd-material-web-base/checkbox/internal/checkbox.js"
+            "name": "LitElement",
+            "package": "lit"
           },
-          "tagName": "oscd-checkbox",
+          "tagName": "oscd-action-tree",
           "customElement": true,
-          "summary": "Checkboxes allow users to select one or more items from a set.\nCheckboxes can turn an option on or off.\n\nUse checkboxes to:\n- Select one or more options from a list\n- Present a list containing sub-selections\n- Turn an item on or off in a desktop environment",
-          "attributes": [
-            {
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Whether or not the checkbox is selected.",
-              "fieldName": "checked",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Whether or not the checkbox is indeterminate.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes",
-              "fieldName": "indeterminate",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, require the checkbox to be selected when participating in\nform submission.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#validation",
-              "fieldName": "required",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "'on'",
-              "description": "The value of the checkbox that is submitted with a form when selected.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value",
-              "fieldName": "value",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "description": "{Event} The native `change` event on [`<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) --bubbles",
-              "name": "change",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "description": "{InputEvent} The native `input` event on [`<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) --bubbles --composed",
-              "name": "input",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            }
-          ],
-          "modulePath": "checkbox/OscdCheckbox.ts"
+          "modulePath": "action-tree/OscdActionTree.ts"
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "OscdCheckbox",
+          "name": "OscdActionTree",
           "declaration": {
-            "name": "OscdCheckbox",
-            "module": "checkbox/OscdCheckbox.ts"
+            "name": "OscdActionTree",
+            "module": "action-tree/OscdActionTree.ts"
           }
         }
       ]
@@ -3478,6 +3852,357 @@
     },
     {
       "kind": "javascript-module",
+      "path": "checkbox/OscdCheckbox.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Checkboxes allow users to select one or more items from a set.\nCheckboxes can turn an option on or off.\n\nUse checkboxes to:\n- Select one or more options from a list\n- Present a list containing sub-selections\n- Turn an item on or off in a desktop environment",
+          "name": "OscdCheckbox",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-ripple': MdRipple, 'md-focus-ring': MdFocusRing, }"
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether or not the checkbox is selected.",
+              "attribute": "checked",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether or not the checkbox is indeterminate.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes",
+              "attribute": "indeterminate",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, require the checkbox to be selected when participating in\nform submission.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#validation",
+              "attribute": "required",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "'on'",
+              "description": "The value of the checkbox that is submitted with a form when selected.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value",
+              "attribute": "value",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "prevChecked",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "prevDisabled",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "prevIndeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "input",
+              "type": {
+                "text": "HTMLInputElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "[getFormValue]",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "[getFormState]",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formStateRestoreCallback",
+              "parameters": [
+                {
+                  "name": "state",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "[createValidator]",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "[getValidityAnchor]",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Checkbox",
+            "package": "@omicronenergy/oscd-material-web-base/checkbox/internal/checkbox.js"
+          },
+          "tagName": "oscd-checkbox",
+          "customElement": true,
+          "summary": "Checkboxes allow users to select one or more items from a set.\nCheckboxes can turn an option on or off.\n\nUse checkboxes to:\n- Select one or more options from a list\n- Present a list containing sub-selections\n- Turn an item on or off in a desktop environment",
+          "attributes": [
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether or not the checkbox is selected.",
+              "fieldName": "checked",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether or not the checkbox is indeterminate.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes",
+              "fieldName": "indeterminate",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, require the checkbox to be selected when participating in\nform submission.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#validation",
+              "fieldName": "required",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "'on'",
+              "description": "The value of the checkbox that is submitted with a form when selected.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value",
+              "fieldName": "value",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "description": "{Event} The native `change` event on [`<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) --bubbles",
+              "name": "change",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "description": "{InputEvent} The native `input` event on [`<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) --bubbles --composed",
+              "name": "input",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            }
+          ],
+          "modulePath": "checkbox/OscdCheckbox.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdCheckbox",
+          "declaration": {
+            "name": "OscdCheckbox",
+            "module": "checkbox/OscdCheckbox.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "chips/OscdAssistChip.ts",
       "declarations": [
         {
@@ -5792,663 +6517,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "elevation/OscdElevation.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "OscdElevation",
-          "members": [],
-          "superclass": {
-            "name": "Elevation",
-            "package": "@omicronenergy/oscd-material-web-base/elevation/internal/elevation.js"
-          },
-          "tagName": "oscd-elevation",
-          "customElement": true,
-          "modulePath": "elevation/OscdElevation.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdElevation",
-          "declaration": {
-            "name": "OscdElevation",
-            "module": "elevation/OscdElevation.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "fab/OscdBrandedFab.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small. Branded\nFABs are used to specifically call attention to branded logo icons.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
-          "name": "OscdBrandedFab",
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ 'md-ripple': MdRipple, 'md-focus-ring': MdFocusRing, 'md-elevation': MdElevation, }"
-            },
-            {
-              "kind": "field",
-              "name": "variant",
-              "type": {
-                "text": "FabVariant"
-              },
-              "default": "'surface'",
-              "description": "Branded FABs have no variants",
-              "attribute": "variant",
-              "inheritedFrom": {
-                "name": "Fab",
-                "module": "fab/internal/fab.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getRenderClasses",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "ShadowRootInit"
-              },
-              "static": true,
-              "default": "{ mode: 'open' as const, delegatesFocus: true, }",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "FabSize"
-              },
-              "default": "'medium'",
-              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
-              "attribute": "size",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The text to display on the FAB.",
-              "attribute": "label",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "lowered",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Lowers the FAB's elevation.",
-              "attribute": "lowered",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderTouchTarget",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderLabel",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "Fab",
-            "package": "@omicronenergy/oscd-material-web-base/fab/internal/fab.js"
-          },
-          "tagName": "oscd-branded-fab",
-          "customElement": true,
-          "summary": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small. Branded\nFABs are used to specifically call attention to branded logo icons.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
-          "attributes": [
-            {
-              "name": "variant",
-              "type": {
-                "text": "FabVariant"
-              },
-              "default": "'surface'",
-              "description": "The FAB color variant to render.",
-              "fieldName": "variant",
-              "inheritedFrom": {
-                "name": "Fab",
-                "module": "fab/internal/fab.ts"
-              }
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "FabSize"
-              },
-              "default": "'medium'",
-              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
-              "fieldName": "size",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The text to display on the FAB.",
-              "fieldName": "label",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "name": "lowered",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Lowers the FAB's elevation.",
-              "fieldName": "lowered",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            }
-          ],
-          "modulePath": "fab/OscdBrandedFab.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "FabSize",
-          "declaration": {
-            "name": "FabSize",
-            "package": "@omicronenergy/oscd-material-web-base/fab/internal/shared.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "OscdBrandedFab",
-          "declaration": {
-            "name": "OscdBrandedFab",
-            "module": "fab/OscdBrandedFab.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "fab/OscdFab.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
-          "name": "OscdFab",
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ 'md-ripple': MdRipple, 'md-focus-ring': MdFocusRing, 'md-elevation': MdElevation, }"
-            },
-            {
-              "kind": "field",
-              "name": "variant",
-              "type": {
-                "text": "FabVariant"
-              },
-              "default": "'surface'",
-              "description": "The FAB color variant to render.",
-              "attribute": "variant",
-              "inheritedFrom": {
-                "name": "Fab",
-                "module": "fab/internal/fab.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getRenderClasses",
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "ShadowRootInit"
-              },
-              "static": true,
-              "default": "{ mode: 'open' as const, delegatesFocus: true, }",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "FabSize"
-              },
-              "default": "'medium'",
-              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
-              "attribute": "size",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The text to display on the FAB.",
-              "attribute": "label",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "lowered",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Lowers the FAB's elevation.",
-              "attribute": "lowered",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderTouchTarget",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderLabel",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderIcon",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "Fab",
-            "package": "@omicronenergy/oscd-material-web-base/fab/internal/fab.js"
-          },
-          "tagName": "oscd-fab",
-          "customElement": true,
-          "summary": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
-          "attributes": [
-            {
-              "name": "variant",
-              "type": {
-                "text": "FabVariant"
-              },
-              "default": "'surface'",
-              "description": "The FAB color variant to render.",
-              "fieldName": "variant",
-              "inheritedFrom": {
-                "name": "Fab",
-                "module": "fab/internal/fab.ts"
-              }
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "FabSize"
-              },
-              "default": "'medium'",
-              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
-              "fieldName": "size",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The text to display on the FAB.",
-              "fieldName": "label",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            },
-            {
-              "name": "lowered",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Lowers the FAB's elevation.",
-              "fieldName": "lowered",
-              "inheritedFrom": {
-                "name": "SharedFab",
-                "module": "fab/internal/shared.ts"
-              }
-            }
-          ],
-          "modulePath": "fab/OscdFab.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "FabVariant",
-          "declaration": {
-            "name": "FabVariant",
-            "package": "@omicronenergy/oscd-material-web-base/fab/internal/fab.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "FabSize",
-          "declaration": {
-            "name": "FabSize",
-            "package": "@omicronenergy/oscd-material-web-base/fab/internal/shared.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "OscdFab",
-          "declaration": {
-            "name": "OscdFab",
-            "module": "fab/OscdFab.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "focus/OscdFocusRing.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "OscdFocusRing",
-          "members": [
-            {
-              "kind": "field",
-              "name": "visible",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the focus ring visible.",
-              "attribute": "visible",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "inward",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the focus ring animate inwards instead of outwards.",
-              "attribute": "inward",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "htmlFor",
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "control",
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "attachableController",
-              "privacy": "private",
-              "readonly": true,
-              "default": "new AttachableController( this, this.onControlChange.bind(this), )",
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "attach",
-              "parameters": [
-                {
-                  "name": "control",
-                  "type": {
-                    "text": "HTMLElement"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "detach",
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleEvent",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "FocusRingEvent"
-                  }
-                }
-              ],
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "onControlChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "prev",
-                  "type": {
-                    "text": "HTMLElement | null"
-                  }
-                },
-                {
-                  "name": "next",
-                  "type": {
-                    "text": "HTMLElement | null"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "FocusRing",
-            "package": "@omicronenergy/oscd-material-web-base/focus/internal/focus-ring.js"
-          },
-          "tagName": "oscd-focus-ring",
-          "customElement": true,
-          "attributes": [
-            {
-              "name": "visible",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the focus ring visible.",
-              "fieldName": "visible",
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            },
-            {
-              "name": "inward",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the focus ring animate inwards instead of outwards.",
-              "fieldName": "inward",
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "visibility-changed",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Fired whenever `visible` changes.",
-              "inheritedFrom": {
-                "name": "FocusRing",
-                "module": "focus/internal/focus-ring.ts"
-              }
-            }
-          ],
-          "modulePath": "focus/OscdFocusRing.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdFocusRing",
-          "declaration": {
-            "name": "OscdFocusRing",
-            "module": "focus/OscdFocusRing.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "field/OscdFilledField.ts",
       "declarations": [
         {
@@ -7747,6 +7815,1077 @@
           "declaration": {
             "name": "OscdOutlinedField",
             "module": "field/OscdOutlinedField.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "elevation/OscdElevation.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdElevation",
+          "members": [],
+          "superclass": {
+            "name": "Elevation",
+            "package": "@omicronenergy/oscd-material-web-base/elevation/internal/elevation.js"
+          },
+          "tagName": "oscd-elevation",
+          "customElement": true,
+          "modulePath": "elevation/OscdElevation.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdElevation",
+          "declaration": {
+            "name": "OscdElevation",
+            "module": "elevation/OscdElevation.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "filter-button/OscdFilterButton.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdFilterButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ ...super.scopedElements, 'oscd-dialog': OscdDialog, 'oscd-outlined-icon-button': OscdOutlinedIconButton, 'oscd-icon': OscdIcon, 'oscd-scl-icon': OscdSclIcon, 'oscd-outlined-button': OscdOutlinedButton, 'oscd-filled-button': OscdFilledButton, }",
+              "inheritedFrom": {
+                "name": "OscdSelectionList",
+                "module": "selection-list/OscdSelectionList.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "header",
+              "type": {
+                "text": "TemplateResult | string"
+              },
+              "default": "'Filter'",
+              "attribute": "header"
+            },
+            {
+              "kind": "field",
+              "name": "closeButtonLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "'Apply'",
+              "attribute": "closeButtonLabel"
+            },
+            {
+              "kind": "field",
+              "name": "cancelButtonLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "'Cancel'",
+              "attribute": "cancelButtonLabel"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "filterDialog",
+              "type": {
+                "text": "Dialog"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_iconSlot",
+              "type": {
+                "text": "NodeListOf<HTMLElement> | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "toggleList",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onClose",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "multiselect",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "multiselect",
+              "inheritedFrom": {
+                "name": "OscdSelectionList",
+                "module": "selection-list/OscdSelectionList.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "items",
+              "type": {
+                "text": "SelectItem[]"
+              },
+              "default": "[]",
+              "attribute": "items",
+              "inheritedFrom": {
+                "name": "OscdSelectionList",
+                "module": "selection-list/OscdSelectionList.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selectedElements",
+              "type": {
+                "text": "Element[]"
+              },
+              "readonly": true,
+              "attribute": "selectedElements",
+              "inheritedFrom": {
+                "name": "OscdSelectionList",
+                "module": "selection-list/OscdSelectionList.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderListItem",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "SelectItem"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "OscdSelectionList",
+                "module": "selection-list/OscdSelectionList.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "filterable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether list items can be filtered on `headline` and `supportingText`",
+              "attribute": "filterable",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "searchhelper",
+              "type": {
+                "text": "string"
+              },
+              "default": "'search'",
+              "description": "Placeholder for search input field",
+              "attribute": "searchhelper",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "searchInput",
+              "type": {
+                "text": "OscdOutlinedTextField | undefined"
+              },
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_searchValue",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "protected",
+              "default": "''",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_cachedRegex",
+              "type": {
+                "text": "RegExp"
+              },
+              "privacy": "private",
+              "default": "/.*/i",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "searchValue",
+              "description": "Current search filter value. Updates search regex when changed.",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "searchValue",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "searchRegex",
+              "type": {
+                "text": "RegExp"
+              },
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onFilter",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSearchField",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "header",
+              "type": {
+                "text": "TemplateResult | string"
+              },
+              "default": "'Filter'",
+              "fieldName": "header"
+            },
+            {
+              "name": "closeButtonLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "'Apply'",
+              "fieldName": "closeButtonLabel"
+            },
+            {
+              "name": "cancelButtonLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "'Cancel'",
+              "fieldName": "cancelButtonLabel"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "multiselect",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "multiselect",
+              "inheritedFrom": {
+                "name": "OscdSelectionList",
+                "module": "selection-list/OscdSelectionList.ts"
+              }
+            },
+            {
+              "name": "items",
+              "type": {
+                "text": "SelectItem[]"
+              },
+              "default": "[]",
+              "fieldName": "items",
+              "inheritedFrom": {
+                "name": "OscdSelectionList",
+                "module": "selection-list/OscdSelectionList.ts"
+              }
+            },
+            {
+              "name": "selectedElements",
+              "type": {
+                "text": "Element[]"
+              },
+              "readonly": true,
+              "fieldName": "selectedElements",
+              "inheritedFrom": {
+                "name": "OscdSelectionList",
+                "module": "selection-list/OscdSelectionList.ts"
+              }
+            },
+            {
+              "name": "filterable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether list items can be filtered on `headline` and `supportingText`",
+              "fieldName": "filterable",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "name": "searchhelper",
+              "type": {
+                "text": "string"
+              },
+              "default": "'search'",
+              "description": "Placeholder for search input field",
+              "fieldName": "searchhelper",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            },
+            {
+              "name": "searchValue",
+              "description": "Current search filter value. Updates search regex when changed.",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "searchValue",
+              "inheritedFrom": {
+                "name": "FilterListBase",
+                "module": "selection-list/internal/FilterListBase.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "OscdSelectionList",
+            "module": "/selection-list/OscdSelectionList.js"
+          },
+          "tagName": "oscd-filter-button",
+          "customElement": true,
+          "modulePath": "filter-button/OscdFilterButton.ts",
+          "cssProperties": [],
+          "cssParts": [],
+          "cssStates": [],
+          "events": [],
+          "slots": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdFilterButton",
+          "declaration": {
+            "name": "OscdFilterButton",
+            "module": "filter-button/OscdFilterButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "focus/OscdFocusRing.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdFocusRing",
+          "members": [
+            {
+              "kind": "field",
+              "name": "visible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the focus ring visible.",
+              "attribute": "visible",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "inward",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the focus ring animate inwards instead of outwards.",
+              "attribute": "inward",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "htmlFor",
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "control",
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "attachableController",
+              "privacy": "private",
+              "readonly": true,
+              "default": "new AttachableController( this, this.onControlChange.bind(this), )",
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "attach",
+              "parameters": [
+                {
+                  "name": "control",
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "detach",
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleEvent",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "FocusRingEvent"
+                  }
+                }
+              ],
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "onControlChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "prev",
+                  "type": {
+                    "text": "HTMLElement | null"
+                  }
+                },
+                {
+                  "name": "next",
+                  "type": {
+                    "text": "HTMLElement | null"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "FocusRing",
+            "package": "@omicronenergy/oscd-material-web-base/focus/internal/focus-ring.js"
+          },
+          "tagName": "oscd-focus-ring",
+          "customElement": true,
+          "attributes": [
+            {
+              "name": "visible",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the focus ring visible.",
+              "fieldName": "visible",
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            },
+            {
+              "name": "inward",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the focus ring animate inwards instead of outwards.",
+              "fieldName": "inward",
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "visibility-changed",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Fired whenever `visible` changes.",
+              "inheritedFrom": {
+                "name": "FocusRing",
+                "module": "focus/internal/focus-ring.ts"
+              }
+            }
+          ],
+          "modulePath": "focus/OscdFocusRing.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdFocusRing",
+          "declaration": {
+            "name": "OscdFocusRing",
+            "module": "focus/OscdFocusRing.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "fab/OscdBrandedFab.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small. Branded\nFABs are used to specifically call attention to branded logo icons.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
+          "name": "OscdBrandedFab",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-ripple': MdRipple, 'md-focus-ring': MdFocusRing, 'md-elevation': MdElevation, }"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "FabVariant"
+              },
+              "default": "'surface'",
+              "description": "Branded FABs have no variants",
+              "attribute": "variant",
+              "inheritedFrom": {
+                "name": "Fab",
+                "module": "fab/internal/fab.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getRenderClasses",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "ShadowRootInit"
+              },
+              "static": true,
+              "default": "{ mode: 'open' as const, delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "FabSize"
+              },
+              "default": "'medium'",
+              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
+              "attribute": "size",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The text to display on the FAB.",
+              "attribute": "label",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lowered",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Lowers the FAB's elevation.",
+              "attribute": "lowered",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderTouchTarget",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLabel",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Fab",
+            "package": "@omicronenergy/oscd-material-web-base/fab/internal/fab.js"
+          },
+          "tagName": "oscd-branded-fab",
+          "customElement": true,
+          "summary": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small. Branded\nFABs are used to specifically call attention to branded logo icons.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
+          "attributes": [
+            {
+              "name": "variant",
+              "type": {
+                "text": "FabVariant"
+              },
+              "default": "'surface'",
+              "description": "The FAB color variant to render.",
+              "fieldName": "variant",
+              "inheritedFrom": {
+                "name": "Fab",
+                "module": "fab/internal/fab.ts"
+              }
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "FabSize"
+              },
+              "default": "'medium'",
+              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
+              "fieldName": "size",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The text to display on the FAB.",
+              "fieldName": "label",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "name": "lowered",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Lowers the FAB's elevation.",
+              "fieldName": "lowered",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            }
+          ],
+          "modulePath": "fab/OscdBrandedFab.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FabSize",
+          "declaration": {
+            "name": "FabSize",
+            "package": "@omicronenergy/oscd-material-web-base/fab/internal/shared.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdBrandedFab",
+          "declaration": {
+            "name": "OscdBrandedFab",
+            "module": "fab/OscdBrandedFab.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "fab/OscdFab.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
+          "name": "OscdFab",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-ripple': MdRipple, 'md-focus-ring': MdFocusRing, 'md-elevation': MdElevation, }"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "FabVariant"
+              },
+              "default": "'surface'",
+              "description": "The FAB color variant to render.",
+              "attribute": "variant",
+              "inheritedFrom": {
+                "name": "Fab",
+                "module": "fab/internal/fab.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getRenderClasses",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "ShadowRootInit"
+              },
+              "static": true,
+              "default": "{ mode: 'open' as const, delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "FabSize"
+              },
+              "default": "'medium'",
+              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
+              "attribute": "size",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The text to display on the FAB.",
+              "attribute": "label",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lowered",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Lowers the FAB's elevation.",
+              "attribute": "lowered",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderTouchTarget",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLabel",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Fab",
+            "package": "@omicronenergy/oscd-material-web-base/fab/internal/fab.js"
+          },
+          "tagName": "oscd-fab",
+          "customElement": true,
+          "summary": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
+          "attributes": [
+            {
+              "name": "variant",
+              "type": {
+                "text": "FabVariant"
+              },
+              "default": "'surface'",
+              "description": "The FAB color variant to render.",
+              "fieldName": "variant",
+              "inheritedFrom": {
+                "name": "Fab",
+                "module": "fab/internal/fab.ts"
+              }
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "FabSize"
+              },
+              "default": "'medium'",
+              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
+              "fieldName": "size",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The text to display on the FAB.",
+              "fieldName": "label",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "name": "lowered",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Lowers the FAB's elevation.",
+              "fieldName": "lowered",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            }
+          ],
+          "modulePath": "fab/OscdFab.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FabVariant",
+          "declaration": {
+            "name": "FabVariant",
+            "package": "@omicronenergy/oscd-material-web-base/fab/internal/fab.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "FabSize",
+          "declaration": {
+            "name": "FabSize",
+            "package": "@omicronenergy/oscd-material-web-base/fab/internal/shared.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdFab",
+          "declaration": {
+            "name": "OscdFab",
+            "module": "fab/OscdFab.ts"
           }
         }
       ]
@@ -13485,15 +14624,7 @@
           "type": {
             "text": "Record<string, SVGTemplateResult>"
           },
-          "default": "{ // From compare.ts elementIcon: compare.elementIcon, attributeIcon: compare.attributeIcon, contentIcon: compare.contentIcon, // From icons.ts editIcon: icons.editIcon, gooseIcon: icons.gooseIcon, reportIcon: icons.reportIcon, smvIcon: icons.smvIcon, logIcon: icons.logIcon, inputIcon: icons.inputIcon, clientIcon: icons.clientIcon, disconnect: icons.disconnect, networkConfigIcon: icons.networkConfigIcon, zeroLineIcon: icons.zeroLineIcon, voltageLevelIcon: icons.voltageLevelIcon, bayIcon: icons.bayIcon, disconnectorIcon: icons.disconnectorIcon, circuitBreakerIcon: icons.circuitBreakerIcon, currentTransformerIcon: icons.currentTransformerIcon, voltageTransformerIcon: icons.voltageTransformerIcon, earthSwitchIcon: icons.earthSwitchIcon, generalConductingEquipmentIcon: icons.generalConductingEquipmentIcon, connectivityNodeIcon: icons.connectivityNodeIcon, powerTransformerTwoWindingIcon: icons.powerTransformerTwoWindingIcon, openSCDIcon: icons.openSCDIcon, sizableSmvIcon: icons.sizableSmvIcon, sizableGooseIcon: icons.sizableGooseIcon, substationIcon: icons.substationIcon, lineIcon: icons.lineIcon, processIcon: icons.processIcon, transformerWindingIcon: icons.transformerWindingIcon, // From ied-icons.ts accessPointIcon: iedIcons.accessPointIcon, serverIcon: iedIcons.serverIcon, logicalDeviceIcon: iedIcons.logicalDeviceIcon, // From lnode.ts systemLogicalNode: lnode.systemLogicalNode, automationLogicalNode: lnode.automationLogicalNode, controlLogicalNode: lnode.controlLogicalNode, functionalLogicalNode: lnode.functionalLogicalNode, generalLogicalNode: lnode.generalLogicalNode, interfacingLogicalNode: lnode.interfacingLogicalNode, nonElectricalLogicalNode: lnode.nonElectricalLogicalNode, measurementLogicalNode: lnode.measurementLogicalNode, protectionLogicalNode: lnode.protectionLogicalNode, qualityLogicalNode: lnode.qualityLogicalNode, protectionRelatedLogicalNode: lnode.protectionRelatedLogicalNode, supervisionLogicalNode: lnode.supervisionLogicalNode, transformerLogicalNode: lnode.transformerLogicalNode, switchgearLogicalNode: lnode.switchgearLogicalNode, powerTransformerLogicalNode: lnode.powerTransformerLogicalNode, furtherPowerSystemEquipmentLogicalNode: lnode.furtherPowerSystemEquipmentLogicalNode, }"
-        },
-        {
-          "kind": "variable",
-          "name": "iconProperties",
-          "type": {
-            "text": "Partial<Record<iconType, iconProperty>>"
-          },
-          "default": "{ dAIcon: { width: 26.5, height: 24, }, dOIcon: { width: 26.5, height: 24, }, enumIcon: { width: 26.5, height: 24, }, lNIcon: { width: 26.5, height: 24, }, }"
+          "default": "{ // From compare.ts elementIcon: compare.elementIcon, attributeIcon: compare.attributeIcon, contentIcon: compare.contentIcon, // From icons.ts editIcon: icons.editIcon, gooseIcon: icons.gooseIcon, reportIcon: icons.reportIcon, smvIcon: icons.smvIcon, logIcon: icons.logIcon, inputIcon: icons.inputIcon, clientIcon: icons.clientIcon, disconnect: icons.disconnect, networkConfigIcon: icons.networkConfigIcon, zeroLineIcon: icons.zeroLineIcon, voltageLevelIcon: icons.voltageLevelIcon, bayIcon: icons.bayIcon, disconnectorIcon: icons.disconnectorIcon, circuitBreakerIcon: icons.circuitBreakerIcon, currentTransformerIcon: icons.currentTransformerIcon, voltageTransformerIcon: icons.voltageTransformerIcon, earthSwitchIcon: icons.earthSwitchIcon, generalConductingEquipmentIcon: icons.generalConductingEquipmentIcon, connectivityNodeIcon: icons.connectivityNodeIcon, powerTransformerTwoWindingIcon: icons.powerTransformerTwoWindingIcon, openSCDIcon: icons.openSCDIcon, sizableSmvIcon: icons.sizableSmvIcon, sizableGooseIcon: icons.sizableGooseIcon, substationIcon: icons.substationIcon, lineIcon: icons.lineIcon, processIcon: icons.processIcon, transformerWindingIcon: icons.transformerWindingIcon, // From ied-icons.ts accessPointIcon: iedIcons.accessPointIcon, serverIcon: iedIcons.serverIcon, logicalDeviceIcon: iedIcons.logicalDeviceIcon, // From lnode.ts systemLogicalNode: lnode.systemLogicalNode, automationLogicalNode: lnode.automationLogicalNode, controlLogicalNode: lnode.controlLogicalNode, functionalLogicalNode: lnode.functionalLogicalNode, generalLogicalNode: lnode.generalLogicalNode, interfacingLogicalNode: lnode.interfacingLogicalNode, nonElectricalLogicalNode: lnode.nonElectricalLogicalNode, measurementLogicalNode: lnode.measurementLogicalNode, protectionLogicalNode: lnode.protectionLogicalNode, qualityLogicalNode: lnode.qualityLogicalNode, protectionRelatedLogicalNode: lnode.protectionRelatedLogicalNode, supervisionLogicalNode: lnode.supervisionLogicalNode, transformerLogicalNode: lnode.transformerLogicalNode, switchgearLogicalNode: lnode.switchgearLogicalNode, powerTransformerLogicalNode: lnode.powerTransformerLogicalNode, furtherPowerSystemEquipmentLogicalNode: lnode.furtherPowerSystemEquipmentLogicalNode, ...Object.keys(icons.pathsSVG).reduce( (acc, key) => { acc[key] = pathToSvg(key as iconType); return acc; }, {} as Record<string, SVGTemplateResult>, ), }"
         },
         {
           "kind": "variable",
@@ -13501,7 +14632,7 @@
           "type": {
             "text": "Partial<Record<string, SVGTemplateResult>>"
           },
-          "default": "{ DAType: getIcon('dAIcon'), DOType: getIcon('dOIcon'), EnumType: getIcon('enumIcon'), LNodeType: getIcon('lNIcon'), }"
+          "default": "{ DAType: pathToSvg('dAIcon'), DOType: pathToSvg('dOIcon'), EnumType: pathToSvg('enumIcon'), LNodeType: pathToSvg('lNIcon'), }"
         },
         {
           "kind": "variable",
@@ -13513,7 +14644,7 @@
         },
         {
           "kind": "function",
-          "name": "getIcon",
+          "name": "pathToSvg",
           "return": {
             "type": {
               "text": "SVGTemplateResult"
@@ -13524,29 +14655,6 @@
               "name": "type",
               "type": {
                 "text": "iconType"
-              }
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "getFilterIcon",
-          "return": {
-            "type": {
-              "text": "SVGTemplateResult"
-            }
-          },
-          "parameters": [
-            {
-              "name": "type",
-              "type": {
-                "text": "iconType"
-              }
-            },
-            {
-              "name": "state",
-              "type": {
-                "text": "boolean"
               }
             }
           ]
@@ -13631,14 +14739,6 @@
         },
         {
           "kind": "js",
-          "name": "iconProperties",
-          "declaration": {
-            "name": "iconProperties",
-            "module": "scl-icon/OscdSclIcon.ts"
-          }
-        },
-        {
-          "kind": "js",
           "name": "dataTypeTemplateIcons",
           "declaration": {
             "name": "dataTypeTemplateIcons",
@@ -13655,17 +14755,9 @@
         },
         {
           "kind": "js",
-          "name": "getIcon",
+          "name": "pathToSvg",
           "declaration": {
-            "name": "getIcon",
-            "module": "scl-icon/OscdSclIcon.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "getFilterIcon",
-          "declaration": {
-            "name": "getFilterIcon",
+            "name": "pathToSvg",
             "module": "scl-icon/OscdSclIcon.ts"
           }
         },
@@ -16583,7 +17675,16 @@
                 "text": "object"
               },
               "static": true,
-              "default": "{ 'oscd-outlined-text-field': OscdOutlinedTextField, 'oscd-icon': OscdIcon, 'oscd-list': OscdList, 'oscd-list-item': OscdListItem, 'oscd-checkbox': OscdCheckbox, }"
+              "default": "{ 'oscd-outlined-text-field': OscdOutlinedTextField, 'oscd-icon': OscdIcon, 'oscd-list': OscdList, 'oscd-list-item': OscdListItem, 'oscd-checkbox': OscdCheckbox, 'oscd-radio': OscdRadio, }"
+            },
+            {
+              "kind": "field",
+              "name": "multiselect",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "multiselect"
             },
             {
               "kind": "field",
@@ -16602,24 +17703,6 @@
               },
               "readonly": true,
               "attribute": "selectedElements"
-            },
-            {
-              "kind": "method",
-              "name": "renderCheckboxListItem",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "SelectItem"
-                  }
-                }
-              ]
             },
             {
               "kind": "method",
@@ -16760,6 +17843,14 @@
             }
           ],
           "attributes": [
+            {
+              "name": "multiselect",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "multiselect"
+            },
             {
               "name": "items",
               "type": {
@@ -23703,6 +24794,48 @@
     },
     {
       "kind": "javascript-module",
+      "path": "focus/internal/focus-ring-styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { animation-delay: 0s, calc(var(--md-focus-ring-duration, 600ms) * 0.25); animation-duration: calc(var(--md-focus-ring-duration, 600ms) * 0.25), calc(var(--md-focus-ring-duration, 600ms) * 0.75); animation-timing-function: cubic-bezier(0.2, 0, 0, 1); box-sizing: border-box; color: var(--md-focus-ring-color, var(--md-sys-color-secondary, #625b71)); display: none; pointer-events: none; position: absolute; } :host([visible]) { display: flex; } :host(:not([inward])) { animation-name: outward-grow, outward-shrink; border-end-end-radius: calc( var( --md-focus-ring-shape-end-end, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) + var(--md-focus-ring-outward-offset, 2px) ); border-end-start-radius: calc( var( --md-focus-ring-shape-end-start, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) + var(--md-focus-ring-outward-offset, 2px) ); border-start-end-radius: calc( var( --md-focus-ring-shape-start-end, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) + var(--md-focus-ring-outward-offset, 2px) ); border-start-start-radius: calc( var( --md-focus-ring-shape-start-start, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) + var(--md-focus-ring-outward-offset, 2px) ); inset: calc(-1 * var(--md-focus-ring-outward-offset, 2px)); outline: var(--md-focus-ring-width, 3px) solid currentColor; } :host([inward]) { animation-name: inward-grow, inward-shrink; border-end-end-radius: calc( var( --md-focus-ring-shape-end-end, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) - var(--md-focus-ring-inward-offset, 0px) ); border-end-start-radius: calc( var( --md-focus-ring-shape-end-start, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) - var(--md-focus-ring-inward-offset, 0px) ); border-start-end-radius: calc( var( --md-focus-ring-shape-start-end, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) - var(--md-focus-ring-inward-offset, 0px) ); border-start-start-radius: calc( var( --md-focus-ring-shape-start-start, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) - var(--md-focus-ring-inward-offset, 0px) ); border: var(--md-focus-ring-width, 3px) solid currentColor; inset: var(--md-focus-ring-inward-offset, 0px); } @keyframes outward-grow { from { outline-width: 0; } to { outline-width: var(--md-focus-ring-active-width, 8px); } } @keyframes outward-shrink { from { outline-width: var(--md-focus-ring-active-width, 8px); } } @keyframes inward-grow { from { border-width: 0; } to { border-width: var(--md-focus-ring-active-width, 8px); } } @keyframes inward-shrink { from { border-width: var(--md-focus-ring-active-width, 8px); } } @media (prefers-reduced-motion) { :host { animation: none; } } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "focus/internal/focus-ring-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "icon/internal/icon-styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { font-size: var(--md-icon-size, 24px); width: var(--md-icon-size, 24px); height: var(--md-icon-size, 24px); color: inherit; font-variation-settings: inherit; font-weight: 400; font-family: var(--md-icon-font, Material Symbols Outlined); display: inline-flex; font-style: normal; place-items: center; place-content: center; line-height: 1; overflow: hidden; letter-spacing: normal; text-transform: none; user-select: none; white-space: nowrap; word-wrap: normal; flex-shrink: 0; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; } ::slotted(svg) { fill: currentColor; } ::slotted(*) { height: 100%; width: 100%; } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "icon/internal/icon-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "field/internal/filled-styles.ts",
       "declarations": [
         {
@@ -23760,48 +24893,6 @@
           "declaration": {
             "name": "styles",
             "module": "field/internal/shared-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "icon/internal/icon-styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { font-size: var(--md-icon-size, 24px); width: var(--md-icon-size, 24px); height: var(--md-icon-size, 24px); color: inherit; font-variation-settings: inherit; font-weight: 400; font-family: var(--md-icon-font, Material Symbols Outlined); display: inline-flex; font-style: normal; place-items: center; place-content: center; line-height: 1; overflow: hidden; letter-spacing: normal; text-transform: none; user-select: none; white-space: nowrap; word-wrap: normal; flex-shrink: 0; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; } ::slotted(svg) { fill: currentColor; } ::slotted(*) { height: 100%; width: 100%; } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "icon/internal/icon-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "focus/internal/focus-ring-styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { animation-delay: 0s, calc(var(--md-focus-ring-duration, 600ms) * 0.25); animation-duration: calc(var(--md-focus-ring-duration, 600ms) * 0.25), calc(var(--md-focus-ring-duration, 600ms) * 0.75); animation-timing-function: cubic-bezier(0.2, 0, 0, 1); box-sizing: border-box; color: var(--md-focus-ring-color, var(--md-sys-color-secondary, #625b71)); display: none; pointer-events: none; position: absolute; } :host([visible]) { display: flex; } :host(:not([inward])) { animation-name: outward-grow, outward-shrink; border-end-end-radius: calc( var( --md-focus-ring-shape-end-end, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) + var(--md-focus-ring-outward-offset, 2px) ); border-end-start-radius: calc( var( --md-focus-ring-shape-end-start, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) + var(--md-focus-ring-outward-offset, 2px) ); border-start-end-radius: calc( var( --md-focus-ring-shape-start-end, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) + var(--md-focus-ring-outward-offset, 2px) ); border-start-start-radius: calc( var( --md-focus-ring-shape-start-start, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) + var(--md-focus-ring-outward-offset, 2px) ); inset: calc(-1 * var(--md-focus-ring-outward-offset, 2px)); outline: var(--md-focus-ring-width, 3px) solid currentColor; } :host([inward]) { animation-name: inward-grow, inward-shrink; border-end-end-radius: calc( var( --md-focus-ring-shape-end-end, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) - var(--md-focus-ring-inward-offset, 0px) ); border-end-start-radius: calc( var( --md-focus-ring-shape-end-start, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) - var(--md-focus-ring-inward-offset, 0px) ); border-start-end-radius: calc( var( --md-focus-ring-shape-start-end, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) - var(--md-focus-ring-inward-offset, 0px) ); border-start-start-radius: calc( var( --md-focus-ring-shape-start-start, var(--md-focus-ring-shape, var(--md-sys-shape-corner-full, 9999px)) ) - var(--md-focus-ring-inward-offset, 0px) ); border: var(--md-focus-ring-width, 3px) solid currentColor; inset: var(--md-focus-ring-inward-offset, 0px); } @keyframes outward-grow { from { outline-width: 0; } to { outline-width: var(--md-focus-ring-active-width, 8px); } } @keyframes outward-shrink { from { outline-width: var(--md-focus-ring-active-width, 8px); } } @keyframes inward-grow { from { border-width: 0; } to { border-width: var(--md-focus-ring-active-width, 8px); } } @keyframes inward-shrink { from { border-width: var(--md-focus-ring-active-width, 8px); } } @media (prefers-reduced-motion) { :host { animation: none; } } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "focus/internal/focus-ring-styles.ts"
           }
         }
       ]
@@ -24060,90 +25151,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "tabs/internal/primary-tab-styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { --_active-indicator-color: var( --md-primary-tab-active-indicator-color, var(--md-sys-color-primary, #6750a4) ); --_active-indicator-height: var( --md-primary-tab-active-indicator-height, 3px ); --_active-indicator-shape: var( --md-primary-tab-active-indicator-shape, 3px 3px 0px 0px ); --_active-hover-state-layer-color: var( --md-primary-tab-active-hover-state-layer-color, var(--md-sys-color-primary, #6750a4) ); --_active-hover-state-layer-opacity: var( --md-primary-tab-active-hover-state-layer-opacity, 0.08 ); --_active-pressed-state-layer-color: var( --md-primary-tab-active-pressed-state-layer-color, var(--md-sys-color-primary, #6750a4) ); --_active-pressed-state-layer-opacity: var( --md-primary-tab-active-pressed-state-layer-opacity, 0.12 ); --_container-color: var( --md-primary-tab-container-color, var(--md-sys-color-surface, #fef7ff) ); --_container-elevation: var(--md-primary-tab-container-elevation, 0); --_container-height: var(--md-primary-tab-container-height, 48px); --_with-icon-and-label-text-container-height: var( --md-primary-tab-with-icon-and-label-text-container-height, 64px ); --_hover-state-layer-color: var( --md-primary-tab-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-state-layer-opacity: var( --md-primary-tab-hover-state-layer-opacity, 0.08 ); --_pressed-state-layer-color: var( --md-primary-tab-pressed-state-layer-color, var(--md-sys-color-primary, #6750a4) ); --_pressed-state-layer-opacity: var( --md-primary-tab-pressed-state-layer-opacity, 0.12 ); --_active-focus-icon-color: var( --md-primary-tab-active-focus-icon-color, var(--md-sys-color-primary, #6750a4) ); --_active-hover-icon-color: var( --md-primary-tab-active-hover-icon-color, var(--md-sys-color-primary, #6750a4) ); --_active-icon-color: var( --md-primary-tab-active-icon-color, var(--md-sys-color-primary, #6750a4) ); --_active-pressed-icon-color: var( --md-primary-tab-active-pressed-icon-color, var(--md-sys-color-primary, #6750a4) ); --_icon-size: var(--md-primary-tab-icon-size, 24px); --_focus-icon-color: var( --md-primary-tab-focus-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-icon-color: var( --md-primary-tab-hover-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_icon-color: var( --md-primary-tab-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_pressed-icon-color: var( --md-primary-tab-pressed-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_label-text-font: var( --md-primary-tab-label-text-font, var( --md-sys-typescale-title-small-font, var(--md-ref-typeface-plain, Roboto) ) ); --_label-text-line-height: var( --md-primary-tab-label-text-line-height, var(--md-sys-typescale-title-small-line-height, 1.25rem) ); --_label-text-size: var( --md-primary-tab-label-text-size, var(--md-sys-typescale-title-small-size, 0.875rem) ); --_label-text-weight: var( --md-primary-tab-label-text-weight, var( --md-sys-typescale-title-small-weight, var(--md-ref-typeface-weight-medium, 500) ) ); --_active-focus-label-text-color: var( --md-primary-tab-active-focus-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_active-hover-label-text-color: var( --md-primary-tab-active-hover-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_active-label-text-color: var( --md-primary-tab-active-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_active-pressed-label-text-color: var( --md-primary-tab-active-pressed-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_focus-label-text-color: var( --md-primary-tab-focus-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-label-text-color: var( --md-primary-tab-hover-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_label-text-color: var( --md-primary-tab-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_pressed-label-text-color: var( --md-primary-tab-pressed-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_container-shape-start-start: var( --md-primary-tab-container-shape-start-start, var( --md-primary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-start-end: var( --md-primary-tab-container-shape-start-end, var( --md-primary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-end: var( --md-primary-tab-container-shape-end-end, var( --md-primary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-start: var( --md-primary-tab-container-shape-end-start, var( --md-primary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); } .content.stacked { flex-direction: column; gap: 2px; } .content.stacked.has-icon.has-label { height: var(--_with-icon-and-label-text-container-height); } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "tabs/internal/primary-tab-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "tabs/internal/secondary-tab-styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { --_active-indicator-color: var( --md-secondary-tab-active-indicator-color, var(--md-sys-color-primary, #6750a4) ); --_active-indicator-height: var( --md-secondary-tab-active-indicator-height, 2px ); --_active-label-text-color: var( --md-secondary-tab-active-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_container-color: var( --md-secondary-tab-container-color, var(--md-sys-color-surface, #fef7ff) ); --_container-elevation: var(--md-secondary-tab-container-elevation, 0); --_container-height: var(--md-secondary-tab-container-height, 48px); --_focus-label-text-color: var( --md-secondary-tab-focus-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-label-text-color: var( --md-secondary-tab-hover-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-state-layer-color: var( --md-secondary-tab-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-state-layer-opacity: var( --md-secondary-tab-hover-state-layer-opacity, 0.08 ); --_label-text-font: var( --md-secondary-tab-label-text-font, var( --md-sys-typescale-title-small-font, var(--md-ref-typeface-plain, Roboto) ) ); --_label-text-line-height: var( --md-secondary-tab-label-text-line-height, var(--md-sys-typescale-title-small-line-height, 1.25rem) ); --_label-text-size: var( --md-secondary-tab-label-text-size, var(--md-sys-typescale-title-small-size, 0.875rem) ); --_label-text-weight: var( --md-secondary-tab-label-text-weight, var( --md-sys-typescale-title-small-weight, var(--md-ref-typeface-weight-medium, 500) ) ); --_pressed-label-text-color: var( --md-secondary-tab-pressed-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_pressed-state-layer-color: var( --md-secondary-tab-pressed-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_pressed-state-layer-opacity: var( --md-secondary-tab-pressed-state-layer-opacity, 0.12 ); --_active-focus-icon-color: var( --md-secondary-tab-active-focus-icon-color, ); --_active-focus-label-text-color: var( --md-secondary-tab-active-focus-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-hover-icon-color: var( --md-secondary-tab-active-hover-icon-color, ); --_active-hover-label-text-color: var( --md-secondary-tab-active-hover-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-hover-state-layer-color: var( --md-secondary-tab-active-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-hover-state-layer-opacity: var( --md-secondary-tab-active-hover-state-layer-opacity, 0.08 ); --_active-icon-color: var( --md-secondary-tab-active-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-indicator-shape: var( --md-secondary-tab-active-indicator-shape, 0 ); --_active-pressed-icon-color: var( --md-secondary-tab-active-pressed-icon-color, ); --_active-pressed-label-text-color: var( --md-secondary-tab-active-pressed-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-pressed-state-layer-color: var( --md-secondary-tab-active-pressed-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-pressed-state-layer-opacity: var( --md-secondary-tab-active-pressed-state-layer-opacity, 0.12 ); --_label-text-color: var( --md-secondary-tab-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-icon-color: var( --md-secondary-tab-focus-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-icon-color: var( --md-secondary-tab-hover-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_icon-size: var(--md-secondary-tab-icon-size, 24px); --_icon-color: var( --md-secondary-tab-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_pressed-icon-color: var( --md-secondary-tab-pressed-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_container-shape-start-start: var( --md-secondary-tab-container-shape-start-start, var( --md-secondary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-start-end: var( --md-secondary-tab-container-shape-start-end, var( --md-secondary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-end: var( --md-secondary-tab-container-shape-end-end, var( --md-secondary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-start: var( --md-secondary-tab-container-shape-end-start, var( --md-secondary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "tabs/internal/secondary-tab-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "tabs/internal/tab-styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { display: inline-flex; align-items: center; justify-content: center; outline: none; padding: 0 16px; position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); vertical-align: middle; user-select: none; font-family: var(--_label-text-font); font-size: var(--_label-text-size); line-height: var(--_label-text-line-height); font-weight: var(--_label-text-weight); color: var(--_label-text-color); z-index: 0; --md-ripple-hover-color: var(--_hover-state-layer-color); --md-ripple-hover-opacity: var(--_hover-state-layer-opacity); --md-ripple-pressed-color: var(--_pressed-state-layer-color); --md-ripple-pressed-opacity: var(--_pressed-state-layer-opacity); --md-elevation-level: var(--_container-elevation); } oscd-focus-ring { --md-focus-ring-shape: 8px; } :host([active]) oscd-focus-ring { margin-bottom: calc(var(--_active-indicator-height) + 1px); } .button::before { background: var(--_container-color); content: ''; inset: 0; position: absolute; z-index: -1; } .button::before, oscd-ripple, oscd-elevation { border-start-start-radius: var(--_container-shape-start-start); border-start-end-radius: var(--_container-shape-start-end); border-end-end-radius: var(--_container-shape-end-end); border-end-start-radius: var(--_container-shape-end-start); } .content { position: relative; box-sizing: border-box; display: inline-flex; flex-direction: row; align-items: center; justify-content: center; height: var(--_container-height); gap: 8px; } .indicator { position: absolute; box-sizing: border-box; z-index: -1; transform-origin: bottom left; background: var(--_active-indicator-color); border-radius: var(--_active-indicator-shape); height: var(--_active-indicator-height); inset: auto 0 0 0; opacity: 0; } ::slotted([slot='icon']) { display: inline-flex; position: relative; writing-mode: horizontal-tb; fill: currentColor; color: var(--_icon-color); font-size: var(--_icon-size); width: var(--_icon-size); height: var(--_icon-size); } :host(:hover) { color: var(--_hover-label-text-color); cursor: pointer; } :host(:hover) ::slotted([slot='icon']) { color: var(--_hover-icon-color); } :host(:focus) { color: var(--_focus-label-text-color); } :host(:focus) ::slotted([slot='icon']) { color: var(--_focus-icon-color); } :host(:active) { color: var(--_pressed-label-text-color); } :host(:active) ::slotted([slot='icon']) { color: var(--_pressed-icon-color); } :host([active]) .indicator { opacity: 1; } :host([active]) { color: var(--_active-label-text-color); --md-ripple-hover-color: var(--_active-hover-state-layer-color); --md-ripple-hover-opacity: var(--_active-hover-state-layer-opacity); --md-ripple-pressed-color: var(--_active-pressed-state-layer-color); --md-ripple-pressed-opacity: var(--_active-pressed-state-layer-opacity); } :host([active]) ::slotted([slot='icon']) { color: var(--_active-icon-color); } :host([active]:hover) { color: var(--_active-hover-label-text-color); } :host([active]:hover) ::slotted([slot='icon']) { color: var(--_active-hover-icon-color); } :host([active]:focus) { color: var(--_active-focus-label-text-color); } :host([active]:focus) ::slotted([slot='icon']) { color: var(--_active-focus-icon-color); } :host([active]:active) { color: var(--_active-pressed-label-text-color); } :host([active]:active) ::slotted([slot='icon']) { color: var(--_active-pressed-icon-color); } :host, ::slotted(*) { white-space: nowrap; } @media (forced-colors: active) { .indicator { background: CanvasText; } } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "tabs/internal/tab-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "tabs/internal/tabs-styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { box-sizing: border-box; display: flex; flex-direction: column; overflow: auto; scroll-behavior: smooth; scrollbar-width: none; position: relative; } :host([hidden]) { display: none; } :host::-webkit-scrollbar { display: none; } .tabs { align-items: end; display: flex; height: 100%; overflow: inherit; scroll-behavior: inherit; scrollbar-width: inherit; justify-content: space-between; width: 100%; } ::slotted(*) { flex: 1; } ::slotted([active]) { z-index: 1; } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "tabs/internal/tabs-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "selection-list/internal/FilterListBase.ts",
       "declarations": [
         {
@@ -24284,6 +25291,90 @@
           "declaration": {
             "name": "FilterListBase",
             "module": "selection-list/internal/FilterListBase.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "tabs/internal/primary-tab-styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { --_active-indicator-color: var( --md-primary-tab-active-indicator-color, var(--md-sys-color-primary, #6750a4) ); --_active-indicator-height: var( --md-primary-tab-active-indicator-height, 3px ); --_active-indicator-shape: var( --md-primary-tab-active-indicator-shape, 3px 3px 0px 0px ); --_active-hover-state-layer-color: var( --md-primary-tab-active-hover-state-layer-color, var(--md-sys-color-primary, #6750a4) ); --_active-hover-state-layer-opacity: var( --md-primary-tab-active-hover-state-layer-opacity, 0.08 ); --_active-pressed-state-layer-color: var( --md-primary-tab-active-pressed-state-layer-color, var(--md-sys-color-primary, #6750a4) ); --_active-pressed-state-layer-opacity: var( --md-primary-tab-active-pressed-state-layer-opacity, 0.12 ); --_container-color: var( --md-primary-tab-container-color, var(--md-sys-color-surface, #fef7ff) ); --_container-elevation: var(--md-primary-tab-container-elevation, 0); --_container-height: var(--md-primary-tab-container-height, 48px); --_with-icon-and-label-text-container-height: var( --md-primary-tab-with-icon-and-label-text-container-height, 64px ); --_hover-state-layer-color: var( --md-primary-tab-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-state-layer-opacity: var( --md-primary-tab-hover-state-layer-opacity, 0.08 ); --_pressed-state-layer-color: var( --md-primary-tab-pressed-state-layer-color, var(--md-sys-color-primary, #6750a4) ); --_pressed-state-layer-opacity: var( --md-primary-tab-pressed-state-layer-opacity, 0.12 ); --_active-focus-icon-color: var( --md-primary-tab-active-focus-icon-color, var(--md-sys-color-primary, #6750a4) ); --_active-hover-icon-color: var( --md-primary-tab-active-hover-icon-color, var(--md-sys-color-primary, #6750a4) ); --_active-icon-color: var( --md-primary-tab-active-icon-color, var(--md-sys-color-primary, #6750a4) ); --_active-pressed-icon-color: var( --md-primary-tab-active-pressed-icon-color, var(--md-sys-color-primary, #6750a4) ); --_icon-size: var(--md-primary-tab-icon-size, 24px); --_focus-icon-color: var( --md-primary-tab-focus-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-icon-color: var( --md-primary-tab-hover-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_icon-color: var( --md-primary-tab-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_pressed-icon-color: var( --md-primary-tab-pressed-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_label-text-font: var( --md-primary-tab-label-text-font, var( --md-sys-typescale-title-small-font, var(--md-ref-typeface-plain, Roboto) ) ); --_label-text-line-height: var( --md-primary-tab-label-text-line-height, var(--md-sys-typescale-title-small-line-height, 1.25rem) ); --_label-text-size: var( --md-primary-tab-label-text-size, var(--md-sys-typescale-title-small-size, 0.875rem) ); --_label-text-weight: var( --md-primary-tab-label-text-weight, var( --md-sys-typescale-title-small-weight, var(--md-ref-typeface-weight-medium, 500) ) ); --_active-focus-label-text-color: var( --md-primary-tab-active-focus-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_active-hover-label-text-color: var( --md-primary-tab-active-hover-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_active-label-text-color: var( --md-primary-tab-active-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_active-pressed-label-text-color: var( --md-primary-tab-active-pressed-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_focus-label-text-color: var( --md-primary-tab-focus-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-label-text-color: var( --md-primary-tab-hover-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_label-text-color: var( --md-primary-tab-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_pressed-label-text-color: var( --md-primary-tab-pressed-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_container-shape-start-start: var( --md-primary-tab-container-shape-start-start, var( --md-primary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-start-end: var( --md-primary-tab-container-shape-start-end, var( --md-primary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-end: var( --md-primary-tab-container-shape-end-end, var( --md-primary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-start: var( --md-primary-tab-container-shape-end-start, var( --md-primary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); } .content.stacked { flex-direction: column; gap: 2px; } .content.stacked.has-icon.has-label { height: var(--_with-icon-and-label-text-container-height); } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "tabs/internal/primary-tab-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "tabs/internal/secondary-tab-styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { --_active-indicator-color: var( --md-secondary-tab-active-indicator-color, var(--md-sys-color-primary, #6750a4) ); --_active-indicator-height: var( --md-secondary-tab-active-indicator-height, 2px ); --_active-label-text-color: var( --md-secondary-tab-active-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_container-color: var( --md-secondary-tab-container-color, var(--md-sys-color-surface, #fef7ff) ); --_container-elevation: var(--md-secondary-tab-container-elevation, 0); --_container-height: var(--md-secondary-tab-container-height, 48px); --_focus-label-text-color: var( --md-secondary-tab-focus-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-label-text-color: var( --md-secondary-tab-hover-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-state-layer-color: var( --md-secondary-tab-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-state-layer-opacity: var( --md-secondary-tab-hover-state-layer-opacity, 0.08 ); --_label-text-font: var( --md-secondary-tab-label-text-font, var( --md-sys-typescale-title-small-font, var(--md-ref-typeface-plain, Roboto) ) ); --_label-text-line-height: var( --md-secondary-tab-label-text-line-height, var(--md-sys-typescale-title-small-line-height, 1.25rem) ); --_label-text-size: var( --md-secondary-tab-label-text-size, var(--md-sys-typescale-title-small-size, 0.875rem) ); --_label-text-weight: var( --md-secondary-tab-label-text-weight, var( --md-sys-typescale-title-small-weight, var(--md-ref-typeface-weight-medium, 500) ) ); --_pressed-label-text-color: var( --md-secondary-tab-pressed-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_pressed-state-layer-color: var( --md-secondary-tab-pressed-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_pressed-state-layer-opacity: var( --md-secondary-tab-pressed-state-layer-opacity, 0.12 ); --_active-focus-icon-color: var( --md-secondary-tab-active-focus-icon-color, ); --_active-focus-label-text-color: var( --md-secondary-tab-active-focus-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-hover-icon-color: var( --md-secondary-tab-active-hover-icon-color, ); --_active-hover-label-text-color: var( --md-secondary-tab-active-hover-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-hover-state-layer-color: var( --md-secondary-tab-active-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-hover-state-layer-opacity: var( --md-secondary-tab-active-hover-state-layer-opacity, 0.08 ); --_active-icon-color: var( --md-secondary-tab-active-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-indicator-shape: var( --md-secondary-tab-active-indicator-shape, 0 ); --_active-pressed-icon-color: var( --md-secondary-tab-active-pressed-icon-color, ); --_active-pressed-label-text-color: var( --md-secondary-tab-active-pressed-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-pressed-state-layer-color: var( --md-secondary-tab-active-pressed-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_active-pressed-state-layer-opacity: var( --md-secondary-tab-active-pressed-state-layer-opacity, 0.12 ); --_label-text-color: var( --md-secondary-tab-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-icon-color: var( --md-secondary-tab-focus-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-icon-color: var( --md-secondary-tab-hover-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_icon-size: var(--md-secondary-tab-icon-size, 24px); --_icon-color: var( --md-secondary-tab-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_pressed-icon-color: var( --md-secondary-tab-pressed-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_container-shape-start-start: var( --md-secondary-tab-container-shape-start-start, var( --md-secondary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-start-end: var( --md-secondary-tab-container-shape-start-end, var( --md-secondary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-end: var( --md-secondary-tab-container-shape-end-end, var( --md-secondary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-start: var( --md-secondary-tab-container-shape-end-start, var( --md-secondary-tab-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "tabs/internal/secondary-tab-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "tabs/internal/tab-styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { display: inline-flex; align-items: center; justify-content: center; outline: none; padding: 0 16px; position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); vertical-align: middle; user-select: none; font-family: var(--_label-text-font); font-size: var(--_label-text-size); line-height: var(--_label-text-line-height); font-weight: var(--_label-text-weight); color: var(--_label-text-color); z-index: 0; --md-ripple-hover-color: var(--_hover-state-layer-color); --md-ripple-hover-opacity: var(--_hover-state-layer-opacity); --md-ripple-pressed-color: var(--_pressed-state-layer-color); --md-ripple-pressed-opacity: var(--_pressed-state-layer-opacity); --md-elevation-level: var(--_container-elevation); } oscd-focus-ring { --md-focus-ring-shape: 8px; } :host([active]) oscd-focus-ring { margin-bottom: calc(var(--_active-indicator-height) + 1px); } .button::before { background: var(--_container-color); content: ''; inset: 0; position: absolute; z-index: -1; } .button::before, oscd-ripple, oscd-elevation { border-start-start-radius: var(--_container-shape-start-start); border-start-end-radius: var(--_container-shape-start-end); border-end-end-radius: var(--_container-shape-end-end); border-end-start-radius: var(--_container-shape-end-start); } .content { position: relative; box-sizing: border-box; display: inline-flex; flex-direction: row; align-items: center; justify-content: center; height: var(--_container-height); gap: 8px; } .indicator { position: absolute; box-sizing: border-box; z-index: -1; transform-origin: bottom left; background: var(--_active-indicator-color); border-radius: var(--_active-indicator-shape); height: var(--_active-indicator-height); inset: auto 0 0 0; opacity: 0; } ::slotted([slot='icon']) { display: inline-flex; position: relative; writing-mode: horizontal-tb; fill: currentColor; color: var(--_icon-color); font-size: var(--_icon-size); width: var(--_icon-size); height: var(--_icon-size); } :host(:hover) { color: var(--_hover-label-text-color); cursor: pointer; } :host(:hover) ::slotted([slot='icon']) { color: var(--_hover-icon-color); } :host(:focus) { color: var(--_focus-label-text-color); } :host(:focus) ::slotted([slot='icon']) { color: var(--_focus-icon-color); } :host(:active) { color: var(--_pressed-label-text-color); } :host(:active) ::slotted([slot='icon']) { color: var(--_pressed-icon-color); } :host([active]) .indicator { opacity: 1; } :host([active]) { color: var(--_active-label-text-color); --md-ripple-hover-color: var(--_active-hover-state-layer-color); --md-ripple-hover-opacity: var(--_active-hover-state-layer-opacity); --md-ripple-pressed-color: var(--_active-pressed-state-layer-color); --md-ripple-pressed-opacity: var(--_active-pressed-state-layer-opacity); } :host([active]) ::slotted([slot='icon']) { color: var(--_active-icon-color); } :host([active]:hover) { color: var(--_active-hover-label-text-color); } :host([active]:hover) ::slotted([slot='icon']) { color: var(--_active-hover-icon-color); } :host([active]:focus) { color: var(--_active-focus-label-text-color); } :host([active]:focus) ::slotted([slot='icon']) { color: var(--_active-focus-icon-color); } :host([active]:active) { color: var(--_active-pressed-label-text-color); } :host([active]:active) ::slotted([slot='icon']) { color: var(--_active-pressed-icon-color); } :host, ::slotted(*) { white-space: nowrap; } @media (forced-colors: active) { .indicator { background: CanvasText; } } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "tabs/internal/tab-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "tabs/internal/tabs-styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { box-sizing: border-box; display: flex; flex-direction: column; overflow: auto; scroll-behavior: smooth; scrollbar-width: none; position: relative; } :host([hidden]) { display: none; } :host::-webkit-scrollbar { display: none; } .tabs { align-items: end; display: flex; height: 100%; overflow: inherit; scroll-behavior: inherit; scrollbar-width: inherit; justify-content: space-between; width: 100%; } ::slotted(*) { flex: 1; } ::slotted([active]) { z-index: 1; } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "tabs/internal/tabs-styles.ts"
           }
         }
       ]

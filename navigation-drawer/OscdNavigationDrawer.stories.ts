@@ -13,7 +13,7 @@ import { action } from 'storybook/actions';
 import { OscdNavigationDrawerHeader } from './OscdNavigationDrawerHeader.js';
 
 const meta: Meta<OscdNavigationDrawer & { label: string }> = {
-  title: 'Library/Navigation Drawer/Navigation Drawer',
+  title: 'Navigation Drawer/Navigation Drawer',
   component: 'oscd-navigation-drawer',
   tags: ['autodocs'],
   decorators: [scopedWcDecorator],

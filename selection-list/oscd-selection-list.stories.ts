@@ -15,7 +15,7 @@ const { args, argTypes, meta, template } = getStorybookMeta<OscdSelectionList>({
 });
 
 export default {
-  title: 'Filtering / Selection List',
+  title: 'Lists/Selection List',
   tags: ['autodocs'],
   ...meta,
   render: (argz: typeof args & { itemCount?: number }) => {

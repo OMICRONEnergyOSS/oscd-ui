@@ -21,7 +21,7 @@ const { args, argTypes, template } = getStorybookHelpers('oscd-app-bar', {
 });
 
 const meta: Meta<OscdAppBar & typeof args> = {
-  title: 'Library/App Bar',
+  title: 'App Bar/App Bar',
   component: 'oscd-app-bar',
   tags: ['autodocs'],
   decorators: [scopedWcDecorator, storybookHelperDecorator],
