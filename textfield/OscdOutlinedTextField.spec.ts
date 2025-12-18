@@ -26,9 +26,8 @@ describe('OscdOutlinedTextField side-effect free', () => {
 
   it('should not call customElements.define as a side effect during import/instantiation', async () => {
     // Dynamically import the component
-    const { OscdOutlinedTextField } = await import(
-      './OscdOutlinedTextField.js'
-    );
+    const { OscdOutlinedTextField } =
+      await import('./OscdOutlinedTextField.js');
 
     // Instantiate the component
     const oscdOutlinedTextField = await fixture(
