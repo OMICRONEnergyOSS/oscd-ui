@@ -2,7 +2,7 @@ import { css, html, LitElement, nothing, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
-import { OscdIcon } from '@/icon/OscdIcon.js';
+import { OscdIcon } from '../icon/OscdIcon.js';
 
 /**
  * @tag oscd-action-icon
