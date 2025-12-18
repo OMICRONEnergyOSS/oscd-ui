@@ -161,7 +161,9 @@
     "./textfield/OscdFilledTextField.js": "./dist/textfield/OscdFilledTextField.js",
     "./textfield/OscdOutlinedTextField.js": "./dist/textfield/OscdOutlinedTextField.js",
     "./textfield/oscd-filled-text-field.js": "./dist/textfield/oscd-filled-text-field.js",
-    "./textfield/oscd-outlined-text-field.js": "./dist/textfield/oscd-outlined-text-field.js"
+    "./textfield/oscd-outlined-text-field.js": "./dist/textfield/oscd-outlined-text-field.js",
+    "./tree-grid/OscdTreeGrid.js": "./dist/tree-grid/OscdTreeGrid.js",
+    "./tree-grid/oscd-tree-grid.js": "./dist/tree-grid/oscd-tree-grid.js"
   },
   "dependencies": {
     "@omicronenergy/oscd-material-web-base": "^2.4.0",
