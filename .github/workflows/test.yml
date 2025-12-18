@@ -1,19 +1,16 @@
-name: Test
-on: [push, pull_request, workflow_dispatch]
-
-permissions:
-  contents: read
+name: Unit Tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - uses: ./.github/actions/setup-node-env
-
-      - name: Build
-        run: npm run-script build
-      - name: Run unit tests
-        run: npm run-script test:unit
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/workflows/unit-tests.yml@main
+    # if the plugin has VRT's, then use this workflow instead:
+    # uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/workflows/unit-and-vrt-tests.yml@main
