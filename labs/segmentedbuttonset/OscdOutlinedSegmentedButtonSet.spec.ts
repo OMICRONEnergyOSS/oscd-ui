@@ -26,9 +26,8 @@ describe('OscdOutlinedSegmentedButtonSet side-effect free', () => {
 
   it('should not call customElements.define as a side effect during import/instantiation', async () => {
     // Dynamically import the component
-    const { OscdOutlinedSegmentedButtonSet } = await import(
-      './OscdOutlinedSegmentedButtonSet.js'
-    );
+    const { OscdOutlinedSegmentedButtonSet } =
+      await import('./OscdOutlinedSegmentedButtonSet.js');
 
     // Instantiate the component
     const oscdOutlinedSegmentedButtonSet = await fixture(

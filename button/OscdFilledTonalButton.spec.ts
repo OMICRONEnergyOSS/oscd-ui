@@ -26,9 +26,8 @@ describe('OscdFilledTonalButton side-effect free', () => {
 
   it('should not call customElements.define as a side effect during import/instantiation', async () => {
     // Dynamically import the component
-    const { OscdFilledTonalButton } = await import(
-      './OscdFilledTonalButton.js'
-    );
+    const { OscdFilledTonalButton } =
+      await import('./OscdFilledTonalButton.js');
 
     // Instantiate the component
     const oscdFilledTonalButton = await fixture(
