@@ -12,9 +12,11 @@ import { storybookOverrides } from './story-overrides/story-overrides.js';
 export function getStorybookMeta<T extends { [key: string]: any }>({
   tagName,
   defaultArgs = {},
+  options = {},
 }: {
   tagName: string;
   defaultArgs?: Partial<T>;
+  options?: { omitTextContent?: boolean };
 }) {
   const { template, events, ...rest } = getStorybookHelpers<T>(tagName);
   const overrides = storybookOverrides[tagName] || {};
@@ -39,14 +41,17 @@ export function getStorybookMeta<T extends { [key: string]: any }>({
       layout: 'centered',
     },
     argTypes: {
-      textContent: {
-        name: 'Text Content',
-        control: { type: 'text' },
-        description: 'Text content of Component',
-      },
+      ...(!options.omitTextContent
+        ? {
+            textContent: {
+              name: 'Text Content',
+              control: { type: 'text' },
+              description: 'Text content of Component',
+            },
+          }
+        : {}),
       ...argTypes,
     } as Meta<T>['argTypes'],
-    args,
 
     render: argz =>
       template(
