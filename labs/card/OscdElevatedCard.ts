@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MdElevation } from '@omicronenergy/oscd-material-web-base/elevation/MdElevation.js';
+import { OscdElevation } from '../../elevation/OscdElevation.js';
 
 import { CSSResultOrNative } from 'lit';
 
@@ -31,7 +31,7 @@ declare global {
  */
 export class OscdElevatedCard extends ScopedElementsMixin(Card) {
   static scopedElements = {
-    'md-elevation': MdElevation,
+    'md-elevation': OscdElevation,
   };
   static override styles: CSSResultOrNative[] = [sharedStyles, elevatedStyles];
 }

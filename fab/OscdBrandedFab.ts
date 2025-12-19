@@ -9,9 +9,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
-import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
-import { MdElevation } from '@omicronenergy/oscd-material-web-base/elevation/MdElevation.js';
+import { OscdRipple } from '../ripple/OscdRipple.js';
+import { OscdFocusRing } from '../focus/OscdFocusRing.js';
+import { OscdElevation } from '../elevation/OscdElevation.js';
 
 import { CSSResultOrNative } from 'lit';
 
@@ -62,9 +62,9 @@ declare global {
  */
 export class OscdBrandedFab extends ScopedElementsMixin(Fab) {
   static scopedElements = {
-    'md-ripple': MdRipple,
-    'md-focus-ring': MdFocusRing,
-    'md-elevation': MdElevation,
+    'md-ripple': OscdRipple,
+    'md-focus-ring': OscdFocusRing,
+    'md-elevation': OscdElevation,
   };
   /**
    * Branded FABs have no variants

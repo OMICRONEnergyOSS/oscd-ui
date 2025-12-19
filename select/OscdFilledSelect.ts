@@ -9,9 +9,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MdMenu } from '@omicronenergy/oscd-material-web-base/menu/MdMenu.js';
-import { MdFilledField } from '@omicronenergy/oscd-material-web-base/field/MdFilledField.js';
-
 import { CSSResultOrNative } from 'lit';
 
 import { FilledSelect } from '@omicronenergy/oscd-material-web-base/select/internal/filled-select.js';
@@ -19,6 +16,9 @@ import { styles } from '@omicronenergy/oscd-material-web-base/select/internal/fi
 import { styles as sharedStyles } from '@omicronenergy/oscd-material-web-base/select/internal/shared-styles.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+import { OscdElevation } from '../elevation/OscdElevation.js';
+import { OscdFilledField } from '../field/OscdFilledField.js';
+import { OscdMenu } from '../menu/OscdMenu.js';
 declare global {
   interface HTMLElementTagNameMap {
     'oscd-filled-select': OscdFilledSelect;
@@ -60,8 +60,9 @@ export class OscdFilledSelect extends ScopedElementsMixin(
   InternalFilledSelect,
 ) {
   static scopedElements = {
-    'md-menu': MdMenu,
-    'md-filled-field': MdFilledField,
+    'md-menu': OscdMenu,
+    'md-elevation': OscdElevation,
+    'md-filled-field': OscdFilledField,
   };
   static override styles: CSSResultOrNative[] = [sharedStyles, styles];
 }

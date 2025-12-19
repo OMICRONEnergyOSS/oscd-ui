@@ -9,9 +9,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
-import { MdItem } from '@omicronenergy/oscd-material-web-base/labs/item/MdItem.js';
-import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+import { OscdRipple } from '../ripple/OscdRipple.js';
+import { OscdItem } from '../labs/item/OscdItem.js';
+import { OscdFocusRing } from '../focus/OscdFocusRing.js';
 
 import { CSSResultOrNative } from 'lit';
 
@@ -67,9 +67,9 @@ declare global {
  */
 export class OscdListItem extends ScopedElementsMixin(ListItem) {
   static scopedElements = {
-    'md-ripple': MdRipple,
-    'md-item': MdItem,
-    'md-focus-ring': MdFocusRing,
+    'md-ripple': OscdRipple,
+    'md-item': OscdItem,
+    'md-focus-ring': OscdFocusRing,
   };
   static override styles: CSSResultOrNative[] = [styles];
 }

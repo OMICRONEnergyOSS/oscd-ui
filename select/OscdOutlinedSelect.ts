@@ -9,8 +9,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MdMenu } from '@omicronenergy/oscd-material-web-base/menu/MdMenu.js';
-import { MdOutlinedField } from '@omicronenergy/oscd-material-web-base/field/MdOutlinedField.js';
+import { OscdOutlinedField } from '../field/OscdOutlinedField.js';
+import { OscdMenu } from '../menu/OscdMenu.js';
 
 import { CSSResultOrNative } from 'lit';
 
@@ -60,8 +60,8 @@ export class OscdOutlinedSelect extends ScopedElementsMixin(
   InternalOutlinedSelect,
 ) {
   static scopedElements = {
-    'md-menu': MdMenu,
-    'md-outlined-field': MdOutlinedField,
+    'md-menu': OscdMenu,
+    'md-outlined-field': OscdOutlinedField,
   };
   static override styles: CSSResultOrNative[] = [sharedStyles, styles];
 }
