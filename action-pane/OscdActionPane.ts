@@ -200,6 +200,7 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
 
     nav {
       float: right;
+      margin-right: 4px;
     }
 
     oscd-icon,
