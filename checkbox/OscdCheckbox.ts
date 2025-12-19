@@ -9,8 +9,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MdRipple } from '@omicronenergy/oscd-material-web-base/ripple/MdRipple.js';
-import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
+import { OscdFocusRing } from '../focus/OscdFocusRing.js';
+import { OscdRipple } from '../ripple/OscdRipple.js';
 
 import { CSSResultOrNative } from 'lit';
 
@@ -39,8 +39,8 @@ declare global {
  */
 export class OscdCheckbox extends ScopedElementsMixin(Checkbox) {
   static scopedElements = {
-    'md-ripple': MdRipple,
-    'md-focus-ring': MdFocusRing,
+    'md-ripple': OscdRipple,
+    'md-focus-ring': OscdFocusRing,
   };
   static override styles: CSSResultOrNative[] = [styles];
 }

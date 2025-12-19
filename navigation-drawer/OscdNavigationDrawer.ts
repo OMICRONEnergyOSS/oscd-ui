@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MdElevation } from '@omicronenergy/oscd-material-web-base/elevation/MdElevation.js';
+import { OscdElevation } from '../elevation/OscdElevation.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 
 import { css, CSSResult, CSSResultOrNative } from 'lit';
@@ -43,7 +43,7 @@ export class OscdNavigationDrawer extends ScopedElementsMixin(
   NavigationDrawerModal,
 ) {
   static scopedElements = {
-    'md-elevation': MdElevation,
+    'md-elevation': OscdElevation,
   };
 
   static override readonly styles: CSSResultOrNative[] = [

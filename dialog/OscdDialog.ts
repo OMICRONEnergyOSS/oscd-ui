@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MdDivider } from '@omicronenergy/oscd-material-web-base/divider/MdDivider.js';
+import { OscdDivider } from '../divider/OscdDivider.js';
 
 import { CSSResultOrNative } from 'lit';
 
@@ -52,7 +52,7 @@ declare global {
  */
 export class OscdDialog extends ScopedElementsMixin(Dialog) {
   static scopedElements = {
-    'md-divider': MdDivider,
+    'md-divider': OscdDivider,
   };
   static override styles: CSSResultOrNative[] = [styles];
 }

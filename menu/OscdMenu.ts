@@ -9,8 +9,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MdFocusRing } from '@omicronenergy/oscd-material-web-base/focus/MdFocusRing.js';
-import { MdElevation } from '@omicronenergy/oscd-material-web-base/elevation/MdElevation.js';
+import { OscdFocusRing } from '../focus/OscdFocusRing.js';
+import { OscdElevation } from '../elevation/OscdElevation.js';
 
 import { CSSResultOrNative } from 'lit';
 
@@ -89,8 +89,8 @@ declare global {
  */
 export class OscdMenu extends ScopedElementsMixin(InternalMenu) {
   static scopedElements = {
-    'md-focus-ring': MdFocusRing,
-    'md-elevation': MdElevation,
+    'md-focus-ring': OscdFocusRing,
+    'md-elevation': OscdElevation,
   };
   static override styles: CSSResultOrNative[] = [styles];
 }
