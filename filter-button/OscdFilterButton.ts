@@ -5,11 +5,11 @@ import { OscdDialog } from '../dialog/OscdDialog.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 import { Dialog } from '@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js';
 import { property, query, queryAssignedNodes } from 'lit/decorators.js';
-import { OscdOutlinedIconButton } from '../iconbutton/OscdOutlinedIconButton.js';
 import { OscdFilledButton } from '../button/OscdFilledButton.js';
 import { OscdIcon } from '../icon/OscdIcon.js';
 import { OscdOutlinedButton } from '../button/OscdOutlinedButton.js';
 import { OscdSclIcon } from '../scl-icon/OscdSclIcon.js';
+import { OscdIconButton } from '../iconbutton/OscdIconButton.js';
 
 /**
  * @tag oscd-filter-button
@@ -20,7 +20,7 @@ export class OscdFilterButton extends ScopedElementsMixin(OscdSelectionList) {
   static override scopedElements = {
     ...super.scopedElements,
     'oscd-dialog': OscdDialog,
-    'oscd-outlined-icon-button': OscdOutlinedIconButton,
+    'oscd-icon-button': OscdIconButton,
     'oscd-icon': OscdIcon,
     'oscd-scl-icon': OscdSclIcon,
     'oscd-outlined-button': OscdOutlinedButton,
@@ -55,7 +55,7 @@ export class OscdFilterButton extends ScopedElementsMixin(OscdSelectionList) {
 
   override render() {
     return html`
-      <oscd-outlined-icon-button
+      <oscd-icon-button
         @click="${this.toggleList}"
         ?disabled="${this.disabled}"
       >
@@ -67,7 +67,7 @@ export class OscdFilterButton extends ScopedElementsMixin(OscdSelectionList) {
         ${!this._iconSlot || this._iconSlot.length === 0
           ? html`<oscd-icon class="default-icon">filter_list</oscd-icon>`
           : nothing}
-      </oscd-outlined-icon-button>
+      </oscd-icon-button>
       <oscd-dialog @close="${() => this.onClose()}">
         <div slot="headline">${this.header}</div>
         <form slot="content" id="form-id" method="dialog">
@@ -92,7 +92,7 @@ export class OscdFilterButton extends ScopedElementsMixin(OscdSelectionList) {
     }
 
     oscd-dialog {
-      --mdc-dialog-max-height: calc(100vh - 150px);
+      max-height: calc(100vh - 150px);
     }
   `;
 }
