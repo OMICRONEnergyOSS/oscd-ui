@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.0.10](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.9...oscd-ui-v0.0.10) (2026-01-09)
+
+
+### Features
+
+* add action tree ([e6bca07](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/e6bca07d433db4da13764cea11372453d484e4b3))
+* add action-pane component ([da604e9](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/da604e9b1f00dd85ea7747aeeac5fe45017b08f5))
+* add oscd-action-icon component ([8f0a372](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/8f0a372d34dadbddb90657bff61bbb39ff258bc9))
+* add oscd-action-list ([0a06f53](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/0a06f533b6c3567510f0c5b1f57265cb08a3da74))
+* add oscd-filter-button ([dcee01b](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/dcee01bd2e1acb735ee01293f8b8bfdea1b79fa1))
+* add oscd-scl-icon to display SCL Icons ([d15574d](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/d15574dda29f68851e4e21036f0212fcd386f916))
+* add oscd-tree-grid component ([10ed615](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/10ed615abbb027a5e1a48b3bec777dc2c2b902f2))
+* added oscd-selection-list ([b6ff60e](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/b6ff60e5330092e87f34b27462c2bfb77a489339))
+
+
+### Bug Fixes
+
+* action-pane header buttons should not touch right edge ([03ad8a9](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/03ad8a96c58ef21436053c66c77e167a68014ad2))
+* cem analyser should include all inheritted attrs and props ([3c35c2b](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/3c35c2bda8c7fb564dc871105e117475fb57acca))
+* correct icon rendering for FilterButton ([f25437f](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/f25437f50911fc881bca1b8a931b52c3676c5a9d))
+* correct path on OscdIcon import ([71f31d0](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/71f31d0be72d877279d8fccf774a5c9d39b12c38))
+* filter-button should be a standard icon button (not outlined) ([5de6f35](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/5de6f35c66f76f80dce07471db45a34d98cfa2b8))
+* get build:scripts working again ([a9b76b2](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/a9b76b29319fb245e4ca6b31a90ce043e25e3601))
+* static scopedElements definition should reference scoped components ([710c315](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/710c315e2dd6162e16a0487b48ecbb62a69197d6))
+
 ## [0.0.9](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.8...oscd-ui-v0.0.9) (2025-10-08)
 
 
