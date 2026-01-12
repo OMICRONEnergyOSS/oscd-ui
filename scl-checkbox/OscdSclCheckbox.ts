@@ -2,8 +2,8 @@ import { css, html, LitElement, TemplateResult } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
-import { OscdCheckbox } from '../checkbox/oscd-checkbox.js';
-import { OscdSwitch } from '../switch/oscd-switch.js';
+import { OscdCheckbox } from '../checkbox/OscdCheckbox.js';
+import { OscdSwitch } from '../switch/OscdSwitch.js';
 
 /**
  * @tag oscd-scl-checkbox
@@ -83,6 +83,9 @@ export class OscdSclCheckbox extends ScopedElementsMixin(LitElement) {
     }
   }
 
+  /**
+   * @ignore cem-analyzer should ignore this.
+   */
   @query('.nullswitch.element') nullSwitch?: OscdSwitch;
 
   // TODO (jakob-vogelsang): only make sense with the introduction of fixed value
@@ -119,7 +122,7 @@ export class OscdSclCheckbox extends ScopedElementsMixin(LitElement) {
     return html``;
   }
 
-  override render(): TemplateResult {
+  override render() {
     return html`
       <div style="display: flex; flex-direction: row;">
         <div class="input container">
