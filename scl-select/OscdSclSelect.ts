@@ -2,13 +2,16 @@ import { css, html, LitElement, TemplateResult } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+import { Switch } from '@omicronenergy/oscd-material-web-base/switch/internal/switch.js';
+import { Select } from '@omicronenergy/oscd-material-web-base/select/internal/select.js';
 import { OscdFilledSelect } from '../select/OscdFilledSelect.js';
 import { OscdSelectOption } from '../select/OscdSelectOption.js';
 import { OscdSwitch } from '../switch/OscdSwitch.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 /**
  * @tag oscd-scl-select
- * Select designed to be used for SCL element */
+ * TextField designed to be used for SCL element */
 export class OscdSclSelect extends ScopedElementsMixin(LitElement) {
   static scopedElements = {
     'oscd-switch': OscdSwitch,
@@ -54,6 +57,12 @@ export class OscdSclSelect extends ScopedElementsMixin(LitElement) {
   @property({ type: String })
   supportingText: string = '';
 
+  @property({ type: Boolean })
+  error: boolean = false;
+
+  @property({ type: String })
+  errorText?: string;
+
   @state()
   private isNull = false;
 
@@ -77,9 +86,15 @@ export class OscdSclSelect extends ScopedElementsMixin(LitElement) {
     }
   }
 
-  @query('.nullswitch.element') nullSwitch?: OscdSwitch;
+  /**
+   * @ignore cem-analyzer should ignore this.
+   */
+  @query('.nullswitch.element') nullSwitch?: Switch;
 
-  @query('.input.element') private selectInput?: OscdFilledSelect;
+  /**
+   * @ignore cem-analyzer should ignore this.
+   */
+  @query('.input.element') private selectInput?: Select;
 
   reportValidity(): boolean {
     return this.selectInput!.reportValidity();
@@ -106,7 +121,7 @@ export class OscdSclSelect extends ScopedElementsMixin(LitElement) {
           evt.stopPropagation();
         }}"
         @change="${async (evt: Event) => {
-          this.null = !(evt.target as OscdSwitch).selected;
+          this.null = !(evt.target as Switch).selected;
           await this.updateComplete;
           this.dispatchEvent(new Event('input'));
         }}"
@@ -125,18 +140,20 @@ export class OscdSclSelect extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-      <div class="main">
+      <div style="display: flex; flex-direction: row;">
         <div class="input container">
           <oscd-filled-select
             class="input element"
             @input="${(evt: InputEvent) => {
-              this.selectValue = (evt.target as OscdFilledSelect).value;
+              this.selectValue = (evt.target as Select).value;
             }}"
             value="${this.selectValue}"
             ?disabled=${this.disabled || this.isNull}
             label="${this.label}"
             ?required=${this.required}
             supporting-text="${this.supportingText}"
+            ?error=${this.error}
+            error-text="${ifDefined(this.errorText)}"
             >${this.selectOptions.map(selectOption =>
               this.renderSelectOption(selectOption),
             )}</oscd-filled-select
@@ -148,11 +165,6 @@ export class OscdSclSelect extends ScopedElementsMixin(LitElement) {
   }
 
   static override styles = css`
-    .main {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
     .nullswitch.element {
       margin-left: 12px;
     }
