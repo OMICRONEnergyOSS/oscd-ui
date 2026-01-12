@@ -11,7 +11,7 @@ setStorybookHelpersConfig({
   /** sets the custom type reference in the Custom Elements Manifest */
   typeRef: 'expandedType',
   /** Adds a <script> tag where a `component` variable will reference the story's component */
-  setComponentVariable: true,
+  setComponentVariable: false,
   /** renders default values for attributes and CSS properties */
   renderDefaultValues: false,
 });
