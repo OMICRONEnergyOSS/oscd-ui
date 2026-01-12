@@ -3,13 +3,14 @@ import { css, html, LitElement, TemplateResult } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
-import { OscdSwitch } from '../switch/oscd-switch.js';
 import { OscdIcon } from '../icon/OscdIcon.js';
 import { OscdIconButton } from '../iconbutton/OscdIconButton.js';
 import { OscdMenu, CloseMenuEvent } from '../menu/OscdMenu.js';
 import { OscdMenuItem } from '../menu/OscdMenuItem.js';
+import { OscdSwitch } from '../switch/OscdSwitch.js';
 import { OscdFilledTextField } from '../textfield/OscdFilledTextField.js';
 import { TextField } from '@omicronenergy/oscd-material-web-base/textfield/internal/text-field.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 /**
  * @tag oscd-scl-text-field
@@ -57,7 +58,13 @@ export class OscdSclTextField extends ScopedElementsMixin(LitElement) {
   required: boolean = false;
 
   @property({ type: String })
-  supportingText: string = '';
+  supportingText?: string;
+
+  @property({ type: Boolean })
+  error: boolean = false;
+
+  @property({ type: String })
+  errorText?: string;
 
   /** The inputs suffix text so long there is no [[`unit`]] defined */
   @property({ type: String })
@@ -117,6 +124,8 @@ export class OscdSclTextField extends ScopedElementsMixin(LitElement) {
   @state()
   private isNull = false;
 
+  // private parkedValue: string | null = null;
+
   @state()
   private get null(): boolean {
     return this.nullable && this.isNull;
@@ -131,10 +140,19 @@ export class OscdSclTextField extends ScopedElementsMixin(LitElement) {
     // else this.returnParkedValue();
   }
 
+  /**
+   * @ignore cem-analyzer should ignore this.
+   */
   @query('.nullswitch.element') nullSwitch?: OscdSwitch;
 
+  /**
+   * @ignore cem-analyzer should ignore this.
+   */
   @query('.multipliers') private multiplierMenu?: OscdMenu;
 
+  /**
+   * @ignore cem-analyzer should ignore this.
+   */
   @query('.input.element') private textField?: TextField;
 
   reportValidity(): boolean {
@@ -153,9 +171,24 @@ export class OscdSclTextField extends ScopedElementsMixin(LitElement) {
     return this.textField!.reset();
   }
 
+  // private returnParkedValue(): void {
+  //   if (this.parkedValue === null) {
+  //     return;
+  //   }
+  //   this.textFieldValue = this.parkedValue;
+  //   this.parkedValue = null;
+  // }
+
+  // private parkValue(): void {
+  //   if (this.parkedValue !== null) {
+  //     return;
+  //   }
+  //   this.parkedValue = this.textFieldValue;
+  // }
+
   private selectMultiplier(se: CloseMenuEvent): void {
-    let selection: string | null | undefined =
-      se.detail.initiator.querySelector(':scope > div')?.textContent;
+    let selection: string | null =
+      se.detail.initiator.querySelector(':scope > div')?.textContent ?? null;
 
     if (selection === 'No multiplier') {
       selection = null;
@@ -221,7 +254,7 @@ export class OscdSclTextField extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-      <div class="main">
+      <div style="display: flex; flex-direction: row;">
         <div class="input container">
           <oscd-filled-text-field
             class="input element"
@@ -230,16 +263,18 @@ export class OscdSclTextField extends ScopedElementsMixin(LitElement) {
             }}"
             value="${this.textFieldValue}"
             ?disabled=${this.disabled || this.isNull}
-            label="${this.label}"
+            label=${ifDefined(this.label)}
             ?required=${this.required}
-            supporting-text="${this.supportingText}"
-            pattern="${this.pattern}"
-            placeholder="${this.placeholder}"
-            max="${this.max}"
-            min="${this.min}"
-            type="${this.type}"
-            .maxLength=${this.maxLength}
-            .minLength=${this.minLength}
+            supporting-text=${ifDefined(this.supportingText)}
+            ?error=${this.error}
+            error-text=${ifDefined(this.errorText)}
+            .pattern=${this.pattern}
+            placeholder=${ifDefined(this.placeholder)}
+            max=${ifDefined(this.max)}
+            min=${ifDefined(this.min)}
+            type=${ifDefined(this.type)}
+            maxLength=${ifDefined(this.maxLength)}
+            minLength=${ifDefined(this.minLength)}
             suffix-text="${this.suffixText || this.unit}"
           ></oscd-filled-text-field>
         </div>
@@ -250,12 +285,6 @@ export class OscdSclTextField extends ScopedElementsMixin(LitElement) {
   }
 
   static override styles = css`
-    .main {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-
     .units.container {
       position: relative;
     }
@@ -279,7 +308,7 @@ export class OscdSclTextField extends ScopedElementsMixin(LitElement) {
     }
 
     oscd-icon-button {
-      --oscd-icon-button-icon-size: 48px;
+      --md-icon-button-icon-size: 48px;
     }
   `;
 }

@@ -3619,6 +3619,780 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dialog/OscdDialog.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time.",
+          "name": "OscdDialog",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-divider': OscdDivider, }"
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
+              "attribute": "open",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "quick",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Skips the opening and closing animations.",
+              "attribute": "quick",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "returnValue",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Gets or sets the dialog's return value, usually to indicate which button\na user pressed to close it.\n\nhttps://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/returnValue",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'alert' | undefined"
+              },
+              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
+              "attribute": "type",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "noFocusTrap",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables focus trapping, which by default keeps keyboard Tab navigation\nwithin the dialog.\n\nWhen disabled, after focusing the last element of a dialog, pressing Tab\nagain will release focus from the window back to the browser (such as the\nURL bar).\n\nFocus trapping is recommended for accessibility, and should not typically\nbe disabled. Only turn this off if the use case of a dialog is more\naccessible without focus trapping.",
+              "attribute": "no-focus-trap",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "getOpenAnimation",
+              "description": "Gets the opening animation for a dialog. Set to a new function to customize\nthe animation.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "getCloseAnimation",
+              "description": "Gets the closing animation for a dialog. Set to a new function to customize\nthe animation.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isOpen",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isOpening",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isConnectedPromiseResolve",
+              "type": {
+                "text": "() => void"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isConnectedPromise",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "dialog",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "scrim",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "container",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "headline",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "content",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "actions",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isAtScrollTop",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isAtScrollBottom",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "scroller",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "topAnchor",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "bottomAnchor",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "firstFocusTrap",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "nextClickIsFromContent",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "intersectionObserver",
+              "type": {
+                "text": "IntersectionObserver | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasHeadline",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasActions",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasIcon",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "cancelAnimations",
+              "type": {
+                "text": "AbortController | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "escapePressedWithoutCancel",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "treewalker",
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Opens the dialog and fires a cancelable `open` event. After a dialog's\nanimation, an `opened` event is fired.\n\nAdd an `autofocus` attribute to a child of the dialog that should\nreceive focus after opening.",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "close",
+              "parameters": [
+                {
+                  "name": "returnValue",
+                  "default": "this.returnValue",
+                  "description": "A return value usually indicating which button was used\nto close a dialog. If a dialog is canceled by clicking the scrim or\npressing Escape, it will not change the return value after closing."
+                }
+              ],
+              "description": "Closes the dialog and fires a cancelable `close` event. After a dialog's\nanimation, a `closed` event is fired.",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleDialogClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleContentClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleSubmit",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SubmitEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleCancel",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClose",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleKeydown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "animateDialog",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "animation",
+                  "type": {
+                    "text": "DialogAnimation"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleHeadlineChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleActionsChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleIconChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleAnchorIntersection",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "entry",
+                  "type": {
+                    "text": "IntersectionObserverEntry"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getIsConnectedPromise",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleFocusTrapFocus",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "FocusEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getFirstAndLastFocusableChildren",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "| [HTMLElement, HTMLElement]\n    | [null, null]"
+                }
+              },
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Dialog",
+            "package": "@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js"
+          },
+          "tagName": "oscd-dialog",
+          "customElement": true,
+          "summary": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time.",
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
+              "fieldName": "open",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "quick",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Skips the opening and closing animations.",
+              "fieldName": "quick",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "'alert' | undefined"
+              },
+              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
+              "fieldName": "type",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "no-focus-trap",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables focus trapping, which by default keeps keyboard Tab navigation\nwithin the dialog.\n\nWhen disabled, after focusing the last element of a dialog, pressing Tab\nagain will release focus from the window back to the browser (such as the\nURL bar).\n\nFocus trapping is recommended for accessibility, and should not typically\nbe disabled. Only turn this off if the use case of a dialog is more\naccessible without focus trapping.",
+              "fieldName": "noFocusTrap",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "open",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog is opening before any animations.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "opened",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog has opened after any animations.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "close",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog is closing before any animations.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "closed",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog has closed after any animations.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "cancel",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog has been canceled by clicking on the scrim or pressing Escape.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            }
+          ],
+          "modulePath": "dialog/OscdDialog.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdDialog",
+          "declaration": {
+            "name": "OscdDialog",
+            "module": "dialog/OscdDialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "chips/OscdAssistChip.ts",
       "declarations": [
         {
@@ -5816,774 +6590,29 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dialog/OscdDialog.ts",
+      "path": "elevation/OscdElevation.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time.",
-          "name": "OscdDialog",
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ 'md-divider': OscdDivider, }"
-            },
-            {
-              "kind": "field",
-              "name": "open",
-              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
-              "attribute": "open",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "quick",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Skips the opening and closing animations.",
-              "attribute": "quick",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "returnValue",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Gets or sets the dialog's return value, usually to indicate which button\na user pressed to close it.\n\nhttps://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/returnValue",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'alert' | undefined"
-              },
-              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
-              "attribute": "type",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "noFocusTrap",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables focus trapping, which by default keeps keyboard Tab navigation\nwithin the dialog.\n\nWhen disabled, after focusing the last element of a dialog, pressing Tab\nagain will release focus from the window back to the browser (such as the\nURL bar).\n\nFocus trapping is recommended for accessibility, and should not typically\nbe disabled. Only turn this off if the use case of a dialog is more\naccessible without focus trapping.",
-              "attribute": "no-focus-trap",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "getOpenAnimation",
-              "description": "Gets the opening animation for a dialog. Set to a new function to customize\nthe animation.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "getCloseAnimation",
-              "description": "Gets the closing animation for a dialog. Set to a new function to customize\nthe animation.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isOpen",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isOpening",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isConnectedPromiseResolve",
-              "type": {
-                "text": "() => void"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isConnectedPromise",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "dialog",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "scrim",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "container",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "headline",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "content",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "actions",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isAtScrollTop",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isAtScrollBottom",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "scroller",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "topAnchor",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "bottomAnchor",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "firstFocusTrap",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "nextClickIsFromContent",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "intersectionObserver",
-              "type": {
-                "text": "IntersectionObserver | undefined"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "hasHeadline",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "hasActions",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "hasIcon",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "cancelAnimations",
-              "type": {
-                "text": "AbortController | undefined"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "escapePressedWithoutCancel",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "treewalker",
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "show",
-              "description": "Opens the dialog and fires a cancelable `open` event. After a dialog's\nanimation, an `opened` event is fired.\n\nAdd an `autofocus` attribute to a child of the dialog that should\nreceive focus after opening.",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "close",
-              "parameters": [
-                {
-                  "name": "returnValue",
-                  "default": "this.returnValue",
-                  "description": "A return value usually indicating which button was used\nto close a dialog. If a dialog is canceled by clicking the scrim or\npressing Escape, it will not change the return value after closing."
-                }
-              ],
-              "description": "Closes the dialog and fires a cancelable `close` event. After a dialog's\nanimation, a `closed` event is fired.",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleDialogClick",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleContentClick",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleSubmit",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "SubmitEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleCancel",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClose",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleKeydown",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "animateDialog",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "animation",
-                  "type": {
-                    "text": "DialogAnimation"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleHeadlineChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleActionsChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleIconChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleAnchorIntersection",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "entry",
-                  "type": {
-                    "text": "IntersectionObserverEntry"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getIsConnectedPromise",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleFocusTrapFocus",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "FocusEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getFirstAndLastFocusableChildren",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "| [HTMLElement, HTMLElement]\n    | [null, null]"
-                }
-              },
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
+          "description": "",
+          "name": "OscdElevation",
+          "members": [],
           "superclass": {
-            "name": "Dialog",
-            "package": "@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js"
+            "name": "Elevation",
+            "package": "@omicronenergy/oscd-material-web-base/elevation/internal/elevation.js"
           },
-          "tagName": "oscd-dialog",
+          "tagName": "oscd-elevation",
           "customElement": true,
-          "summary": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time.",
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
-              "fieldName": "open",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "quick",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Skips the opening and closing animations.",
-              "fieldName": "quick",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "'alert' | undefined"
-              },
-              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
-              "fieldName": "type",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "no-focus-trap",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables focus trapping, which by default keeps keyboard Tab navigation\nwithin the dialog.\n\nWhen disabled, after focusing the last element of a dialog, pressing Tab\nagain will release focus from the window back to the browser (such as the\nURL bar).\n\nFocus trapping is recommended for accessibility, and should not typically\nbe disabled. Only turn this off if the use case of a dialog is more\naccessible without focus trapping.",
-              "fieldName": "noFocusTrap",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "open",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog is opening before any animations.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "opened",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog has opened after any animations.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "close",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog is closing before any animations.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "closed",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog has closed after any animations.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "cancel",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog has been canceled by clicking on the scrim or pressing Escape.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            }
-          ],
-          "modulePath": "dialog/OscdDialog.ts"
+          "modulePath": "elevation/OscdElevation.ts"
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "OscdDialog",
+          "name": "OscdElevation",
           "declaration": {
-            "name": "OscdDialog",
-            "module": "dialog/OscdDialog.ts"
+            "name": "OscdElevation",
+            "module": "elevation/OscdElevation.ts"
           }
         }
       ]
@@ -6711,9 +6740,131 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
-          "name": "OscdElevation",
-          "members": [],
+          "description": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small. Branded\nFABs are used to specifically call attention to branded logo icons.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
+          "name": "OscdBrandedFab",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-ripple': OscdRipple, 'md-focus-ring': OscdFocusRing, 'md-elevation': OscdElevation, }"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "FabVariant"
+              },
+              "default": "'surface'",
+              "description": "Branded FABs have no variants",
+              "attribute": "variant",
+              "inheritedFrom": {
+                "name": "Fab",
+                "module": "fab/internal/fab.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getRenderClasses",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "ShadowRootInit"
+              },
+              "static": true,
+              "default": "{ mode: 'open' as const, delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "FabSize"
+              },
+              "default": "'medium'",
+              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
+              "attribute": "size",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The text to display on the FAB.",
+              "attribute": "label",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lowered",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Lowers the FAB's elevation.",
+              "attribute": "lowered",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderTouchTarget",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLabel",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
           "superclass": {
             "name": "Elevation",
             "package": "@omicronenergy/oscd-material-web-base/elevation/internal/elevation.js"
@@ -6728,8 +6879,238 @@
           "kind": "js",
           "name": "OscdElevation",
           "declaration": {
-            "name": "OscdElevation",
-            "module": "elevation/OscdElevation.ts"
+            "name": "FabSize",
+            "package": "@omicronenergy/oscd-material-web-base/fab/internal/shared.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdBrandedFab",
+          "declaration": {
+            "name": "OscdBrandedFab",
+            "module": "fab/OscdBrandedFab.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "fab/OscdFab.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
+          "name": "OscdFab",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-ripple': OscdRipple, 'md-focus-ring': OscdFocusRing, 'md-elevation': OscdElevation, }"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "FabVariant"
+              },
+              "default": "'surface'",
+              "description": "The FAB color variant to render.",
+              "attribute": "variant",
+              "inheritedFrom": {
+                "name": "Fab",
+                "module": "fab/internal/fab.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getRenderClasses",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "ShadowRootInit"
+              },
+              "static": true,
+              "default": "{ mode: 'open' as const, delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "FabSize"
+              },
+              "default": "'medium'",
+              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
+              "attribute": "size",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The text to display on the FAB.",
+              "attribute": "label",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "lowered",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Lowers the FAB's elevation.",
+              "attribute": "lowered",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderTouchTarget",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLabel",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Fab",
+            "package": "@omicronenergy/oscd-material-web-base/fab/internal/fab.js"
+          },
+          "tagName": "oscd-fab",
+          "customElement": true,
+          "summary": "Floating action buttons (FABs) help people take primary actions.\nThey’re used to represent the most important action on a screen, such as\nCreate or Reply.\n\n__Emphasis:__ High emphasis – For the primary, most important, or most common\naction on a screen\n\n__Rationale:__ The FAB remains the default component for a screen’s primary\naction. It comes in three sizes: small FAB, FAB, and large FAB. The extended\nFAB’s wider format and text label give it more visual prominence than a  FAB.\nIt’s often used on larger screens where a FAB would seem too small.\n\n__Example usages:__\n- FAB\n- Create\n- Compose\n- Extended FAB\n- Create\n- Compose\n- New Thread\n- New File",
+          "attributes": [
+            {
+              "name": "variant",
+              "type": {
+                "text": "FabVariant"
+              },
+              "default": "'surface'",
+              "description": "The FAB color variant to render.",
+              "fieldName": "variant",
+              "inheritedFrom": {
+                "name": "Fab",
+                "module": "fab/internal/fab.ts"
+              }
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "FabSize"
+              },
+              "default": "'medium'",
+              "description": "The size of the FAB.\n\nNOTE: Branded FABs cannot be sized to `small`, and Extended FABs do not\nhave different sizes.",
+              "fieldName": "size",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The text to display on the FAB.",
+              "fieldName": "label",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            },
+            {
+              "name": "lowered",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Lowers the FAB's elevation.",
+              "fieldName": "lowered",
+              "inheritedFrom": {
+                "name": "SharedFab",
+                "module": "fab/internal/shared.ts"
+              }
+            }
+          ],
+          "modulePath": "fab/OscdFab.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FabVariant",
+          "declaration": {
+            "name": "FabVariant",
+            "package": "@omicronenergy/oscd-material-web-base/fab/internal/fab.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "FabSize",
+          "declaration": {
+            "name": "FabSize",
+            "package": "@omicronenergy/oscd-material-web-base/fab/internal/shared.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdFab",
+          "declaration": {
+            "name": "OscdFab",
+            "module": "fab/OscdFab.ts"
           }
         }
       ]
@@ -14921,13 +15302,6 @@
               "privacy": "private"
             },
             {
-              "kind": "field",
-              "name": "nullSwitch",
-              "type": {
-                "text": "OscdSwitch | undefined"
-              }
-            },
-            {
               "kind": "method",
               "name": "reportValidity",
               "return": {
@@ -15316,21 +15690,6 @@
               "privacy": "private"
             },
             {
-              "kind": "field",
-              "name": "nullSwitch",
-              "type": {
-                "text": "OscdSwitch | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "selectInput",
-              "type": {
-                "text": "OscdFilledSelect | undefined"
-              },
-              "privacy": "private"
-            },
-            {
               "kind": "method",
               "name": "reportValidity",
               "return": {
@@ -15557,10 +15916,26 @@
               "kind": "field",
               "name": "supportingText",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
-              "default": "''",
               "attribute": "supportingText"
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "error"
+            },
+            {
+              "kind": "field",
+              "name": "errorText",
+              "type": {
+                "text": "string | undefined"
+              },
+              "attribute": "errorText"
             },
             {
               "kind": "field",
@@ -15691,29 +16066,6 @@
               "privacy": "private"
             },
             {
-              "kind": "field",
-              "name": "nullSwitch",
-              "type": {
-                "text": "OscdSwitch | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "multiplierMenu",
-              "type": {
-                "text": "OscdMenu | undefined"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "textField",
-              "type": {
-                "text": "TextField | undefined"
-              },
-              "privacy": "private"
-            },
-            {
               "kind": "method",
               "name": "reportValidity",
               "return": {
@@ -15804,12 +16156,6 @@
                   "text": "TemplateResult"
                 }
               }
-            },
-            {
-              "kind": "field",
-              "name": "overridestyles",
-              "static": true,
-              "default": "css` .units.container { position: relative; } .nullswitch.element { margin-left: 12px; } .nullswitch.container { display: flex; align-items: center; height: 56px; } .input.container { flex: auto; } .input.element { width: 100%; } oscd-icon-button { --oscd-icon-button-icon-size: 48px; } `"
             }
           ],
           "events": [
@@ -15865,10 +16211,24 @@
             {
               "name": "supportingText",
               "type": {
-                "text": "string"
+                "text": "string | undefined"
               },
-              "default": "''",
               "fieldName": "supportingText"
+            },
+            {
+              "name": "error",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "error"
+            },
+            {
+              "name": "errorText",
+              "type": {
+                "text": "string | undefined"
+              },
+              "fieldName": "errorText"
             },
             {
               "name": "suffixText",
@@ -25210,6 +25570,141 @@
           "declaration": {
             "name": "OscdItem",
             "module": "labs/item/OscdItem.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "labs/card/OscdElevatedCard.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdElevatedCard",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-elevation': OscdElevation, }"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Card",
+            "package": "@omicronenergy/oscd-material-web-base/labs/card/internal/card.js"
+          },
+          "tagName": "oscd-elevated-card",
+          "customElement": true,
+          "modulePath": "labs/card/OscdElevatedCard.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdElevatedCard",
+          "declaration": {
+            "name": "OscdElevatedCard",
+            "module": "labs/card/OscdElevatedCard.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "labs/card/OscdFilledCard.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdFilledCard",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-elevation': OscdElevation, }"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Card",
+            "package": "@omicronenergy/oscd-material-web-base/labs/card/internal/card.js"
+          },
+          "tagName": "oscd-filled-card",
+          "customElement": true,
+          "modulePath": "labs/card/OscdFilledCard.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdFilledCard",
+          "declaration": {
+            "name": "OscdFilledCard",
+            "module": "labs/card/OscdFilledCard.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "labs/card/OscdOutlinedCard.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdOutlinedCard",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-elevation': OscdElevation, }"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Card",
+            "package": "@omicronenergy/oscd-material-web-base/labs/card/internal/card.js"
+          },
+          "tagName": "oscd-outlined-card",
+          "customElement": true,
+          "modulePath": "labs/card/OscdOutlinedCard.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdOutlinedCard",
+          "declaration": {
+            "name": "OscdOutlinedCard",
+            "module": "labs/card/OscdOutlinedCard.ts"
           }
         }
       ]

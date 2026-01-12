@@ -133,17 +133,17 @@ describe('Custom SCL related TextField', () => {
       await sendMouse({ type: 'click', position: [770, 20] });
       await timeout(200); // fully render menu
 
-      await sendMouse({ type: 'click', position: [770, 150] }); // select option 1
+      await sendMouse({ type: 'click', position: [770, 130] }); // select option 1
 
       expect(sclTextField.unit).to.equal('s');
       expect(sclTextField.multiplier).to.equal('');
     });
 
-    it('changes multiplier to n', async () => {
+    it('changes multiplier to empty string', async () => {
       await sendMouse({ type: 'click', position: [770, 20] });
       await timeout(200); // fully render menu
 
-      await sendMouse({ type: 'click', position: [770, 200] }); // select option 1
+      await sendMouse({ type: 'click', position: [770, 190] }); // select option 1
 
       expect(sclTextField.unit).to.equal('s');
       expect(sclTextField.multiplier).to.equal('n');
