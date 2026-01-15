@@ -64,18 +64,22 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
   @property({ type: Number })
   level = 1;
 
-  override async firstUpdated(): Promise<void> {
+  private parentPane?: OscdActionPane;
+
+  override connectedCallback(): void {
+    super.connectedCallback();
     this.tabIndex = 0;
+    this.parentPane =
+      closestTo<OscdActionPane>(this.parentNode!, 'oscd-action-pane') ??
+      undefined;
+  }
 
-    const parentPane = closestTo<OscdActionPane>(
-      this.parentNode!,
-      'oscd-action-pane',
-    );
-    if (parentPane) {
-      this.level = parentPane.level + 1;
-    }
+  private get resolvedLevel(): number {
+    const base = this.parentPane
+      ? this.parentPane.resolvedLevel + 1
+      : this.level;
 
-    this.level = Math.floor(this.level);
+    return Math.floor(base);
   }
 
   private renderHeader(): TemplateResult {
@@ -91,7 +95,7 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
         <slot name="action"></slot>
       </nav>`;
 
-    const headingLevel = Math.floor(Math.max(this.level, 1));
+    const headingLevel = Math.floor(Math.max(this.resolvedLevel, 1));
     // Sometimes a TemplateResult is passed in as Label, not a string. So only when it's a string show a title.
     const title = this.label ?? '';
     switch (headingLevel) {
@@ -111,7 +115,7 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
       class="${classMap({
         secondary: this.secondary,
         highlighted: this.highlighted,
-        contrasted: this.level % 2 === 0,
+        contrasted: this.resolvedLevel % 2 === 0,
       })}"
     >
       ${this.renderHeader()}
@@ -130,7 +134,7 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
         0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12),
         0 5px 5px -3px rgba(0, 0, 0, 0.2);
-      outline-width: 4px;
+      outline-width: 1px;
       transition: all 250ms linear;
     }
 
