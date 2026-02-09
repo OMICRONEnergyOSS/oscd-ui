@@ -33,14 +33,14 @@ jobs:
       - uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/actions/setup-node-env@main
         with:
           registry-url: 'https://registry.npmjs.org'
+      - name: Update npm to latest (for OIDC support)
+        run: npm install -g npm@latest && npm -v
 
       - name: Build
         run: npm run build
 
       - name: Publish to NPM
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   deploy-storybook:
     permissions:
