@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.0.11](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.10...oscd-ui-v0.0.11) (2026-02-09)
+
+
+### Features
+
+* add oscd-scl-checkbox component ([1cb3f94](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/1cb3f94bbb25c0f405bac3ceaa7e365f8a647a7a))
+* add oscd-scl-select component ([3f385cf](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/3f385cfc0c33fb00a2b8656caa71cc9b2a4fcd7b))
+* add oscd-scl-text-field component ([724a175](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/724a175f834dcf61aeb053426beb477374854a8a))
+* add scl-checkbox component ([d6fca98](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/d6fca983662891e363bbbae13b30a1dd36d07a35))
+* add scl-select component ([a8f59b7](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/a8f59b76e900680fac7a05d1f5c854520195d1ac))
+* add scl-text-field component ([31b6480](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/31b648009e9790f07167c40e0730c675f667b77c))
+
+
+### Bug Fixes
+
+* reduce action-pane highlighting ([7e2d044](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/7e2d04417b345564600cd5c335aac0eb32b2e37d))
+
 ## [0.0.10](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.9...oscd-ui-v0.0.10) (2026-01-09)
 
 
