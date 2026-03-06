@@ -27,6 +27,9 @@ function hasLocalStorage(): boolean {
   }
 }
 
+//FIXME: if hostID isn't set, use hash from import.meta.url + propKey as fallback to at least provide some level of persistence across reloads,
+// even if it isn't shared across multiple instances of the component. This would be best effort and still warn about missing ID, but would be better than nothing for users who forget to set an ID.
+
 function resolveKey(
   host: LitHost,
   propKey: string,
