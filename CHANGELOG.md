@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.12](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.11...oscd-ui-v0.0.12) (2026-03-06)
+
+
+### Features
+
+* add decorator for storing property value in localstorage ([9602f6c](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/9602f6c4960e2b86b0f9cd8da4a93c69642b7c67))
+* add split-pane's (horz & vert) ([70556c1](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/70556c1847302b3e126ccc4276636755fe3595c1))
+
 ## [0.0.11](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.10...oscd-ui-v0.0.11) (2026-02-09)
 
 
