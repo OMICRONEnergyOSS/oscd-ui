@@ -1,0 +1,4 @@
+import{O as t}from"./OscdCheckbox-DT9FXFjK.js";import{g as r}from"./getStorybookMeta-BoCODc77.js";import"./OscdListItem-B18tstYX.js";import"./iframe-CVDob4yH.js";import"./preload-helper-PPVm8Dsz.js";import"./list-item-styles-D88BytE0.js";import"./OscdMenuItem-wP2ife6f.js";import"./query-assigned-nodes-NHYQZ91Q.js";import"./redispatch-event-D1qO1AWI.js";import"./validator-DF6SPYQ-.js";import"./form-associated-COZPd8sx.js";import"./checkbox-validator-BaIeWwuO.js";import"./getStorybookHelpers-BJL7o6s0.js";customElements.define("oscd-checkbox",t);const{args:e,argTypes:s,meta:a}=r({tagName:"oscd-checkbox"}),l={title:"Checkboxs / Checkbox",tags:["autodocs"],...a},o={argTypes:s,args:e};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...o.parameters?.docs?.source}}};const C=["Default"];export{o as Default,C as __namedExportsOrder,l as default};
