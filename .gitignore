@@ -1,0 +1,28 @@
+node_modules
+# **/internal/*.js
+**/internal/**/*.css
+**/internal/**/*-styles.ts
+**/internal/**/*.map
+# **/internal/*.d.ts
+
+!web-test-runner.config.js
+!commitlint.config.js
+!eslint.config.js
+!web-test-runner.config.js
+!.storybook/*.js
+!custom-elements-manifest.config.js
+!test-runner.config.js
+
+## editors
+/.idea
+/.vscode
+
+## build artifacts
+!types/*.d.ts
+*.tsbuildinfo
+.wireit/
+/dist
+build
+coverage
+
+packageExports.json
