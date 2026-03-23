@@ -1,9 +1,9 @@
 node_modules
-*.js
-*.css
-*-styles.ts
-*.map
-*.d.ts
+# **/internal/*.js
+**/internal/**/*.css
+**/internal/**/*-styles.ts
+**/internal/**/*.map
+# **/internal/*.d.ts
 
 !web-test-runner.config.js
 !commitlint.config.js
@@ -21,9 +21,8 @@ node_modules
 !types/*.d.ts
 *.tsbuildinfo
 .wireit/
-dist
+/dist
 build
 coverage
-storybook-static
 
 packageExports.json

@@ -1,16 +1,14 @@
-name: Release Please
+name: Continuous Deployment
 on:
   push:
     branches:
       - main
 
 jobs:
-  release:
+  ci-cd:
     permissions:
       contents: write
-      issues: write
       pull-requests: write
-      id-token: write
-    uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/workflows/release-please.yml@main
+    uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/workflows/continuous-deployment.yml@main
     secrets:
       gh_token: ${{ secrets.GITHUB_TOKEN }}
