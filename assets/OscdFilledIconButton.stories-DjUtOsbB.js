@@ -1,4 +1,0 @@
-import{O as o}from"./OscdFilledIconButton-DD6SIdE9.js";import{g as r}from"./getStorybookMeta-BoCODc77.js";import"./OscdListItem-B18tstYX.js";import"./iframe-CVDob4yH.js";import"./preload-helper-PPVm8Dsz.js";import"./list-item-styles-D88BytE0.js";import"./shared-styles-ut-I7mYk.js";import"./is-rtl-DJNyvqXe.js";import"./getStorybookHelpers-BJL7o6s0.js";import"./OscdMenuItem-wP2ife6f.js";import"./query-assigned-nodes-NHYQZ91Q.js";customElements.define("oscd-filled-icon-button",o);const{args:e,argTypes:s,meta:a}=r({tagName:"oscd-filled-icon-button"}),I={title:"Iconbuttons / Filled Icon Button",tags:["autodocs"],...a},t={argTypes:s,args:e};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...t.parameters?.docs?.source}}};const O=["Default"];export{t as Default,O as __namedExportsOrder,I as default};
