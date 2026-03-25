@@ -8,11 +8,11 @@ import {
 import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
 import { html } from 'lit';
 import { sampleDoc } from './storybook-utils.js';
-import { action } from 'storybook/internal/actions';
 
-const { args, argTypes, meta, template } = getStorybookMeta<OscdSelectionList>({
-  tagName: 'oscd-selection-list',
-});
+const { args, argTypes, meta, template, logEvent } =
+  getStorybookMeta<OscdSelectionList>({
+    tagName: 'oscd-selection-list',
+  });
 
 export default {
   title: 'Lists/Selection List',
@@ -31,11 +31,7 @@ export default {
         @selection-list-change=${(
           customEvent: CustomEvent<SelectionListChangeDetail>,
         ) => {
-          action('selection-list-change')(
-            customEvent.detail.selectedElements.map(el =>
-              new XMLSerializer().serializeToString(el),
-            ),
-          );
+          logEvent('selection-list-change', customEvent);
         }}
       >
         ${template(argz)}

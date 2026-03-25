@@ -1,9 +1,7 @@
 node_modules
-# **/internal/*.js
 **/internal/**/*.css
 **/internal/**/*-styles.ts
 **/internal/**/*.map
-# **/internal/*.d.ts
 
 !web-test-runner.config.js
 !commitlint.config.js
@@ -22,6 +20,7 @@ node_modules
 *.tsbuildinfo
 .wireit/
 /dist
+/scripts/dist
 build
 coverage
 
