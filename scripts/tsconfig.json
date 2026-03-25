@@ -6,7 +6,8 @@
     "target": "es2021",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "outDir": "../dist/scripts"
+    "rootDir": ".",
+    "outDir": "./dist"
   },
   "exclude": ["../dist", "../catalog"],
   "include": ["**/*"]

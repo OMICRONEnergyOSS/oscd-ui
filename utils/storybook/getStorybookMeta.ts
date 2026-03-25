@@ -18,7 +18,7 @@ export function getStorybookMeta<T extends { [key: string]: any }>({
   defaultArgs?: Partial<T>;
   options?: { omitTextContent?: boolean };
 }) {
-  const { template, events, ...rest } = getStorybookHelpers<T>(tagName);
+  const { template, ...rest } = getStorybookHelpers<T>(tagName);
   const overrides = storybookOverrides[tagName] || {};
 
   const argTypes = {
@@ -62,6 +62,7 @@ export function getStorybookMeta<T extends { [key: string]: any }>({
     ...((overrides?.meta ?? {}) as any),
   };
   return {
+    ...rest,
     args,
     argTypes,
     meta,

@@ -1,4 +1,4 @@
-import { summaryToDescriptionPlugin } from './dist/scripts/cem-summary-to-description-plugin.js';
+import { summaryToDescriptionPlugin } from './scripts/dist/cem-summary-to-description-plugin.js';
 import { cemInheritancePlugin } from '@wc-toolkit/cem-inheritance';
 
 export default {
