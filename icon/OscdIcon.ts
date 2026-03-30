@@ -1,9 +1,3 @@
-/*
- * GENERATED SOURCE FILE. DO NOT MODIFY.
- * Modifications will be overwritten.
- * To prevent this file from being overwritten, remove this comment entirely.
- */
-
 /**
  * @license
  * Copyright 2022 Google LLC
@@ -17,7 +11,7 @@
 
 import { CSSResultOrNative } from 'lit';
 
-import { Icon } from '@omicronenergy/oscd-material-web-base/icon/internal/icon.js';
+import { Icon } from './internal/icon.js';
 import { styles } from '@omicronenergy/oscd-material-web-base/icon/internal/icon-styles.js';
 
 declare global {
@@ -27,6 +21,18 @@ declare global {
 }
 
 /**
+ * Icon component that renders SCL domain icons by name or falls back to
+ * Material Symbols font ligatures.
+ *
+ * @example
+ * ```html
+ * <!-- SCL icon by name -->
+ * <oscd-icon>gooseIcon</oscd-icon>
+ *
+ * <!-- Material Symbols ligature (unchanged) -->
+ * <oscd-icon>edit</oscd-icon>
+ * ```
+ *
  * @tagname oscd-icon
  * @final
  * @suppress {visibility}
