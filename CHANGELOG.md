@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.12](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.11...oscd-ui-v0.0.12) (2026-03-30)
+
+
+### Features
+
+* enhance oscd-icon to support scl-icon names too ([09fac16](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/09fac16de137f760df0803ce3cf028bd8c34184a))
+
 ## [0.0.11](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.10...oscd-ui-v0.0.11) (2026-02-09)
 
 
