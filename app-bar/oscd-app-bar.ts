@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 OMICRON Electronics GmbH
+ * Copyright 2025 OMICRON electronics GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
 import { OscdAppBar } from './OscdAppBar.js';
