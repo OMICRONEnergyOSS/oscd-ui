@@ -86,6 +86,8 @@
     "./ace-editor/OscdAceEditor.js": "./dist/ace-editor/OscdAceEditor.js",
     "./ace-editor/oscd-ace-editor.js": "./dist/ace-editor/oscd-ace-editor.js",
     "./ace-editor/ace/*": "./dist/ace-editor/ace/*",
+    "./xml-editor/OscdXmlEditor.js": "./dist/xml-editor/OscdXmlEditor.js",
+    "./xml-editor/oscd-xml-editor.js": "./dist/xml-editor/oscd-xml-editor.js",
     "./elevation/OscdElevation.js": "./dist/elevation/OscdElevation.js",
     "./elevation/oscd-elevation.js": "./dist/elevation/oscd-elevation.js",
     "./fab/OscdBrandedFab.js": "./dist/fab/OscdBrandedFab.js",
