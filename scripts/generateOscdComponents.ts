@@ -30,7 +30,7 @@ const omicronCopyright = `
 
 /**
  * @license
- * Copyright 2025 Omicron Energy GmbH
+ * Copyright 2026 OMICRON electronics GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
 `;
