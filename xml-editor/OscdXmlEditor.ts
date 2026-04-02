@@ -4,12 +4,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { LitElement, html, css } from 'lit';
-import { property, query } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 
 import { OscdAceEditor } from '../ace-editor/OscdAceEditor.js';
 import type { AceEditorWithSettingsMenu } from '../ace-editor/OscdAceEditor.js';
 import { OscdOutlinedIconButton } from '../iconbutton/OscdOutlinedIconButton.js';
+import { OscdFilledIconButton } from '../iconbutton/OscdFilledIconButton.js';
 import { OscdIcon } from '../icon/OscdIcon.js';
 import {
   serializeWithoutInheritedXmlns,
@@ -47,6 +48,7 @@ export class OscdXmlEditor extends ScopedElementsMixin(LitElement) {
   static scopedElements = {
     'oscd-ace-editor': OscdAceEditor,
     'oscd-outlined-icon-button': OscdOutlinedIconButton,
+    'oscd-filled-icon-button': OscdFilledIconButton,
     'oscd-icon': OscdIcon,
   };
 
@@ -65,6 +67,13 @@ export class OscdXmlEditor extends ScopedElementsMixin(LitElement) {
 
   @query('oscd-ace-editor')
   private aceEditor!: OscdAceEditor;
+
+  @state()
+  private _toolbarOpen = false;
+
+  /** When true, shows the toolbar toggle button. */
+  @property({ type: Boolean })
+  toolbar = false;
 
   constructor() {
     super();
@@ -272,58 +281,122 @@ export class OscdXmlEditor extends ScopedElementsMixin(LitElement) {
     editor.showSettingsMenu?.();
   }
 
+  private toggleToolbar(): void {
+    this._toolbarOpen = !this._toolbarOpen;
+  }
+
   override render() {
     return html`
-      <div class="toolbar">
-        <oscd-outlined-icon-button title="Undo" @click=${this.undo}>
-          <oscd-icon>undo</oscd-icon>
-        </oscd-outlined-icon-button>
-        <oscd-outlined-icon-button title="Redo" @click=${this.redo}>
-          <oscd-icon>redo</oscd-icon>
-        </oscd-outlined-icon-button>
-        <oscd-outlined-icon-button
-          title="Collapse all"
-          @click=${this.collapseAll}
-        >
-          <oscd-icon>collapse_all</oscd-icon>
-        </oscd-outlined-icon-button>
-        <oscd-outlined-icon-button title="Expand all" @click=${this.expandAll}>
-          <oscd-icon>expand_all</oscd-icon>
-        </oscd-outlined-icon-button>
-        <oscd-outlined-icon-button title="Search" @click=${this.search}>
-          <oscd-icon>search</oscd-icon>
-        </oscd-outlined-icon-button>
-        <oscd-outlined-icon-button title="Format XML" @click=${this.formatXml}>
-          <oscd-icon>format_indent_increase</oscd-icon>
-        </oscd-outlined-icon-button>
-        <oscd-outlined-icon-button title="Settings" @click=${this.openSettings}>
-          <oscd-icon>settings</oscd-icon>
-        </oscd-outlined-icon-button>
+      <div class="editor-container">
+        ${this.toolbar
+          ? html`
+              <oscd-filled-icon-button
+                class="toolbar-toggle"
+                title=${this._toolbarOpen ? 'Hide toolbar' : 'Show toolbar'}
+                @click=${this.toggleToolbar}
+              >
+                <oscd-icon
+                  >${this._toolbarOpen ? 'close' : 'more_vert'}</oscd-icon
+                >
+              </oscd-filled-icon-button>
+              ${this._toolbarOpen
+                ? html`
+                    <div class="toolbar">
+                      <oscd-outlined-icon-button
+                        title="Undo"
+                        @click=${this.undo}
+                      >
+                        <oscd-icon>undo</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Redo"
+                        @click=${this.redo}
+                      >
+                        <oscd-icon>redo</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Collapse all"
+                        @click=${this.collapseAll}
+                      >
+                        <oscd-icon>collapse_all</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Expand all"
+                        @click=${this.expandAll}
+                      >
+                        <oscd-icon>expand_all</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Search"
+                        @click=${this.search}
+                      >
+                        <oscd-icon>search</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Format XML"
+                        @click=${this.formatXml}
+                      >
+                        <oscd-icon>format_indent_increase</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Settings"
+                        @click=${this.openSettings}
+                      >
+                        <oscd-icon>settings</oscd-icon>
+                      </oscd-outlined-icon-button>
+                    </div>
+                  `
+                : ''}
+            `
+          : ''}
+        <oscd-ace-editor
+          @change=${this.handleAceChange}
+          @blur=${this.handleAceBlur}
+        ></oscd-ace-editor>
       </div>
-      <oscd-ace-editor
-        @change=${this.handleAceChange}
-        @blur=${this.handleAceBlur}
-      ></oscd-ace-editor>
     `;
   }
 
   static override styles = css`
     :host {
-      display: grid;
-      grid-template-rows: auto 1fr;
+      display: block;
       height: 100%;
       overflow: hidden;
     }
 
+    .editor-container {
+      position: relative;
+      height: 100%;
+    }
+
+    .toolbar-toggle {
+      position: absolute;
+      top: 4px;
+      right: 20px;
+      z-index: 2;
+    }
+
     .toolbar {
+      position: absolute;
+      top: 48px;
+      right: 16px;
+      z-index: 2;
       display: flex;
+      flex-direction: column;
       align-items: center;
       gap: 4px;
       padding: 4px;
+      border-radius: var(--md-sys-radius-medium, 8px);
+      background: var(--md-sys-color-surface-container, #f3edf7);
+      box-shadow: var(
+        --md-sys-elevation-level2,
+        0 1px 2px 0 rgba(0, 0, 0, 0.3),
+        0 2px 6px 2px rgba(0, 0, 0, 0.15)
+      );
     }
 
     oscd-ace-editor {
-      height: inherit;
+      height: 100%;
       overflow: auto;
     }
   `;
