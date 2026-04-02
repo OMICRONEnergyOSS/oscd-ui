@@ -6,7 +6,7 @@ import {
   getXmlParseError,
   defaultSclRoot,
 } from './internal/namespace-utils.js';
-import type { OscdXmlEditor } from './OscdXmlEditor.js';
+import type { OscdSclEditor } from './OscdSclEditor.js';
 
 const sclNs = 'http://www.iec.ch/61850/2003/SCL';
 const extNs = 'http://example.org/somePreexistingExtensionNamespace';
@@ -149,14 +149,14 @@ describe('namespace-utils', () => {
   });
 });
 
-describe('oscd-xml-editor', () => {
+describe('oscd-scl-editor', () => {
   before(async () => {
-    await import('./oscd-xml-editor.js');
+    await import('./oscd-scl-editor.js');
   });
 
   describe('value property', () => {
     it('round-trips text value', async () => {
-      const el = document.createElement('oscd-xml-editor') as OscdXmlEditor;
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
       document.body.appendChild(el);
       const xmlText = '<Substation name="A1"></Substation>';
       el.value = xmlText;
@@ -170,7 +170,7 @@ describe('oscd-xml-editor', () => {
       const doc = parseSclDoc(sclDocString);
       const substation = doc.querySelector('Substation')!;
 
-      const el = document.createElement('oscd-xml-editor') as OscdXmlEditor;
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
       document.body.appendChild(el);
       el.element = substation;
 
@@ -183,7 +183,7 @@ describe('oscd-xml-editor', () => {
       const doc = parseSclDoc(sclDocString);
       const substation = doc.querySelector('Substation')!;
 
-      const el = document.createElement('oscd-xml-editor') as OscdXmlEditor;
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
       document.body.appendChild(el);
       el.element = substation;
 
@@ -198,7 +198,7 @@ describe('oscd-xml-editor', () => {
       const doc = parseSclDoc(sclDocString);
       const substation = doc.querySelector('Substation')!;
 
-      const el = document.createElement('oscd-xml-editor') as OscdXmlEditor;
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
       document.body.appendChild(el);
       el.element = substation;
       el.value = '<Substation name="A1"'; // broken
@@ -208,7 +208,7 @@ describe('oscd-xml-editor', () => {
     });
 
     it('parses element using default SCL context when no element was set', async () => {
-      const el = document.createElement('oscd-xml-editor') as OscdXmlEditor;
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
       document.body.appendChild(el);
       el.value = '<Substation name="A1"></Substation>';
 
@@ -222,7 +222,7 @@ describe('oscd-xml-editor', () => {
 
   describe('validity', () => {
     it('checkValidity returns true for valid XML', async () => {
-      const el = document.createElement('oscd-xml-editor') as OscdXmlEditor;
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
       document.body.appendChild(el);
       el.value = '<Substation name="A1"></Substation>';
 
@@ -231,7 +231,7 @@ describe('oscd-xml-editor', () => {
     });
 
     it('checkValidity returns false for malformed XML', async () => {
-      const el = document.createElement('oscd-xml-editor') as OscdXmlEditor;
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
       document.body.appendChild(el);
       el.value = '<Substation name="A1"';
 
@@ -240,7 +240,7 @@ describe('oscd-xml-editor', () => {
     });
 
     it('checkValidity returns true for empty value', async () => {
-      const el = document.createElement('oscd-xml-editor') as OscdXmlEditor;
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
       document.body.appendChild(el);
 
       expect(el.checkValidity()).to.be.true;
@@ -248,7 +248,7 @@ describe('oscd-xml-editor', () => {
     });
 
     it('reportValidity returns false and reports for invalid XML', async () => {
-      const el = document.createElement('oscd-xml-editor') as OscdXmlEditor;
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
       document.body.appendChild(el);
       el.value = '<Substation name="A1"';
 

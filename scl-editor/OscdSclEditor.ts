@@ -22,13 +22,13 @@ import {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'oscd-xml-editor': OscdXmlEditor;
+    'oscd-scl-editor': OscdSclEditor;
   }
 }
 
 /**x
- * @tagname oscd-xml-editor
- * @summary A form-associated XML source code editor for SCL elements.
+ * @tagname oscd-scl-editor
+ * @summary A form-associated SCL source code editor for SCL elements.
  *
  * Wraps the OscdAceEditor with a toolbar providing undo/redo,
  * collapse/expand, search, pretty-print, and settings buttons.
@@ -44,7 +44,7 @@ declare global {
  * @event {Event} input Fired on every editor content change.
  * @event {Event} change Fired when the editor loses focus.
  */
-export class OscdXmlEditor extends ScopedElementsMixin(LitElement) {
+export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
   static scopedElements = {
     'oscd-ace-editor': OscdAceEditor,
     'oscd-outlined-icon-button': OscdOutlinedIconButton,
