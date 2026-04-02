@@ -16,22 +16,6 @@ declare global {
   }
 }
 
-enum ValueUpdateMode {
-  start = 'start',
-  end = 'end',
-  select = 'select',
-}
-
-function getValueUpdateNumber(mode?: ValueUpdateMode): number {
-  if (mode === ValueUpdateMode.start) {
-    return -1;
-  }
-  if (mode === ValueUpdateMode.end) {
-    return 1;
-  }
-  return 0;
-}
-
 /**
  * Custom element Ace code editor
  */
@@ -42,6 +26,13 @@ class AceEditorBase extends HTMLElement {
   get editor(): Ace.Editor | undefined {
     return this._editor;
   }
+
+  /**
+   * True while `handleChange` syncs the editor's content to the value
+   * attribute.  Prevents `attributeChangedCallback` from scheduling a
+   * redundant (and racy) `initializeEditor` call.
+   */
+  private _syncingFromEditor = false;
 
   get version(): { [key: string]: string } {
     return {
@@ -71,7 +62,7 @@ class AceEditorBase extends HTMLElement {
   wrap?: boolean;
 
   @NotifyAttribute()
-  valueUpdateMode?: ValueUpdateMode;
+  valueUpdateMode?: string;
 
   @NotifyBooleanAttribute()
   hideActiveLineHighlight?: boolean;
@@ -127,10 +118,7 @@ class AceEditorBase extends HTMLElement {
 
     const text = editor.getValue() || '';
     if (text !== this.value) {
-      editor.setValue(
-        this.value || '',
-        getValueUpdateNumber(this.valueUpdateMode),
-      );
+      editor.setValue(this.value || '', -1);
     }
 
     editor.getSession().setTabSize(this.tabSize || 2);
@@ -217,7 +205,9 @@ class AceEditorBase extends HTMLElement {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   attributeChangedCallback(name: string): void {
-    this.initializeEditor();
+    if (!this._syncingFromEditor) {
+      this.initializeEditor();
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -232,11 +222,13 @@ class AceEditorBase extends HTMLElement {
   private handleChange = debounce(() => {
     const text = this._editor?.getValue() || '';
     if (text !== this.value) {
+      this._syncingFromEditor = true;
       if (text) {
         this.setAttribute('value', text);
       } else {
         this.removeAttribute('value');
       }
+      this._syncingFromEditor = false;
 
       this.dispatch('change', text);
     }
