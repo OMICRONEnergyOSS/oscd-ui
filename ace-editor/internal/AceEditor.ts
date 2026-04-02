@@ -1,6 +1,6 @@
-import { LitElement, html, css, type PropertyValueMap } from 'lit';
+import { LitElement, html, css } from 'lit';
 import * as AceGlobal from 'ace-builds';
-import { property, query } from 'lit/decorators.js';
+import { query } from 'lit/decorators.js';
 
 import './ace.config.js';
 
@@ -79,11 +79,36 @@ function manageAceOptionChange(editor: AceGlobal.Ace.Editor) {
 }
 
 export class AceEditor extends LitElement {
-  @property({ type: String })
-  value: string | undefined;
+  /**
+   * Buffers the value until the ace editor instance is ready.
+   * After that, the ace instance is the single source of truth.
+   */
+  private _pendingValue: string | undefined;
 
   @query('ace-editor-base')
   aceEditorBase!: AceEditorBase;
+
+  /**
+   * The current text content of the editor.
+   *
+   * NOT a Lit reactive property — reads/writes go directly to the
+   * underlying ace instance so that programmatic sets never race with
+   * user keystrokes through the debounced `initializeEditor` pipeline.
+   */
+  set value(val: string | undefined) {
+    const editor = this.aceEditorBase?.editor;
+    if (editor) {
+      if (editor.getValue() !== (val ?? '')) {
+        editor.setValue(val ?? '', -1);
+      }
+    } else {
+      this._pendingValue = val;
+    }
+  }
+
+  get value(): string | undefined {
+    return this.aceEditorBase?.editor?.getValue() ?? this._pendingValue;
+  }
 
   public get editor(): AceGlobal.Ace.Editor | undefined {
     return this.aceEditorBase?.editor;
@@ -107,25 +132,32 @@ export class AceEditor extends LitElement {
     window.ace?.config?.removeEventListener?.('editor', manageAceOptionChange);
   }
 
-  protected override updated(changedProps: PropertyValueMap<AceEditor>): void {
-    if (changedProps.has('value')) {
-      // Clear selection when content updates
-      setTimeout(() => {
-        if (this.aceEditorBase?.editor) {
-          /* For reasons unknown the ace editor initially selects all code, so we need to clear that*/
-          this.aceEditorBase.editor.selection.clearSelection();
-          this.aceEditorBase.editor.moveCursorTo(0, 0);
+  override firstUpdated(): void {
+    this.aceEditorBase.addEventListener(
+      'ready',
+      () => {
+        const editor = this.aceEditorBase.editor;
+        if (!editor) {
+          return;
         }
-      }, 10);
-    }
+
+        if (this._pendingValue !== undefined) {
+          editor.setValue(this._pendingValue, -1);
+          this._pendingValue = undefined;
+        }
+        editor.selection.clearSelection();
+        editor.moveCursorTo(0, 0);
+      },
+      { once: true },
+    );
   }
 
+  // eslint-disable-next-line class-methods-use-this
   override render() {
     return html`
       <ace-editor-base
         .mode=${aceOptions.mode}
         .theme=${aceOptions.theme}
-        .value=${this.value}
       ></ace-editor-base>
     `;
   }
