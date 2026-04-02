@@ -114,6 +114,15 @@
             },
             {
               "kind": "field",
+              "name": "value",
+              "description": "The current text content of the editor.\n\nNOT a Lit reactive property — reads/writes go directly to the\nunderlying ace instance so that programmatic sets never race with\nuser keystrokes through the debounced `initializeEditor` pipeline.",
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "dist/ace-editor/internal/AceEditor.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "editor",
               "readonly": true,
               "inheritedFrom": {
@@ -123,12 +132,7 @@
             },
             {
               "kind": "method",
-              "name": "updated",
-              "parameters": [
-                {
-                  "name": "changedProps"
-                }
-              ],
+              "name": "firstUpdated",
               "inheritedFrom": {
                 "name": "AceEditor",
                 "module": "dist/ace-editor/internal/AceEditor.js"
@@ -5894,6 +5898,448 @@
     },
     {
       "kind": "javascript-module",
+      "path": "scl-editor/OscdSclEditor.spec.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "scl-editor/OscdSclEditor.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "StoryObj"
+          },
+          "default": "{ argTypes, args: { ...args, value: sampleXml, style: 'height: 400px; width: 600px;', }, }"
+        },
+        {
+          "kind": "variable",
+          "name": "InvalidXml",
+          "type": {
+            "text": "StoryObj"
+          },
+          "default": "{ argTypes, args: { ...args, value: invalidXml, style: 'height: 400px; width: 600px;', }, }"
+        },
+        {
+          "kind": "variable",
+          "name": "Empty",
+          "type": {
+            "text": "StoryObj"
+          },
+          "default": "{ argTypes, args: { ...args, style: 'height: 400px; width: 600px;', }, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "scl-editor/OscdSclEditor.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "scl-editor/OscdSclEditor.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "InvalidXml",
+          "declaration": {
+            "name": "InvalidXml",
+            "module": "scl-editor/OscdSclEditor.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Empty",
+          "declaration": {
+            "name": "Empty",
+            "module": "scl-editor/OscdSclEditor.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "scl-editor/OscdSclEditor.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "x",
+          "name": "OscdSclEditor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'oscd-ace-editor': OscdAceEditor, 'oscd-outlined-icon-button': OscdOutlinedIconButton, 'oscd-filled-icon-button': OscdFilledIconButton, 'oscd-icon': OscdIcon, }"
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "sclRoot",
+              "type": {
+                "text": "Element | null"
+              },
+              "privacy": "private",
+              "default": "null",
+              "description": "Cached SCL root element for namespace context during re-parsing."
+            },
+            {
+              "kind": "field",
+              "name": "_pendingValue",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "private",
+              "default": "''",
+              "description": "Stores the initial value before the ace editor is available in the DOM.\nAfter first render, the ace editor instance is the single source of truth."
+            },
+            {
+              "kind": "field",
+              "name": "aceEditor",
+              "type": {
+                "text": "OscdAceEditor"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_toolbarOpen",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "toolbar",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, shows the toolbar toggle button."
+            },
+            {
+              "kind": "method",
+              "name": "firstUpdated",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setAceText",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "text",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "description": "Writes text into the ace editor (or the pending buffer before first\nrender) and updates form validity/value.  Both `value` and `element`\nsetters funnel through here so that the ace editor instance is always\nthe single source of truth."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "The current XML text content of the editor.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "element",
+              "description": "Sets the editor content from an XML element, serializing it without\ninherited xmlns attributes. Caches the element's owner document root\nfor later re-parsing.\n\nThe getter attempts to parse the current text back into an element\nwithin the original SCL namespace context. Returns `null` if the text\nhas XML parse errors or if no SCL root context is available.",
+              "type": {
+                "text": "Element | null"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "message",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "description": "Called by the browser when the parent form is reset."
+            },
+            {
+              "kind": "method",
+              "name": "updateFormState",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "text",
+                  "optional": true,
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleAceChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "CustomEvent<string>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleAceBlur",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "undo",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "redo",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "collapseAll",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "expandAll",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "search",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formatXml",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "openSettings",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "toggleToolbar",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "default": "css` :host { display: block; height: 100%; overflow: hidden; } .editor-container { position: relative; height: 100%; } .toolbar-toggle { position: absolute; top: 4px; right: 20px; z-index: 2; } .toolbar { position: absolute; top: 48px; right: 16px; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px; border-radius: var(--md-sys-radius-medium, 8px); background: var(--md-sys-color-surface-container, #f3edf7); box-shadow: var( --md-sys-elevation-level2, 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15) ); } oscd-ace-editor { height: 100%; overflow: auto; } `"
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "Event"
+              },
+              "description": "Fired on every editor content change."
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "Fired when the editor loses focus."
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-scl-editor",
+          "customElement": true,
+          "summary": "A form-associated SCL source code editor for SCL elements.\n\nWraps the OscdAceEditor with a toolbar providing undo/redo,\ncollapse/expand, search, pretty-print, and settings buttons.\n\nAccepts either an XML `element` or a text `value` as input (whichever\nis set last takes effect). The `element` getter attempts to parse the\ncurrent text back into an XML element within the original SCL namespace\ncontext, returning `null` if the text has XML parse errors.\n\nParticipates in the HTML form API via `ElementInternals`, including\n`checkValidity()`, `reportValidity()`, and form submission."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdSclEditor",
+          "declaration": {
+            "name": "OscdSclEditor",
+            "module": "scl-editor/OscdSclEditor.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "scl-editor/oscd-scl-editor.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "oscd-scl-editor",
+          "declaration": {
+            "name": "OscdSclEditor",
+            "module": "/scl-editor/OscdSclEditor.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdSclEditor",
+          "declaration": {
+            "name": "OscdSclEditor",
+            "module": "scl-editor/oscd-scl-editor.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "scl-icon/OscdSclIcon.spec.ts",
       "declarations": [],
       "exports": []
@@ -8921,392 +9367,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "xml-editor/OscdXmlEditor.spec.ts",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "xml-editor/OscdXmlEditor.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "StoryObj"
-          },
-          "default": "{ argTypes, args: { ...args, value: sampleXml, style: 'height: 400px; width: 600px;', }, }"
-        },
-        {
-          "kind": "variable",
-          "name": "InvalidXml",
-          "type": {
-            "text": "StoryObj"
-          },
-          "default": "{ argTypes, args: { ...args, value: invalidXml, style: 'height: 400px; width: 600px;', }, }"
-        },
-        {
-          "kind": "variable",
-          "name": "Empty",
-          "type": {
-            "text": "StoryObj"
-          },
-          "default": "{ argTypes, args: { ...args, style: 'height: 400px; width: 600px;', }, }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "xml-editor/OscdXmlEditor.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "xml-editor/OscdXmlEditor.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "InvalidXml",
-          "declaration": {
-            "name": "InvalidXml",
-            "module": "xml-editor/OscdXmlEditor.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Empty",
-          "declaration": {
-            "name": "Empty",
-            "module": "xml-editor/OscdXmlEditor.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "xml-editor/OscdXmlEditor.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "x",
-          "name": "OscdXmlEditor",
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ 'oscd-ace-editor': OscdAceEditor, 'oscd-outlined-icon-button': OscdOutlinedIconButton, 'oscd-icon': OscdIcon, }"
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "sclRoot",
-              "type": {
-                "text": "Element | null"
-              },
-              "privacy": "private",
-              "default": "null",
-              "description": "Cached SCL root element for namespace context during re-parsing."
-            },
-            {
-              "kind": "field",
-              "name": "_text",
-              "type": {
-                "text": "string"
-              },
-              "privacy": "private",
-              "default": "''"
-            },
-            {
-              "kind": "field",
-              "name": "aceChangeInProgress",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "description": "Tracks whether the current `_text` update originated from the ace\neditor's own change event. When true, we skip pushing `.value` back\nto ace (which would reset its cursor position)."
-            },
-            {
-              "kind": "field",
-              "name": "aceEditor",
-              "type": {
-                "text": "OscdAceEditor"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "description": "The current XML text content of the editor.",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "element",
-              "description": "Sets the editor content from an XML element, serializing it without\ninherited xmlns attributes. Caches the element's owner document root\nfor later re-parsing.\n\nThe getter attempts to parse the current text back into an element\nwithin the original SCL namespace context. Returns `null` if the text\nhas XML parse errors or if no SCL root context is available.",
-              "type": {
-                "text": "Element | null"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "checkValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "setCustomValidity",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "message",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "description": "Called by the browser when the parent form is reset."
-            },
-            {
-              "kind": "method",
-              "name": "updateFormState",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleAceChange",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "CustomEvent<string>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleAceBlur",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "undo",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "redo",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "collapseAll",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "expandAll",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "search",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formatXml",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "openSettings",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            },
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "default": "css` :host { display: grid; grid-template-rows: auto 1fr; height: 100%; overflow: hidden; } .toolbar { display: flex; align-items: center; gap: 4px; padding: 4px; } oscd-ace-editor { height: inherit; overflow: auto; } `"
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "Event"
-              },
-              "description": "Fired on every editor content change."
-            },
-            {
-              "name": "change",
-              "type": {
-                "text": "Event"
-              },
-              "description": "Fired when the editor loses focus."
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "oscd-xml-editor",
-          "customElement": true,
-          "summary": "A form-associated XML source code editor for SCL elements.\n\nWraps the OscdAceEditor with a toolbar providing undo/redo,\ncollapse/expand, search, pretty-print, and settings buttons.\n\nAccepts either an XML `element` or a text `value` as input (whichever\nis set last takes effect). The `element` getter attempts to parse the\ncurrent text back into an XML element within the original SCL namespace\ncontext, returning `null` if the text has XML parse errors.\n\nParticipates in the HTML form API via `ElementInternals`, including\n`checkValidity()`, `reportValidity()`, and form submission."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdXmlEditor",
-          "declaration": {
-            "name": "OscdXmlEditor",
-            "module": "xml-editor/OscdXmlEditor.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "xml-editor/oscd-xml-editor.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "oscd-xml-editor",
-          "declaration": {
-            "name": "OscdXmlEditor",
-            "module": "/xml-editor/OscdXmlEditor.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "OscdXmlEditor",
-          "declaration": {
-            "name": "OscdXmlEditor",
-            "module": "xml-editor/oscd-xml-editor.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "ace-editor/ace/worker-xml.js",
       "declarations": [],
       "exports": []
@@ -9322,16 +9382,26 @@
           "members": [
             {
               "kind": "field",
-              "name": "value",
+              "name": "_pendingValue",
               "type": {
                 "text": "string | undefined"
-              }
+              },
+              "privacy": "private",
+              "description": "Buffers the value until the ace editor instance is ready.\nAfter that, the ace instance is the single source of truth."
             },
             {
               "kind": "field",
               "name": "aceEditorBase",
               "type": {
                 "text": "AceEditorBase"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "The current text content of the editor.\n\nNOT a Lit reactive property — reads/writes go directly to the\nunderlying ace instance so that programmatic sets never race with\nuser keystrokes through the debounced `initializeEditor` pipeline.",
+              "type": {
+                "text": "string | undefined"
               }
             },
             {
@@ -9345,21 +9415,12 @@
             },
             {
               "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
+              "name": "firstUpdated",
               "return": {
                 "type": {
                   "text": "void"
                 }
-              },
-              "parameters": [
-                {
-                  "name": "changedProps",
-                  "type": {
-                    "text": "PropertyValueMap<AceEditor>"
-                  }
-                }
-              ]
+              }
             },
             {
               "kind": "method",
@@ -9660,6 +9721,15 @@
           "members": [
             {
               "kind": "field",
+              "name": "value",
+              "description": "The current text content of the editor.\n\nNOT a Lit reactive property — reads/writes go directly to the\nunderlying ace instance so that programmatic sets never race with\nuser keystrokes through the debounced `initializeEditor` pipeline.",
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "dist/ace-editor/internal/AceEditor.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "editor",
               "readonly": true,
               "inheritedFrom": {
@@ -9669,12 +9739,7 @@
             },
             {
               "kind": "method",
-              "name": "updated",
-              "parameters": [
-                {
-                  "name": "changedProps"
-                }
-              ],
+              "name": "firstUpdated",
               "inheritedFrom": {
                 "name": "AceEditor",
                 "module": "dist/ace-editor/internal/AceEditor.js"
@@ -11402,6 +11467,100 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/dialog/OscdDialog.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdDialog",
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Dialog",
+            "package": "@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js"
+          },
+          "tagName": "oscd-dialog",
+          "customElement": true,
+          "summary": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdDialog",
+          "declaration": {
+            "name": "OscdDialog",
+            "module": "dist/dialog/OscdDialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/dialog/OscdDialog.spec.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/dialog/OscdDialog.stories.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ argTypes, args, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "dist/dialog/OscdDialog.stories.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "dist/dialog/OscdDialog.stories.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/dialog/oscd-dialog.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "oscd-dialog",
+          "declaration": {
+            "name": "OscdDialog",
+            "module": "/dist/dialog/OscdDialog.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdDialog",
+          "declaration": {
+            "name": "OscdDialog",
+            "module": "dist/dialog/oscd-dialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/chips/OscdAssistChip.js",
       "declarations": [
         {
@@ -11855,100 +12014,6 @@
           "declaration": {
             "name": "OscdSuggestionChip",
             "module": "dist/chips/oscd-suggestion-chip.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/dialog/OscdDialog.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "OscdDialog",
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "Dialog",
-            "package": "@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js"
-          },
-          "tagName": "oscd-dialog",
-          "customElement": true,
-          "summary": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdDialog",
-          "declaration": {
-            "name": "OscdDialog",
-            "module": "dist/dialog/OscdDialog.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/dialog/OscdDialog.spec.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/dialog/OscdDialog.stories.js",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ argTypes, args, }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "dist/dialog/OscdDialog.stories.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "dist/dialog/OscdDialog.stories.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/dialog/oscd-dialog.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "oscd-dialog",
-          "declaration": {
-            "name": "OscdDialog",
-            "module": "/dist/dialog/OscdDialog.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "OscdDialog",
-          "declaration": {
-            "name": "OscdDialog",
-            "module": "dist/dialog/oscd-dialog.js"
           }
         }
       ]
@@ -14454,6 +14519,293 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/scl-editor/OscdSclEditor.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "x",
+          "name": "OscdSclEditor",
+          "members": [
+            {
+              "kind": "method",
+              "name": "firstUpdated"
+            },
+            {
+              "kind": "method",
+              "name": "setAceText",
+              "parameters": [
+                {
+                  "name": "text"
+                }
+              ],
+              "description": "Writes text into the ace editor (or the pending buffer before first\nrender) and updates form validity/value.  Both `value` and `element`\nsetters funnel through here so that the ace editor instance is always\nthe single source of truth."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "The current XML text content of the editor."
+            },
+            {
+              "kind": "field",
+              "name": "element",
+              "description": "Sets the editor content from an XML element, serializing it without\ninherited xmlns attributes. Caches the element's owner document root\nfor later re-parsing.\n\nThe getter attempts to parse the current text back into an element\nwithin the original SCL namespace context. Returns `null` if the text\nhas XML parse errors or if no SCL root context is available."
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity"
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity"
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "parameters": [
+                {
+                  "name": "message"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "description": "Called by the browser when the parent form is reset."
+            },
+            {
+              "kind": "method",
+              "name": "updateFormState",
+              "parameters": [
+                {
+                  "name": "text"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleAceChange",
+              "parameters": [
+                {
+                  "name": "e"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleAceBlur"
+            },
+            {
+              "kind": "method",
+              "name": "undo"
+            },
+            {
+              "kind": "method",
+              "name": "redo"
+            },
+            {
+              "kind": "method",
+              "name": "collapseAll"
+            },
+            {
+              "kind": "method",
+              "name": "expandAll"
+            },
+            {
+              "kind": "method",
+              "name": "search"
+            },
+            {
+              "kind": "method",
+              "name": "formatXml"
+            },
+            {
+              "kind": "method",
+              "name": "openSettings"
+            },
+            {
+              "kind": "method",
+              "name": "toggleToolbar"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "field",
+              "name": "sclRoot",
+              "type": {
+                "text": "null"
+              },
+              "description": "Cached SCL root element for namespace context during re-parsing.",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "_pendingValue",
+              "type": {
+                "text": "string"
+              },
+              "description": "Stores the initial value before the ace editor is available in the DOM.\nAfter first render, the ace editor instance is the single source of truth.",
+              "default": "''"
+            },
+            {
+              "kind": "field",
+              "name": "_toolbarOpen",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "toolbar",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "When true, shows the toolbar toggle button.",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "internals"
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "Event"
+              },
+              "description": "Fired on every editor content change."
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "Fired when the editor loses focus."
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-scl-editor",
+          "customElement": true,
+          "summary": "A form-associated SCL source code editor for SCL elements.\n\nWraps the OscdAceEditor with a toolbar providing undo/redo,\ncollapse/expand, search, pretty-print, and settings buttons.\n\nAccepts either an XML `element` or a text `value` as input (whichever\nis set last takes effect). The `element` getter attempts to parse the\ncurrent text back into an XML element within the original SCL namespace\ncontext, returning `null` if the text has XML parse errors.\n\nParticipates in the HTML form API via `ElementInternals`, including\n`checkValidity()`, `reportValidity()`, and form submission."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdSclEditor",
+          "declaration": {
+            "name": "OscdSclEditor",
+            "module": "dist/scl-editor/OscdSclEditor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/scl-editor/OscdSclEditor.spec.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/scl-editor/OscdSclEditor.stories.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ argTypes, args: { ...args, value: sampleXml, style: 'height: 400px; width: 600px;', }, }"
+        },
+        {
+          "kind": "variable",
+          "name": "InvalidXml",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ argTypes, args: { ...args, value: invalidXml, style: 'height: 400px; width: 600px;', }, }"
+        },
+        {
+          "kind": "variable",
+          "name": "Empty",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ argTypes, args: { ...args, style: 'height: 400px; width: 600px;', }, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "dist/scl-editor/OscdSclEditor.stories.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "dist/scl-editor/OscdSclEditor.stories.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "InvalidXml",
+          "declaration": {
+            "name": "InvalidXml",
+            "module": "dist/scl-editor/OscdSclEditor.stories.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Empty",
+          "declaration": {
+            "name": "Empty",
+            "module": "dist/scl-editor/OscdSclEditor.stories.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/scl-editor/oscd-scl-editor.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "oscd-scl-editor",
+          "declaration": {
+            "name": "OscdSclEditor",
+            "module": "/dist/scl-editor/OscdSclEditor.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdSclEditor",
+          "declaration": {
+            "name": "OscdSclEditor",
+            "module": "dist/scl-editor/oscd-scl-editor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/scl-icon/OscdSclIcon.js",
       "declarations": [
         {
@@ -16862,6 +17214,20 @@
           "name": "OscdXmlEditor",
           "members": [
             {
+              "kind": "method",
+              "name": "firstUpdated"
+            },
+            {
+              "kind": "method",
+              "name": "setAceText",
+              "parameters": [
+                {
+                  "name": "text"
+                }
+              ],
+              "description": "Writes text into the ace editor (or the pending buffer before first\nrender) and updates form validity/value.  Both `value` and `element`\nsetters funnel through here so that the ace editor instance is always\nthe single source of truth."
+            },
+            {
               "kind": "field",
               "name": "value",
               "description": "The current XML text content of the editor."
@@ -16895,7 +17261,12 @@
             },
             {
               "kind": "method",
-              "name": "updateFormState"
+              "name": "updateFormState",
+              "parameters": [
+                {
+                  "name": "text"
+                }
+              ]
             },
             {
               "kind": "method",
@@ -16940,6 +17311,10 @@
             },
             {
               "kind": "method",
+              "name": "toggleToolbar"
+            },
+            {
+              "kind": "method",
               "name": "render"
             },
             {
@@ -16953,19 +17328,28 @@
             },
             {
               "kind": "field",
-              "name": "_text",
+              "name": "_pendingValue",
               "type": {
                 "text": "string"
               },
+              "description": "Stores the initial value before the ace editor is available in the DOM.\nAfter first render, the ace editor instance is the single source of truth.",
               "default": "''"
             },
             {
               "kind": "field",
-              "name": "aceChangeInProgress",
+              "name": "_toolbarOpen",
               "type": {
                 "text": "boolean"
               },
-              "description": "Tracks whether the current `_text` update originated from the ace\neditor's own change event. When true, we skip pushing `.value` back\nto ace (which would reset its cursor position).",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "toolbar",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "When true, shows the toolbar toggle button.",
               "default": "false"
             },
             {
@@ -18145,6 +18529,142 @@
     },
     {
       "kind": "javascript-module",
+      "path": "scl-editor/internal/namespace-utils.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "defaultSclRoot",
+          "return": {
+            "type": {
+              "text": "Element"
+            }
+          },
+          "description": "Returns a default SCL root element with the standard SCL and\nXML Schema Instance namespace declarations.\nUsed as fallback when no owner document context is available."
+        },
+        {
+          "kind": "function",
+          "name": "serializeWithoutInheritedXmlns",
+          "return": {
+            "type": {
+              "text": "string"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ],
+          "description": "Serializes an element to XML text, stripping namespace declarations that\nXMLSerializer adds because they were inherited from ancestor elements.\n\nNamespace declarations that are explicitly present on the element itself\nin its original document are preserved."
+        },
+        {
+          "kind": "function",
+          "name": "parseInSclContext",
+          "return": {
+            "type": {
+              "text": "Element | null"
+            }
+          },
+          "parameters": [
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "sclRoot",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ],
+          "description": "Parses XML text in the namespace context of an SCL document by wrapping\nthe text in the root element's opening and closing tags.\n\nReturns the parsed child element or `null` if there is any XML parsing error."
+        },
+        {
+          "kind": "function",
+          "name": "isWellFormedXml",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          },
+          "parameters": [
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              }
+            }
+          ],
+          "description": "Attempts to parse XML text as standalone well-formed XML.\nReturns `true` if the text parses without errors, `false` otherwise."
+        },
+        {
+          "kind": "function",
+          "name": "getXmlParseError",
+          "return": {
+            "type": {
+              "text": "string | null"
+            }
+          },
+          "parameters": [
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              }
+            }
+          ],
+          "description": "Extracts the parse error message from a failed XML parse, or `null`\nif the text is well-formed."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "defaultSclRoot",
+          "declaration": {
+            "name": "defaultSclRoot",
+            "module": "scl-editor/internal/namespace-utils.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "serializeWithoutInheritedXmlns",
+          "declaration": {
+            "name": "serializeWithoutInheritedXmlns",
+            "module": "scl-editor/internal/namespace-utils.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "parseInSclContext",
+          "declaration": {
+            "name": "parseInSclContext",
+            "module": "scl-editor/internal/namespace-utils.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isWellFormedXml",
+          "declaration": {
+            "name": "isWellFormedXml",
+            "module": "scl-editor/internal/namespace-utils.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getXmlParseError",
+          "declaration": {
+            "name": "getXmlParseError",
+            "module": "scl-editor/internal/namespace-utils.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "selection-list/internal/FilterListBase.spec.ts",
       "declarations": [],
       "exports": []
@@ -18482,142 +19002,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "xml-editor/internal/namespace-utils.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "defaultSclRoot",
-          "return": {
-            "type": {
-              "text": "Element"
-            }
-          },
-          "description": "Returns a default SCL root element with the standard SCL and\nXML Schema Instance namespace declarations.\nUsed as fallback when no owner document context is available."
-        },
-        {
-          "kind": "function",
-          "name": "serializeWithoutInheritedXmlns",
-          "return": {
-            "type": {
-              "text": "string"
-            }
-          },
-          "parameters": [
-            {
-              "name": "element",
-              "type": {
-                "text": "Element"
-              }
-            }
-          ],
-          "description": "Serializes an element to XML text, stripping namespace declarations that\nXMLSerializer adds because they were inherited from ancestor elements.\n\nNamespace declarations that are explicitly present on the element itself\nin its original document are preserved."
-        },
-        {
-          "kind": "function",
-          "name": "parseInSclContext",
-          "return": {
-            "type": {
-              "text": "Element | null"
-            }
-          },
-          "parameters": [
-            {
-              "name": "text",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "name": "sclRoot",
-              "type": {
-                "text": "Element"
-              }
-            }
-          ],
-          "description": "Parses XML text in the namespace context of an SCL document by wrapping\nthe text in the root element's opening and closing tags.\n\nReturns the parsed child element or `null` if there is any XML parsing error."
-        },
-        {
-          "kind": "function",
-          "name": "isWellFormedXml",
-          "return": {
-            "type": {
-              "text": "boolean"
-            }
-          },
-          "parameters": [
-            {
-              "name": "text",
-              "type": {
-                "text": "string"
-              }
-            }
-          ],
-          "description": "Attempts to parse XML text as standalone well-formed XML.\nReturns `true` if the text parses without errors, `false` otherwise."
-        },
-        {
-          "kind": "function",
-          "name": "getXmlParseError",
-          "return": {
-            "type": {
-              "text": "string | null"
-            }
-          },
-          "parameters": [
-            {
-              "name": "text",
-              "type": {
-                "text": "string"
-              }
-            }
-          ],
-          "description": "Extracts the parse error message from a failed XML parse, or `null`\nif the text is well-formed."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "defaultSclRoot",
-          "declaration": {
-            "name": "defaultSclRoot",
-            "module": "xml-editor/internal/namespace-utils.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "serializeWithoutInheritedXmlns",
-          "declaration": {
-            "name": "serializeWithoutInheritedXmlns",
-            "module": "xml-editor/internal/namespace-utils.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "parseInSclContext",
-          "declaration": {
-            "name": "parseInSclContext",
-            "module": "xml-editor/internal/namespace-utils.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "isWellFormedXml",
-          "declaration": {
-            "name": "isWellFormedXml",
-            "module": "xml-editor/internal/namespace-utils.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "getXmlParseError",
-          "declaration": {
-            "name": "getXmlParseError",
-            "module": "xml-editor/internal/namespace-utils.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "ace-editor/internal/ace-editor-base/AceEditorBase.ts",
       "declarations": [
         {
@@ -18650,6 +19034,16 @@
                 "text": "Ace.Editor | undefined"
               },
               "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_syncingFromEditor",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "description": "True while `handleChange` syncs the editor's content to the value\nattribute.  Prevents `attributeChangedCallback` from scheduling a\nredundant (and racy) `initializeEditor` call."
             },
             {
               "kind": "field",
@@ -18712,7 +19106,7 @@
               "kind": "field",
               "name": "valueUpdateMode",
               "type": {
-                "text": "ValueUpdateMode | undefined"
+                "text": "string | undefined"
               }
             },
             {
@@ -19009,6 +19403,205 @@
           "declaration": {
             "name": "Alias",
             "module": "ace-editor/internal/ace-editor-base/property-decorators.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/ace-editor/internal/AceEditor.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AceEditor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "The current text content of the editor.\n\nNOT a Lit reactive property — reads/writes go directly to the\nunderlying ace instance so that programmatic sets never race with\nuser keystrokes through the debounced `initializeEditor` pipeline."
+            },
+            {
+              "kind": "field",
+              "name": "editor",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "firstUpdated"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AceGlobal",
+          "declaration": {
+            "name": "AceGlobal",
+            "module": "dist/ace-editor/internal/AceEditor.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AceEditor",
+          "declaration": {
+            "name": "AceEditor",
+            "module": "dist/ace-editor/internal/AceEditor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/ace-editor/internal/ace-theme-oscd.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/dialog/warning/OscdWarnDialog.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdWarnDialog",
+          "members": [
+            {
+              "kind": "method",
+              "name": "warning",
+              "parameters": [
+                {
+                  "name": "details"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "close"
+            },
+            {
+              "kind": "method",
+              "name": "handleOk"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "field",
+              "name": "heading",
+              "type": {
+                "text": "string"
+              },
+              "default": "''"
+            },
+            {
+              "kind": "field",
+              "name": "message",
+              "type": {
+                "text": "string"
+              },
+              "default": "''"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-warn-dialog",
+          "customElement": true,
+          "summary": "A warning dialog component for displaying important messages to the user.\nIt is designed to be used as a singleton, and can be accessed via the `warning` method."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdWarnDialog",
+          "declaration": {
+            "name": "OscdWarnDialog",
+            "module": "dist/dialog/warning/OscdWarnDialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/dialog/warning/oscd-warn-dialog.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "oscd-warn-dialog",
+          "declaration": {
+            "name": "OscdWarnDialog",
+            "module": "/dist/dialog/warning/OscdWarnDialog.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdWarnDialog",
+          "declaration": {
+            "name": "OscdWarnDialog",
+            "module": "dist/dialog/warning/oscd-warn-dialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/icon/internal/icon.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Internal Icon base class that extends the Material Design Icon with\nautomatic SCL icon resolution.\n\nWhen the text content of the element matches a key in SCL_ICONS,\nthe corresponding SVG is rendered instead of the default Material Symbols\nfont ligature. If no match is found the element falls through to the\nstandard `<slot></slot>` rendering from the Material base class so that\nMaterial Symbols font ligatures continue to work as before.",
+          "name": "Icon",
+          "members": [
+            {
+              "kind": "method",
+              "name": "_updateSclName"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "field",
+              "name": "_sclName",
+              "type": {
+                "text": "string"
+              },
+              "default": "''"
+            }
+          ],
+          "superclass": {
+            "name": "BaseIcon",
+            "package": "@omicronenergy/oscd-material-web-base/icon/internal/icon.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Icon",
+          "declaration": {
+            "name": "Icon",
+            "module": "dist/icon/internal/icon.js"
           }
         }
       ]
@@ -20814,205 +21407,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dist/ace-editor/internal/AceEditor.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "AceEditor",
-          "members": [
-            {
-              "kind": "field",
-              "name": "editor",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "parameters": [
-                {
-                  "name": "changedProps"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "AceGlobal",
-          "declaration": {
-            "name": "AceGlobal",
-            "module": "dist/ace-editor/internal/AceEditor.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "AceEditor",
-          "declaration": {
-            "name": "AceEditor",
-            "module": "dist/ace-editor/internal/AceEditor.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/ace-editor/internal/ace-theme-oscd.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/dialog/warning/OscdWarnDialog.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "OscdWarnDialog",
-          "members": [
-            {
-              "kind": "method",
-              "name": "warning",
-              "parameters": [
-                {
-                  "name": "details"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "close"
-            },
-            {
-              "kind": "method",
-              "name": "handleOk"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            },
-            {
-              "kind": "field",
-              "name": "heading",
-              "type": {
-                "text": "string"
-              },
-              "default": "''"
-            },
-            {
-              "kind": "field",
-              "name": "message",
-              "type": {
-                "text": "string"
-              },
-              "default": "''"
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "oscd-warn-dialog",
-          "customElement": true,
-          "summary": "A warning dialog component for displaying important messages to the user.\nIt is designed to be used as a singleton, and can be accessed via the `warning` method."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdWarnDialog",
-          "declaration": {
-            "name": "OscdWarnDialog",
-            "module": "dist/dialog/warning/OscdWarnDialog.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/dialog/warning/oscd-warn-dialog.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "oscd-warn-dialog",
-          "declaration": {
-            "name": "OscdWarnDialog",
-            "module": "/dist/dialog/warning/OscdWarnDialog.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "OscdWarnDialog",
-          "declaration": {
-            "name": "OscdWarnDialog",
-            "module": "dist/dialog/warning/oscd-warn-dialog.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/icon/internal/icon.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Internal Icon base class that extends the Material Design Icon with\nautomatic SCL icon resolution.\n\nWhen the text content of the element matches a key in SCL_ICONS,\nthe corresponding SVG is rendered instead of the default Material Symbols\nfont ligature. If no match is found the element falls through to the\nstandard `<slot></slot>` rendering from the Material base class so that\nMaterial Symbols font ligatures continue to work as before.",
-          "name": "Icon",
-          "members": [
-            {
-              "kind": "method",
-              "name": "_updateSclName"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            },
-            {
-              "kind": "field",
-              "name": "_sclName",
-              "type": {
-                "text": "string"
-              },
-              "default": "''"
-            }
-          ],
-          "superclass": {
-            "name": "BaseIcon",
-            "package": "@omicronenergy/oscd-material-web-base/icon/internal/icon.js"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "Icon",
-          "declaration": {
-            "name": "Icon",
-            "module": "dist/icon/internal/icon.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "dist/labs/badge/OscdBadge.js",
       "declarations": [
         {
@@ -21826,6 +22220,102 @@
           "declaration": {
             "name": "OscdOutlinedSegmentedButtonSet",
             "module": "dist/labs/segmentedbuttonset/oscd-outlined-segmented-button-set.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/scl-editor/internal/namespace-utils.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "defaultSclRoot",
+          "description": "Returns a default SCL root element with the standard SCL and\nXML Schema Instance namespace declarations.\nUsed as fallback when no owner document context is available."
+        },
+        {
+          "kind": "function",
+          "name": "serializeWithoutInheritedXmlns",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ],
+          "description": "Serializes an element to XML text, stripping namespace declarations that\nXMLSerializer adds because they were inherited from ancestor elements.\n\nNamespace declarations that are explicitly present on the element itself\nin its original document are preserved."
+        },
+        {
+          "kind": "function",
+          "name": "parseInSclContext",
+          "parameters": [
+            {
+              "name": "text"
+            },
+            {
+              "name": "sclRoot"
+            }
+          ],
+          "description": "Parses XML text in the namespace context of an SCL document by wrapping\nthe text in the root element's opening and closing tags.\n\nReturns the parsed child element or `null` if there is any XML parsing error."
+        },
+        {
+          "kind": "function",
+          "name": "isWellFormedXml",
+          "parameters": [
+            {
+              "name": "text"
+            }
+          ],
+          "description": "Attempts to parse XML text as standalone well-formed XML.\nReturns `true` if the text parses without errors, `false` otherwise."
+        },
+        {
+          "kind": "function",
+          "name": "getXmlParseError",
+          "parameters": [
+            {
+              "name": "text"
+            }
+          ],
+          "description": "Extracts the parse error message from a failed XML parse, or `null`\nif the text is well-formed."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "defaultSclRoot",
+          "declaration": {
+            "name": "defaultSclRoot",
+            "module": "dist/scl-editor/internal/namespace-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "serializeWithoutInheritedXmlns",
+          "declaration": {
+            "name": "serializeWithoutInheritedXmlns",
+            "module": "dist/scl-editor/internal/namespace-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "parseInSclContext",
+          "declaration": {
+            "name": "parseInSclContext",
+            "module": "dist/scl-editor/internal/namespace-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isWellFormedXml",
+          "declaration": {
+            "name": "isWellFormedXml",
+            "module": "dist/scl-editor/internal/namespace-utils.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getXmlParseError",
+          "declaration": {
+            "name": "getXmlParseError",
+            "module": "dist/scl-editor/internal/namespace-utils.js"
           }
         }
       ]
@@ -23293,6 +23783,15 @@
             {
               "kind": "method",
               "name": "resize"
+            },
+            {
+              "kind": "field",
+              "name": "_syncingFromEditor",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "True while `handleChange` syncs the editor's content to the value\nattribute.  Prevents `attributeChangedCallback` from scheduling a\nredundant (and racy) `initializeEditor` call.",
+              "default": "false"
             },
             {
               "kind": "field",

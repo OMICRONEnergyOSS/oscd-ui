@@ -1,15 +1,15 @@
 import type { StoryObj } from '@storybook/web-components-vite';
-import './oscd-xml-editor.js';
-import { OscdXmlEditor } from './OscdXmlEditor.js';
+import './oscd-scl-editor.js';
+import { OscdSclEditor } from './OscdSclEditor.js';
 import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
 
-const { args, argTypes, meta } = getStorybookMeta<OscdXmlEditor>({
-  tagName: 'oscd-xml-editor',
+const { args, argTypes, meta } = getStorybookMeta<OscdSclEditor>({
+  tagName: 'oscd-scl-editor',
 });
 
 export default {
   ...meta,
-  title: 'Editors / XML Editor',
+  title: 'Editors / SCL Editor',
   tags: ['autodocs'],
 };
 
