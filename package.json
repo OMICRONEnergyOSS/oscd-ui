@@ -230,7 +230,7 @@
   },
   "overrides": {
     "@web/test-runner-playwright": {
-      "playwright": "1.54.1"
+      "playwright": "1.59.1"
     }
   },
   "wireit": {
