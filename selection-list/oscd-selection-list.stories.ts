@@ -8,7 +8,7 @@ import {
 import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
 import { html } from 'lit';
 import { sampleDoc } from './storybook-utils.js';
-import { action } from 'storybook/internal/actions';
+import { action } from 'storybook/actions';
 
 const { args, argTypes, meta, template } = getStorybookMeta<OscdSelectionList>({
   tagName: 'oscd-selection-list',
