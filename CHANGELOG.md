@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.12](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.11...oscd-ui-v0.0.12) (2026-04-08)
+
+
+### Features
+
+* enhance oscd-icon to support scl-icon names too ([09fac16](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/09fac16de137f760df0803ce3cf028bd8c34184a))
+
+
+### Bug Fixes
+
+* correct doIcon and enumIcon styling (closes [#43](https://github.com/OMICRONEnergyOSS/oscd-ui/issues/43)) ([7736ed3](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/7736ed3a80dc97b3f08e02f9854c8c1bfd5acdc0))
+
 ## [0.0.11](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.10...oscd-ui-v0.0.11) (2026-02-09)
 
 
