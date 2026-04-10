@@ -16,30 +16,29 @@ const defaultSclXml = `<SCL xmlns="${SCL_NAMESPACE}" xmlns:xsi="${XSI_NAMESPACE}
  * XML Schema Instance namespace declarations.
  * Used as fallback when no owner document context is available.
  */
-export function defaultSclRoot(): Element {
+function defaultSclRoot(): Element {
   return new DOMParser().parseFromString(defaultSclXml, 'application/xml')
     .documentElement;
 }
 
 /**
- * Collects all namespace declarations (xmlns and xmlns:prefix) that are
- * in scope for the given element from its ancestors.
+ * Collects namespace declarations explicitly present on the root element
+ * of the current element tree.
  */
-function getInheritedNamespaces(element: Element): Map<string, string> {
-  const inherited = new Map<string, string>();
-  let current = element.parentElement;
-  while (current) {
-    for (const attr of Array.from(current.attributes)) {
-      if (
-        (attr.name === 'xmlns' || attr.name.startsWith('xmlns:')) &&
-        !inherited.has(attr.name)
-      ) {
-        inherited.set(attr.name, attr.value);
-      }
-    }
-    current = current.parentElement;
+function getRootNamespaces(element: Element): Map<string, string> {
+  let root = element;
+  while (root.parentElement) {
+    root = root.parentElement;
   }
-  return inherited;
+
+  const rootNamespaces = new Map<string, string>();
+  for (const attr of Array.from(root.attributes)) {
+    if (attr.name === 'xmlns' || attr.name.startsWith('xmlns:')) {
+      rootNamespaces.set(attr.name, attr.value);
+    }
+  }
+
+  return rootNamespaces;
 }
 
 /**
@@ -58,20 +57,20 @@ function getOwnNamespaceAttrs(element: Element): Set<string> {
 
 /**
  * Serializes an element to XML text, stripping namespace declarations that
- * XMLSerializer adds because they were inherited from ancestor elements.
+ * XMLSerializer adds because they were inherited from the root element.
  *
  * Namespace declarations that are explicitly present on the element itself
  * in its original document are preserved.
  */
-export function serializeWithoutInheritedXmlns(element: Element): string {
+export function serializeWithoutXmlnsContext(element: Element): string {
   const ownNsAttrs = getOwnNamespaceAttrs(element);
-  const inheritedNs = getInheritedNamespaces(element);
+  const rootNs = getRootNamespaces(element);
 
   let serialized = xmlSerializer.serializeToString(element);
 
   // Remove xmlns declarations that were inherited (added by XMLSerializer)
   // but not explicitly present on the element itself.
-  for (const [attrName, attrValue] of inheritedNs) {
+  for (const [attrName, attrValue] of rootNs) {
     if (!ownNsAttrs.has(attrName)) {
       // Match the exact xmlns attribute as it would appear in the serialized output
       const escaped = attrValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -103,64 +102,30 @@ function reconstructOpeningTag(rootElement: Element): string {
  * Parses XML text in the namespace context of an SCL document by wrapping
  * the text in the root element's opening and closing tags.
  *
- * Returns the parsed child element or `null` if there is any XML parsing error.
+ * Returns the parsed child element.
+ * Throws if the text is empty or contains XML parse errors.
  */
-export function parseInSclContext(
+export function parseInXmlnsContext(
   text: string,
-  sclRoot: Element,
-): Element | null {
-  const openTag = reconstructOpeningTag(sclRoot);
-  const closeTag = `</${sclRoot.tagName}>`;
+  sclRoot: Element | null = null,
+): Element {
+  const root = sclRoot ?? defaultSclRoot();
+  const openTag = reconstructOpeningTag(root);
+  const closeTag = `</${root.tagName}>`;
   const wrappedXml = `<?xml version="1.0" encoding="UTF-8"?>${openTag}${text}${closeTag}`;
 
   const parser = new DOMParser();
   const doc = parser.parseFromString(wrappedXml, 'application/xml');
 
-  if (doc.querySelector('parsererror')) {
-    return null;
+  const parseError = doc.querySelector('parsererror');
+  if (parseError) {
+    throw new Error(parseError.textContent ?? 'Unknown XML parsing error');
   }
 
   const rootEl = doc.documentElement;
   if (!rootEl.firstElementChild) {
-    return null;
+    throw new Error('No element found in parsed XML');
   }
 
   return rootEl.firstElementChild;
-}
-
-/**
- * Attempts to parse XML text as standalone well-formed XML.
- * Returns `true` if the text parses without errors, `false` otherwise.
- */
-export function isWellFormedXml(text: string): boolean {
-  if (!text.trim()) {
-    return true;
-  }
-
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(text, 'application/xml');
-  return !doc.querySelector('parsererror');
-}
-
-/**
- * Extracts the parse error message from a failed XML parse, or `null`
- * if the text is well-formed.
- */
-export function getXmlParseError(text: string): string | null {
-  if (!text.trim()) {
-    return null;
-  }
-
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(text, 'application/xml');
-  const parseError = doc.querySelector('parsererror');
-  if (!parseError) {
-    return null;
-  }
-
-  return (
-    parseError.querySelector('div')?.textContent ??
-    parseError.textContent ??
-    'Unknown XML parsing error'
-  );
 }

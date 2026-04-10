@@ -1,10 +1,7 @@
 import { expect } from '@open-wc/testing';
 import {
-  serializeWithoutInheritedXmlns,
-  parseInSclContext,
-  isWellFormedXml,
-  getXmlParseError,
-  defaultSclRoot,
+  serializeWithoutXmlnsContext,
+  parseInXmlnsContext,
 } from './namespace-utils.js';
 
 const sclNs = 'http://www.iec.ch/61850/2003/SCL';
@@ -23,127 +20,133 @@ const sclDocString = `<?xml version="1.0" encoding="UTF-8"?><SCL version="2007" 
 </SCL>`;
 
 describe('namespace-utils', () => {
-  describe('serializeWithoutInheritedXmlns', () => {
-    it('strips inherited xmlns from a child element', () => {
+  describe('serializeWithoutXmlnsContext', () => {
+    it('strips root xmlns from a child element', () => {
       const doc = parseSclDoc(sclDocString);
       const substation = doc.querySelector('Substation')!;
-      const serialized = serializeWithoutInheritedXmlns(substation);
+      const serialized = serializeWithoutXmlnsContext(substation);
 
-      // Should not contain the SCL default namespace (inherited from <SCL>)
       expect(serialized).to.not.contain(`xmlns="${sclNs}"`);
-      // Should not contain the extension namespace prefix (inherited from <SCL>)
       expect(serialized).to.not.contain(`xmlns:ens1="${extNs}"`);
-      // Should still have the element's own content
       expect(serialized).to.contain('name="A1"');
       expect(serialized).to.contain('ens1:foo="a"');
     });
 
-    it('preserves xmlns attributes that are directly on the element', () => {
+    it('preserves xmlns attributes directly on the element', () => {
       const xml = `<SCL xmlns="${sclNs}"><Substation xmlns:myns="http://my.ns" myns:bar="x" name="B1"></Substation></SCL>`;
       const doc = parseSclDoc(xml);
       const substation = doc.querySelector('Substation')!;
-      const serialized = serializeWithoutInheritedXmlns(substation);
+      const serialized = serializeWithoutXmlnsContext(substation);
 
       expect(serialized).to.contain('xmlns:myns="http://my.ns"');
       expect(serialized).to.not.contain(`xmlns="${sclNs}"`);
     });
 
-    it('handles root element (no inherited ns)', () => {
+    it('handles root element (all xmlns are its own)', () => {
       const doc = parseSclDoc(sclDocString);
       const root = doc.documentElement;
-      const serialized = serializeWithoutInheritedXmlns(root);
+      const serialized = serializeWithoutXmlnsContext(root);
 
-      // Root has no parent, so all xmlns are its own
       expect(serialized).to.contain(`xmlns="${sclNs}"`);
       expect(serialized).to.contain(`xmlns:ens1="${extNs}"`);
     });
   });
 
-  describe('parseInSclContext', () => {
-    it('parses a Substation element in SCL context', () => {
+  describe('parseInXmlnsContext', () => {
+    it('parses an element in the SCL namespace context', () => {
       const doc = parseSclDoc(sclDocString);
-      const sclRoot = doc.documentElement;
       const text = '<Substation name="A1" desc="test substation"></Substation>';
-      const el = parseInSclContext(text, sclRoot);
+      const el = parseInXmlnsContext(text, doc.documentElement);
 
-      expect(el).to.not.be.null;
-      expect(el!.localName).to.equal('Substation');
-      expect(el!.namespaceURI).to.equal(sclNs);
-      expect(el!.getAttribute('name')).to.equal('A1');
+      expect(el.localName).to.equal('Substation');
+      expect(el.namespaceURI).to.equal(sclNs);
+      expect(el.getAttribute('name')).to.equal('A1');
     });
 
-    it('returns null for malformed XML', () => {
+    it('throws for malformed XML', () => {
       const doc = parseSclDoc(sclDocString);
-      const sclRoot = doc.documentElement;
-      const el = parseInSclContext('<Substation name="A1"', sclRoot);
-
-      expect(el).to.be.null;
+      expect(() =>
+        parseInXmlnsContext('<Substation name="A1"', doc.documentElement),
+      ).to.throw();
     });
 
-    it('returns null for empty text', () => {
+    it('includes the parsererror text in the thrown error', () => {
       const doc = parseSclDoc(sclDocString);
-      const sclRoot = doc.documentElement;
-      const el = parseInSclContext('', sclRoot);
+      try {
+        parseInXmlnsContext('<Substation name="A1"', doc.documentElement);
+        expect.fail('should have thrown');
+      } catch (e) {
+        expect(e).to.be.instanceOf(Error);
+        expect((e as Error).message.length).to.be.greaterThan(0);
+      }
+    });
 
-      expect(el).to.be.null;
+    it('throws for empty text', () => {
+      expect(() => parseInXmlnsContext('')).to.throw(
+        'No element found in parsed XML',
+      );
     });
 
     it('preserves extension namespace attributes', () => {
       const doc = parseSclDoc(sclDocString);
-      const sclRoot = doc.documentElement;
       const text = '<Substation ens1:foo="a" name="A1"></Substation>';
-      const el = parseInSclContext(text, sclRoot);
+      const el = parseInXmlnsContext(text, doc.documentElement);
 
-      expect(el).to.not.be.null;
-      expect(el!.getAttributeNS(extNs, 'foo')).to.equal('a');
+      expect(el.getAttributeNS(extNs, 'foo')).to.equal('a');
+    });
+
+    it('uses default SCL context when no root is provided', () => {
+      const el = parseInXmlnsContext('<Substation name="A1"></Substation>');
+      expect(el.localName).to.equal('Substation');
+      expect(el.namespaceURI).to.equal(sclNs);
+    });
+
+    it('uses default SCL context when null root is provided', () => {
+      const el = parseInXmlnsContext(
+        '<Substation name="A1"></Substation>',
+        null,
+      );
+      expect(el.localName).to.equal('Substation');
+      expect(el.namespaceURI).to.equal(sclNs);
     });
   });
 
-  describe('defaultSclRoot', () => {
-    it('returns an SCL element with SCL namespace', () => {
-      const root = defaultSclRoot();
-      expect(root.tagName).to.equal('SCL');
-      expect(root.namespaceURI).to.equal(sclNs);
+  describe('roundtrip', () => {
+    it('serialize then parse preserves the element', () => {
+      const doc = parseSclDoc(sclDocString);
+      const substation = doc.querySelector('Substation')!;
+      const serialized = serializeWithoutXmlnsContext(substation);
+      const parsed = parseInXmlnsContext(serialized, doc.documentElement);
+
+      expect(parsed.localName).to.equal('Substation');
+      expect(parsed.namespaceURI).to.equal(sclNs);
+      expect(parsed.getAttribute('name')).to.equal('A1');
+      expect(parsed.getAttribute('desc')).to.equal('test substation');
+      expect(parsed.getAttributeNS(extNs, 'foo')).to.equal('a');
     });
 
-    it('can be used as context for parseInSclContext', () => {
-      const root = defaultSclRoot();
-      const el = parseInSclContext('<Substation name="A1"></Substation>', root);
-      expect(el).to.not.be.null;
-      expect(el!.localName).to.equal('Substation');
-      expect(el!.namespaceURI).to.equal(sclNs);
-    });
-  });
+    it('serialize then parse preserves nested children', () => {
+      const doc = parseSclDoc(sclDocString);
+      const substation = doc.querySelector('Substation')!;
+      const serialized = serializeWithoutXmlnsContext(substation);
+      const parsed = parseInXmlnsContext(serialized, doc.documentElement);
 
-  describe('isWellFormedXml', () => {
-    it('returns true for valid XML', () => {
-      expect(isWellFormedXml('<Substation name="A1"></Substation>')).to.be.true;
+      const voltageLevel = parsed.querySelector('VoltageLevel');
+      expect(voltageLevel).to.not.be.null;
+      expect(voltageLevel!.getAttribute('name')).to.equal('V1');
+      expect(voltageLevel!.namespaceURI).to.equal(sclNs);
     });
 
-    it('returns true for empty/whitespace text', () => {
-      expect(isWellFormedXml('')).to.be.true;
-      expect(isWellFormedXml('  ')).to.be.true;
-    });
+    it('roundtrips an element with its own xmlns declaration', () => {
+      const xml = `<SCL xmlns="${sclNs}"><Substation xmlns:myns="http://my.ns" myns:bar="x" name="B1"></Substation></SCL>`;
+      const doc = parseSclDoc(xml);
+      const substation = doc.querySelector('Substation')!;
+      const serialized = serializeWithoutXmlnsContext(substation);
+      const parsed = parseInXmlnsContext(serialized, doc.documentElement);
 
-    it('returns false for malformed XML', () => {
-      expect(isWellFormedXml('<Substation name="A1"')).to.be.false;
-    });
-  });
-
-  describe('getXmlParseError', () => {
-    it('returns null for valid XML', () => {
-      expect(getXmlParseError('<Substation name="A1"></Substation>')).to.be
-        .null;
-    });
-
-    it('returns error message for malformed XML', () => {
-      const error = getXmlParseError('<Substation name="A1"');
-      expect(error).to.be.a('string');
-      expect(error!.length).to.be.greaterThan(0);
-    });
-
-    it('returns null for empty text', () => {
-      expect(getXmlParseError('')).to.be.null;
+      expect(parsed.localName).to.equal('Substation');
+      expect(parsed.getAttribute('name')).to.equal('B1');
+      expect(parsed.getAttributeNS('http://my.ns', 'bar')).to.equal('x');
     });
   });
 });
