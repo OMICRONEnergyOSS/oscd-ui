@@ -82,4 +82,41 @@ describe('oscd-scl-editor', () => {
       el.remove();
     });
   });
+
+  describe('validity', () => {
+    it('checkValidity returns true for valid XML', () => {
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
+      document.body.appendChild(el);
+      el.value = '<Substation name="A1"></Substation>';
+
+      expect(el.checkValidity()).to.be.true;
+      el.remove();
+    });
+
+    it('checkValidity returns false for malformed XML', () => {
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
+      document.body.appendChild(el);
+      el.value = '<Substation name="A1"';
+
+      expect(el.checkValidity()).to.be.false;
+      el.remove();
+    });
+
+    it('checkValidity returns true for empty value', () => {
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
+      document.body.appendChild(el);
+
+      expect(el.checkValidity()).to.be.true;
+      el.remove();
+    });
+
+    it('reportValidity returns false for invalid XML', () => {
+      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
+      document.body.appendChild(el);
+      el.value = '<Substation name="A1"';
+
+      expect(el.reportValidity()).to.be.false;
+      el.remove();
+    });
+  });
 });

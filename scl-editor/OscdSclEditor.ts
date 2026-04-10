@@ -3,10 +3,6 @@
  * Copyright 2026 OMICRON electronics GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
-import { LitElement, html, css } from 'lit';
-import { property, query } from 'lit/decorators.js';
-import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
-
 import { OscdAceEditor } from '../ace-editor/OscdAceEditor.js';
 import {
   serializeWithoutXmlnsContext,
@@ -21,60 +17,37 @@ declare global {
 
 /**
  * @tagname oscd-scl-editor
- * @summary An SCL source code editor for SCL elements.
+ * @summary A form-associated SCL source code editor for SCL elements.
  *
- * Wraps the OscdAceEditor (which now provides the toolbar, form
- * association, and validation infrastructure).
+ * Extends OscdAceEditor with an `element` property that converts between
+ * XML elements and their serialized text, handling SCL namespace context.
  *
- * Accepts either an XML `element` or a text `value` as input (whichever
- * is set last takes effect). The `element` getter attempts to parse the
- * current text back into an XML element within the original SCL namespace
- * context, returning `null` if the text has XML parse errors.
+ * Validation is automatically configured: the editor content is valid
+ * when it can be parsed as well-formed XML in the current SCL namespace
+ * context.
  *
  * @event {Event} input Fired on every editor content change.
  * @event {Event} change Fired when the editor loses focus.
  */
-export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
-  static scopedElements = {
-    'oscd-ace-editor': OscdAceEditor,
-  };
-
+export class OscdSclEditor extends OscdAceEditor {
   /** Cached SCL root element for namespace context during re-parsing. */
   private sclRoot: Element | null = null;
 
-  private _pendingValue: string = '';
-
-  @query('oscd-ace-editor')
-  private aceEditor!: OscdAceEditor;
-
-  /** When true, shows the toolbar toggle button. */
-  @property({ type: Boolean })
-  toolbar = false;
-
-  override firstUpdated(): void {
-    if (this._pendingValue) {
-      this.aceEditor.value = this._pendingValue;
-      this._pendingValue = '';
+  override connectedCallback(): void {
+    if (!this.validator) {
+      this.validator = (text: string): string | null => {
+        if (!text.trim()) {
+          return null;
+        }
+        try {
+          parseInXmlnsContext(text, this.sclRoot);
+          return null;
+        } catch (e) {
+          return e instanceof Error ? e.message : 'Invalid XML';
+        }
+      };
     }
-  }
-
-  /** The current XML text content of the editor. */
-  @property({ type: String })
-  set value(val: string) {
-    if (this.aceEditor) {
-      this.aceEditor.value = val;
-    } else {
-      this._pendingValue = val;
-    }
-  }
-
-  get value(): string {
-    return (
-      this.aceEditor?.editor?.getValue() ??
-      this.aceEditor?.value ??
-      this._pendingValue ??
-      ''
-    );
+    super.connectedCallback();
   }
 
   /**
@@ -109,21 +82,4 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
       return null;
     }
   }
-
-  override render() {
-    return html` <oscd-ace-editor ?toolbar=${this.toolbar}></oscd-ace-editor> `;
-  }
-
-  static override styles = css`
-    :host {
-      display: block;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    oscd-ace-editor {
-      height: 100%;
-      overflow: auto;
-    }
-  `;
 }
