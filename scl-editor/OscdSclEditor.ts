@@ -31,9 +31,12 @@ declare global {
  */
 export class OscdSclEditor extends OscdAceEditor {
   /** Cached SCL root element for namespace context during re-parsing. */
-  private sclRoot: Element | null = null;
+  private sclRoot!: Element | null;
 
   override connectedCallback(): void {
+    if (this.sclRoot === undefined) {
+      this.sclRoot = null;
+    }
     if (!this.validator) {
       this.validator = (text: string): string | null => {
         if (!text.trim()) {
@@ -60,6 +63,10 @@ export class OscdSclEditor extends OscdAceEditor {
    * has XML parse errors or if no SCL root context is available.
    */
   set element(el: Element | null) {
+    if (el !== null && !(el instanceof Element)) {
+      return;
+    }
+
     if (!el) {
       this.sclRoot = null;
       this.value = '';
