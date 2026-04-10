@@ -13,11 +13,8 @@ import { OscdOutlinedIconButton } from '../iconbutton/OscdOutlinedIconButton.js'
 import { OscdFilledIconButton } from '../iconbutton/OscdFilledIconButton.js';
 import { OscdIcon } from '../icon/OscdIcon.js';
 import {
-  serializeWithoutInheritedXmlns,
-  parseInSclContext,
-  isWellFormedXml,
-  getXmlParseError,
-  defaultSclRoot,
+  serializeWithoutXmlnsContext,
+  parseInXmlnsContext,
 } from './internal/namespace-utils.js';
 
 declare global {
@@ -133,7 +130,7 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
     }
 
     this.sclRoot = el.ownerDocument.documentElement;
-    this.setAceText(serializeWithoutInheritedXmlns(el));
+    this.setAceText(serializeWithoutXmlnsContext(el));
   }
 
   get element(): Element | null {
@@ -142,23 +139,42 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
       return null;
     }
 
-    return parseInSclContext(text, this.sclRoot ?? defaultSclRoot());
+    try {
+      return parseInXmlnsContext(text, this.sclRoot);
+    } catch {
+      return null;
+    }
   }
 
   checkValidity(): boolean {
-    return isWellFormedXml(this.value);
+    const text = this.value;
+    if (!text.trim()) {
+      return true;
+    }
+    try {
+      parseInXmlnsContext(text, this.sclRoot);
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   reportValidity(): boolean {
-    const valid = this.checkValidity();
-    if (!valid) {
-      const msg = getXmlParseError(this.value) ?? 'Invalid XML';
+    const text = this.value;
+    if (!text.trim()) {
+      this.internals.setValidity({});
+      return true;
+    }
+    try {
+      parseInXmlnsContext(text, this.sclRoot);
+      this.internals.setValidity({});
+      return true;
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Invalid XML';
       this.internals.setValidity({ customError: true }, msg);
       this.internals.reportValidity();
-    } else {
-      this.internals.setValidity({});
+      return false;
     }
-    return valid;
   }
 
   setCustomValidity(message: string): void {
@@ -177,10 +193,15 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
   private updateFormState(text?: string): void {
     const val = text ?? this.value;
     this.internals.setFormValue(val);
-    if (isWellFormedXml(val)) {
+    if (!val.trim()) {
       this.internals.setValidity({});
-    } else {
-      const msg = getXmlParseError(val) ?? 'Invalid XML';
+      return;
+    }
+    try {
+      parseInXmlnsContext(val, this.sclRoot);
+      this.internals.setValidity({});
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Invalid XML';
       this.internals.setValidity({ customError: true }, msg);
     }
   }
