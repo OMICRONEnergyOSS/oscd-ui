@@ -3,6 +3,8 @@
  * Copyright 2026 OMICRON electronics GmbH
  * SPDX-License-Identifier: Apache-2.0
  */
+import { html, css } from 'lit';
+import { property, state } from 'lit/decorators.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 import { AceEditor, AceGlobal } from './internal/AceEditor.js';
 import type {
@@ -10,6 +12,9 @@ import type {
   AceSettingsMenuModule,
 } from './internal/AceEditor.js';
 import AceEditorBase from './internal/ace-editor-base/AceEditorBase.js';
+import { OscdOutlinedIconButton } from '../iconbutton/OscdOutlinedIconButton.js';
+import { OscdFilledIconButton } from '../iconbutton/OscdFilledIconButton.js';
+import { OscdIcon } from '../icon/OscdIcon.js';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -41,6 +46,9 @@ export class OscdAceEditor extends ScopedElementsMixin(AceEditor) {
   static scopedElements = {
     'ace-editor': AceEditor,
     'ace-editor-base': AceEditorBase,
+    'oscd-outlined-icon-button': OscdOutlinedIconButton,
+    'oscd-filled-icon-button': OscdFilledIconButton,
+    'oscd-icon': OscdIcon,
   };
 
   static formAssociated = true;
@@ -145,4 +153,206 @@ export class OscdAceEditor extends ScopedElementsMixin(AceEditor) {
       this.internals?.setValidity({ customError: true }, error);
     }
   }
+
+  /** When true, shows the toolbar toggle button. */
+  @property({ type: Boolean })
+  toolbar!: boolean;
+
+  @state()
+  private _toolbarOpen!: boolean;
+
+  private undo(): void {
+    this.editor?.execCommand('undo');
+  }
+
+  private redo(): void {
+    this.editor?.execCommand('redo');
+  }
+
+  private collapseAll(): void {
+    this.editor?.session.foldAll(1);
+  }
+
+  private expandAll(): void {
+    this.editor?.session.unfold();
+  }
+
+  private search(): void {
+    this.editor?.execCommand('find');
+  }
+
+  private formatXml(): void {
+    const editor = this.editor;
+    if (!editor) {
+      return;
+    }
+
+    const rawXml = editor.getSelectedText() || this.value;
+    if (!rawXml) {
+      return;
+    }
+
+    const xml = rawXml.trim();
+    let initialIndent = '';
+
+    if (editor.getSelectedText()) {
+      const range = editor.getSelectionRange();
+      const startLine = range.start.row;
+      const lineContent = editor.session.getLine(startLine);
+      initialIndent = lineContent.match(/^(\s*)/)?.[1] || '';
+    }
+
+    let formatted = '';
+    let indent = '';
+    const tab = '\t';
+    const nodes = xml.split(/>\s*</);
+
+    nodes.forEach((node, index) => {
+      if (index === 0) {
+        node = node.replace(/^\s*</, '');
+      }
+      if (index === nodes.length - 1) {
+        node = node.replace(/>\s*$/, '');
+      }
+
+      if (node.match(/^\/\w/)) {
+        indent = indent.substring(tab.length);
+      }
+      formatted += initialIndent + indent + '<' + node + '>\r\n';
+      if (node.match(/^<?\w[^>]*[^/]$/)) {
+        indent += tab;
+      }
+    });
+
+    if (editor.getSelectedText()) {
+      const range = editor.getSelectionRange();
+      editor.session.replace(
+        range,
+        formatted.substring(0, formatted.length - 2),
+      );
+    } else {
+      this.value = formatted;
+    }
+  }
+
+  private openSettings(): void {
+    const editor = this.editor as AceEditorWithSettingsMenu | undefined;
+    if (!editor) {
+      return;
+    }
+    editor.showSettingsMenu?.();
+  }
+
+  private toggleToolbar(): void {
+    this._toolbarOpen = !this._toolbarOpen;
+  }
+
+  override render() {
+    return html`
+      <div class="editor-container">
+        ${this.toolbar
+          ? html`
+              <oscd-filled-icon-button
+                class="toolbar-toggle"
+                title=${this._toolbarOpen ? 'Hide toolbar' : 'Show toolbar'}
+                @click=${this.toggleToolbar}
+              >
+                <oscd-icon
+                  >${this._toolbarOpen ? 'close' : 'more_vert'}</oscd-icon
+                >
+              </oscd-filled-icon-button>
+              ${this._toolbarOpen
+                ? html`
+                    <div class="toolbar">
+                      <oscd-outlined-icon-button
+                        title="Undo"
+                        @click=${this.undo}
+                      >
+                        <oscd-icon>undo</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Redo"
+                        @click=${this.redo}
+                      >
+                        <oscd-icon>redo</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Collapse all"
+                        @click=${this.collapseAll}
+                      >
+                        <oscd-icon>collapse_all</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Expand all"
+                        @click=${this.expandAll}
+                      >
+                        <oscd-icon>expand_all</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Search"
+                        @click=${this.search}
+                      >
+                        <oscd-icon>search</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Format XML"
+                        @click=${this.formatXml}
+                      >
+                        <oscd-icon>format_indent_increase</oscd-icon>
+                      </oscd-outlined-icon-button>
+                      <oscd-outlined-icon-button
+                        title="Settings"
+                        @click=${this.openSettings}
+                      >
+                        <oscd-icon>settings</oscd-icon>
+                      </oscd-outlined-icon-button>
+                    </div>
+                  `
+                : ''}
+            `
+          : ''}
+        ${super.render()}
+      </div>
+    `;
+  }
+
+  static override styles = css`
+    ${AceEditor.styles ?? css``}
+
+    .editor-container {
+      position: relative;
+      height: 100%;
+    }
+
+    .toolbar-toggle {
+      position: absolute;
+      top: 4px;
+      right: 20px;
+      z-index: 2;
+    }
+
+    .toolbar {
+      position: absolute;
+      top: 48px;
+      right: 16px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: var(--md-sys-radius-medium, 8px);
+      background: var(--md-sys-color-surface-container, #f3edf7);
+      box-shadow: var(
+        --md-sys-elevation-level2,
+        0 1px 2px 0 rgba(0, 0, 0, 0.3),
+        0 2px 6px 2px rgba(0, 0, 0, 0.15)
+      );
+    }
+
+    ace-editor-base {
+      height: 100%;
+      width: 100%;
+    }
+  `;
 }
