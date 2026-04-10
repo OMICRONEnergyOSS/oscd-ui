@@ -82,41 +82,4 @@ describe('oscd-scl-editor', () => {
       el.remove();
     });
   });
-
-  describe('validity', () => {
-    it('checkValidity returns true for valid XML', async () => {
-      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
-      document.body.appendChild(el);
-      el.value = '<Substation name="A1"></Substation>';
-
-      expect(el.checkValidity()).to.be.true;
-      el.remove();
-    });
-
-    it('checkValidity returns false for malformed XML', async () => {
-      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
-      document.body.appendChild(el);
-      el.value = '<Substation name="A1"';
-
-      expect(el.checkValidity()).to.be.false;
-      el.remove();
-    });
-
-    it('checkValidity returns true for empty value', async () => {
-      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
-      document.body.appendChild(el);
-
-      expect(el.checkValidity()).to.be.true;
-      el.remove();
-    });
-
-    it('reportValidity returns false and reports for invalid XML', async () => {
-      const el = document.createElement('oscd-scl-editor') as OscdSclEditor;
-      document.body.appendChild(el);
-      el.value = '<Substation name="A1"';
-
-      expect(el.reportValidity()).to.be.false;
-      el.remove();
-    });
-  });
 });

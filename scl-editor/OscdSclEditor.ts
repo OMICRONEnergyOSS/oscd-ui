@@ -23,9 +23,9 @@ declare global {
   }
 }
 
-/**x
+/**
  * @tagname oscd-scl-editor
- * @summary A form-associated SCL source code editor for SCL elements.
+ * @summary An SCL source code editor for SCL elements.
  *
  * Wraps the OscdAceEditor with a toolbar providing undo/redo,
  * collapse/expand, search, pretty-print, and settings buttons.
@@ -34,9 +34,6 @@ declare global {
  * is set last takes effect). The `element` getter attempts to parse the
  * current text back into an XML element within the original SCL namespace
  * context, returning `null` if the text has XML parse errors.
- *
- * Participates in the HTML form API via `ElementInternals`, including
- * `checkValidity()`, `reportValidity()`, and form submission.
  *
  * @event {Event} input Fired on every editor content change.
  * @event {Event} change Fired when the editor loses focus.
@@ -48,10 +45,6 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
     'oscd-filled-icon-button': OscdFilledIconButton,
     'oscd-icon': OscdIcon,
   };
-
-  static formAssociated = true;
-
-  private internals: ElementInternals;
 
   /** Cached SCL root element for namespace context during re-parsing. */
   private sclRoot: Element | null = null;
@@ -72,36 +65,21 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
   @property({ type: Boolean })
   toolbar = false;
 
-  constructor() {
-    super();
-    this.internals = this.attachInternals();
-  }
-
   override firstUpdated(): void {
     if (this._pendingValue) {
-      this.setAceText(this._pendingValue);
+      this.aceEditor.value = this._pendingValue;
+      this._pendingValue = '';
     }
-  }
-
-  /**
-   * Writes text into the ace editor (or the pending buffer before first
-   * render) and updates form validity/value.  Both `value` and `element`
-   * setters funnel through here so that the ace editor instance is always
-   * the single source of truth.
-   */
-  private setAceText(text: string): void {
-    if (this.aceEditor) {
-      this.aceEditor.value = text;
-    } else {
-      this._pendingValue = text;
-    }
-    this.updateFormState(text);
   }
 
   /** The current XML text content of the editor. */
   @property({ type: String })
   set value(val: string) {
-    this.setAceText(val);
+    if (this.aceEditor) {
+      this.aceEditor.value = val;
+    } else {
+      this._pendingValue = val;
+    }
   }
 
   get value(): string {
@@ -125,12 +103,12 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
   set element(el: Element | null) {
     if (!el) {
       this.sclRoot = null;
-      this.setAceText('');
+      this.value = '';
       return;
     }
 
     this.sclRoot = el.ownerDocument.documentElement;
-    this.setAceText(serializeWithoutXmlnsContext(el));
+    this.value = serializeWithoutXmlnsContext(el);
   }
 
   get element(): Element | null {
@@ -144,78 +122,6 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
     } catch {
       return null;
     }
-  }
-
-  checkValidity(): boolean {
-    const text = this.value;
-    if (!text.trim()) {
-      return true;
-    }
-    try {
-      parseInXmlnsContext(text, this.sclRoot);
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
-  reportValidity(): boolean {
-    const text = this.value;
-    if (!text.trim()) {
-      this.internals.setValidity({});
-      return true;
-    }
-    try {
-      parseInXmlnsContext(text, this.sclRoot);
-      this.internals.setValidity({});
-      return true;
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : 'Invalid XML';
-      this.internals.setValidity({ customError: true }, msg);
-      this.internals.reportValidity();
-      return false;
-    }
-  }
-
-  setCustomValidity(message: string): void {
-    if (message) {
-      this.internals.setValidity({ customError: true }, message);
-    } else {
-      this.internals.setValidity({});
-    }
-  }
-
-  /** Called by the browser when the parent form is reset. */
-  formResetCallback(): void {
-    this.setAceText('');
-  }
-
-  private updateFormState(text?: string): void {
-    const val = text ?? this.value;
-    this.internals.setFormValue(val);
-    if (!val.trim()) {
-      this.internals.setValidity({});
-      return;
-    }
-    try {
-      parseInXmlnsContext(val, this.sclRoot);
-      this.internals.setValidity({});
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : 'Invalid XML';
-      this.internals.setValidity({ customError: true }, msg);
-    }
-  }
-
-  private handleAceChange(e: CustomEvent<string>): void {
-    if (typeof e.detail !== 'string') {
-      return;
-    }
-    this.updateFormState(e.detail);
-    this.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
-  }
-
-  private handleAceBlur(): void {
-    this.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
   private undo(): void {
@@ -288,7 +194,7 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
         formatted.substring(0, formatted.length - 2),
       );
     } else {
-      this.setAceText(formatted);
+      this.value = formatted;
     }
   }
 
@@ -370,10 +276,7 @@ export class OscdSclEditor extends ScopedElementsMixin(LitElement) {
                 : ''}
             `
           : ''}
-        <oscd-ace-editor
-          @change=${this.handleAceChange}
-          @blur=${this.handleAceBlur}
-        ></oscd-ace-editor>
+        <oscd-ace-editor></oscd-ace-editor>
       </div>
     `;
   }
