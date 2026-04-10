@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import './oscd-scl-editor.js';
-import { OscdSclEditor } from './OscdSclEditor.js';
+import type { OscdSclEditor } from './OscdSclEditor.js';
 import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
 
 const { args, argTypes, meta } = getStorybookMeta<OscdSclEditor>({
@@ -24,6 +24,16 @@ export const Default: StoryObj = {
   args: {
     ...args,
     value: sampleXml,
+    style: 'height: 400px; width: 600px;',
+  },
+};
+
+export const WithToolbar: StoryObj = {
+  argTypes,
+  args: {
+    ...args,
+    value: sampleXml,
+    toolbar: true,
     style: 'height: 400px; width: 600px;',
   },
 };
