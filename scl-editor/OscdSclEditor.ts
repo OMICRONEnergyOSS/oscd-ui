@@ -31,27 +31,20 @@ declare global {
  */
 export class OscdSclEditor extends OscdAceEditor {
   /** Cached SCL root element for namespace context during re-parsing. */
-  private sclRoot!: Element | null;
-
-  override connectedCallback(): void {
-    if (this.sclRoot === undefined) {
-      this.sclRoot = null;
+  private sclRoot: Element | null = null;
+  override validator: ((value: string) => string | null) | null = (
+    text: string,
+  ): string | null => {
+    if (!text.trim()) {
+      return null;
     }
-    if (!this.validator) {
-      this.validator = (text: string): string | null => {
-        if (!text.trim()) {
-          return null;
-        }
-        try {
-          parseInXmlnsContext(text, this.sclRoot);
-          return null;
-        } catch (e) {
-          return e instanceof Error ? e.message : 'Invalid XML';
-        }
-      };
+    try {
+      parseInXmlnsContext(text, this.sclRoot);
+      return null;
+    } catch (e) {
+      return e instanceof Error ? e.message : 'Invalid XML';
     }
-    super.connectedCallback();
-  }
+  };
 
   /**
    * Sets the editor content from an XML element, serializing it without
