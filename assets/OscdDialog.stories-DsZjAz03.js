@@ -1,0 +1,4 @@
+import{O as t}from"./OscdDialog-FXksbMut.js";import{g as r}from"./getStorybookMeta-CBumkAFM.js";import"./OscdDivider-CwZqZ22H.js";import"./list-item-styles-CjF7S3P4.js";import"./iframe-CprjnxQ1.js";import"./preload-helper-PPVm8Dsz.js";import"./OscdListItem-C6Fu-I6V.js";import"./redispatch-event-D1qO1AWI.js";import"./getStorybookHelpers-Dzl6jIXq.js";import"./OscdMenuItem-7J0ZBKMK.js";import"./query-assigned-nodes-WkFDPTIo.js";customElements.define("oscd-dialog",t);const{args:a,argTypes:s,meta:e}=r({tagName:"oscd-dialog"}),O={title:"Dialogs / Dialog",tags:["autodocs"],...e},o={argTypes:s,args:a};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...o.parameters?.docs?.source}}};const y=["Default"];export{o as Default,y as __namedExportsOrder,O as default};

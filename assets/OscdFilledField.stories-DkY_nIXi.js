@@ -1,0 +1,4 @@
+import{O as t}from"./OscdFilledField-DX1wVcdo.js";import{g as o}from"./getStorybookMeta-CBumkAFM.js";import"./iframe-CprjnxQ1.js";import"./preload-helper-PPVm8Dsz.js";import"./shared-styles-UZlYsJnl.js";import"./list-item-styles-CjF7S3P4.js";import"./OscdListItem-C6Fu-I6V.js";import"./getStorybookHelpers-Dzl6jIXq.js";import"./OscdMenuItem-7J0ZBKMK.js";import"./query-assigned-nodes-WkFDPTIo.js";customElements.define("oscd-filled-field",t);const{args:r,argTypes:s,meta:a}=o({tagName:"oscd-filled-field"}),F={title:"Fields / Filled Field",tags:["autodocs"],...a},e={argTypes:s,args:r};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...e.parameters?.docs?.source}}};const O=["Default"];export{e as Default,O as __namedExportsOrder,F as default};
