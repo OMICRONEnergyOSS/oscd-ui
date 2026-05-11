@@ -15,6 +15,7 @@ import * as compare from './internal/icons/compare.js';
 import * as icons from './internal/icons/icons.js';
 import * as iedIcons from './internal/icons/ied-icons.js';
 import * as lnode from './internal/icons/lnode.js';
+import { SLD_ICONS } from './internal/icons/sld-icons.js';
 import { OscdIcon } from '../icon/OscdIcon.js';
 
 declare global {
@@ -88,6 +89,8 @@ export const SCL_ICONS: Record<string, SVGTemplateResult> = {
     },
     {} as Record<string, SVGTemplateResult>,
   ),
+  // From sld-icons.ts
+  ...SLD_ICONS,
 };
 
 export type iconType =
