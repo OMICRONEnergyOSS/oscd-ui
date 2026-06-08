@@ -13,17 +13,20 @@ export default {
   tags: ['autodocs'],
 };
 
-const sampleXml = `<Substation name="A1" desc="test substation">
+const sampleXml = new DOMParser().parseFromString(
+  `<Substation name="A1" desc="test substation">
   <VoltageLevel name="V1" desc="110kV" nomFreq="50" numPhases="3">
     <Voltage unit="V" multiplier="k">110</Voltage>
   </VoltageLevel>
-</Substation>`;
+</Substation>`,
+  'application/xml',
+).firstChild;
 
 export const Default: StoryObj = {
   argTypes,
   args: {
     ...args,
-    value: sampleXml,
+    element: sampleXml,
     style: 'height: 400px; width: 600px;',
   },
 };
@@ -32,7 +35,7 @@ export const WithToolbar: StoryObj = {
   argTypes,
   args: {
     ...args,
-    value: sampleXml,
+    element: sampleXml,
     toolbar: true,
     style: 'height: 400px; width: 600px;',
   },
