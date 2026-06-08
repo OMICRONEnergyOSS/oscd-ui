@@ -35,6 +35,7 @@ export const SCL_ICONS: Record<string, SVGTemplateResult> = {
   gooseIcon: icons.gooseIcon,
   reportIcon: icons.reportIcon,
   smvIcon: icons.smvIcon,
+  dataSetIcon: icons.dataSetIcon,
   logIcon: icons.logIcon,
   inputIcon: icons.inputIcon,
   clientIcon: icons.clientIcon,
