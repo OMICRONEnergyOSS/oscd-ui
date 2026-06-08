@@ -28,6 +28,7 @@ export const pathsSVG = {
   lNIcon: svg`<path stroke="currentColor" stroke-width="1.89" fill="none" d="m4.2 0.945h18.1c1.8 0 3.25 1.45 3.25 3.25v11.6c0 1.8-1.45 3.25-3.25 3.25h-18.1c-1.8 0-3.25-1.45-3.25-3.25v-11.6c0-1.8 1.45-3.25 3.25-3.25z"/><path fill="currentColor" d="m5.71 15v-10h1.75v8.39h4.47v1.62z"/><path fill="currentColor" d="m18.2 15-3.63-7.71q0.107 1.12 0.107 1.8v5.9h-1.55v-10h1.99l3.69 7.77q-0.107-1.07-0.107-1.95v-5.82h1.55v10z"/>`,
   logIcon: svg`<path fill="currentColor" d="M9,7H11V15H15V17H9V7M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />`,
   reportIcon: svg`<path fill="currentColor" d="M9,7H13A2,2 0 0,1 15,9V11C15,11.84 14.5,12.55 13.76,12.85L15,17H13L11.8,13H11V17H9V7M11,9V11H13V9H11M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12C4,16.41 7.58,20 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />`,
+  dataSetIcon: svg`<path fill="currentColor" d="M9,7H12.5A3.5,3.5 0 0,1 16,10.5V13.5A3.5,3.5 0 0,1 12.5,17H9V7M11,9V15H12.5A1.5,1.5 0 0,0 14,13.5V10.5A1.5,1.5 0 0,0 12.5,9H11M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12C4,16.41 7.58,20 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />`,
   smvIcon: svg`<path fill="currentColor" d="M11,7H15V9H11V11H13A2,2 0 0,1 15,13V15A2,2 0 0,1 13,17H9V15H13V13H11A2,2 0 0,1 9,11V9A2,2 0 0,1 11,7M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />`,
   reset: svg``,
 };
@@ -37,6 +38,8 @@ export const gooseIcon = svg`<svg style="width:24px;height:24px" viewBox="0 0 24
 export const reportIcon = svg`<svg style="width:24px;height:24px" viewBox="0 0 24 24">${pathsSVG['reportIcon']}</svg>`;
 
 export const smvIcon = svg`<svg style="width:24px;height:24px" viewBox="0 0 24 24">${pathsSVG['smvIcon']}</svg>`;
+
+export const dataSetIcon = svg`<svg style="width:24px;height:24px" viewBox="0 0 24 24">${pathsSVG['dataSetIcon']}</svg>`;
 
 export const logIcon = svg`<svg style="width:24px;height:24px" viewBox="0 0 24 24">${pathsSVG['logIcon']}</svg>`;
 
