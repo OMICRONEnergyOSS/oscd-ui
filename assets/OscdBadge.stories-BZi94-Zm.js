@@ -1,0 +1,4 @@
+import{O as e}from"./OscdBadge-DP4JIYF9.js";import{g as o}from"./getStorybookMeta-D4nAQZGb.js";import"./list-item-styles-DbtL1MIB.js";import"./iframe-CED9u4fv.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-DCG8XUrM.js";import"./oscd-menu-item-DLNMOFEq.js";import"./OscdListItem-YzTXxYva.js";import"./OscdMenuItem-DhDenadO.js";import"./query-assigned-nodes-GnmzpfNZ.js";import"./OscdList--At7ZW1p.js";customElements.define("oscd-badge",e);const{args:r,argTypes:a,meta:s}=o({tagName:"oscd-badge"}),B={title:"Labs / Badge / Badge",tags:["autodocs"],...s},t={argTypes:a,args:r};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...t.parameters?.docs?.source}}};const O=["Default"];export{t as Default,O as __namedExportsOrder,B as default};

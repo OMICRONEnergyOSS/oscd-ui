@@ -1,0 +1,4 @@
+import{O as e}from"./OscdOutlinedField-3pKOEIJ_.js";import{g as o}from"./getStorybookMeta-D4nAQZGb.js";import"./iframe-CED9u4fv.js";import"./preload-helper-PPVm8Dsz.js";import"./shared-styles-CoicpMAz.js";import"./list-item-styles-DbtL1MIB.js";import"./OscdListItem-YzTXxYva.js";import"./getStorybookHelpers-DCG8XUrM.js";import"./oscd-menu-item-DLNMOFEq.js";import"./OscdMenuItem-DhDenadO.js";import"./query-assigned-nodes-GnmzpfNZ.js";import"./OscdList--At7ZW1p.js";customElements.define("oscd-outlined-field",e);const{args:r,argTypes:s,meta:i}=o({tagName:"oscd-outlined-field"}),y={title:"Fields / Outlined Field",tags:["autodocs"],...i},t={argTypes:s,args:r};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...t.parameters?.docs?.source}}};const _=["Default"];export{t as Default,_ as __namedExportsOrder,y as default};

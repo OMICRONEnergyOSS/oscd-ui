@@ -1,0 +1,4 @@
+import{O as t}from"./OscdDivider-DV193aNU.js";import{g as e}from"./getStorybookMeta-D4nAQZGb.js";import"./list-item-styles-DbtL1MIB.js";import"./iframe-CED9u4fv.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-DCG8XUrM.js";import"./oscd-menu-item-DLNMOFEq.js";import"./OscdListItem-YzTXxYva.js";import"./OscdMenuItem-DhDenadO.js";import"./query-assigned-nodes-GnmzpfNZ.js";import"./OscdList--At7ZW1p.js";customElements.define("oscd-divider",t);const{args:o,argTypes:s,meta:i}=e({tagName:"oscd-divider"}),D={title:"Dividers / Divider",tags:["autodocs"],...i},r={argTypes:s,args:o};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...r.parameters?.docs?.source}}};const O=["Default"];export{r as Default,O as __namedExportsOrder,D as default};
