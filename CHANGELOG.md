@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.13](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.12...oscd-ui-v0.0.13) (2026-06-08)
+
+
+### Features
+
+* added DataSet icon to scl-icons ([ba9e8ba](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/ba9e8bab297b73cefb03dbab793920b1d90fee3f))
+* moved menu story out of overrides directly into OscdMenu.stories ([0cdff23](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/0cdff23b6e7e90b8ec87922f151a241269d34825))
+
+
+### Bug Fixes
+
+* add import dropped by bad merge ([42766cd](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/42766cd72af6cd1e0f2d6b28a0dd3f3c1077022b))
+
 ## [0.0.12](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.11...oscd-ui-v0.0.12) (2026-04-15)
 
 
