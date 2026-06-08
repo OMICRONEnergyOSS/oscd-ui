@@ -1,4 +1,0 @@
-import{O as o}from"./OscdTextButton-Cf4n2tJG.js";import{g as r}from"./getStorybookMeta-D4nAQZGb.js";import"./OscdListItem-YzTXxYva.js";import"./list-item-styles-DbtL1MIB.js";import"./iframe-CED9u4fv.js";import"./preload-helper-PPVm8Dsz.js";import"./OscdMenuItem-DhDenadO.js";import"./query-assigned-nodes-GnmzpfNZ.js";import"./getStorybookHelpers-DCG8XUrM.js";import"./oscd-menu-item-DLNMOFEq.js";import"./OscdList--At7ZW1p.js";customElements.define("oscd-text-button",o);const{args:e,argTypes:s,meta:a}=r({tagName:"oscd-text-button"}),T={title:"Buttons / Text Button",tags:["autodocs"],...a},t={argTypes:s,args:e};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...t.parameters?.docs?.source}}};const B=["Default"];export{t as Default,B as __namedExportsOrder,T as default};

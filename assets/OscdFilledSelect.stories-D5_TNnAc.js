@@ -1,7 +1,0 @@
-import{x as e}from"./iframe-CED9u4fv.js";import{g as r}from"./getStorybookMeta-D4nAQZGb.js";import{O as s}from"./OscdFilledSelect-B9WRfCvy.js";import"./oscd-select-option-D-G8IKJm.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-DCG8XUrM.js";import"./oscd-menu-item-DLNMOFEq.js";import"./OscdListItem-YzTXxYva.js";import"./list-item-styles-DbtL1MIB.js";import"./OscdMenuItem-DhDenadO.js";import"./query-assigned-nodes-GnmzpfNZ.js";import"./OscdList--At7ZW1p.js";import"./shared-styles-BfhHa9gl.js";import"./style-map-Cl8ZIZTf.js";import"./redispatch-event-D1qO1AWI.js";import"./validator-DrTVKtKT.js";import"./form-associated-BZB3BzSH.js";import"./on-report-validity-g69Ll89o.js";import"./menu-CD5llDre.js";import"./OscdFilledField-DOi9-rgp.js";import"./shared-styles-CoicpMAz.js";import"./OscdMenu-Bl2OZqhL.js";import"./OscdSelectOption-BzWcFHP6.js";customElements.define("oscd-filled-select",s);const{args:i,argTypes:p,meta:m,template:c}=r({tagName:"oscd-filled-select"}),q={...m,title:"Selects / Filled Select",tags:["autodocs"],render:o=>c(o,e`
-        <oscd-select-option value="1">Option 1</oscd-select-option>
-        <oscd-select-option value="2">Option 2</oscd-select-option>
-      `)},t={argTypes:p,args:i};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...t.parameters?.docs?.source}}};const w=["Default"];export{t as Default,w as __namedExportsOrder,q as default};
