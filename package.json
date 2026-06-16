@@ -75,6 +75,7 @@
     "./chips/oscd-filter-chip.js": "./dist/chips/oscd-filter-chip.js",
     "./chips/oscd-input-chip.js": "./dist/chips/oscd-input-chip.js",
     "./chips/oscd-suggestion-chip.js": "./dist/chips/oscd-suggestion-chip.js",
+    "./decorators/localstorage.js": "./dist/decorators/localstorage.js",
     "./dialog/OscdDialog.js": "./dist/dialog/OscdDialog.js",
     "./dialog/oscd-dialog.js": "./dist/dialog/oscd-dialog.js",
     "./divider/OscdDivider.js": "./dist/divider/OscdDivider.js",
