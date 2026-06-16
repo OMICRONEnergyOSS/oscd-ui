@@ -171,6 +171,10 @@
     "./textfield/OscdOutlinedTextField.js": "./dist/textfield/OscdOutlinedTextField.js",
     "./textfield/oscd-filled-text-field.js": "./dist/textfield/oscd-filled-text-field.js",
     "./textfield/oscd-outlined-text-field.js": "./dist/textfield/oscd-outlined-text-field.js",
+    "./tree/OscdTree.js": "./dist/tree/OscdTree.js",
+    "./tree/OscdTreeItem.js": "./dist/tree/OscdTreeItem.js",
+    "./tree/oscd-tree-item.js": "./dist/tree/oscd-tree-item.js",
+    "./tree/oscd-tree.js": "./dist/tree/oscd-tree.js",
     "./tree-grid/OscdTreeGrid.js": "./dist/tree-grid/OscdTreeGrid.js",
     "./tree-grid/oscd-tree-grid.js": "./dist/tree-grid/oscd-tree-grid.js"
   },
