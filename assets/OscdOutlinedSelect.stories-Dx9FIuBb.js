@@ -1,7 +1,0 @@
-import{x as e}from"./iframe-D_AT4TIz.js";import{g as r}from"./getStorybookMeta-DSrCqPZ2.js";import{O as s}from"./OscdOutlinedSelect-C24VB97x.js";import"./oscd-select-option-BpvYahIr.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-BPhoQ4a6.js";import"./oscd-menu-item-BRx5nmZc.js";import"./OscdListItem-Dtz4smBz.js";import"./list-item-styles-B8z8P4EW.js";import"./OscdMenuItem-BwTzKIea.js";import"./query-assigned-nodes-BPJpqv7A.js";import"./OscdList-Diogj996.js";import"./OscdOutlinedField-DdjJoX5A.js";import"./shared-styles-aM9cD-bE.js";import"./OscdMenu-BAO-fEsH.js";import"./menu-DdSm8Duc.js";import"./style-map-FWhBgtnV.js";import"./shared-styles-DRpk3sww.js";import"./redispatch-event-D1qO1AWI.js";import"./validator-B2hqroGq.js";import"./form-associated-CDMYVxQk.js";import"./on-report-validity-Db4pmVu5.js";import"./OscdSelectOption-BNK66B0O.js";customElements.define("oscd-outlined-select",s);const{args:i,argTypes:p,meta:m,template:c}=r({tagName:"oscd-outlined-select"}),w={...m,title:"Selects / Outlined Select",tags:["autodocs"],render:o=>c(o,e`
-        <oscd-select-option value="1">Option 1</oscd-select-option>
-        <oscd-select-option value="2">Option 2</oscd-select-option>
-      `)},t={argTypes:p,args:i};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...t.parameters?.docs?.source}}};const z=["Default"];export{t as Default,z as __namedExportsOrder,w as default};

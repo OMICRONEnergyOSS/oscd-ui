@@ -1,0 +1,4 @@
+import"./oscd-elevated-card-DBeywxrH.js";import{g as t}from"./getStorybookMeta-gDO-wW0N.js";import"./list-item-styles-Bfc4eJrR.js";import"./iframe-BFpCwY9R.js";import"./preload-helper-PPVm8Dsz.js";import"./shared-styles-CDQZNFZJ.js";import"./getStorybookHelpers-cc4YvQDR.js";import"./oscd-menu-item-COy5XFsF.js";import"./OscdListItem-B_3Vgj5Y.js";import"./OscdMenuItem-DnbnThgq.js";import"./query-assigned-nodes-Ud0G1qU0.js";import"./OscdList-XsnvtwlT.js";const{args:a,argTypes:o,meta:e}=t({tagName:"oscd-elevated-card"}),y={title:"Labs / Card / Elevated Card",tags:["autodocs"],...e},r={argTypes:o,args:a};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...r.parameters?.docs?.source}}};const C=["Default"];export{r as Default,C as __namedExportsOrder,y as default};
