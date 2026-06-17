@@ -158,6 +158,8 @@
     "./select/oscd-select-option.js": "./dist/select/oscd-select-option.js",
     "./selection-list/OscdSelectionList.js": "./dist/selection-list/OscdSelectionList.js",
     "./selection-list/oscd-selection-list.js": "./dist/selection-list/oscd-selection-list.js",
+    "./snackbar/OscdSnackbar.js": "./dist/snackbar/OscdSnackbar.js",
+    "./snackbar/oscd-snackbar.js": "./dist/snackbar/oscd-snackbar.js",
     "./slider/OscdSlider.js": "./dist/slider/OscdSlider.js",
     "./slider/oscd-slider.js": "./dist/slider/oscd-slider.js",
     "./switch/OscdSwitch.js": "./dist/switch/OscdSwitch.js",
