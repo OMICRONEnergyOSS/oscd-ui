@@ -1,4 +1,0 @@
-import{O as o}from"./OscdSwitch-exgAMmls.js";import{g as r}from"./getStorybookMeta-gDO-wW0N.js";import"./OscdListItem-B_3Vgj5Y.js";import"./list-item-styles-Bfc4eJrR.js";import"./iframe-BFpCwY9R.js";import"./preload-helper-PPVm8Dsz.js";import"./OscdMenuItem-DnbnThgq.js";import"./query-assigned-nodes-Ud0G1qU0.js";import"./redispatch-event-D1qO1AWI.js";import"./validator-C3KVGDlf.js";import"./form-associated-qER_3PrR.js";import"./checkbox-validator-CQVrzvKL.js";import"./getStorybookHelpers-cc4YvQDR.js";import"./oscd-menu-item-COy5XFsF.js";import"./OscdList-XsnvtwlT.js";customElements.define("oscd-switch",o);const{args:s,argTypes:e,meta:a}=r({tagName:"oscd-switch"}),_={title:"Switchs / Switch",tags:["autodocs"],...a},t={argTypes:e,args:s};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...t.parameters?.docs?.source}}};const x=["Default"];export{t as Default,x as __namedExportsOrder,_ as default};

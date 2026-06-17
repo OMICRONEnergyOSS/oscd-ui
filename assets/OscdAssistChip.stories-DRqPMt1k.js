@@ -1,0 +1,4 @@
+import{g as r}from"./getStorybookMeta-fEcaYkww.js";import"./iframe-C4uLaTi3.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-BPPERp-C.js";import"./oscd-menu-item-D6eVNoir.js";import"./OscdIcon-C3sU6W8j.js";import"./list-navigation-helpers-uOLGipP7.js";import"./OscdListItem-CcUpt_sr.js";import"./list-item-styles-CwxrGOCZ.js";import"./OscdMenuItem-AVFwwFRE.js";import"./query-assigned-nodes-EHSBqaR2.js";import"./menuItemController-vk-DquCy.js";import"./oscd-filled-button-CEBWtmCm.js";import"./OscdList-C90geFFa.js";const{args:s,argTypes:o,meta:a}=r({tagName:"oscd-assist-chip"}),_={title:"Chips / Assist Chip",tags:["autodocs"],...a},t={argTypes:o,args:s};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...t.parameters?.docs?.source}}};const x=["Default"];export{t as Default,x as __namedExportsOrder,_ as default};
