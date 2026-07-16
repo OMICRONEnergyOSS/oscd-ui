@@ -18,6 +18,23 @@ declare global {
  * secondary/path text, `start` for an optional leading icon, and `end` for
  * optional trailing status or actions.
  *
+ * ## Leading icon alignment
+ *
+ * When only some rows carry a leading icon (e.g. top-level rows have icons but
+ * their children do not), you usually want the icon-less children's text to sit
+ * directly under their iconed parent's text. This works automatically: a
+ * leading icon occupies exactly one indent step, so an icon-less child —
+ * indented one step by the tree — aligns its text with the parent's, at any
+ * depth, with no per-row configuration.
+ *
+ * The leading icon column and the per-level indentation are both driven by the
+ * single `--oscd-tree-indent-step` custom property (default `24px`), so they can
+ * never drift out of alignment. Set it large enough to comfortably hold your
+ * icon — e.g. `--oscd-tree-indent-step: 40px` — which also widens the gap
+ * between the icon and the text (the gap is `step - icon size`). The rarely
+ * needed `--oscd-tree-item-leading-size` can decouple just the column width, but
+ * keeping it equal to the indent step is what preserves the alignment.
+ *
  * @example
  * ```ts
  * const renderItem = ({ node, selected, active, disabled }) => html`

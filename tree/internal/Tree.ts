@@ -21,6 +21,15 @@ import { OscdTreeItem } from '../OscdTreeItem.js';
 export type TreeSelectionMode = 'none' | 'single' | 'multiple';
 
 /**
+ * Placement of the expand/collapse toggle within a tree row.
+ *
+ * - `'leading'` renders the toggle before the row content (default).
+ * - `'trailing'` renders the toggle after the row content, right-aligned so
+ *   the toggles line up on the trailing edge regardless of nesting depth.
+ */
+export type TreeTogglePosition = 'leading' | 'trailing';
+
+/**
  * Loaded state of a tree node's children.
  */
 export type TreeChildrenState = 'unknown' | 'leaf' | 'branch';
@@ -200,6 +209,23 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
   renderItem?: (context: TreeRenderContext<T>) => TemplateResult;
 
   /**
+   * Renders an interactive accessory into the toggle column of a **leaf** row.
+   *
+   * Leaf rows have no expand/collapse toggle, so this callback can supply
+   * trailing content (for example a pin/unpin button) that lines up exactly
+   * with the chevrons of expandable rows, following `togglePosition`.
+   *
+   * Return `nothing` (or a falsy value) to leave the leaf's toggle column
+   * empty. The tree isolates pointer and `Enter`/`Space` interaction on the
+   * accessory so activating it does not select or toggle the row; arrow-key
+   * navigation still works. Any returned interactive element (such as a
+   * `<button>`) is keyboard-focusable and therefore adds a tab stop per row.
+   * Provide an accessible label and `aria-pressed` for toggle semantics.
+   */
+  @property({ attribute: false })
+  renderLeafAccessory?: (context: TreeRenderContext<T>) => unknown;
+
+  /**
    * Resolves a stable node identifier when `node.id` is not provided.
    *
    * If neither `node.id` nor this callback is available, the tree falls back to
@@ -236,6 +262,35 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
    */
   @property()
   selectionMode: TreeSelectionMode = 'none';
+
+  /**
+   * Icon shown on the expand/collapse toggle when a branch is collapsed.
+   *
+   * Any icon name understood by `oscd-icon` (a Material Symbol name or a
+   * registered SCL icon) may be used. Defaults to `chevron_right`.
+   */
+  @property({ attribute: 'collapse-icon' })
+  collapseIcon = 'chevron_right';
+
+  /**
+   * Icon shown on the expand/collapse toggle when a branch is expanded.
+   *
+   * Any icon name understood by `oscd-icon` (a Material Symbol name or a
+   * registered SCL icon) may be used. Defaults to `expand_more`.
+   */
+  @property({ attribute: 'expand-icon' })
+  expandIcon = 'expand_more';
+
+  /**
+   * Placement of the expand/collapse toggle within each row.
+   *
+   * `'leading'` (default) renders the toggle before the row content.
+   * `'trailing'` renders it after the content, right-aligned so the toggles
+   * line up on the trailing edge regardless of nesting depth. Keyboard
+   * expansion (`ArrowRight`/`ArrowLeft`) is unaffected by this option.
+   */
+  @property({ reflect: true, attribute: 'toggle-position' })
+  togglePosition: TreeTogglePosition = 'leading';
 
   @state()
   private activeId?: string;
@@ -593,25 +648,56 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
     ></span>`;
   }
 
-  private renderToggle(row: VisibleTreeNode<T>): TemplateResult {
-    const state = childState(row.node);
-    const expandable = state !== 'leaf';
-    const expanded = this.expandedIds.includes(row.id);
+  private renderToggle(
+    row: VisibleTreeNode<T>,
+    context: TreeRenderContext<T>,
+  ): TemplateResult {
+    const expandable = context.childrenState !== 'leaf';
+    const expanded = context.expanded;
+
+    if (!expandable && this.renderLeafAccessory) {
+      const accessory = this.renderLeafAccessory(context);
+      if (accessory !== nothing && accessory != null && accessory !== false) {
+        return html`<div
+          part="accessory"
+          class="accessory"
+          @click=${(event: Event) => event.stopPropagation()}
+          @keydown=${(event: KeyboardEvent) =>
+            this.handleAccessoryKeydown(event)}
+        >
+          ${accessory}
+        </div>`;
+      }
+    }
 
     return html`<button
       part="toggle"
       class="toggle"
-      ?disabled=${!expandable || this.isRowDisabled(row)}
+      ?disabled=${!expandable || context.disabled}
       aria-label=${expanded ? 'Collapse' : 'Expand'}
       tabindex="-1"
       @click=${(event: MouseEvent) => this.handleToggleClick(row, event)}
     >
       ${expandable
         ? html`<oscd-icon
-            >${expanded ? 'expand_more' : 'chevron_right'}</oscd-icon
+            >${expanded ? this.expandIcon : this.collapseIcon}</oscd-icon
           >`
         : nothing}
     </button>`;
+  }
+
+  // Keep Enter/Space activations of a leaf accessory (e.g. a pin button) from
+  // bubbling to the row's keyboard handler; arrow keys still bubble so tree
+  // navigation continues to work while an accessory is focused.
+  // eslint-disable-next-line class-methods-use-this
+  private handleAccessoryKeydown(event: KeyboardEvent): void {
+    if (
+      event.key === 'Enter' ||
+      event.key === ' ' ||
+      event.key === 'Spacebar'
+    ) {
+      event.stopPropagation();
+    }
   }
 
   private renderRow(row: VisibleTreeNode<T>): TemplateResult {
@@ -645,14 +731,28 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       <oscd-ripple for=${row.htmlId} ?disabled=${disabled}></oscd-ripple>
       <oscd-focus-ring for=${row.htmlId} inward></oscd-focus-ring>
       <span part="indent" class="indent" aria-hidden="true"></span>
-      ${this.renderToggle(row)} ${this.renderSelection(row)}
+      ${this.togglePosition === 'leading'
+        ? this.renderToggle(row, context)
+        : nothing}
+      ${this.renderSelection(row)}
       <span part="content" class="content"
         >${(this.renderItem ?? fallbackRenderItem)(context)}</span
       >
+      ${this.togglePosition === 'trailing'
+        ? this.renderToggle(row, context)
+        : nothing}
     </div>`;
   }
 
   override updated(): void {
+    const focusedAccessory =
+      this.renderRoot instanceof ShadowRoot
+        ? this.renderRoot.activeElement?.closest('.accessory')
+        : null;
+    if (focusedAccessory) {
+      return;
+    }
+
     const activeRow = this.renderRoot.querySelector<HTMLElement>(
       '.row[data-active="true"]',
     );
@@ -672,14 +772,32 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
   static override styles = css`
     :host {
       display: block;
+      /*
+       * Allow the tree to shrink below its content's intrinsic (max-content)
+       * width when placed in a flex or grid container. Without this, a single
+       * long row label leaks its max-content width up the layout chain and
+       * sizes every row to it, pushing trailing toggles/accessories out of a
+       * width-constrained parent and defeating the per-row ellipsis. Keeping
+       * this on the host makes the tree a well-behaved flex/grid child by
+       * default for every consumer.
+       */
+      min-width: 0;
       color: var(--oscd-tree-color, var(--md-sys-color-on-surface, #1d1b20));
       font-family: var(
         --oscd-tree-font-family,
         var(--oscd-text-font, sans-serif)
       );
       outline: none;
+      /*
+       * Drives both the per-level indentation and the leading icon column width
+       * of each row (see OscdTreeItem). Keeping these fused means a leading icon
+       * occupies exactly one indent step, so icon-less descendants align their
+       * text under an iconed ancestor's text automatically. Set it large enough
+       * to hold your leading icon comfortably (e.g. 40px) when using icons.
+       */
       --oscd-tree-indent-step: 24px;
       --oscd-tree-toggle-size: 32px;
+      --oscd-tree-toggle-icon-size: 24px;
       --oscd-tree-row-height: 44px;
       --oscd-tree-row-shape: var(--md-sys-shape-corner-small, 4px);
       --md-ripple-hover-color: var(
@@ -704,6 +822,7 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       display: flex;
       flex-direction: column;
       min-width: 0;
+      gap: var(--oscd-tree-row-gap, 0);
     }
 
     .row {
@@ -717,6 +836,7 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       color: inherit;
       cursor: default;
       outline: none;
+      padding-inline-start: var(--oscd-tree-row-padding-start, 16px);
       padding-inline-end: var(--oscd-tree-row-padding-end, 8px);
       user-select: none;
     }
@@ -788,8 +908,60 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       opacity: 0;
     }
 
+    :host([toggle-position='trailing']) .toggle {
+      margin-inline-start: var(--oscd-tree-trailing-toggle-gap, 4px);
+    }
+
     .toggle oscd-icon {
-      font-size: 20px;
+      --md-icon-size: var(--oscd-tree-toggle-icon-size, 24px);
+    }
+
+    .accessory {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 var(--oscd-tree-toggle-size);
+      inline-size: var(--oscd-tree-toggle-size);
+      block-size: var(--oscd-tree-toggle-size);
+      /*
+       * Accessory visibility at rest. Defaults to fully opaque so accessories
+       * are always shown; consumers can set --oscd-tree-accessory-rest-opacity
+       * to 0 for a reveal-on-interaction pattern. Row hover and keyboard focus
+       * within the accessory always force it fully visible so it stays
+       * discoverable and keyboard-accessible.
+       */
+      opacity: var(--oscd-tree-accessory-rest-opacity, 1);
+      transition: opacity 0.1s ease-in-out;
+    }
+
+    .row:hover .accessory,
+    .accessory:focus-within {
+      opacity: 1;
+    }
+
+    :host([toggle-position='trailing']) .accessory {
+      margin-inline-start: var(--oscd-tree-trailing-toggle-gap, 4px);
+    }
+
+    .accessory oscd-icon {
+      --md-icon-size: var(
+        --oscd-tree-accessory-icon-size,
+        var(--oscd-tree-toggle-icon-size, 24px)
+      );
+    }
+
+    .accessory button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: var(--oscd-tree-toggle-size);
+      block-size: var(--oscd-tree-toggle-size);
+      border: 0;
+      border-radius: 50%;
+      padding: 0;
+      color: inherit;
+      background: transparent;
+      cursor: pointer;
     }
 
     .selection {
