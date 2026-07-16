@@ -1,4 +1,0 @@
-import"./oscd-menu-item-D6eVNoir.js";import{g as r}from"./getStorybookMeta-fEcaYkww.js";import"./OscdIcon-C3sU6W8j.js";import"./list-navigation-helpers-uOLGipP7.js";import"./iframe-C4uLaTi3.js";import"./preload-helper-PPVm8Dsz.js";import"./OscdListItem-CcUpt_sr.js";import"./list-item-styles-CwxrGOCZ.js";import"./OscdMenuItem-AVFwwFRE.js";import"./query-assigned-nodes-EHSBqaR2.js";import"./menuItemController-vk-DquCy.js";import"./getStorybookHelpers-BPPERp-C.js";import"./oscd-filled-button-CEBWtmCm.js";import"./OscdList-C90geFFa.js";const{args:t,argTypes:s,meta:a}=r({tagName:"oscd-icon"}),x={title:"Icons / Icon",tags:["autodocs"],...a},o={argTypes:s,args:t};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...o.parameters?.docs?.source}}};const D=["Default"];export{o as Default,D as __namedExportsOrder,x as default};

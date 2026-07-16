@@ -1,0 +1,4 @@
+import{g as o}from"./getStorybookMeta-DOS5upft.js";import"./iframe-CzfB892c.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-Bv3ZIOVO.js";import"./oscd-menu-item-Bv29e9fa.js";import"./OscdIcon-D6gSxZ3c.js";import"./list-navigation-helpers-CWtHtHq2.js";import"./OscdMenuItem-DA-1vXHl.js";import"./query-assigned-nodes-CLgeST5H.js";import"./menuItemController-B_J_C6eD.js";import"./oscd-filled-button-DQw484Ye.js";import"./OscdList-ZIhvBfgq.js";import"./oscd-list-item-C0ScTv6k.js";import"./OscdListItem-aUMQlSYk.js";import"./list-item-styles-Bz0C6iu4.js";const{args:r,argTypes:e,meta:a}=o({tagName:"oscd-elevation"}),x={title:"Elevations / Elevation",tags:["autodocs"],...a},t={argTypes:e,args:r};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...t.parameters?.docs?.source}}};const D=["Default"];export{t as Default,D as __namedExportsOrder,x as default};

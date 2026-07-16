@@ -1,1 +1,0 @@
-import{O as e}from"./OscdIcon-C3sU6W8j.js";import{O as m}from"./OscdListItem-CcUpt_sr.js";import{O as s}from"./OscdMenuItem-AVFwwFRE.js";customElements.define("oscd-icon",e);customElements.define("oscd-list-item",m);customElements.define("oscd-menu-item",s);

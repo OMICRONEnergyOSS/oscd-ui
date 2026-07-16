@@ -1,4 +1,0 @@
-import{a as r}from"./OscdIcon-C3sU6W8j.js";import{g as t}from"./getStorybookMeta-fEcaYkww.js";import"./list-navigation-helpers-uOLGipP7.js";import"./iframe-C4uLaTi3.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-BPPERp-C.js";import"./oscd-menu-item-D6eVNoir.js";import"./OscdListItem-CcUpt_sr.js";import"./list-item-styles-CwxrGOCZ.js";import"./OscdMenuItem-AVFwwFRE.js";import"./query-assigned-nodes-EHSBqaR2.js";import"./menuItemController-vk-DquCy.js";import"./oscd-filled-button-CEBWtmCm.js";import"./OscdList-C90geFFa.js";customElements.define("oscd-focus-ring",r);const{args:s,argTypes:e,meta:a}=t({tagName:"oscd-focus-ring"}),_={title:"Focus / Md Focus Ring",tags:["autodocs"],...a},o={argTypes:e,args:s};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...o.parameters?.docs?.source}}};const x=["Default"];export{o as Default,x as __namedExportsOrder,_ as default};

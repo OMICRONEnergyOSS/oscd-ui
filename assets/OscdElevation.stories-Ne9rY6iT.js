@@ -1,4 +1,0 @@
-import{g as o}from"./getStorybookMeta-fEcaYkww.js";import"./iframe-C4uLaTi3.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-BPPERp-C.js";import"./oscd-menu-item-D6eVNoir.js";import"./OscdIcon-C3sU6W8j.js";import"./list-navigation-helpers-uOLGipP7.js";import"./OscdListItem-CcUpt_sr.js";import"./list-item-styles-CwxrGOCZ.js";import"./OscdMenuItem-AVFwwFRE.js";import"./query-assigned-nodes-EHSBqaR2.js";import"./menuItemController-vk-DquCy.js";import"./oscd-filled-button-CEBWtmCm.js";import"./OscdList-C90geFFa.js";const{args:r,argTypes:e,meta:a}=o({tagName:"oscd-elevation"}),_={title:"Elevations / Elevation",tags:["autodocs"],...a},t={argTypes:e,args:r};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...t.parameters?.docs?.source}}};const x=["Default"];export{t as Default,x as __namedExportsOrder,_ as default};

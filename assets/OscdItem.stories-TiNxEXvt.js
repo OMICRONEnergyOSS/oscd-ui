@@ -1,4 +1,0 @@
-import{b as o}from"./OscdIcon-C3sU6W8j.js";import{g as r}from"./getStorybookMeta-fEcaYkww.js";import"./list-navigation-helpers-uOLGipP7.js";import"./iframe-C4uLaTi3.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-BPPERp-C.js";import"./oscd-menu-item-D6eVNoir.js";import"./OscdListItem-CcUpt_sr.js";import"./list-item-styles-CwxrGOCZ.js";import"./OscdMenuItem-AVFwwFRE.js";import"./query-assigned-nodes-EHSBqaR2.js";import"./menuItemController-vk-DquCy.js";import"./oscd-filled-button-CEBWtmCm.js";import"./OscdList-C90geFFa.js";customElements.define("oscd-item",o);const{args:e,argTypes:s,meta:m}=r({tagName:"oscd-item"}),_={title:"Labs / Item / Item",tags:["autodocs"],...m},t={argTypes:s,args:e};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...t.parameters?.docs?.source}}};const x=["Default"];export{t as Default,x as __namedExportsOrder,_ as default};

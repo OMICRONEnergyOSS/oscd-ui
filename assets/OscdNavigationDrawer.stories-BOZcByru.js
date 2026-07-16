@@ -1,0 +1,48 @@
+import{x as s}from"./iframe-CzfB892c.js";import{O as i}from"./OscdNavigationDrawer-Cu2ySsBr.js";import{O as d}from"./OscdList-ZIhvBfgq.js";import{O as n}from"./OscdListItem-aUMQlSYk.js";import{s as c}from"./scopedWcDecorator-Dniazn4N.js";import{O as l}from"./OscdIcon-D6gSxZ3c.js";import{O as p}from"./OscdAppBar-CFCA6D6h.js";import{O as m}from"./OscdFilledIconButton-CHIOzqrE.js";import{O as g}from"./OscdNavigationDrawerHeader-CPAD6J1w.js";import"./preload-helper-PPVm8Dsz.js";import"./list-navigation-helpers-CWtHtHq2.js";import"./list-item-styles-Bz0C6iu4.js";import"./shared-styles-ChfmohU1.js";import"./is-rtl-DJNyvqXe.js";const{useArgs:v}=__STORYBOOK_MODULE_PREVIEW_API__,{action:u}=__STORYBOOK_MODULE_ACTIONS__,T={title:"Navigation Drawer/Navigation Drawer",component:"oscd-navigation-drawer",tags:["autodocs"],decorators:[c],parameters:{layout:"fullscreen",scopedElements:{"oscd-navigation-drawer":i,"oscd-navigation-drawer-header":g,"oscd-app-bar":p,"oscd-list":d,"oscd-list-item":n,"oscd-filled-icon-button":m,"oscd-icon":l}},argTypes:{label:{control:{type:"text"},description:"Navigation drawer Header label"},opened:{control:{type:"boolean"},description:"Menu opened state"}},render:({label:t,opened:r})=>{const[O,e]=v();return s`
+      <style>
+        oscd-app-bar {
+          --oscd-app-bar-background-color: var(--oscd-theme-primary);
+          --oscd-app-bar-color: var(--md-sys-color-on-primary);
+        }
+      </style>
+
+      <oscd-navigation-drawer
+        ?opened=${r}
+        @navigation-drawer-changed=${({detail:a})=>{u("navigation-drawer-changed")({detail:a}),a.opened||e({opened:!1})}}
+      >
+        <oscd-navigation-drawer-header>
+          <div slot="headline">${t}</div>
+          <div slot="supporting-text">sample.scd</div>
+        </oscd-navigation-drawer-header>
+        <oscd-list>
+          <oscd-list-item type="button"
+            ><div slot="headline">Home</div></oscd-list-item
+          >
+          <oscd-list-item type="button"
+            ><div slot="headline">Profile</div></oscd-list-item
+          >
+          <oscd-list-item type="button"
+            ><div slot="headline">Settings</div></oscd-list-item
+          >
+        </oscd-list>
+      </oscd-navigation-drawer>
+      <oscd-app-bar>
+        <oscd-filled-icon-button
+          slot="alignStart"
+          aria-label="Menu"
+          @click=${()=>e({opened:!0})}
+        >
+          <oscd-icon>menu</oscd-icon></oscd-filled-icon-button
+        >
+        <div slot="alignMiddle">Navigation Drawer Demo</div>
+      </oscd-app-bar>
+
+      <section>
+        <p>This is the main content area.</p>
+      </section>
+    `}},o={args:{label:"Menu",opened:!1}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    label: 'Menu',
+    opened: false
+  }
+}`,...o.parameters?.docs?.source}}};const B=["Default"];export{o as Default,B as __namedExportsOrder,T as default};

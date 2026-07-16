@@ -1,0 +1,4 @@
+import"./oscd-menu-item-Bv29e9fa.js";import{g as r}from"./getStorybookMeta-DOS5upft.js";import"./OscdIcon-D6gSxZ3c.js";import"./list-navigation-helpers-CWtHtHq2.js";import"./iframe-CzfB892c.js";import"./preload-helper-PPVm8Dsz.js";import"./OscdMenuItem-DA-1vXHl.js";import"./query-assigned-nodes-CLgeST5H.js";import"./menuItemController-B_J_C6eD.js";import"./getStorybookHelpers-Bv3ZIOVO.js";import"./oscd-filled-button-DQw484Ye.js";import"./OscdList-ZIhvBfgq.js";import"./oscd-list-item-C0ScTv6k.js";import"./OscdListItem-aUMQlSYk.js";import"./list-item-styles-Bz0C6iu4.js";const{args:t,argTypes:s,meta:a}=r({tagName:"oscd-icon"}),D={title:"Icons / Icon",tags:["autodocs"],...a},o={argTypes:s,args:t};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...o.parameters?.docs?.source}}};const O=["Default"];export{o as Default,O as __namedExportsOrder,D as default};
