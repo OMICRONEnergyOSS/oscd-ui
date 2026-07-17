@@ -1,0 +1,4 @@
+import"./oscd-filled-button-pAHRa5nn.js";import{g as o}from"./getStorybookMeta-C_Dfhlzu.js";import"./menuItemController-k5rPONrB.js";import"./list-navigation-helpers-BYaPgfdc.js";import"./iframe-BlmIIjc8.js";import"./preload-helper-PPVm8Dsz.js";import"./OscdIcon-BF9UpfCs.js";import"./getStorybookHelpers-DQ9KU-nQ.js";import"./oscd-menu-item-vFGSEMX-.js";import"./OscdMenuItem-CBcjVsGV.js";import"./query-assigned-nodes-D4uADFl8.js";import"./OscdList-a84XNi5w.js";import"./oscd-list-item-BA8wSq9a.js";import"./OscdListItem-BdyDKWIx.js";import"./list-item-styles-D7C7ftEO.js";const{args:r,argTypes:e,meta:s}=o({tagName:"oscd-filled-button"}),x={title:"Buttons / Filled Button",tags:["autodocs"],...s},t={argTypes:e,args:r};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...t.parameters?.docs?.source}}};const D=["Default"];export{t as Default,D as __namedExportsOrder,x as default};

@@ -1,0 +1,4 @@
+import{c as t}from"./OscdIcon-BF9UpfCs.js";import{g as o}from"./getStorybookMeta-C_Dfhlzu.js";import"./list-navigation-helpers-BYaPgfdc.js";import"./iframe-BlmIIjc8.js";import"./preload-helper-PPVm8Dsz.js";import"./getStorybookHelpers-DQ9KU-nQ.js";import"./oscd-menu-item-vFGSEMX-.js";import"./OscdMenuItem-CBcjVsGV.js";import"./query-assigned-nodes-D4uADFl8.js";import"./menuItemController-k5rPONrB.js";import"./oscd-filled-button-pAHRa5nn.js";import"./OscdList-a84XNi5w.js";import"./oscd-list-item-BA8wSq9a.js";import"./OscdListItem-BdyDKWIx.js";import"./list-item-styles-D7C7ftEO.js";customElements.define("oscd-ripple",t);const{args:e,argTypes:p,meta:s}=o({tagName:"oscd-ripple"}),D={title:"Ripples / Ripple",tags:["autodocs"],...s},r={argTypes:p,args:e};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...r.parameters?.docs?.source}}};const E=["Default"];export{r as Default,E as __namedExportsOrder,D as default};
