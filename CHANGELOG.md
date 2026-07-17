@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.15](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.14...oscd-ui-v0.0.15) (2026-07-17)
+
+
+### Bug Fixes
+
+* tree - correct alignment and indentation issues ([57f5392](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/57f5392a12789bc487ed9a3841aeb0754fb002bd))
+
 ## [0.0.14](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.13...oscd-ui-v0.0.14) (2026-06-29)
 
 
