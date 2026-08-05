@@ -19,7 +19,7 @@ If we copy the material web code in its entirety, we will have a hard time keepi
 
 ### Steps
 
-1. Currently the path to the local clone of the Material Web repository is hardcoded in the `./utils/generateOscdComponents.ts` script to `../material-web-base`. Change this path if needed.
+1. Currently the path to the local clone of the Material Web repository is hardcoded in the `./scripts/generateOscdComponents.ts` script to `../oscd-material-web-base`. Change this path if needed.
 2. Build this project (so scripts are transpiled): `npm run build`
 3. Run `npm run generate-oscd` to generate the components.
 
@@ -33,4 +33,6 @@ As with anything generated, there will be exceptions were you need to do things 
 
 ### Prevent generation of specific components
 
-Each component has a "Generated" comment at the top. If you remove this comment, the generation script will skip this file and not overwrite it.
+Each generated file has a `GENERATED SOURCE FILE. DO NOT MODIFY` comment at the top. If you remove this comment, the generation script will skip this file and not overwrite it.
+
+Note that this marker is also present on the generated `*.stories.ts` and `*.spec.ts` files, not just the component wrappers. Fixes that should apply to all components belong in the generator templates in `./scripts/generateOscdComponents.ts`, followed by a regeneration — otherwise they will be lost the next time the library is regenerated.
