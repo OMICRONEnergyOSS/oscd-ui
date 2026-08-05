@@ -64,7 +64,16 @@ export function getStorybookMeta<T extends { [key: string]: any }>({
   return {
     args,
     argTypes,
-    meta,
+    /*
+     * Widened deliberately. Stories spread `...meta` into an untyped default
+     * export, so a generic `Meta<T>` inlines `Partial<T>` into the inferred
+     * type. T is the element class, which carries symbol-keyed members from the
+     * material-web mixins (internals, createValidator, getFormState, ...). Those
+     * unique symbols are not nameable from a story file, so declaration emit
+     * fails with TS4082. Remove this cast once args are typed as the component's
+     * public props rather than the element class itself.
+     */
+    meta: meta as Meta,
     template, // Expose template for custom stories
   };
 }

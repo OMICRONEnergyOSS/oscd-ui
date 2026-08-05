@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import type { StoryObj } from '@storybook/web-components-vite';
-import { action } from 'storybook/internal/actions';
+import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/preview-api';
 
 import { getStorybookMeta } from '@/utils/storybook/getStorybookMeta.js';
