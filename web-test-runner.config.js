@@ -36,6 +36,18 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
     }),
   ],
 
+  /*
+   * Mocha's 2000ms default is too tight for the generated "side-effect free"
+   * specs, which dynamically import a component and mount a fixture inside the
+   * timed assertion. The heavier components (e.g. select) exceed it on a loaded
+   * machine or a slow CI runner, causing intermittent timeout failures.
+   */
+  testFramework: {
+    config: {
+      timeout: '10000',
+    },
+  },
+
   /** Filter out lit dev mode logs */
   filterBrowserLogs(log) {
     for (const arg of log.args) {
