@@ -1,0 +1,1 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdSecondaryTab-ByoVf9gk.js";var r=e((()=>{t(),customElements.define(`oscd-secondary-tab`,n)}));export{r as t};

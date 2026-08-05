@@ -1,0 +1,1 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdDialog-DL5TfOzL.js";var r=e((()=>{t(),customElements.define(`oscd-dialog`,n)}));export{r as t};

@@ -1,0 +1,4 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdIconButton-DuPgxA44.js";import{n as r,t as i}from"./getStorybookMeta-th9iqBHV.js";var a=e((()=>{t(),customElements.define(`oscd-icon-button`,n)})),o,s,c,l,u,d;e((()=>{a(),r(),{args:o,argTypes:s,meta:c}=i({tagName:`oscd-icon-button`}),l={title:`Iconbuttons / Icon Button`,tags:[`autodocs`],...c},u={argTypes:s,args:o},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...u.parameters?.docs?.source}}},d=[`Default`]}))();export{u as Default,d as __namedExportsOrder,l as default};

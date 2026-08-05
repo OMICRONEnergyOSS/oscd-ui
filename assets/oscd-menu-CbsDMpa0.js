@@ -1,0 +1,1 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdMenu-BAWotDWy.js";var r=e((()=>{t(),customElements.define(`oscd-menu`,n)}));export{r as t};
