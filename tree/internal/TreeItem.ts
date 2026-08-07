@@ -51,7 +51,18 @@ export class TreeItem extends LitElement {
   @state()
   private hasLeadingContent = false;
 
+  override connectedCallback(): void {
+    super.connectedCallback();
+    // Set the initial state synchronously from light-DOM children so the
+    // first render already has the correct leading-column width — the
+    // `slotchange` event only fires post-render and races the first paint,
+    // letting an unclipped icon spill into `.text` for one frame.
+    this.hasLeadingContent = this.querySelector('[slot="start"]') !== null;
+  }
+
   private handleStartSlotChange(event: Event): void {
+    // Keeps state correct if `start`'s content changes after connect (e.g. a
+    // reused row whose `renderItem` conditionally adds/removes an icon).
     this.hasLeadingContent =
       (event.target as HTMLSlotElement).assignedElements({ flatten: true })
         .length > 0;
