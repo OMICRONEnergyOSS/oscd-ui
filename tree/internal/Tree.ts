@@ -672,7 +672,7 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
 
     return html`<button
       part="toggle"
-      class="toggle"
+      class="toggle ${expandable ? '' : 'leaf-toggle'}"
       ?disabled=${!expandable || context.disabled}
       aria-label=${expanded ? 'Collapse' : 'Expand'}
       tabindex="-1"
@@ -903,6 +903,17 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       cursor: pointer;
     }
 
+    .leaf-toggle {
+      flex-basis: var(
+        --oscd-tree-leaf-toggle-size,
+        var(--oscd-tree-toggle-size)
+      );
+      inline-size: var(
+        --oscd-tree-leaf-toggle-size,
+        var(--oscd-tree-toggle-size)
+      );
+    }
+
     .toggle:disabled {
       cursor: default;
       opacity: 0;
@@ -910,6 +921,13 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
 
     :host([toggle-position='trailing']) .toggle {
       margin-inline-start: var(--oscd-tree-trailing-toggle-gap, 4px);
+    }
+
+    :host([toggle-position='trailing']) .leaf-toggle {
+      margin-inline-start: var(
+        --oscd-tree-leaf-toggle-gap,
+        var(--oscd-tree-trailing-toggle-gap, 4px)
+      );
     }
 
     .toggle oscd-icon {
