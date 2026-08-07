@@ -1,0 +1,4 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdOutlinedButton-Ck6CfaPB.js";import{n as r,t as i}from"./getStorybookMeta-Ddn_OaDx.js";var a=e((()=>{t(),customElements.define(`oscd-outlined-button`,n)})),o,s,c,l,u,d;e((()=>{a(),r(),{args:o,argTypes:s,meta:c}=i({tagName:`oscd-outlined-button`}),l={title:`Buttons / Outlined Button`,tags:[`autodocs`],...c},u={argTypes:s,args:o},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...u.parameters?.docs?.source}}},d=[`Default`]}))();export{u as Default,d as __namedExportsOrder,l as default};

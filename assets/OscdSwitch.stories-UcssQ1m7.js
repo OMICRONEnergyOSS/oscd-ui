@@ -1,4 +1,0 @@
-import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./getStorybookMeta-th9iqBHV.js";import{n as r,t as i}from"./OscdSwitch-SKLih1MR.js";var a=e((()=>{r(),customElements.define(`oscd-switch`,i)})),o,s,c,l,u,d;e((()=>{a(),t(),{args:o,argTypes:s,meta:c}=n({tagName:`oscd-switch`}),l={title:`Switchs / Switch`,tags:[`autodocs`],...c},u={argTypes:s,args:o},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...u.parameters?.docs?.source}}},d=[`Default`]}))();export{u as Default,d as __namedExportsOrder,l as default};
