@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.16](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.15...oscd-ui-v0.0.16) (2026-08-07)
+
+
+### Bug Fixes
+
+* hasLeaingContent timing issue ([6e26784](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/6e26784b28c2ecb346cddedfac39e23c2ec64b13))
+* tree - add support for setting the trailing gap in css ([8bf39e0](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/8bf39e0f327c607600217cee01b4231e06aca588))
+
 ## [0.0.15](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.14...oscd-ui-v0.0.15) (2026-08-05)
 
 
