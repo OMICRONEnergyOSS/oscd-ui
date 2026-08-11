@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.17](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.16...oscd-ui-v0.0.17) (2026-08-11)
+
+
+### Features
+
+* tree - add full keyboard navigation support ([06a77bc](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/06a77bc985f4a907ed3d6bd7dc260519106feb2a))
+
 ## [0.0.16](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.15...oscd-ui-v0.0.16) (2026-08-07)
 
 
