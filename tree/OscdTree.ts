@@ -101,7 +101,6 @@ declare global {
  * @fires selected-ids-changed - Fired when user interaction changes selected IDs.
  * @fires expanded-ids-changed - Fired when expansion state changes.
  * @fires node-click - Fired when a row is clicked.
- * @fires node-activate - Fired when a row is activated with the keyboard.
  * @fires node-expand - Cancelable event fired before a row expands.
  * @fires node-collapse - Fired after a row collapses.
  * @fires node-toggle - Fired after a row expansion state toggles.

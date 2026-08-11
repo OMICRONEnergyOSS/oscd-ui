@@ -570,3 +570,72 @@ export const Filtered: StoryObj = {
     </div>`;
   },
 };
+
+export const StackedKeyboardNavigation: StoryObj = {
+  render: () => {
+    const focusFirstTree = (event: Event) => {
+      const button = event.currentTarget as HTMLButtonElement;
+      const tree = button.parentElement?.querySelector<OscdTree>('oscd-tree');
+      if (!tree) {
+        return;
+      }
+
+      tree.activeId = tree.getFirstNodeId();
+      tree.focus();
+    };
+
+    const handleBoundary = (event: Event) => {
+      const currentTree = event.currentTarget as OscdTree;
+      const direction = (event as CustomEvent<{ direction: 'first' | 'last' }>)
+        .detail.direction;
+      const trees = Array.from(
+        currentTree.parentElement?.querySelectorAll<OscdTree>('oscd-tree') ??
+          [],
+      );
+      const currentIndex = trees.indexOf(currentTree);
+      const targetTree = trees[currentIndex + (direction === 'last' ? 1 : -1)];
+      if (!targetTree) {
+        return;
+      }
+
+      targetTree.activeId =
+        direction === 'last'
+          ? targetTree.getFirstNodeId()
+          : targetTree.getLastNodeId();
+      targetTree.focus();
+    };
+
+    const renderStackedTree = (prefix: string) =>
+      html`<oscd-tree
+        .data=${[
+          { id: `${prefix}:one`, label: `${prefix} / One`, children: [] },
+          { id: `${prefix}:two`, label: `${prefix} / Two`, children: [] },
+        ]}
+        selectionMode="none"
+        .renderItem=${renderCompactItem}
+        @navigation-boundary=${handleBoundary}
+        @selected-ids-changed=${handleSelection}
+      ></oscd-tree>`;
+
+    return html`<div
+      class="stacked-tree-story"
+      style="display: flex; flex-direction: column; justify-self:center; gap: 8px; width: min(520px, 100%);"
+    >
+      <style>
+        .stacked-tree-story oscd-tree:focus-within {
+          outline: 2px solid var(--md-sys-color-secondary, #6750a4);
+          outline-offset: 2px;
+          border-radius: 6px;
+        }
+      </style>
+      <p>
+        Demo shows 3 Trees, with a border around the focused tree and a border
+        around the active node to show how you can use keyboard navigation
+        accross multiple trees.
+      </p>
+      <button type="button" @click=${focusFirstTree}>Focus first tree</button>
+      ${renderStackedTree('Tree A')} ${renderStackedTree('Tree B')}
+      ${renderStackedTree('Tree C')}
+    </div>`;
+  },
+};

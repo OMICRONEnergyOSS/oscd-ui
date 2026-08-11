@@ -6,7 +6,7 @@ import {
   type PropertyValues,
   type TemplateResult,
 } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 
 import { OscdCheckbox } from '../../checkbox/OscdCheckbox.js';
@@ -144,14 +144,6 @@ function childState(node: TreeNode): TreeChildrenState {
   }
 
   return node.children.length > 0 ? 'branch' : 'leaf';
-}
-
-function nextIndex(current: number, max: number): number {
-  if (max < 0) {
-    return -1;
-  }
-
-  return Math.min(max, Math.max(0, current));
 }
 
 /**
@@ -292,25 +284,51 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
   @property({ reflect: true, attribute: 'toggle-position' })
   togglePosition: TreeTogglePosition = 'leading';
 
-  @state()
-  private activeId?: string;
+  /** Currently active keyboard row. Controlled by the caller when needed. */
+  @property({ attribute: false })
+  activeId: string | null = null;
+
+  /**
+   * Whether focusing the active row should scroll it into the nearest
+   * scrollable ancestor when it is outside the visible area.
+   */
+  @property({ type: Boolean, attribute: 'scroll-active-into-view' })
+  scrollActiveIntoView = true;
+
+  override connectedCallback(): void {
+    super.connectedCallback();
+    this.tabIndex = 0;
+    this.addEventListener('keydown', this.handleTreeKeyDown);
+  }
+
+  override disconnectedCallback(): void {
+    this.removeEventListener('keydown', this.handleTreeKeyDown);
+    super.disconnectedCallback();
+  }
 
   protected override willUpdate(changedProperties: PropertyValues<this>): void {
-    if (
-      changedProperties.has('data') ||
-      changedProperties.has('expandedIds') ||
-      changedProperties.has('selectedIds')
-    ) {
-      const rows = this.visibleRows();
-      if (!rows.length) {
-        this.activeId = undefined;
-        return;
-      }
-
-      if (!this.activeId || !rows.some(row => row.id === this.activeId)) {
-        this.activeId = rows[0].id;
-      }
+    if (!changedProperties.has('activeId') || this.activeId === null) {
+      return;
     }
+
+    const isNavigable = this.navigableRows().some(
+      row => row.id === this.activeId,
+    );
+    if (!isNavigable) {
+      console.warn(`Ignoring invalid oscd-tree activeId: ${this.activeId}`);
+      this.activeId = changedProperties.get('activeId') ?? null;
+    }
+  }
+
+  /** Returns the first visible, enabled row ID, or null when none exists. */
+  public getFirstNodeId(): string | null {
+    return this.navigableRows()[0]?.id ?? null;
+  }
+
+  /** Returns the last visible, enabled row ID, or null when none exists. */
+  public getLastNodeId(): string | null {
+    const rows = this.navigableRows();
+    return rows[rows.length - 1]?.id ?? null;
   }
 
   /**
@@ -395,6 +413,10 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
     walk(this.data, 1, [], []);
 
     return rows;
+  }
+
+  private navigableRows(): VisibleTreeNode<T>[] {
+    return this.visibleRows().filter(row => !this.isRowDisabled(row));
   }
 
   private renderContext(row: VisibleTreeNode<T>): TreeRenderContext<T> {
@@ -543,6 +565,43 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
     this.toggleSelection(row);
   }
 
+  private handleTreeKeyDown = (event: KeyboardEvent): void => {
+    if (event.target !== this) {
+      return;
+    }
+
+    const rows = this.navigableRows();
+    const rowIndex = rows.findIndex(row => row.id === this.activeId);
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        this.navigateNext(rows, rowIndex);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.navigatePrevious(rows, rowIndex);
+        break;
+      case 'Home':
+        event.preventDefault();
+        this.activeId = this.getFirstNodeId();
+        break;
+      case 'End':
+        event.preventDefault();
+        this.activeId = this.getLastNodeId();
+        break;
+      case 'Enter': {
+        const activeRow = rows[rowIndex];
+        if (activeRow) {
+          event.preventDefault();
+          this.toggleSelection(activeRow);
+        }
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
   private handleToggleClick(row: VisibleTreeNode<T>, event: MouseEvent): void {
     event.stopPropagation();
     this.activeId = row.id;
@@ -550,26 +609,26 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
   }
 
   private handleKeyDown(row: VisibleTreeNode<T>, event: KeyboardEvent): void {
-    const rows = this.visibleRows();
+    event.stopPropagation();
+    const rows = this.navigableRows();
     const rowIndex = rows.findIndex(candidate => candidate.id === row.id);
-    const lastIndex = rows.length - 1;
 
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault();
-        this.activeId = rows[nextIndex(rowIndex + 1, lastIndex)]?.id;
+        this.navigateNext(rows, rowIndex);
         break;
       case 'ArrowUp':
         event.preventDefault();
-        this.activeId = rows[nextIndex(rowIndex - 1, lastIndex)]?.id;
+        this.navigatePrevious(rows, rowIndex);
         break;
       case 'Home':
         event.preventDefault();
-        this.activeId = rows[0]?.id;
+        this.activeId = this.getFirstNodeId();
         break;
       case 'End':
         event.preventDefault();
-        this.activeId = rows[lastIndex]?.id;
+        this.activeId = this.getLastNodeId();
         break;
       case 'ArrowRight':
         event.preventDefault();
@@ -581,8 +640,7 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
         break;
       case 'Enter':
         event.preventDefault();
-        this.activateRow(row);
-        this.fireNodeEvent('node-activate', row);
+        this.activeId = row.id;
         this.toggleSelection(row);
         break;
       case ' ':
@@ -592,6 +650,44 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       default:
         break;
     }
+  }
+
+  private navigateNext(rows: VisibleTreeNode<T>[], rowIndex: number): void {
+    const nextRow = rows[rowIndex < 0 ? 0 : rowIndex + 1];
+    if (!nextRow) {
+      this.dispatchEvent(
+        new CustomEvent('navigation-boundary', {
+          detail: { direction: 'last' },
+        }),
+      );
+      return;
+    }
+
+    this.activeId = nextRow.id;
+    this.dispatchEvent(
+      new CustomEvent('active-changed', {
+        detail: { activeId: nextRow.id },
+      }),
+    );
+  }
+
+  private navigatePrevious(rows: VisibleTreeNode<T>[], rowIndex: number): void {
+    const previousRow = rows[rowIndex < 0 ? rows.length - 1 : rowIndex - 1];
+    if (!previousRow) {
+      this.dispatchEvent(
+        new CustomEvent('navigation-boundary', {
+          detail: { direction: 'first' },
+        }),
+      );
+      return;
+    }
+
+    this.activeId = previousRow.id;
+    this.dispatchEvent(
+      new CustomEvent('active-changed', {
+        detail: { activeId: previousRow.id },
+      }),
+    );
   }
 
   private stepIn(
@@ -758,6 +854,9 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
     );
     if (activeRow && this.matches(':focus-within')) {
       activeRow.focus();
+      if (this.scrollActiveIntoView) {
+        activeRow.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
     }
   }
 
@@ -839,6 +938,13 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       padding-inline-start: var(--oscd-tree-row-padding-start, 16px);
       padding-inline-end: var(--oscd-tree-row-padding-end, 8px);
       user-select: none;
+    }
+
+    :host(:focus-within) .row[data-active='true'] {
+      outline: var(--oscd-tree-row-active-border-width, 1px) solid
+        var(--oscd-tree-row-active-border-color, currentColor);
+      outline-offset: -1px;
+      color: var(--oscd-tree-row-active-text-color, inherit);
     }
 
     oscd-ripple,
