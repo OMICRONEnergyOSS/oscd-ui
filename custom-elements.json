@@ -3636,6 +3636,780 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dialog/OscdDialog.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time.",
+          "name": "OscdDialog",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-divider': OscdDivider, }"
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
+              "attribute": "open",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "quick",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Skips the opening and closing animations.",
+              "attribute": "quick",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "returnValue",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Gets or sets the dialog's return value, usually to indicate which button\na user pressed to close it.\n\nhttps://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/returnValue",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'alert' | undefined"
+              },
+              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
+              "attribute": "type",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "noFocusTrap",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables focus trapping, which by default keeps keyboard Tab navigation\nwithin the dialog.\n\nWhen disabled, after focusing the last element of a dialog, pressing Tab\nagain will release focus from the window back to the browser (such as the\nURL bar).\n\nFocus trapping is recommended for accessibility, and should not typically\nbe disabled. Only turn this off if the use case of a dialog is more\naccessible without focus trapping.",
+              "attribute": "no-focus-trap",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "getOpenAnimation",
+              "description": "Gets the opening animation for a dialog. Set to a new function to customize\nthe animation.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "getCloseAnimation",
+              "description": "Gets the closing animation for a dialog. Set to a new function to customize\nthe animation.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isOpen",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isOpening",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isConnectedPromiseResolve",
+              "type": {
+                "text": "() => void"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isConnectedPromise",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "dialog",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "scrim",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "container",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "headline",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "content",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "actions",
+              "type": {
+                "text": "HTMLDialogElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isAtScrollTop",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isAtScrollBottom",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "scroller",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "topAnchor",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "bottomAnchor",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "firstFocusTrap",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "nextClickIsFromContent",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "intersectionObserver",
+              "type": {
+                "text": "IntersectionObserver | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasHeadline",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasActions",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasIcon",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "cancelAnimations",
+              "type": {
+                "text": "AbortController | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "escapePressedWithoutCancel",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "treewalker",
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Opens the dialog and fires a cancelable `open` event. After a dialog's\nanimation, an `opened` event is fired.\n\nAdd an `autofocus` attribute to a child of the dialog that should\nreceive focus after opening.",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "close",
+              "parameters": [
+                {
+                  "name": "returnValue",
+                  "default": "this.returnValue",
+                  "description": "A return value usually indicating which button was used\nto close a dialog. If a dialog is canceled by clicking the scrim or\npressing Escape, it will not change the return value after closing."
+                }
+              ],
+              "description": "Closes the dialog and fires a cancelable `close` event. After a dialog's\nanimation, a `closed` event is fired.",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleDialogClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleContentClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleSubmit",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "SubmitEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleCancel",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClose",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleKeydown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "animateDialog",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "animation",
+                  "type": {
+                    "text": "DialogAnimation"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleHeadlineChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleActionsChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleIconChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleAnchorIntersection",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "entry",
+                  "type": {
+                    "text": "IntersectionObserverEntry"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getIsConnectedPromise",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleFocusTrapFocus",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "FocusEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getFirstAndLastFocusableChildren",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "| [HTMLElement, HTMLElement]\n    | [null, null]"
+                }
+              },
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "Dialog",
+            "package": "@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js"
+          },
+          "tagName": "oscd-dialog",
+          "customElement": true,
+          "summary": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time.",
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
+              "fieldName": "open",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "quick",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Skips the opening and closing animations.",
+              "fieldName": "quick",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "'alert' | undefined"
+              },
+              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
+              "fieldName": "type",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "no-focus-trap",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables focus trapping, which by default keeps keyboard Tab navigation\nwithin the dialog.\n\nWhen disabled, after focusing the last element of a dialog, pressing Tab\nagain will release focus from the window back to the browser (such as the\nURL bar).\n\nFocus trapping is recommended for accessibility, and should not typically\nbe disabled. Only turn this off if the use case of a dialog is more\naccessible without focus trapping.",
+              "fieldName": "noFocusTrap",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "open",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog is opening before any animations.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "opened",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog has opened after any animations.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "close",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog is closing before any animations.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "closed",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog has closed after any animations.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            },
+            {
+              "name": "cancel",
+              "type": {
+                "text": "Event"
+              },
+              "description": "{Event} Dispatched when the dialog has been canceled by clicking on the scrim or pressing Escape.",
+              "inheritedFrom": {
+                "name": "Dialog",
+                "module": "dialog/internal/dialog.ts"
+              }
+            }
+          ],
+          "modulePath": "dialog/OscdDialog.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdDialog",
+          "declaration": {
+            "name": "OscdDialog",
+            "module": "dialog/OscdDialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "chips/OscdAssistChip.ts",
       "declarations": [
         {
@@ -5827,780 +6601,6 @@
           "declaration": {
             "name": "OscdSuggestionChip",
             "module": "chips/OscdSuggestionChip.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dialog/OscdDialog.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time.",
-          "name": "OscdDialog",
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ 'md-divider': OscdDivider, }"
-            },
-            {
-              "kind": "field",
-              "name": "open",
-              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
-              "attribute": "open",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "quick",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Skips the opening and closing animations.",
-              "attribute": "quick",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "returnValue",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Gets or sets the dialog's return value, usually to indicate which button\na user pressed to close it.\n\nhttps://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/returnValue",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'alert' | undefined"
-              },
-              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
-              "attribute": "type",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "noFocusTrap",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables focus trapping, which by default keeps keyboard Tab navigation\nwithin the dialog.\n\nWhen disabled, after focusing the last element of a dialog, pressing Tab\nagain will release focus from the window back to the browser (such as the\nURL bar).\n\nFocus trapping is recommended for accessibility, and should not typically\nbe disabled. Only turn this off if the use case of a dialog is more\naccessible without focus trapping.",
-              "attribute": "no-focus-trap",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "getOpenAnimation",
-              "description": "Gets the opening animation for a dialog. Set to a new function to customize\nthe animation.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "getCloseAnimation",
-              "description": "Gets the closing animation for a dialog. Set to a new function to customize\nthe animation.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isOpen",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isOpening",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isConnectedPromiseResolve",
-              "type": {
-                "text": "() => void"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isConnectedPromise",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "dialog",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "scrim",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "container",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "headline",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "content",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "actions",
-              "type": {
-                "text": "HTMLDialogElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isAtScrollTop",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "isAtScrollBottom",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "scroller",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "topAnchor",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "bottomAnchor",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "firstFocusTrap",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "nextClickIsFromContent",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "intersectionObserver",
-              "type": {
-                "text": "IntersectionObserver | undefined"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "hasHeadline",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "hasActions",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "hasIcon",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "cancelAnimations",
-              "type": {
-                "text": "AbortController | undefined"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "escapePressedWithoutCancel",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "treewalker",
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "show",
-              "description": "Opens the dialog and fires a cancelable `open` event. After a dialog's\nanimation, an `opened` event is fired.\n\nAdd an `autofocus` attribute to a child of the dialog that should\nreceive focus after opening.",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "close",
-              "parameters": [
-                {
-                  "name": "returnValue",
-                  "default": "this.returnValue",
-                  "description": "A return value usually indicating which button was used\nto close a dialog. If a dialog is canceled by clicking the scrim or\npressing Escape, it will not change the return value after closing."
-                }
-              ],
-              "description": "Closes the dialog and fires a cancelable `close` event. After a dialog's\nanimation, a `closed` event is fired.",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleDialogClick",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleContentClick",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleSubmit",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "SubmitEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleCancel",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleClose",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleKeydown",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "animateDialog",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "animation",
-                  "type": {
-                    "text": "DialogAnimation"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleHeadlineChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleActionsChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleIconChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleAnchorIntersection",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "entry",
-                  "type": {
-                    "text": "IntersectionObserverEntry"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getIsConnectedPromise",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleFocusTrapFocus",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "FocusEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getFirstAndLastFocusableChildren",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "| [HTMLElement, HTMLElement]\n    | [null, null]"
-                }
-              },
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "Dialog",
-            "package": "@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js"
-          },
-          "tagName": "oscd-dialog",
-          "customElement": true,
-          "summary": "Dialogs can require an action, communicate information, or help\nusers accomplish a task. There are two types of dialogs: basic and\nfull-screen.\n\nA dialog is a modal window that appears in front of app content to provide\ncritical information or ask for a decision. Dialogs disable all app\nfunctionality when they appear, and remain on screen until confirmed,\ndismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly.\nA less disruptive alternative is to use a menu, which provides options\nwithout interrupting a user’s experience.\n\nOn mobile devices only, complex dialogs should be displayed fullscreen.\n\n__Example usages:__\n- Common use cases for basic dialogs include alerts, quick selection, and\nconfirmation.\n- More complex dialogs may contain actions that require a series of tasks\nto complete. One example is creating a calendar entry with the event title,\ndate, location, and time.",
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Opens the dialog when set to `true` and closes it when set to `false`.",
-              "fieldName": "open",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "quick",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Skips the opening and closing animations.",
-              "fieldName": "quick",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "'alert' | undefined"
-              },
-              "description": "The type of dialog for accessibility. Set this to `alert` to announce a\ndialog as an alert dialog.",
-              "fieldName": "type",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "no-focus-trap",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables focus trapping, which by default keeps keyboard Tab navigation\nwithin the dialog.\n\nWhen disabled, after focusing the last element of a dialog, pressing Tab\nagain will release focus from the window back to the browser (such as the\nURL bar).\n\nFocus trapping is recommended for accessibility, and should not typically\nbe disabled. Only turn this off if the use case of a dialog is more\naccessible without focus trapping.",
-              "fieldName": "noFocusTrap",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "open",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog is opening before any animations.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "opened",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog has opened after any animations.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "close",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog is closing before any animations.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "closed",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog has closed after any animations.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            },
-            {
-              "name": "cancel",
-              "type": {
-                "text": "Event"
-              },
-              "description": "{Event} Dispatched when the dialog has been canceled by clicking on the scrim or pressing Escape.",
-              "inheritedFrom": {
-                "name": "Dialog",
-                "module": "dialog/internal/dialog.ts"
-              }
-            }
-          ],
-          "modulePath": "dialog/OscdDialog.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdDialog",
-          "declaration": {
-            "name": "OscdDialog",
-            "module": "dialog/OscdDialog.ts"
           }
         }
       ]
@@ -16018,6 +16018,229 @@
     },
     {
       "kind": "javascript-module",
+      "path": "search-field/OscdOutlinedSearchField.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "An `oscd-outlined-text-field` specialized for search input.\n\nBehaves like a standard outlined text field, but comes by default with a\nleading search icon and a trailing \"clear\" button (shown once\n[[`value`]] is non-empty), plus a placeholder that is hidden while the\nfield has focus.\n\nThe default leading/trailing icons can be overridden by slotting content\ninto the `leading-icon`/`trailing-icon` slots, exactly as with\n`oscd-outlined-text-field`.",
+          "name": "OscdOutlinedSearchField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'oscd-outlined-text-field': OscdOutlinedTextField, 'oscd-icon': OscdIcon, 'oscd-icon-button': OscdIconButton, }"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Current search text.",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Optional floating label, as on `oscd-outlined-text-field`.",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Shown while the field is empty and unfocused.",
+              "attribute": "placeholder"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "clearLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "'Clear'",
+              "description": "Accessible label for the default clear button.",
+              "attribute": "clearLabel"
+            },
+            {
+              "kind": "field",
+              "name": "focused",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "textField",
+              "type": {
+                "text": "OscdOutlinedTextField | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "select",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "clear",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderClearButton",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult | typeof nothing"
+                }
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Current search text.",
+              "fieldName": "value"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Optional floating label, as on `oscd-outlined-text-field`.",
+              "fieldName": "label"
+            },
+            {
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Shown while the field is empty and unfocused.",
+              "fieldName": "placeholder"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "clearLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "'Clear'",
+              "description": "Accessible label for the default clear button.",
+              "fieldName": "clearLabel"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-outlined-search-field",
+          "customElement": true,
+          "summary": "An `oscd-outlined-text-field` specialized for search input.\n\nBehaves like a standard outlined text field, but comes by default with a\nleading search icon and a trailing \"clear\" button (shown once\n[[`value`]] is non-empty), plus a placeholder that is hidden while the\nfield has focus.\n\nThe default leading/trailing icons can be overridden by slotting content\ninto the `leading-icon`/`trailing-icon` slots, exactly as with\n`oscd-outlined-text-field`.",
+          "modulePath": "search-field/OscdOutlinedSearchField.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdOutlinedSearchField",
+          "declaration": {
+            "name": "OscdOutlinedSearchField",
+            "module": "search-field/OscdOutlinedSearchField.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "select/OscdFilledSelect.ts",
       "declarations": [
         {
@@ -20326,6 +20549,177 @@
           "kind": "class",
           "description": "Snackbar banner for transient status, warning, and error messages.",
           "name": "OscdSnackbar",
+          "cssProperties": [
+            {
+              "description": "Stacking order for the fixed snackbar stack.",
+              "name": "--oscd-snackbar-z-index",
+              "default": "9999"
+            },
+            {
+              "description": "Distance from the bottom viewport edge.",
+              "name": "--oscd-snackbar-bottom",
+              "default": "16px"
+            },
+            {
+              "description": "Gap between stacked snackbars.",
+              "name": "--oscd-snackbar-gap",
+              "default": "8px"
+            },
+            {
+              "description": "Maximum snackbar stack width.",
+              "name": "--oscd-snackbar-max-width",
+              "default": "80vw"
+            },
+            {
+              "description": "Minimum snackbar item width.",
+              "name": "--oscd-snackbar-min-width",
+              "default": "min(360px, 80vw)"
+            },
+            {
+              "description": "Minimum snackbar item height.",
+              "name": "--oscd-snackbar-min-height",
+              "default": "48px"
+            },
+            {
+              "description": "Snackbar item padding.",
+              "name": "--oscd-snackbar-container-padding",
+              "default": "12px 16px"
+            },
+            {
+              "description": "Snackbar elevation level.",
+              "name": "--oscd-snackbar-elevation-level",
+              "default": "3"
+            },
+            {
+              "description": "Show animation duration.",
+              "name": "--oscd-snackbar-enter-duration",
+              "default": "160ms"
+            },
+            {
+              "description": "Hide animation duration.",
+              "name": "--oscd-snackbar-exit-duration",
+              "default": "160ms"
+            },
+            {
+              "description": "Snackbar text color.",
+              "name": "--oscd-snackbar-text-color",
+              "default": "#233042"
+            },
+            {
+              "description": "Snackbar font family.",
+              "name": "--oscd-snackbar-font-family",
+              "default": "var(--md-sys-typescale-body-large-font)"
+            },
+            {
+              "description": "Snackbar font size.",
+              "name": "--oscd-snackbar-font-size",
+              "default": "var(--md-sys-typescale-body-large-size)"
+            },
+            {
+              "description": "Snackbar line height.",
+              "name": "--oscd-snackbar-line-height",
+              "default": "var(--md-sys-typescale-body-large-line-height)"
+            },
+            {
+              "description": "Maximum visible message lines before truncation.",
+              "name": "--oscd-snackbar-message-line-clamp",
+              "default": "3"
+            },
+            {
+              "description": "Info snackbar container color.",
+              "name": "--oscd-snackbar-info-container-color",
+              "default": "var(--md-sys-color-secondary-container)"
+            },
+            {
+              "description": "Info text color.",
+              "name": "--oscd-snackbar-info-text-color",
+              "default": "var(--oscd-snackbar-text-color)"
+            },
+            {
+              "description": "Info icon color.",
+              "name": "--oscd-snackbar-info-icon-color",
+              "default": "var(--md-sys-color-on-secondary-container)"
+            },
+            {
+              "description": "Success snackbar container color.",
+              "name": "--oscd-snackbar-success-container-color",
+              "default": "#d8f8bd"
+            },
+            {
+              "description": "Success text color.",
+              "name": "--oscd-snackbar-success-text-color",
+              "default": "var(--oscd-snackbar-text-color)"
+            },
+            {
+              "description": "Success icon color.",
+              "name": "--oscd-snackbar-success-icon-color",
+              "default": "#5ba300"
+            },
+            {
+              "description": "Warning snackbar container color.",
+              "name": "--oscd-snackbar-warning-container-color",
+              "default": "#fff584"
+            },
+            {
+              "description": "Warning text color.",
+              "name": "--oscd-snackbar-warning-text-color",
+              "default": "var(--oscd-snackbar-text-color)"
+            },
+            {
+              "description": "Warning icon color.",
+              "name": "--oscd-snackbar-warning-icon-color",
+              "default": "#f5a400"
+            },
+            {
+              "description": "Error snackbar container color.",
+              "name": "--oscd-snackbar-error-container-color",
+              "default": "#ffd9df"
+            },
+            {
+              "description": "Error text color.",
+              "name": "--oscd-snackbar-error-text-color",
+              "default": "var(--oscd-snackbar-text-color)"
+            },
+            {
+              "description": "Error icon color.",
+              "name": "--oscd-snackbar-error-icon-color",
+              "default": "#d52031"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "Snackbar surface.",
+              "name": "snackbar"
+            },
+            {
+              "description": "Leading variant icon.",
+              "name": "icon"
+            },
+            {
+              "description": "Message text.",
+              "name": "message"
+            },
+            {
+              "description": "Optional action button.",
+              "name": "action"
+            },
+            {
+              "description": "Icon inside the optional action button.",
+              "name": "action-icon"
+            },
+            {
+              "description": "Label inside the optional action button.",
+              "name": "action-label"
+            },
+            {
+              "description": "Optional close button.",
+              "name": "close"
+            },
+            {
+              "description": "Elevation shadow.",
+              "name": "elevation"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -20334,7 +20728,7 @@
                 "text": "object"
               },
               "static": true,
-              "default": "{ 'oscd-icon': OscdIcon, 'oscd-icon-button': OscdIconButton, }"
+              "default": "{ 'oscd-elevation': OscdElevation, 'oscd-icon': OscdIcon, 'oscd-icon-button': OscdIconButton, }"
             },
             {
               "kind": "field",
@@ -20400,6 +20794,15 @@
               "default": "[]"
             },
             {
+              "kind": "field",
+              "name": "queuedNotifications",
+              "type": {
+                "text": "SnackbarNotification[]"
+              },
+              "privacy": "private",
+              "default": "[]"
+            },
+            {
               "kind": "method",
               "name": "show",
               "return": {
@@ -20414,7 +20817,8 @@
                     "text": "SnackbarShowOptions"
                   }
                 }
-              ]
+              ],
+              "description": "Shows a notification and returns an id that can be passed to `close()`.\nIn `stack` mode, notifications beyond `maxVisible` are queued until space\nbecomes available. Auto-dismiss timing starts when a notification becomes\nvisible, not while it is queued."
             },
             {
               "kind": "method",
@@ -20430,6 +20834,25 @@
                   "optional": true,
                   "type": {
                     "text": "string"
+                  }
+                }
+              ],
+              "description": "Closes a visible or queued notification by id. Without an id, closes all\nvisible notifications and clears all queued notifications."
+            },
+            {
+              "kind": "method",
+              "name": "dismissNotifications",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "notifications",
+                  "type": {
+                    "text": "SnackbarNotification[]"
                   }
                 }
               ]
@@ -20480,9 +20903,19 @@
               "readonly": true
             },
             {
+              "kind": "field",
+              "name": "visibleNotifications",
+              "type": {
+                "text": "SnackbarNotification[]"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
               "kind": "method",
               "name": "clearTimeouts",
               "privacy": "private",
+              "static": true,
               "return": {
                 "type": {
                   "text": "void"
@@ -20499,11 +20932,11 @@
             },
             {
               "kind": "method",
-              "name": "getOverflowNotifications",
+              "name": "promoteQueuedNotifications",
               "privacy": "private",
               "return": {
                 "type": {
-                  "text": "SnackbarNotification[]"
+                  "text": "void"
                 }
               }
             },
@@ -20521,12 +20954,6 @@
                   "name": "notification",
                   "type": {
                     "text": "SnackbarNotification"
-                  }
-                },
-                {
-                  "name": "autoDismiss",
-                  "type": {
-                    "text": "SnackbarAutoDismiss | undefined"
                   }
                 }
               ]
@@ -24896,7 +25323,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Displays hierarchical data as an accessible, keyboard-navigable tree.\n\n`oscd-tree` is data-driven: callers provide nested node data through `data`,\nand the tree manages expansion, selection, active-row navigation, row\nindentation, and ARIA attributes. Row content stays flexible through the\n`renderItem` callback.\n\nThe tree owns the row frame. This includes indentation, expand/collapse\naffordances, selection affordances, keyboard handling, focus handling, and\naccessibility attributes. `renderItem` only supplies the content rendered\ninside each row frame.\n\nEvery node may provide a stable `id`. If no ID is supplied, the tree uses\n`getNodeId` when provided, then falls back to an index-path ID such as\n`0/1/2`. Index-path IDs are convenient for static demos but are not stable\nwhen nodes are inserted, removed, sorted, filtered, or lazily loaded, and\nshould not be persisted.\n\n`selectedIds` and `expandedIds` are controlled state. They can be persisted\nby the caller, but persisted IDs must be scoped to the data set/context that\nproduced them. Reset or re-key those arrays when `data` changes to a\ndifferent logical tree, otherwise unrelated nodes with matching IDs may\nappear selected or expanded.\n\n`children` has three meanings:\n\n- `children === undefined`: children are unknown or not loaded yet.\n- `children === []`: children are known and the node is a leaf.\n- `children.length > 0`: children are known and the node is a branch.\n\nExpansion of nodes with unknown children can be intercepted with the\ncancelable `node-expand` event.",
+          "description": "Displays hierarchical data as an accessible, keyboard-navigable tree.\n\n`oscd-tree` is data-driven: callers provide nested node data through `data`,\nand the tree manages expansion, selection, active-row navigation, row\nindentation, and ARIA attributes. Row content stays flexible through the\n`renderItem` callback.\n\nThe tree owns the row frame. This includes indentation, expand/collapse\naffordances, selection affordances, keyboard handling, focus handling, and\naccessibility attributes. `renderItem` only supplies the content rendered\ninside each row frame.\n\nThe expand/collapse toggle is customizable: `collapseIcon` and `expandIcon`\noverride the icon names (defaults `chevron_right` / `expand_more`), and\n`togglePosition` places the toggle either `'leading'` (default) or\n`'trailing'`, in which case toggles line up on the row's trailing edge\nregardless of nesting depth. Keyboard expansion is unaffected by the toggle\nposition.\n\nLeaf rows have no toggle. `renderLeafAccessory` can render an interactive\naccessory (such as a pin/unpin button) into a leaf row's toggle column so it\naligns with the chevrons of expandable rows. The tree isolates pointer and\n`Enter`/`Space` interaction on the accessory so activating it does not select\nthe row; a returned focusable element adds one tab stop per row.\n\nA leading icon (the `start` slot of `oscd-tree-item`) occupies exactly one\nindent step, so when only some rows have icons (e.g. iconed parents with\nicon-less children) the children's text aligns automatically under the\nparent's text at any depth. The single `--oscd-tree-indent-step` property\n(default `24px`) drives both indentation and the leading icon column; set it\nlarge enough to hold your icon (e.g. `40px`) when using leading icons. See\nOscdTreeItem for details.\n\nEvery node may provide a stable `id`. If no ID is supplied, the tree uses\n`getNodeId` when provided, then falls back to an index-path ID such as\n`0/1/2`. Index-path IDs are convenient for static demos but are not stable\nwhen nodes are inserted, removed, sorted, filtered, or lazily loaded, and\nshould not be persisted.\n\n`selectedIds` and `expandedIds` are controlled state. They can be persisted\nby the caller, but persisted IDs must be scoped to the data set/context that\nproduced them. Reset or re-key those arrays when `data` changes to a\ndifferent logical tree, otherwise unrelated nodes with matching IDs may\nappear selected or expanded.\n\n`children` has three meanings:\n\n- `children === undefined`: children are unknown or not loaded yet.\n- `children === []`: children are known and the node is a leaf.\n- `children.length > 0`: children are known and the node is a branch.\n\nExpansion of nodes with unknown children can be intercepted with the\ncancelable `node-expand` event.",
           "name": "OscdTree",
           "events": [
             {
@@ -24926,10 +25353,6 @@
               "name": "node-click"
             },
             {
-              "description": "Fired when a row is activated with the keyboard.",
-              "name": "node-activate"
-            },
-            {
               "description": "Cancelable event fired before a row expands.",
               "name": "node-expand"
             },
@@ -24940,6 +25363,26 @@
             {
               "description": "Fired after a row expansion state toggles.",
               "name": "node-toggle"
+            },
+            {
+              "name": "navigation-boundary",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "name": "active-changed",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
             }
           ],
           "superclass": {
@@ -24957,6 +25400,58 @@
               "default": "'none'",
               "description": "Selection behavior.",
               "fieldName": "selectionMode",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "name": "collapse-icon",
+              "type": {
+                "text": "string"
+              },
+              "default": "'chevron_right'",
+              "description": "Icon shown on the expand/collapse toggle when a branch is collapsed.\n\nAny icon name understood by `oscd-icon` (a Material Symbol name or a\nregistered SCL icon) may be used. Defaults to `chevron_right`.",
+              "fieldName": "collapseIcon",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "name": "expand-icon",
+              "type": {
+                "text": "string"
+              },
+              "default": "'expand_more'",
+              "description": "Icon shown on the expand/collapse toggle when a branch is expanded.\n\nAny icon name understood by `oscd-icon` (a Material Symbol name or a\nregistered SCL icon) may be used. Defaults to `expand_more`.",
+              "fieldName": "expandIcon",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "name": "toggle-position",
+              "type": {
+                "text": "TreeTogglePosition"
+              },
+              "default": "'leading'",
+              "description": "Placement of the expand/collapse toggle within each row.\n\n`'leading'` (default) renders the toggle before the row content.\n`'trailing'` renders it after the content, right-aligned so the toggles\nline up on the trailing edge regardless of nesting depth. Keyboard\nexpansion (`ArrowRight`/`ArrowLeft`) is unaffected by this option.",
+              "fieldName": "togglePosition",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "name": "scroll-active-into-view",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether focusing the active row should scroll it into the nearest\nscrollable ancestor when it is outside the visible area.",
+              "fieldName": "scrollActiveIntoView",
               "inheritedFrom": {
                 "name": "Tree",
                 "module": "tree/internal/Tree.ts"
@@ -25030,6 +25525,18 @@
             },
             {
               "kind": "field",
+              "name": "renderLeafAccessory",
+              "type": {
+                "text": "(context: TreeRenderContext<T>) => unknown | undefined"
+              },
+              "description": "Renders an interactive accessory into the toggle column of a **leaf** row.\n\nLeaf rows have no expand/collapse toggle, so this callback can supply\ntrailing content (for example a pin/unpin button) that lines up exactly\nwith the chevrons of expandable rows, following `togglePosition`.\n\nReturn `nothing` (or a falsy value) to leave the leaf's toggle column\nempty. The tree isolates pointer and `Enter`/`Space` interaction on the\naccessory so activating it does not select or toggle the row; arrow-key\nnavigation still works. Any returned interactive element (such as a\n`<button>`) is keyboard-focusable and therefore adds a tab stop per row.\nProvide an accessible label and `aria-pressed` for toggle semantics.",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "getNodeId",
               "type": {
                 "text": "(node: T, indexPath: number[]) => string | undefined"
@@ -25092,11 +25599,99 @@
             },
             {
               "kind": "field",
+              "name": "collapseIcon",
+              "type": {
+                "text": "string"
+              },
+              "default": "'chevron_right'",
+              "description": "Icon shown on the expand/collapse toggle when a branch is collapsed.\n\nAny icon name understood by `oscd-icon` (a Material Symbol name or a\nregistered SCL icon) may be used. Defaults to `chevron_right`.",
+              "attribute": "collapse-icon",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "expandIcon",
+              "type": {
+                "text": "string"
+              },
+              "default": "'expand_more'",
+              "description": "Icon shown on the expand/collapse toggle when a branch is expanded.\n\nAny icon name understood by `oscd-icon` (a Material Symbol name or a\nregistered SCL icon) may be used. Defaults to `expand_more`.",
+              "attribute": "expand-icon",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "togglePosition",
+              "type": {
+                "text": "TreeTogglePosition"
+              },
+              "default": "'leading'",
+              "description": "Placement of the expand/collapse toggle within each row.\n\n`'leading'` (default) renders the toggle before the row content.\n`'trailing'` renders it after the content, right-aligned so the toggles\nline up on the trailing edge regardless of nesting depth. Keyboard\nexpansion (`ArrowRight`/`ArrowLeft`) is unaffected by this option.",
+              "attribute": "toggle-position",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "activeId",
               "type": {
-                "text": "string | undefined"
+                "text": "string | null"
               },
-              "privacy": "private",
+              "default": "null",
+              "description": "Currently active keyboard row. Controlled by the caller when needed.",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "scrollActiveIntoView",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether focusing the active row should scroll it into the nearest\nscrollable ancestor when it is outside the visible area.",
+              "attribute": "scroll-active-into-view",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getFirstNodeId",
+              "privacy": "public",
+              "return": {
+                "type": {
+                  "text": "string | null"
+                }
+              },
+              "description": "Returns the first visible, enabled row ID, or null when none exists.",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getLastNodeId",
+              "privacy": "public",
+              "return": {
+                "type": {
+                  "text": "string | null"
+                }
+              },
+              "description": "Returns the last visible, enabled row ID, or null when none exists.",
               "inheritedFrom": {
                 "name": "Tree",
                 "module": "tree/internal/Tree.ts"
@@ -25202,6 +25797,20 @@
             {
               "kind": "method",
               "name": "visibleRows",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "VisibleTreeNode<T>[]"
+                }
+              },
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "navigableRows",
               "privacy": "private",
               "return": {
                 "type": {
@@ -25481,6 +26090,15 @@
               }
             },
             {
+              "kind": "field",
+              "name": "handleTreeKeyDown",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
               "kind": "method",
               "name": "handleToggleClick",
               "privacy": "private",
@@ -25528,6 +26146,62 @@
                   "name": "event",
                   "type": {
                     "text": "KeyboardEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "navigateNext",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rows",
+                  "type": {
+                    "text": "VisibleTreeNode<T>[]"
+                  }
+                },
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "navigatePrevious",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rows",
+                  "type": {
+                    "text": "VisibleTreeNode<T>[]"
+                  }
+                },
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
                   }
                 }
               ],
@@ -25629,6 +26303,34 @@
                   "type": {
                     "text": "VisibleTreeNode<T>"
                   }
+                },
+                {
+                  "name": "context",
+                  "type": {
+                    "text": "TreeRenderContext<T>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Tree",
+                "module": "tree/internal/Tree.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleAccessoryKeydown",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
                 }
               ],
               "inheritedFrom": {
@@ -25717,6 +26419,14 @@
         },
         {
           "kind": "js",
+          "name": "TreeTogglePosition",
+          "declaration": {
+            "name": "TreeTogglePosition",
+            "module": "./internal/Tree.js"
+          }
+        },
+        {
+          "kind": "js",
           "name": "OscdTree",
           "declaration": {
             "name": "OscdTree",
@@ -25731,7 +26441,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Default content component for rows rendered inside `oscd-tree`.\n\n`oscd-tree-item` is intended to be returned from an `oscd-tree` `renderItem`\ncallback. It renders the caller-visible row content only. The parent\n`oscd-tree` owns the tree row frame, indentation, expand/collapse affordance,\nselection affordance, keyboard handling, and ARIA attributes.\n\nUse the `headline` slot for the primary label, `supporting-text` for\nsecondary/path text, `start` for an optional leading icon, and `end` for\noptional trailing status or actions.",
+          "description": "Default content component for rows rendered inside `oscd-tree`.\n\n`oscd-tree-item` is intended to be returned from an `oscd-tree` `renderItem`\ncallback. It renders the caller-visible row content only. The parent\n`oscd-tree` owns the tree row frame, indentation, expand/collapse affordance,\nselection affordance, keyboard handling, and ARIA attributes.\n\nUse the `headline` slot for the primary label, `supporting-text` for\nsecondary/path text, `start` for an optional leading icon, and `end` for\noptional trailing status or actions.\n\n## Leading icon alignment\n\nWhen only some rows carry a leading icon (e.g. top-level rows have icons but\ntheir children do not), you usually want the icon-less children's text to sit\ndirectly under their iconed parent's text. This works automatically: a\nleading icon occupies exactly one indent step, so an icon-less child —\nindented one step by the tree — aligns its text with the parent's, at any\ndepth, with no per-row configuration.\n\nThe leading icon column and the per-level indentation are both driven by the\nsingle `--oscd-tree-indent-step` custom property (default `24px`), so they can\nnever drift out of alignment. Set it large enough to comfortably hold your\nicon — e.g. `--oscd-tree-indent-step: 40px` — which also widens the gap\nbetween the icon and the text (the gap is `step - icon size`). The rarely\nneeded `--oscd-tree-item-leading-size` can decouple just the column width, but\nkeeping it equal to the indent step is what preserves the alignment.",
           "name": "OscdTreeItem",
           "slots": [
             {
@@ -25855,6 +26565,42 @@
               "description": "Whether the row content should render disabled styling.",
               "attribute": "disabled",
               "reflects": true,
+              "inheritedFrom": {
+                "name": "TreeItem",
+                "module": "tree/internal/TreeItem.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasLeadingContent",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "description": "Whether the `start` slot currently holds a leading icon. Drives the\nfixed-width leading column so icon-less rows collapse it to zero.",
+              "inheritedFrom": {
+                "name": "TreeItem",
+                "module": "tree/internal/TreeItem.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleStartSlotChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
               "inheritedFrom": {
                 "name": "TreeItem",
                 "module": "tree/internal/TreeItem.ts"
@@ -28523,6 +29269,69 @@
     },
     {
       "kind": "javascript-module",
+      "path": "textfield/internal/filled-styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { --_active-indicator-color: var( --md-filled-text-field-active-indicator-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_active-indicator-height: var( --md-filled-text-field-active-indicator-height, 1px ); --_caret-color: var( --md-filled-text-field-caret-color, var(--md-sys-color-primary, #6750a4) ); --_container-color: var( --md-filled-text-field-container-color, var(--md-sys-color-surface-container-highest, #e6e0e9) ); --_disabled-active-indicator-color: var( --md-filled-text-field-disabled-active-indicator-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-active-indicator-height: var( --md-filled-text-field-disabled-active-indicator-height, 1px ); --_disabled-active-indicator-opacity: var( --md-filled-text-field-disabled-active-indicator-opacity, 0.38 ); --_disabled-container-color: var( --md-filled-text-field-disabled-container-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-container-opacity: var( --md-filled-text-field-disabled-container-opacity, 0.04 ); --_disabled-input-text-color: var( --md-filled-text-field-disabled-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-input-text-opacity: var( --md-filled-text-field-disabled-input-text-opacity, 0.38 ); --_disabled-label-text-color: var( --md-filled-text-field-disabled-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-label-text-opacity: var( --md-filled-text-field-disabled-label-text-opacity, 0.38 ); --_disabled-leading-icon-color: var( --md-filled-text-field-disabled-leading-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-leading-icon-opacity: var( --md-filled-text-field-disabled-leading-icon-opacity, 0.38 ); --_disabled-supporting-text-color: var( --md-filled-text-field-disabled-supporting-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-supporting-text-opacity: var( --md-filled-text-field-disabled-supporting-text-opacity, 0.38 ); --_disabled-trailing-icon-color: var( --md-filled-text-field-disabled-trailing-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-trailing-icon-opacity: var( --md-filled-text-field-disabled-trailing-icon-opacity, 0.38 ); --_error-active-indicator-color: var( --md-filled-text-field-error-active-indicator-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-active-indicator-color: var( --md-filled-text-field-error-focus-active-indicator-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-caret-color: var( --md-filled-text-field-error-focus-caret-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-input-text-color: var( --md-filled-text-field-error-focus-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-focus-label-text-color: var( --md-filled-text-field-error-focus-label-text-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-leading-icon-color: var( --md-filled-text-field-error-focus-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-focus-supporting-text-color: var( --md-filled-text-field-error-focus-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-trailing-icon-color: var( --md-filled-text-field-error-focus-trailing-icon-color, var(--md-sys-color-error, #b3261e) ); --_error-hover-active-indicator-color: var( --md-filled-text-field-error-hover-active-indicator-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-hover-input-text-color: var( --md-filled-text-field-error-hover-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-hover-label-text-color: var( --md-filled-text-field-error-hover-label-text-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-hover-leading-icon-color: var( --md-filled-text-field-error-hover-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-hover-state-layer-color: var( --md-filled-text-field-error-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-hover-state-layer-opacity: var( --md-filled-text-field-error-hover-state-layer-opacity, 0.08 ); --_error-hover-supporting-text-color: var( --md-filled-text-field-error-hover-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-hover-trailing-icon-color: var( --md-filled-text-field-error-hover-trailing-icon-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-input-text-color: var( --md-filled-text-field-error-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-label-text-color: var( --md-filled-text-field-error-label-text-color, var(--md-sys-color-error, #b3261e) ); --_error-leading-icon-color: var( --md-filled-text-field-error-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-supporting-text-color: var( --md-filled-text-field-error-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-trailing-icon-color: var( --md-filled-text-field-error-trailing-icon-color, var(--md-sys-color-error, #b3261e) ); --_focus-active-indicator-color: var( --md-filled-text-field-focus-active-indicator-color, var(--md-sys-color-primary, #6750a4) ); --_focus-active-indicator-height: var( --md-filled-text-field-focus-active-indicator-height, 3px ); --_focus-input-text-color: var( --md-filled-text-field-focus-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_focus-label-text-color: var( --md-filled-text-field-focus-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_focus-leading-icon-color: var( --md-filled-text-field-focus-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-supporting-text-color: var( --md-filled-text-field-focus-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-trailing-icon-color: var( --md-filled-text-field-focus-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-active-indicator-color: var( --md-filled-text-field-hover-active-indicator-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-active-indicator-height: var( --md-filled-text-field-hover-active-indicator-height, 1px ); --_hover-input-text-color: var( --md-filled-text-field-hover-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-label-text-color: var( --md-filled-text-field-hover-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-leading-icon-color: var( --md-filled-text-field-hover-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-state-layer-color: var( --md-filled-text-field-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-state-layer-opacity: var( --md-filled-text-field-hover-state-layer-opacity, 0.08 ); --_hover-supporting-text-color: var( --md-filled-text-field-hover-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-trailing-icon-color: var( --md-filled-text-field-hover-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-color: var( --md-filled-text-field-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_input-text-font: var( --md-filled-text-field-input-text-font, var( --md-sys-typescale-body-large-font, var(--md-ref-typeface-plain, Roboto) ) ); --_input-text-line-height: var( --md-filled-text-field-input-text-line-height, var(--md-sys-typescale-body-large-line-height, 1.5rem) ); --_input-text-placeholder-color: var( --md-filled-text-field-input-text-placeholder-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-prefix-color: var( --md-filled-text-field-input-text-prefix-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-size: var( --md-filled-text-field-input-text-size, var(--md-sys-typescale-body-large-size, 1rem) ); --_input-text-suffix-color: var( --md-filled-text-field-input-text-suffix-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-weight: var( --md-filled-text-field-input-text-weight, var( --md-sys-typescale-body-large-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_label-text-color: var( --md-filled-text-field-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_label-text-font: var( --md-filled-text-field-label-text-font, var( --md-sys-typescale-body-large-font, var(--md-ref-typeface-plain, Roboto) ) ); --_label-text-line-height: var( --md-filled-text-field-label-text-line-height, var(--md-sys-typescale-body-large-line-height, 1.5rem) ); --_label-text-populated-line-height: var( --md-filled-text-field-label-text-populated-line-height, var(--md-sys-typescale-body-small-line-height, 1rem) ); --_label-text-populated-size: var( --md-filled-text-field-label-text-populated-size, var(--md-sys-typescale-body-small-size, 0.75rem) ); --_label-text-size: var( --md-filled-text-field-label-text-size, var(--md-sys-typescale-body-large-size, 1rem) ); --_label-text-weight: var( --md-filled-text-field-label-text-weight, var( --md-sys-typescale-body-large-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_leading-icon-color: var( --md-filled-text-field-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_leading-icon-size: var(--md-filled-text-field-leading-icon-size, 24px); --_supporting-text-color: var( --md-filled-text-field-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_supporting-text-font: var( --md-filled-text-field-supporting-text-font, var( --md-sys-typescale-body-small-font, var(--md-ref-typeface-plain, Roboto) ) ); --_supporting-text-line-height: var( --md-filled-text-field-supporting-text-line-height, var(--md-sys-typescale-body-small-line-height, 1rem) ); --_supporting-text-size: var( --md-filled-text-field-supporting-text-size, var(--md-sys-typescale-body-small-size, 0.75rem) ); --_supporting-text-weight: var( --md-filled-text-field-supporting-text-weight, var( --md-sys-typescale-body-small-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_trailing-icon-color: var( --md-filled-text-field-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_trailing-icon-size: var(--md-filled-text-field-trailing-icon-size, 24px); --_container-shape-start-start: var( --md-filled-text-field-container-shape-start-start, var( --md-filled-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-start-end: var( --md-filled-text-field-container-shape-start-end, var( --md-filled-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-end-end: var( --md-filled-text-field-container-shape-end-end, var( --md-filled-text-field-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-start: var( --md-filled-text-field-container-shape-end-start, var( --md-filled-text-field-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_icon-input-space: var(--md-filled-text-field-icon-input-space, 16px); --_leading-space: var(--md-filled-text-field-leading-space, 16px); --_trailing-space: var(--md-filled-text-field-trailing-space, 16px); --_top-space: var(--md-filled-text-field-top-space, 16px); --_bottom-space: var(--md-filled-text-field-bottom-space, 16px); --_input-text-prefix-trailing-space: var( --md-filled-text-field-input-text-prefix-trailing-space, 2px ); --_input-text-suffix-leading-space: var( --md-filled-text-field-input-text-suffix-leading-space, 2px ); --_with-label-top-space: var( --md-filled-text-field-with-label-top-space, 8px ); --_with-label-bottom-space: var( --md-filled-text-field-with-label-bottom-space, 8px ); --_focus-caret-color: var( --md-filled-text-field-focus-caret-color, var(--md-sys-color-primary, #6750a4) ); --_with-leading-icon-leading-space: var( --md-filled-text-field-with-leading-icon-leading-space, 12px ); --_with-trailing-icon-trailing-space: var( --md-filled-text-field-with-trailing-icon-trailing-space, 12px ); --md-filled-field-active-indicator-color: var(--_active-indicator-color); --md-filled-field-active-indicator-height: var(--_active-indicator-height); --md-filled-field-bottom-space: var(--_bottom-space); --md-filled-field-container-color: var(--_container-color); --md-filled-field-container-shape-end-end: var(--_container-shape-end-end); --md-filled-field-container-shape-end-start: var( --_container-shape-end-start ); --md-filled-field-container-shape-start-end: var( --_container-shape-start-end ); --md-filled-field-container-shape-start-start: var( --_container-shape-start-start ); --md-filled-field-content-color: var(--_input-text-color); --md-filled-field-content-font: var(--_input-text-font); --md-filled-field-content-line-height: var(--_input-text-line-height); --md-filled-field-content-size: var(--_input-text-size); --md-filled-field-content-space: var(--_icon-input-space); --md-filled-field-content-weight: var(--_input-text-weight); --md-filled-field-disabled-active-indicator-color: var( --_disabled-active-indicator-color ); --md-filled-field-disabled-active-indicator-height: var( --_disabled-active-indicator-height ); --md-filled-field-disabled-active-indicator-opacity: var( --_disabled-active-indicator-opacity ); --md-filled-field-disabled-container-color: var( --_disabled-container-color ); --md-filled-field-disabled-container-opacity: var( --_disabled-container-opacity ); --md-filled-field-disabled-content-color: var(--_disabled-input-text-color); --md-filled-field-disabled-content-opacity: var( --_disabled-input-text-opacity ); --md-filled-field-disabled-label-text-color: var( --_disabled-label-text-color ); --md-filled-field-disabled-label-text-opacity: var( --_disabled-label-text-opacity ); --md-filled-field-disabled-leading-content-color: var( --_disabled-leading-icon-color ); --md-filled-field-disabled-leading-content-opacity: var( --_disabled-leading-icon-opacity ); --md-filled-field-disabled-supporting-text-color: var( --_disabled-supporting-text-color ); --md-filled-field-disabled-supporting-text-opacity: var( --_disabled-supporting-text-opacity ); --md-filled-field-disabled-trailing-content-color: var( --_disabled-trailing-icon-color ); --md-filled-field-disabled-trailing-content-opacity: var( --_disabled-trailing-icon-opacity ); --md-filled-field-error-active-indicator-color: var( --_error-active-indicator-color ); --md-filled-field-error-content-color: var(--_error-input-text-color); --md-filled-field-error-focus-active-indicator-color: var( --_error-focus-active-indicator-color ); --md-filled-field-error-focus-content-color: var( --_error-focus-input-text-color ); --md-filled-field-error-focus-label-text-color: var( --_error-focus-label-text-color ); --md-filled-field-error-focus-leading-content-color: var( --_error-focus-leading-icon-color ); --md-filled-field-error-focus-supporting-text-color: var( --_error-focus-supporting-text-color ); --md-filled-field-error-focus-trailing-content-color: var( --_error-focus-trailing-icon-color ); --md-filled-field-error-hover-active-indicator-color: var( --_error-hover-active-indicator-color ); --md-filled-field-error-hover-content-color: var( --_error-hover-input-text-color ); --md-filled-field-error-hover-label-text-color: var( --_error-hover-label-text-color ); --md-filled-field-error-hover-leading-content-color: var( --_error-hover-leading-icon-color ); --md-filled-field-error-hover-state-layer-color: var( --_error-hover-state-layer-color ); --md-filled-field-error-hover-state-layer-opacity: var( --_error-hover-state-layer-opacity ); --md-filled-field-error-hover-supporting-text-color: var( --_error-hover-supporting-text-color ); --md-filled-field-error-hover-trailing-content-color: var( --_error-hover-trailing-icon-color ); --md-filled-field-error-label-text-color: var(--_error-label-text-color); --md-filled-field-error-leading-content-color: var( --_error-leading-icon-color ); --md-filled-field-error-supporting-text-color: var( --_error-supporting-text-color ); --md-filled-field-error-trailing-content-color: var( --_error-trailing-icon-color ); --md-filled-field-focus-active-indicator-color: var( --_focus-active-indicator-color ); --md-filled-field-focus-active-indicator-height: var( --_focus-active-indicator-height ); --md-filled-field-focus-content-color: var(--_focus-input-text-color); --md-filled-field-focus-label-text-color: var(--_focus-label-text-color); --md-filled-field-focus-leading-content-color: var( --_focus-leading-icon-color ); --md-filled-field-focus-supporting-text-color: var( --_focus-supporting-text-color ); --md-filled-field-focus-trailing-content-color: var( --_focus-trailing-icon-color ); --md-filled-field-hover-active-indicator-color: var( --_hover-active-indicator-color ); --md-filled-field-hover-active-indicator-height: var( --_hover-active-indicator-height ); --md-filled-field-hover-content-color: var(--_hover-input-text-color); --md-filled-field-hover-label-text-color: var(--_hover-label-text-color); --md-filled-field-hover-leading-content-color: var( --_hover-leading-icon-color ); --md-filled-field-hover-state-layer-color: var(--_hover-state-layer-color); --md-filled-field-hover-state-layer-opacity: var( --_hover-state-layer-opacity ); --md-filled-field-hover-supporting-text-color: var( --_hover-supporting-text-color ); --md-filled-field-hover-trailing-content-color: var( --_hover-trailing-icon-color ); --md-filled-field-label-text-color: var(--_label-text-color); --md-filled-field-label-text-font: var(--_label-text-font); --md-filled-field-label-text-line-height: var(--_label-text-line-height); --md-filled-field-label-text-populated-line-height: var( --_label-text-populated-line-height ); --md-filled-field-label-text-populated-size: var( --_label-text-populated-size ); --md-filled-field-label-text-size: var(--_label-text-size); --md-filled-field-label-text-weight: var(--_label-text-weight); --md-filled-field-leading-content-color: var(--_leading-icon-color); --md-filled-field-leading-space: var(--_leading-space); --md-filled-field-supporting-text-color: var(--_supporting-text-color); --md-filled-field-supporting-text-font: var(--_supporting-text-font); --md-filled-field-supporting-text-line-height: var( --_supporting-text-line-height ); --md-filled-field-supporting-text-size: var(--_supporting-text-size); --md-filled-field-supporting-text-weight: var(--_supporting-text-weight); --md-filled-field-top-space: var(--_top-space); --md-filled-field-trailing-content-color: var(--_trailing-icon-color); --md-filled-field-trailing-space: var(--_trailing-space); --md-filled-field-with-label-bottom-space: var(--_with-label-bottom-space); --md-filled-field-with-label-top-space: var(--_with-label-top-space); --md-filled-field-with-leading-content-leading-space: var( --_with-leading-icon-leading-space ); --md-filled-field-with-trailing-content-trailing-space: var( --_with-trailing-icon-trailing-space ); } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "textfield/internal/filled-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "textfield/internal/outlined-styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { --_caret-color: var( --md-outlined-text-field-caret-color, var(--md-sys-color-primary, #6750a4) ); --_disabled-input-text-color: var( --md-outlined-text-field-disabled-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-input-text-opacity: var( --md-outlined-text-field-disabled-input-text-opacity, 0.38 ); --_disabled-label-text-color: var( --md-outlined-text-field-disabled-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-label-text-opacity: var( --md-outlined-text-field-disabled-label-text-opacity, 0.38 ); --_disabled-leading-icon-color: var( --md-outlined-text-field-disabled-leading-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-leading-icon-opacity: var( --md-outlined-text-field-disabled-leading-icon-opacity, 0.38 ); --_disabled-outline-color: var( --md-outlined-text-field-disabled-outline-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-outline-opacity: var( --md-outlined-text-field-disabled-outline-opacity, 0.12 ); --_disabled-outline-width: var( --md-outlined-text-field-disabled-outline-width, 1px ); --_disabled-supporting-text-color: var( --md-outlined-text-field-disabled-supporting-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-supporting-text-opacity: var( --md-outlined-text-field-disabled-supporting-text-opacity, 0.38 ); --_disabled-trailing-icon-color: var( --md-outlined-text-field-disabled-trailing-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-trailing-icon-opacity: var( --md-outlined-text-field-disabled-trailing-icon-opacity, 0.38 ); --_error-focus-caret-color: var( --md-outlined-text-field-error-focus-caret-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-input-text-color: var( --md-outlined-text-field-error-focus-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-focus-label-text-color: var( --md-outlined-text-field-error-focus-label-text-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-leading-icon-color: var( --md-outlined-text-field-error-focus-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-focus-outline-color: var( --md-outlined-text-field-error-focus-outline-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-supporting-text-color: var( --md-outlined-text-field-error-focus-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-trailing-icon-color: var( --md-outlined-text-field-error-focus-trailing-icon-color, var(--md-sys-color-error, #b3261e) ); --_error-hover-input-text-color: var( --md-outlined-text-field-error-hover-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-hover-label-text-color: var( --md-outlined-text-field-error-hover-label-text-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-hover-leading-icon-color: var( --md-outlined-text-field-error-hover-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-hover-outline-color: var( --md-outlined-text-field-error-hover-outline-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-hover-supporting-text-color: var( --md-outlined-text-field-error-hover-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-hover-trailing-icon-color: var( --md-outlined-text-field-error-hover-trailing-icon-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-input-text-color: var( --md-outlined-text-field-error-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-label-text-color: var( --md-outlined-text-field-error-label-text-color, var(--md-sys-color-error, #b3261e) ); --_error-leading-icon-color: var( --md-outlined-text-field-error-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-outline-color: var( --md-outlined-text-field-error-outline-color, var(--md-sys-color-error, #b3261e) ); --_error-supporting-text-color: var( --md-outlined-text-field-error-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-trailing-icon-color: var( --md-outlined-text-field-error-trailing-icon-color, var(--md-sys-color-error, #b3261e) ); --_focus-input-text-color: var( --md-outlined-text-field-focus-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_focus-label-text-color: var( --md-outlined-text-field-focus-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_focus-leading-icon-color: var( --md-outlined-text-field-focus-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-outline-color: var( --md-outlined-text-field-focus-outline-color, var(--md-sys-color-primary, #6750a4) ); --_focus-outline-width: var( --md-outlined-text-field-focus-outline-width, 3px ); --_focus-supporting-text-color: var( --md-outlined-text-field-focus-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-trailing-icon-color: var( --md-outlined-text-field-focus-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-input-text-color: var( --md-outlined-text-field-hover-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-label-text-color: var( --md-outlined-text-field-hover-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-leading-icon-color: var( --md-outlined-text-field-hover-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-outline-color: var( --md-outlined-text-field-hover-outline-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-outline-width: var( --md-outlined-text-field-hover-outline-width, 1px ); --_hover-supporting-text-color: var( --md-outlined-text-field-hover-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-trailing-icon-color: var( --md-outlined-text-field-hover-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-color: var( --md-outlined-text-field-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_input-text-font: var( --md-outlined-text-field-input-text-font, var( --md-sys-typescale-body-large-font, var(--md-ref-typeface-plain, Roboto) ) ); --_input-text-line-height: var( --md-outlined-text-field-input-text-line-height, var(--md-sys-typescale-body-large-line-height, 1.5rem) ); --_input-text-placeholder-color: var( --md-outlined-text-field-input-text-placeholder-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-prefix-color: var( --md-outlined-text-field-input-text-prefix-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-size: var( --md-outlined-text-field-input-text-size, var(--md-sys-typescale-body-large-size, 1rem) ); --_input-text-suffix-color: var( --md-outlined-text-field-input-text-suffix-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-weight: var( --md-outlined-text-field-input-text-weight, var( --md-sys-typescale-body-large-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_label-text-color: var( --md-outlined-text-field-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_label-text-font: var( --md-outlined-text-field-label-text-font, var( --md-sys-typescale-body-large-font, var(--md-ref-typeface-plain, Roboto) ) ); --_label-text-line-height: var( --md-outlined-text-field-label-text-line-height, var(--md-sys-typescale-body-large-line-height, 1.5rem) ); --_label-text-populated-line-height: var( --md-outlined-text-field-label-text-populated-line-height, var(--md-sys-typescale-body-small-line-height, 1rem) ); --_label-text-populated-size: var( --md-outlined-text-field-label-text-populated-size, var(--md-sys-typescale-body-small-size, 0.75rem) ); --_label-text-size: var( --md-outlined-text-field-label-text-size, var(--md-sys-typescale-body-large-size, 1rem) ); --_label-text-weight: var( --md-outlined-text-field-label-text-weight, var( --md-sys-typescale-body-large-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_leading-icon-color: var( --md-outlined-text-field-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_leading-icon-size: var(--md-outlined-text-field-leading-icon-size, 24px); --_outline-color: var( --md-outlined-text-field-outline-color, var(--md-sys-color-outline, #79747e) ); --_outline-width: var(--md-outlined-text-field-outline-width, 1px); --_supporting-text-color: var( --md-outlined-text-field-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_supporting-text-font: var( --md-outlined-text-field-supporting-text-font, var( --md-sys-typescale-body-small-font, var(--md-ref-typeface-plain, Roboto) ) ); --_supporting-text-line-height: var( --md-outlined-text-field-supporting-text-line-height, var(--md-sys-typescale-body-small-line-height, 1rem) ); --_supporting-text-size: var( --md-outlined-text-field-supporting-text-size, var(--md-sys-typescale-body-small-size, 0.75rem) ); --_supporting-text-weight: var( --md-outlined-text-field-supporting-text-weight, var( --md-sys-typescale-body-small-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_trailing-icon-color: var( --md-outlined-text-field-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_trailing-icon-size: var( --md-outlined-text-field-trailing-icon-size, 24px ); --_container-shape-start-start: var( --md-outlined-text-field-container-shape-start-start, var( --md-outlined-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-start-end: var( --md-outlined-text-field-container-shape-start-end, var( --md-outlined-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-end-end: var( --md-outlined-text-field-container-shape-end-end, var( --md-outlined-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-end-start: var( --md-outlined-text-field-container-shape-end-start, var( --md-outlined-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_icon-input-space: var(--md-outlined-text-field-icon-input-space, 16px); --_leading-space: var(--md-outlined-text-field-leading-space, 16px); --_trailing-space: var(--md-outlined-text-field-trailing-space, 16px); --_top-space: var(--md-outlined-text-field-top-space, 16px); --_bottom-space: var(--md-outlined-text-field-bottom-space, 16px); --_input-text-prefix-trailing-space: var( --md-outlined-text-field-input-text-prefix-trailing-space, 2px ); --_input-text-suffix-leading-space: var( --md-outlined-text-field-input-text-suffix-leading-space, 2px ); --_focus-caret-color: var( --md-outlined-text-field-focus-caret-color, var(--md-sys-color-primary, #6750a4) ); --_with-leading-icon-leading-space: var( --md-outlined-text-field-with-leading-icon-leading-space, 12px ); --_with-trailing-icon-trailing-space: var( --md-outlined-text-field-with-trailing-icon-trailing-space, 12px ); --md-outlined-field-bottom-space: var(--_bottom-space); --md-outlined-field-container-shape-end-end: var( --_container-shape-end-end ); --md-outlined-field-container-shape-end-start: var( --_container-shape-end-start ); --md-outlined-field-container-shape-start-end: var( --_container-shape-start-end ); --md-outlined-field-container-shape-start-start: var( --_container-shape-start-start ); --md-outlined-field-content-color: var(--_input-text-color); --md-outlined-field-content-font: var(--_input-text-font); --md-outlined-field-content-line-height: var(--_input-text-line-height); --md-outlined-field-content-size: var(--_input-text-size); --md-outlined-field-content-space: var(--_icon-input-space); --md-outlined-field-content-weight: var(--_input-text-weight); --md-outlined-field-disabled-content-color: var( --_disabled-input-text-color ); --md-outlined-field-disabled-content-opacity: var( --_disabled-input-text-opacity ); --md-outlined-field-disabled-label-text-color: var( --_disabled-label-text-color ); --md-outlined-field-disabled-label-text-opacity: var( --_disabled-label-text-opacity ); --md-outlined-field-disabled-leading-content-color: var( --_disabled-leading-icon-color ); --md-outlined-field-disabled-leading-content-opacity: var( --_disabled-leading-icon-opacity ); --md-outlined-field-disabled-outline-color: var(--_disabled-outline-color); --md-outlined-field-disabled-outline-opacity: var( --_disabled-outline-opacity ); --md-outlined-field-disabled-outline-width: var(--_disabled-outline-width); --md-outlined-field-disabled-supporting-text-color: var( --_disabled-supporting-text-color ); --md-outlined-field-disabled-supporting-text-opacity: var( --_disabled-supporting-text-opacity ); --md-outlined-field-disabled-trailing-content-color: var( --_disabled-trailing-icon-color ); --md-outlined-field-disabled-trailing-content-opacity: var( --_disabled-trailing-icon-opacity ); --md-outlined-field-error-content-color: var(--_error-input-text-color); --md-outlined-field-error-focus-content-color: var( --_error-focus-input-text-color ); --md-outlined-field-error-focus-label-text-color: var( --_error-focus-label-text-color ); --md-outlined-field-error-focus-leading-content-color: var( --_error-focus-leading-icon-color ); --md-outlined-field-error-focus-outline-color: var( --_error-focus-outline-color ); --md-outlined-field-error-focus-supporting-text-color: var( --_error-focus-supporting-text-color ); --md-outlined-field-error-focus-trailing-content-color: var( --_error-focus-trailing-icon-color ); --md-outlined-field-error-hover-content-color: var( --_error-hover-input-text-color ); --md-outlined-field-error-hover-label-text-color: var( --_error-hover-label-text-color ); --md-outlined-field-error-hover-leading-content-color: var( --_error-hover-leading-icon-color ); --md-outlined-field-error-hover-outline-color: var( --_error-hover-outline-color ); --md-outlined-field-error-hover-supporting-text-color: var( --_error-hover-supporting-text-color ); --md-outlined-field-error-hover-trailing-content-color: var( --_error-hover-trailing-icon-color ); --md-outlined-field-error-label-text-color: var(--_error-label-text-color); --md-outlined-field-error-leading-content-color: var( --_error-leading-icon-color ); --md-outlined-field-error-outline-color: var(--_error-outline-color); --md-outlined-field-error-supporting-text-color: var( --_error-supporting-text-color ); --md-outlined-field-error-trailing-content-color: var( --_error-trailing-icon-color ); --md-outlined-field-focus-content-color: var(--_focus-input-text-color); --md-outlined-field-focus-label-text-color: var(--_focus-label-text-color); --md-outlined-field-focus-leading-content-color: var( --_focus-leading-icon-color ); --md-outlined-field-focus-outline-color: var(--_focus-outline-color); --md-outlined-field-focus-outline-width: var(--_focus-outline-width); --md-outlined-field-focus-supporting-text-color: var( --_focus-supporting-text-color ); --md-outlined-field-focus-trailing-content-color: var( --_focus-trailing-icon-color ); --md-outlined-field-hover-content-color: var(--_hover-input-text-color); --md-outlined-field-hover-label-text-color: var(--_hover-label-text-color); --md-outlined-field-hover-leading-content-color: var( --_hover-leading-icon-color ); --md-outlined-field-hover-outline-color: var(--_hover-outline-color); --md-outlined-field-hover-outline-width: var(--_hover-outline-width); --md-outlined-field-hover-supporting-text-color: var( --_hover-supporting-text-color ); --md-outlined-field-hover-trailing-content-color: var( --_hover-trailing-icon-color ); --md-outlined-field-label-text-color: var(--_label-text-color); --md-outlined-field-label-text-font: var(--_label-text-font); --md-outlined-field-label-text-line-height: var(--_label-text-line-height); --md-outlined-field-label-text-populated-line-height: var( --_label-text-populated-line-height ); --md-outlined-field-label-text-populated-size: var( --_label-text-populated-size ); --md-outlined-field-label-text-size: var(--_label-text-size); --md-outlined-field-label-text-weight: var(--_label-text-weight); --md-outlined-field-leading-content-color: var(--_leading-icon-color); --md-outlined-field-leading-space: var(--_leading-space); --md-outlined-field-outline-color: var(--_outline-color); --md-outlined-field-outline-width: var(--_outline-width); --md-outlined-field-supporting-text-color: var(--_supporting-text-color); --md-outlined-field-supporting-text-font: var(--_supporting-text-font); --md-outlined-field-supporting-text-line-height: var( --_supporting-text-line-height ); --md-outlined-field-supporting-text-size: var(--_supporting-text-size); --md-outlined-field-supporting-text-weight: var(--_supporting-text-weight); --md-outlined-field-top-space: var(--_top-space); --md-outlined-field-trailing-content-color: var(--_trailing-icon-color); --md-outlined-field-trailing-space: var(--_trailing-space); --md-outlined-field-with-leading-content-leading-space: var( --_with-leading-icon-leading-space ); --md-outlined-field-with-trailing-content-trailing-space: var( --_with-trailing-icon-trailing-space ); } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "textfield/internal/outlined-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "textfield/internal/shared-styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { display: inline-flex; outline: none; resize: both; text-align: start; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); } .text-field, .field { width: 100%; } .text-field { display: inline-flex; } .field { cursor: text; } .disabled .field { cursor: default; } .text-field, .textarea .field { resize: inherit; } slot[name='container'] { border-radius: inherit; } .icon { color: currentColor; display: flex; align-items: center; justify-content: center; fill: currentColor; position: relative; } .icon ::slotted(*) { display: flex; position: absolute; } [has-start] .icon.leading { font-size: var(--_leading-icon-size); height: var(--_leading-icon-size); width: var(--_leading-icon-size); } [has-end] .icon.trailing { font-size: var(--_trailing-icon-size); height: var(--_trailing-icon-size); width: var(--_trailing-icon-size); } .input-wrapper { display: flex; } .input-wrapper > * { all: inherit; padding: 0; } .input { caret-color: var(--_caret-color); overflow-x: hidden; text-align: inherit; } .input::placeholder { color: currentColor; opacity: 1; } .input::-webkit-calendar-picker-indicator { display: none; } .input::-webkit-search-decoration, .input::-webkit-search-cancel-button { display: none; } @media (forced-colors: active) { .input { background: none; } } .no-spinner .input::-webkit-inner-spin-button, .no-spinner .input::-webkit-outer-spin-button { display: none; } .no-spinner .input[type='number'] { -moz-appearance: textfield; } :focus-within .input { caret-color: var(--_focus-caret-color); } .error:focus-within .input { caret-color: var(--_error-focus-caret-color); } .text-field:not(.disabled) .prefix { color: var(--_input-text-prefix-color); } .text-field:not(.disabled) .suffix { color: var(--_input-text-suffix-color); } .text-field:not(.disabled) .input::placeholder { color: var(--_input-text-placeholder-color); } .prefix, .suffix { text-wrap: nowrap; width: min-content; } .prefix { padding-inline-end: var(--_input-text-prefix-trailing-space); } .suffix { padding-inline-start: var(--_input-text-suffix-leading-space); } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "textfield/internal/shared-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "tree/internal/Tree.ts",
       "declarations": [
         {
@@ -28576,6 +29385,14 @@
             },
             {
               "kind": "field",
+              "name": "renderLeafAccessory",
+              "type": {
+                "text": "(context: TreeRenderContext<T>) => unknown | undefined"
+              },
+              "description": "Renders an interactive accessory into the toggle column of a **leaf** row.\n\nLeaf rows have no expand/collapse toggle, so this callback can supply\ntrailing content (for example a pin/unpin button) that lines up exactly\nwith the chevrons of expandable rows, following `togglePosition`.\n\nReturn `nothing` (or a falsy value) to leave the leaf's toggle column\nempty. The tree isolates pointer and `Enter`/`Space` interaction on the\naccessory so activating it does not select or toggle the row; arrow-key\nnavigation still works. Any returned interactive element (such as a\n`<button>`) is keyboard-focusable and therefore adds a tab stop per row.\nProvide an accessible label and `aria-pressed` for toggle semantics."
+            },
+            {
+              "kind": "field",
               "name": "getNodeId",
               "type": {
                 "text": "(node: T, indexPath: number[]) => string | undefined"
@@ -28618,11 +29435,75 @@
             },
             {
               "kind": "field",
+              "name": "collapseIcon",
+              "type": {
+                "text": "string"
+              },
+              "default": "'chevron_right'",
+              "description": "Icon shown on the expand/collapse toggle when a branch is collapsed.\n\nAny icon name understood by `oscd-icon` (a Material Symbol name or a\nregistered SCL icon) may be used. Defaults to `chevron_right`.",
+              "attribute": "collapse-icon"
+            },
+            {
+              "kind": "field",
+              "name": "expandIcon",
+              "type": {
+                "text": "string"
+              },
+              "default": "'expand_more'",
+              "description": "Icon shown on the expand/collapse toggle when a branch is expanded.\n\nAny icon name understood by `oscd-icon` (a Material Symbol name or a\nregistered SCL icon) may be used. Defaults to `expand_more`.",
+              "attribute": "expand-icon"
+            },
+            {
+              "kind": "field",
+              "name": "togglePosition",
+              "type": {
+                "text": "TreeTogglePosition"
+              },
+              "default": "'leading'",
+              "description": "Placement of the expand/collapse toggle within each row.\n\n`'leading'` (default) renders the toggle before the row content.\n`'trailing'` renders it after the content, right-aligned so the toggles\nline up on the trailing edge regardless of nesting depth. Keyboard\nexpansion (`ArrowRight`/`ArrowLeft`) is unaffected by this option.",
+              "attribute": "toggle-position",
+              "reflects": true
+            },
+            {
+              "kind": "field",
               "name": "activeId",
               "type": {
-                "text": "string | undefined"
+                "text": "string | null"
               },
-              "privacy": "private"
+              "default": "null",
+              "description": "Currently active keyboard row. Controlled by the caller when needed."
+            },
+            {
+              "kind": "field",
+              "name": "scrollActiveIntoView",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether focusing the active row should scroll it into the nearest\nscrollable ancestor when it is outside the visible area.",
+              "attribute": "scroll-active-into-view"
+            },
+            {
+              "kind": "method",
+              "name": "getFirstNodeId",
+              "privacy": "public",
+              "return": {
+                "type": {
+                  "text": "string | null"
+                }
+              },
+              "description": "Returns the first visible, enabled row ID, or null when none exists."
+            },
+            {
+              "kind": "method",
+              "name": "getLastNodeId",
+              "privacy": "public",
+              "return": {
+                "type": {
+                  "text": "string | null"
+                }
+              },
+              "description": "Returns the last visible, enabled row ID, or null when none exists."
             },
             {
               "kind": "method",
@@ -28708,6 +29589,16 @@
             {
               "kind": "method",
               "name": "visibleRows",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "VisibleTreeNode<T>[]"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "navigableRows",
               "privacy": "private",
               "return": {
                 "type": {
@@ -28939,6 +29830,11 @@
               ]
             },
             {
+              "kind": "field",
+              "name": "handleTreeKeyDown",
+              "privacy": "private"
+            },
+            {
               "kind": "method",
               "name": "handleToggleClick",
               "privacy": "private",
@@ -28982,6 +29878,54 @@
                   "name": "event",
                   "type": {
                     "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "navigateNext",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rows",
+                  "type": {
+                    "text": "VisibleTreeNode<T>[]"
+                  }
+                },
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "navigatePrevious",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rows",
+                  "type": {
+                    "text": "VisibleTreeNode<T>[]"
+                  }
+                },
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
                   }
                 }
               ]
@@ -29067,6 +30011,30 @@
                   "type": {
                     "text": "VisibleTreeNode<T>"
                   }
+                },
+                {
+                  "name": "context",
+                  "type": {
+                    "text": "TreeRenderContext<T>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleAccessoryKeydown",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
                 }
               ]
             },
@@ -29101,6 +30069,18 @@
               "type": {
                 "text": "CustomEvent"
               }
+            },
+            {
+              "name": "navigation-boundary",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "name": "active-changed",
+              "type": {
+                "text": "CustomEvent"
+              }
             }
           ],
           "attributes": [
@@ -29112,6 +30092,42 @@
               "default": "'none'",
               "description": "Selection behavior.",
               "fieldName": "selectionMode"
+            },
+            {
+              "name": "collapse-icon",
+              "type": {
+                "text": "string"
+              },
+              "default": "'chevron_right'",
+              "description": "Icon shown on the expand/collapse toggle when a branch is collapsed.\n\nAny icon name understood by `oscd-icon` (a Material Symbol name or a\nregistered SCL icon) may be used. Defaults to `chevron_right`.",
+              "fieldName": "collapseIcon"
+            },
+            {
+              "name": "expand-icon",
+              "type": {
+                "text": "string"
+              },
+              "default": "'expand_more'",
+              "description": "Icon shown on the expand/collapse toggle when a branch is expanded.\n\nAny icon name understood by `oscd-icon` (a Material Symbol name or a\nregistered SCL icon) may be used. Defaults to `expand_more`.",
+              "fieldName": "expandIcon"
+            },
+            {
+              "name": "toggle-position",
+              "type": {
+                "text": "TreeTogglePosition"
+              },
+              "default": "'leading'",
+              "description": "Placement of the expand/collapse toggle within each row.\n\n`'leading'` (default) renders the toggle before the row content.\n`'trailing'` renders it after the content, right-aligned so the toggles\nline up on the trailing edge regardless of nesting depth. Keyboard\nexpansion (`ArrowRight`/`ArrowLeft`) is unaffected by this option.",
+              "fieldName": "togglePosition"
+            },
+            {
+              "name": "scroll-active-into-view",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether focusing the active row should scroll it into the nearest\nscrollable ancestor when it is outside the visible area.",
+              "fieldName": "scrollActiveIntoView"
             }
           ],
           "mixins": [
@@ -29145,7 +30161,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Internal base class for `oscd-tree-item`.",
+          "description": "Internal base class for `oscd-tree-item`.\n\n## Leading icon alignment\n\nA leading icon (the `start` slot) is rendered inside a fixed-width leading\ncolumn whose size defaults to the tree's `--oscd-tree-indent-step`. This is\ndeliberate: it makes a leading icon occupy **exactly one indent step**, so an\nicon-less descendant — which the tree indents by one step per level — lands\nits text precisely under its iconed ancestor's text, at any depth, with no\nper-row tuning. Rows without a leading icon collapse the column to zero and\nrely on the tree's indentation instead.\n\nBecause the leading column and the indent step are fused, a single knob\n(`--oscd-tree-indent-step`) controls both per-level indentation and the\nleading icon column, and the two can never drift out of alignment. Set it\nlarge enough to comfortably hold the icon (e.g. `40px`); the visual gap\nbetween the icon and the text is the leftover space, `step - icon size`.",
           "name": "TreeItem",
           "slots": [
             {
@@ -29198,6 +30214,34 @@
               "description": "Whether the row content should render disabled styling.",
               "attribute": "disabled",
               "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "hasLeadingContent",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "description": "Whether the `start` slot currently holds a leading icon. Drives the\nfixed-width leading column so icon-less rows collapse it to zero."
+            },
+            {
+              "kind": "method",
+              "name": "handleStartSlotChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
             }
           ],
           "attributes": [
@@ -29244,69 +30288,6 @@
           "declaration": {
             "name": "TreeItem",
             "module": "tree/internal/TreeItem.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "textfield/internal/filled-styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { --_active-indicator-color: var( --md-filled-text-field-active-indicator-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_active-indicator-height: var( --md-filled-text-field-active-indicator-height, 1px ); --_caret-color: var( --md-filled-text-field-caret-color, var(--md-sys-color-primary, #6750a4) ); --_container-color: var( --md-filled-text-field-container-color, var(--md-sys-color-surface-container-highest, #e6e0e9) ); --_disabled-active-indicator-color: var( --md-filled-text-field-disabled-active-indicator-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-active-indicator-height: var( --md-filled-text-field-disabled-active-indicator-height, 1px ); --_disabled-active-indicator-opacity: var( --md-filled-text-field-disabled-active-indicator-opacity, 0.38 ); --_disabled-container-color: var( --md-filled-text-field-disabled-container-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-container-opacity: var( --md-filled-text-field-disabled-container-opacity, 0.04 ); --_disabled-input-text-color: var( --md-filled-text-field-disabled-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-input-text-opacity: var( --md-filled-text-field-disabled-input-text-opacity, 0.38 ); --_disabled-label-text-color: var( --md-filled-text-field-disabled-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-label-text-opacity: var( --md-filled-text-field-disabled-label-text-opacity, 0.38 ); --_disabled-leading-icon-color: var( --md-filled-text-field-disabled-leading-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-leading-icon-opacity: var( --md-filled-text-field-disabled-leading-icon-opacity, 0.38 ); --_disabled-supporting-text-color: var( --md-filled-text-field-disabled-supporting-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-supporting-text-opacity: var( --md-filled-text-field-disabled-supporting-text-opacity, 0.38 ); --_disabled-trailing-icon-color: var( --md-filled-text-field-disabled-trailing-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-trailing-icon-opacity: var( --md-filled-text-field-disabled-trailing-icon-opacity, 0.38 ); --_error-active-indicator-color: var( --md-filled-text-field-error-active-indicator-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-active-indicator-color: var( --md-filled-text-field-error-focus-active-indicator-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-caret-color: var( --md-filled-text-field-error-focus-caret-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-input-text-color: var( --md-filled-text-field-error-focus-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-focus-label-text-color: var( --md-filled-text-field-error-focus-label-text-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-leading-icon-color: var( --md-filled-text-field-error-focus-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-focus-supporting-text-color: var( --md-filled-text-field-error-focus-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-trailing-icon-color: var( --md-filled-text-field-error-focus-trailing-icon-color, var(--md-sys-color-error, #b3261e) ); --_error-hover-active-indicator-color: var( --md-filled-text-field-error-hover-active-indicator-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-hover-input-text-color: var( --md-filled-text-field-error-hover-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-hover-label-text-color: var( --md-filled-text-field-error-hover-label-text-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-hover-leading-icon-color: var( --md-filled-text-field-error-hover-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-hover-state-layer-color: var( --md-filled-text-field-error-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-hover-state-layer-opacity: var( --md-filled-text-field-error-hover-state-layer-opacity, 0.08 ); --_error-hover-supporting-text-color: var( --md-filled-text-field-error-hover-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-hover-trailing-icon-color: var( --md-filled-text-field-error-hover-trailing-icon-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-input-text-color: var( --md-filled-text-field-error-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-label-text-color: var( --md-filled-text-field-error-label-text-color, var(--md-sys-color-error, #b3261e) ); --_error-leading-icon-color: var( --md-filled-text-field-error-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-supporting-text-color: var( --md-filled-text-field-error-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-trailing-icon-color: var( --md-filled-text-field-error-trailing-icon-color, var(--md-sys-color-error, #b3261e) ); --_focus-active-indicator-color: var( --md-filled-text-field-focus-active-indicator-color, var(--md-sys-color-primary, #6750a4) ); --_focus-active-indicator-height: var( --md-filled-text-field-focus-active-indicator-height, 3px ); --_focus-input-text-color: var( --md-filled-text-field-focus-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_focus-label-text-color: var( --md-filled-text-field-focus-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_focus-leading-icon-color: var( --md-filled-text-field-focus-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-supporting-text-color: var( --md-filled-text-field-focus-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-trailing-icon-color: var( --md-filled-text-field-focus-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-active-indicator-color: var( --md-filled-text-field-hover-active-indicator-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-active-indicator-height: var( --md-filled-text-field-hover-active-indicator-height, 1px ); --_hover-input-text-color: var( --md-filled-text-field-hover-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-label-text-color: var( --md-filled-text-field-hover-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-leading-icon-color: var( --md-filled-text-field-hover-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-state-layer-color: var( --md-filled-text-field-hover-state-layer-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-state-layer-opacity: var( --md-filled-text-field-hover-state-layer-opacity, 0.08 ); --_hover-supporting-text-color: var( --md-filled-text-field-hover-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-trailing-icon-color: var( --md-filled-text-field-hover-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-color: var( --md-filled-text-field-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_input-text-font: var( --md-filled-text-field-input-text-font, var( --md-sys-typescale-body-large-font, var(--md-ref-typeface-plain, Roboto) ) ); --_input-text-line-height: var( --md-filled-text-field-input-text-line-height, var(--md-sys-typescale-body-large-line-height, 1.5rem) ); --_input-text-placeholder-color: var( --md-filled-text-field-input-text-placeholder-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-prefix-color: var( --md-filled-text-field-input-text-prefix-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-size: var( --md-filled-text-field-input-text-size, var(--md-sys-typescale-body-large-size, 1rem) ); --_input-text-suffix-color: var( --md-filled-text-field-input-text-suffix-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-weight: var( --md-filled-text-field-input-text-weight, var( --md-sys-typescale-body-large-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_label-text-color: var( --md-filled-text-field-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_label-text-font: var( --md-filled-text-field-label-text-font, var( --md-sys-typescale-body-large-font, var(--md-ref-typeface-plain, Roboto) ) ); --_label-text-line-height: var( --md-filled-text-field-label-text-line-height, var(--md-sys-typescale-body-large-line-height, 1.5rem) ); --_label-text-populated-line-height: var( --md-filled-text-field-label-text-populated-line-height, var(--md-sys-typescale-body-small-line-height, 1rem) ); --_label-text-populated-size: var( --md-filled-text-field-label-text-populated-size, var(--md-sys-typescale-body-small-size, 0.75rem) ); --_label-text-size: var( --md-filled-text-field-label-text-size, var(--md-sys-typescale-body-large-size, 1rem) ); --_label-text-weight: var( --md-filled-text-field-label-text-weight, var( --md-sys-typescale-body-large-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_leading-icon-color: var( --md-filled-text-field-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_leading-icon-size: var(--md-filled-text-field-leading-icon-size, 24px); --_supporting-text-color: var( --md-filled-text-field-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_supporting-text-font: var( --md-filled-text-field-supporting-text-font, var( --md-sys-typescale-body-small-font, var(--md-ref-typeface-plain, Roboto) ) ); --_supporting-text-line-height: var( --md-filled-text-field-supporting-text-line-height, var(--md-sys-typescale-body-small-line-height, 1rem) ); --_supporting-text-size: var( --md-filled-text-field-supporting-text-size, var(--md-sys-typescale-body-small-size, 0.75rem) ); --_supporting-text-weight: var( --md-filled-text-field-supporting-text-weight, var( --md-sys-typescale-body-small-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_trailing-icon-color: var( --md-filled-text-field-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_trailing-icon-size: var(--md-filled-text-field-trailing-icon-size, 24px); --_container-shape-start-start: var( --md-filled-text-field-container-shape-start-start, var( --md-filled-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-start-end: var( --md-filled-text-field-container-shape-start-end, var( --md-filled-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-end-end: var( --md-filled-text-field-container-shape-end-end, var( --md-filled-text-field-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_container-shape-end-start: var( --md-filled-text-field-container-shape-end-start, var( --md-filled-text-field-container-shape, var(--md-sys-shape-corner-none, 0px) ) ); --_icon-input-space: var(--md-filled-text-field-icon-input-space, 16px); --_leading-space: var(--md-filled-text-field-leading-space, 16px); --_trailing-space: var(--md-filled-text-field-trailing-space, 16px); --_top-space: var(--md-filled-text-field-top-space, 16px); --_bottom-space: var(--md-filled-text-field-bottom-space, 16px); --_input-text-prefix-trailing-space: var( --md-filled-text-field-input-text-prefix-trailing-space, 2px ); --_input-text-suffix-leading-space: var( --md-filled-text-field-input-text-suffix-leading-space, 2px ); --_with-label-top-space: var( --md-filled-text-field-with-label-top-space, 8px ); --_with-label-bottom-space: var( --md-filled-text-field-with-label-bottom-space, 8px ); --_focus-caret-color: var( --md-filled-text-field-focus-caret-color, var(--md-sys-color-primary, #6750a4) ); --_with-leading-icon-leading-space: var( --md-filled-text-field-with-leading-icon-leading-space, 12px ); --_with-trailing-icon-trailing-space: var( --md-filled-text-field-with-trailing-icon-trailing-space, 12px ); --md-filled-field-active-indicator-color: var(--_active-indicator-color); --md-filled-field-active-indicator-height: var(--_active-indicator-height); --md-filled-field-bottom-space: var(--_bottom-space); --md-filled-field-container-color: var(--_container-color); --md-filled-field-container-shape-end-end: var(--_container-shape-end-end); --md-filled-field-container-shape-end-start: var( --_container-shape-end-start ); --md-filled-field-container-shape-start-end: var( --_container-shape-start-end ); --md-filled-field-container-shape-start-start: var( --_container-shape-start-start ); --md-filled-field-content-color: var(--_input-text-color); --md-filled-field-content-font: var(--_input-text-font); --md-filled-field-content-line-height: var(--_input-text-line-height); --md-filled-field-content-size: var(--_input-text-size); --md-filled-field-content-space: var(--_icon-input-space); --md-filled-field-content-weight: var(--_input-text-weight); --md-filled-field-disabled-active-indicator-color: var( --_disabled-active-indicator-color ); --md-filled-field-disabled-active-indicator-height: var( --_disabled-active-indicator-height ); --md-filled-field-disabled-active-indicator-opacity: var( --_disabled-active-indicator-opacity ); --md-filled-field-disabled-container-color: var( --_disabled-container-color ); --md-filled-field-disabled-container-opacity: var( --_disabled-container-opacity ); --md-filled-field-disabled-content-color: var(--_disabled-input-text-color); --md-filled-field-disabled-content-opacity: var( --_disabled-input-text-opacity ); --md-filled-field-disabled-label-text-color: var( --_disabled-label-text-color ); --md-filled-field-disabled-label-text-opacity: var( --_disabled-label-text-opacity ); --md-filled-field-disabled-leading-content-color: var( --_disabled-leading-icon-color ); --md-filled-field-disabled-leading-content-opacity: var( --_disabled-leading-icon-opacity ); --md-filled-field-disabled-supporting-text-color: var( --_disabled-supporting-text-color ); --md-filled-field-disabled-supporting-text-opacity: var( --_disabled-supporting-text-opacity ); --md-filled-field-disabled-trailing-content-color: var( --_disabled-trailing-icon-color ); --md-filled-field-disabled-trailing-content-opacity: var( --_disabled-trailing-icon-opacity ); --md-filled-field-error-active-indicator-color: var( --_error-active-indicator-color ); --md-filled-field-error-content-color: var(--_error-input-text-color); --md-filled-field-error-focus-active-indicator-color: var( --_error-focus-active-indicator-color ); --md-filled-field-error-focus-content-color: var( --_error-focus-input-text-color ); --md-filled-field-error-focus-label-text-color: var( --_error-focus-label-text-color ); --md-filled-field-error-focus-leading-content-color: var( --_error-focus-leading-icon-color ); --md-filled-field-error-focus-supporting-text-color: var( --_error-focus-supporting-text-color ); --md-filled-field-error-focus-trailing-content-color: var( --_error-focus-trailing-icon-color ); --md-filled-field-error-hover-active-indicator-color: var( --_error-hover-active-indicator-color ); --md-filled-field-error-hover-content-color: var( --_error-hover-input-text-color ); --md-filled-field-error-hover-label-text-color: var( --_error-hover-label-text-color ); --md-filled-field-error-hover-leading-content-color: var( --_error-hover-leading-icon-color ); --md-filled-field-error-hover-state-layer-color: var( --_error-hover-state-layer-color ); --md-filled-field-error-hover-state-layer-opacity: var( --_error-hover-state-layer-opacity ); --md-filled-field-error-hover-supporting-text-color: var( --_error-hover-supporting-text-color ); --md-filled-field-error-hover-trailing-content-color: var( --_error-hover-trailing-icon-color ); --md-filled-field-error-label-text-color: var(--_error-label-text-color); --md-filled-field-error-leading-content-color: var( --_error-leading-icon-color ); --md-filled-field-error-supporting-text-color: var( --_error-supporting-text-color ); --md-filled-field-error-trailing-content-color: var( --_error-trailing-icon-color ); --md-filled-field-focus-active-indicator-color: var( --_focus-active-indicator-color ); --md-filled-field-focus-active-indicator-height: var( --_focus-active-indicator-height ); --md-filled-field-focus-content-color: var(--_focus-input-text-color); --md-filled-field-focus-label-text-color: var(--_focus-label-text-color); --md-filled-field-focus-leading-content-color: var( --_focus-leading-icon-color ); --md-filled-field-focus-supporting-text-color: var( --_focus-supporting-text-color ); --md-filled-field-focus-trailing-content-color: var( --_focus-trailing-icon-color ); --md-filled-field-hover-active-indicator-color: var( --_hover-active-indicator-color ); --md-filled-field-hover-active-indicator-height: var( --_hover-active-indicator-height ); --md-filled-field-hover-content-color: var(--_hover-input-text-color); --md-filled-field-hover-label-text-color: var(--_hover-label-text-color); --md-filled-field-hover-leading-content-color: var( --_hover-leading-icon-color ); --md-filled-field-hover-state-layer-color: var(--_hover-state-layer-color); --md-filled-field-hover-state-layer-opacity: var( --_hover-state-layer-opacity ); --md-filled-field-hover-supporting-text-color: var( --_hover-supporting-text-color ); --md-filled-field-hover-trailing-content-color: var( --_hover-trailing-icon-color ); --md-filled-field-label-text-color: var(--_label-text-color); --md-filled-field-label-text-font: var(--_label-text-font); --md-filled-field-label-text-line-height: var(--_label-text-line-height); --md-filled-field-label-text-populated-line-height: var( --_label-text-populated-line-height ); --md-filled-field-label-text-populated-size: var( --_label-text-populated-size ); --md-filled-field-label-text-size: var(--_label-text-size); --md-filled-field-label-text-weight: var(--_label-text-weight); --md-filled-field-leading-content-color: var(--_leading-icon-color); --md-filled-field-leading-space: var(--_leading-space); --md-filled-field-supporting-text-color: var(--_supporting-text-color); --md-filled-field-supporting-text-font: var(--_supporting-text-font); --md-filled-field-supporting-text-line-height: var( --_supporting-text-line-height ); --md-filled-field-supporting-text-size: var(--_supporting-text-size); --md-filled-field-supporting-text-weight: var(--_supporting-text-weight); --md-filled-field-top-space: var(--_top-space); --md-filled-field-trailing-content-color: var(--_trailing-icon-color); --md-filled-field-trailing-space: var(--_trailing-space); --md-filled-field-with-label-bottom-space: var(--_with-label-bottom-space); --md-filled-field-with-label-top-space: var(--_with-label-top-space); --md-filled-field-with-leading-content-leading-space: var( --_with-leading-icon-leading-space ); --md-filled-field-with-trailing-content-trailing-space: var( --_with-trailing-icon-trailing-space ); } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "textfield/internal/filled-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "textfield/internal/outlined-styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { --_caret-color: var( --md-outlined-text-field-caret-color, var(--md-sys-color-primary, #6750a4) ); --_disabled-input-text-color: var( --md-outlined-text-field-disabled-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-input-text-opacity: var( --md-outlined-text-field-disabled-input-text-opacity, 0.38 ); --_disabled-label-text-color: var( --md-outlined-text-field-disabled-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-label-text-opacity: var( --md-outlined-text-field-disabled-label-text-opacity, 0.38 ); --_disabled-leading-icon-color: var( --md-outlined-text-field-disabled-leading-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-leading-icon-opacity: var( --md-outlined-text-field-disabled-leading-icon-opacity, 0.38 ); --_disabled-outline-color: var( --md-outlined-text-field-disabled-outline-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-outline-opacity: var( --md-outlined-text-field-disabled-outline-opacity, 0.12 ); --_disabled-outline-width: var( --md-outlined-text-field-disabled-outline-width, 1px ); --_disabled-supporting-text-color: var( --md-outlined-text-field-disabled-supporting-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-supporting-text-opacity: var( --md-outlined-text-field-disabled-supporting-text-opacity, 0.38 ); --_disabled-trailing-icon-color: var( --md-outlined-text-field-disabled-trailing-icon-color, var(--md-sys-color-on-surface, #1d1b20) ); --_disabled-trailing-icon-opacity: var( --md-outlined-text-field-disabled-trailing-icon-opacity, 0.38 ); --_error-focus-caret-color: var( --md-outlined-text-field-error-focus-caret-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-input-text-color: var( --md-outlined-text-field-error-focus-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-focus-label-text-color: var( --md-outlined-text-field-error-focus-label-text-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-leading-icon-color: var( --md-outlined-text-field-error-focus-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-focus-outline-color: var( --md-outlined-text-field-error-focus-outline-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-supporting-text-color: var( --md-outlined-text-field-error-focus-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-focus-trailing-icon-color: var( --md-outlined-text-field-error-focus-trailing-icon-color, var(--md-sys-color-error, #b3261e) ); --_error-hover-input-text-color: var( --md-outlined-text-field-error-hover-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-hover-label-text-color: var( --md-outlined-text-field-error-hover-label-text-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-hover-leading-icon-color: var( --md-outlined-text-field-error-hover-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-hover-outline-color: var( --md-outlined-text-field-error-hover-outline-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-hover-supporting-text-color: var( --md-outlined-text-field-error-hover-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-hover-trailing-icon-color: var( --md-outlined-text-field-error-hover-trailing-icon-color, var(--md-sys-color-on-error-container, #410e0b) ); --_error-input-text-color: var( --md-outlined-text-field-error-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_error-label-text-color: var( --md-outlined-text-field-error-label-text-color, var(--md-sys-color-error, #b3261e) ); --_error-leading-icon-color: var( --md-outlined-text-field-error-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_error-outline-color: var( --md-outlined-text-field-error-outline-color, var(--md-sys-color-error, #b3261e) ); --_error-supporting-text-color: var( --md-outlined-text-field-error-supporting-text-color, var(--md-sys-color-error, #b3261e) ); --_error-trailing-icon-color: var( --md-outlined-text-field-error-trailing-icon-color, var(--md-sys-color-error, #b3261e) ); --_focus-input-text-color: var( --md-outlined-text-field-focus-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_focus-label-text-color: var( --md-outlined-text-field-focus-label-text-color, var(--md-sys-color-primary, #6750a4) ); --_focus-leading-icon-color: var( --md-outlined-text-field-focus-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-outline-color: var( --md-outlined-text-field-focus-outline-color, var(--md-sys-color-primary, #6750a4) ); --_focus-outline-width: var( --md-outlined-text-field-focus-outline-width, 3px ); --_focus-supporting-text-color: var( --md-outlined-text-field-focus-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_focus-trailing-icon-color: var( --md-outlined-text-field-focus-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-input-text-color: var( --md-outlined-text-field-hover-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-label-text-color: var( --md-outlined-text-field-hover-label-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-leading-icon-color: var( --md-outlined-text-field-hover-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-outline-color: var( --md-outlined-text-field-hover-outline-color, var(--md-sys-color-on-surface, #1d1b20) ); --_hover-outline-width: var( --md-outlined-text-field-hover-outline-width, 1px ); --_hover-supporting-text-color: var( --md-outlined-text-field-hover-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_hover-trailing-icon-color: var( --md-outlined-text-field-hover-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-color: var( --md-outlined-text-field-input-text-color, var(--md-sys-color-on-surface, #1d1b20) ); --_input-text-font: var( --md-outlined-text-field-input-text-font, var( --md-sys-typescale-body-large-font, var(--md-ref-typeface-plain, Roboto) ) ); --_input-text-line-height: var( --md-outlined-text-field-input-text-line-height, var(--md-sys-typescale-body-large-line-height, 1.5rem) ); --_input-text-placeholder-color: var( --md-outlined-text-field-input-text-placeholder-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-prefix-color: var( --md-outlined-text-field-input-text-prefix-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-size: var( --md-outlined-text-field-input-text-size, var(--md-sys-typescale-body-large-size, 1rem) ); --_input-text-suffix-color: var( --md-outlined-text-field-input-text-suffix-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_input-text-weight: var( --md-outlined-text-field-input-text-weight, var( --md-sys-typescale-body-large-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_label-text-color: var( --md-outlined-text-field-label-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_label-text-font: var( --md-outlined-text-field-label-text-font, var( --md-sys-typescale-body-large-font, var(--md-ref-typeface-plain, Roboto) ) ); --_label-text-line-height: var( --md-outlined-text-field-label-text-line-height, var(--md-sys-typescale-body-large-line-height, 1.5rem) ); --_label-text-populated-line-height: var( --md-outlined-text-field-label-text-populated-line-height, var(--md-sys-typescale-body-small-line-height, 1rem) ); --_label-text-populated-size: var( --md-outlined-text-field-label-text-populated-size, var(--md-sys-typescale-body-small-size, 0.75rem) ); --_label-text-size: var( --md-outlined-text-field-label-text-size, var(--md-sys-typescale-body-large-size, 1rem) ); --_label-text-weight: var( --md-outlined-text-field-label-text-weight, var( --md-sys-typescale-body-large-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_leading-icon-color: var( --md-outlined-text-field-leading-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_leading-icon-size: var(--md-outlined-text-field-leading-icon-size, 24px); --_outline-color: var( --md-outlined-text-field-outline-color, var(--md-sys-color-outline, #79747e) ); --_outline-width: var(--md-outlined-text-field-outline-width, 1px); --_supporting-text-color: var( --md-outlined-text-field-supporting-text-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_supporting-text-font: var( --md-outlined-text-field-supporting-text-font, var( --md-sys-typescale-body-small-font, var(--md-ref-typeface-plain, Roboto) ) ); --_supporting-text-line-height: var( --md-outlined-text-field-supporting-text-line-height, var(--md-sys-typescale-body-small-line-height, 1rem) ); --_supporting-text-size: var( --md-outlined-text-field-supporting-text-size, var(--md-sys-typescale-body-small-size, 0.75rem) ); --_supporting-text-weight: var( --md-outlined-text-field-supporting-text-weight, var( --md-sys-typescale-body-small-weight, var(--md-ref-typeface-weight-regular, 400) ) ); --_trailing-icon-color: var( --md-outlined-text-field-trailing-icon-color, var(--md-sys-color-on-surface-variant, #49454f) ); --_trailing-icon-size: var( --md-outlined-text-field-trailing-icon-size, 24px ); --_container-shape-start-start: var( --md-outlined-text-field-container-shape-start-start, var( --md-outlined-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-start-end: var( --md-outlined-text-field-container-shape-start-end, var( --md-outlined-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-end-end: var( --md-outlined-text-field-container-shape-end-end, var( --md-outlined-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_container-shape-end-start: var( --md-outlined-text-field-container-shape-end-start, var( --md-outlined-text-field-container-shape, var(--md-sys-shape-corner-extra-small, 4px) ) ); --_icon-input-space: var(--md-outlined-text-field-icon-input-space, 16px); --_leading-space: var(--md-outlined-text-field-leading-space, 16px); --_trailing-space: var(--md-outlined-text-field-trailing-space, 16px); --_top-space: var(--md-outlined-text-field-top-space, 16px); --_bottom-space: var(--md-outlined-text-field-bottom-space, 16px); --_input-text-prefix-trailing-space: var( --md-outlined-text-field-input-text-prefix-trailing-space, 2px ); --_input-text-suffix-leading-space: var( --md-outlined-text-field-input-text-suffix-leading-space, 2px ); --_focus-caret-color: var( --md-outlined-text-field-focus-caret-color, var(--md-sys-color-primary, #6750a4) ); --_with-leading-icon-leading-space: var( --md-outlined-text-field-with-leading-icon-leading-space, 12px ); --_with-trailing-icon-trailing-space: var( --md-outlined-text-field-with-trailing-icon-trailing-space, 12px ); --md-outlined-field-bottom-space: var(--_bottom-space); --md-outlined-field-container-shape-end-end: var( --_container-shape-end-end ); --md-outlined-field-container-shape-end-start: var( --_container-shape-end-start ); --md-outlined-field-container-shape-start-end: var( --_container-shape-start-end ); --md-outlined-field-container-shape-start-start: var( --_container-shape-start-start ); --md-outlined-field-content-color: var(--_input-text-color); --md-outlined-field-content-font: var(--_input-text-font); --md-outlined-field-content-line-height: var(--_input-text-line-height); --md-outlined-field-content-size: var(--_input-text-size); --md-outlined-field-content-space: var(--_icon-input-space); --md-outlined-field-content-weight: var(--_input-text-weight); --md-outlined-field-disabled-content-color: var( --_disabled-input-text-color ); --md-outlined-field-disabled-content-opacity: var( --_disabled-input-text-opacity ); --md-outlined-field-disabled-label-text-color: var( --_disabled-label-text-color ); --md-outlined-field-disabled-label-text-opacity: var( --_disabled-label-text-opacity ); --md-outlined-field-disabled-leading-content-color: var( --_disabled-leading-icon-color ); --md-outlined-field-disabled-leading-content-opacity: var( --_disabled-leading-icon-opacity ); --md-outlined-field-disabled-outline-color: var(--_disabled-outline-color); --md-outlined-field-disabled-outline-opacity: var( --_disabled-outline-opacity ); --md-outlined-field-disabled-outline-width: var(--_disabled-outline-width); --md-outlined-field-disabled-supporting-text-color: var( --_disabled-supporting-text-color ); --md-outlined-field-disabled-supporting-text-opacity: var( --_disabled-supporting-text-opacity ); --md-outlined-field-disabled-trailing-content-color: var( --_disabled-trailing-icon-color ); --md-outlined-field-disabled-trailing-content-opacity: var( --_disabled-trailing-icon-opacity ); --md-outlined-field-error-content-color: var(--_error-input-text-color); --md-outlined-field-error-focus-content-color: var( --_error-focus-input-text-color ); --md-outlined-field-error-focus-label-text-color: var( --_error-focus-label-text-color ); --md-outlined-field-error-focus-leading-content-color: var( --_error-focus-leading-icon-color ); --md-outlined-field-error-focus-outline-color: var( --_error-focus-outline-color ); --md-outlined-field-error-focus-supporting-text-color: var( --_error-focus-supporting-text-color ); --md-outlined-field-error-focus-trailing-content-color: var( --_error-focus-trailing-icon-color ); --md-outlined-field-error-hover-content-color: var( --_error-hover-input-text-color ); --md-outlined-field-error-hover-label-text-color: var( --_error-hover-label-text-color ); --md-outlined-field-error-hover-leading-content-color: var( --_error-hover-leading-icon-color ); --md-outlined-field-error-hover-outline-color: var( --_error-hover-outline-color ); --md-outlined-field-error-hover-supporting-text-color: var( --_error-hover-supporting-text-color ); --md-outlined-field-error-hover-trailing-content-color: var( --_error-hover-trailing-icon-color ); --md-outlined-field-error-label-text-color: var(--_error-label-text-color); --md-outlined-field-error-leading-content-color: var( --_error-leading-icon-color ); --md-outlined-field-error-outline-color: var(--_error-outline-color); --md-outlined-field-error-supporting-text-color: var( --_error-supporting-text-color ); --md-outlined-field-error-trailing-content-color: var( --_error-trailing-icon-color ); --md-outlined-field-focus-content-color: var(--_focus-input-text-color); --md-outlined-field-focus-label-text-color: var(--_focus-label-text-color); --md-outlined-field-focus-leading-content-color: var( --_focus-leading-icon-color ); --md-outlined-field-focus-outline-color: var(--_focus-outline-color); --md-outlined-field-focus-outline-width: var(--_focus-outline-width); --md-outlined-field-focus-supporting-text-color: var( --_focus-supporting-text-color ); --md-outlined-field-focus-trailing-content-color: var( --_focus-trailing-icon-color ); --md-outlined-field-hover-content-color: var(--_hover-input-text-color); --md-outlined-field-hover-label-text-color: var(--_hover-label-text-color); --md-outlined-field-hover-leading-content-color: var( --_hover-leading-icon-color ); --md-outlined-field-hover-outline-color: var(--_hover-outline-color); --md-outlined-field-hover-outline-width: var(--_hover-outline-width); --md-outlined-field-hover-supporting-text-color: var( --_hover-supporting-text-color ); --md-outlined-field-hover-trailing-content-color: var( --_hover-trailing-icon-color ); --md-outlined-field-label-text-color: var(--_label-text-color); --md-outlined-field-label-text-font: var(--_label-text-font); --md-outlined-field-label-text-line-height: var(--_label-text-line-height); --md-outlined-field-label-text-populated-line-height: var( --_label-text-populated-line-height ); --md-outlined-field-label-text-populated-size: var( --_label-text-populated-size ); --md-outlined-field-label-text-size: var(--_label-text-size); --md-outlined-field-label-text-weight: var(--_label-text-weight); --md-outlined-field-leading-content-color: var(--_leading-icon-color); --md-outlined-field-leading-space: var(--_leading-space); --md-outlined-field-outline-color: var(--_outline-color); --md-outlined-field-outline-width: var(--_outline-width); --md-outlined-field-supporting-text-color: var(--_supporting-text-color); --md-outlined-field-supporting-text-font: var(--_supporting-text-font); --md-outlined-field-supporting-text-line-height: var( --_supporting-text-line-height ); --md-outlined-field-supporting-text-size: var(--_supporting-text-size); --md-outlined-field-supporting-text-weight: var(--_supporting-text-weight); --md-outlined-field-top-space: var(--_top-space); --md-outlined-field-trailing-content-color: var(--_trailing-icon-color); --md-outlined-field-trailing-space: var(--_trailing-space); --md-outlined-field-with-leading-content-leading-space: var( --_with-leading-icon-leading-space ); --md-outlined-field-with-trailing-content-trailing-space: var( --_with-trailing-icon-trailing-space ); } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "textfield/internal/outlined-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "textfield/internal/shared-styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { display: inline-flex; outline: none; resize: both; text-align: start; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); } .text-field, .field { width: 100%; } .text-field { display: inline-flex; } .field { cursor: text; } .disabled .field { cursor: default; } .text-field, .textarea .field { resize: inherit; } slot[name='container'] { border-radius: inherit; } .icon { color: currentColor; display: flex; align-items: center; justify-content: center; fill: currentColor; position: relative; } .icon ::slotted(*) { display: flex; position: absolute; } [has-start] .icon.leading { font-size: var(--_leading-icon-size); height: var(--_leading-icon-size); width: var(--_leading-icon-size); } [has-end] .icon.trailing { font-size: var(--_trailing-icon-size); height: var(--_trailing-icon-size); width: var(--_trailing-icon-size); } .input-wrapper { display: flex; } .input-wrapper > * { all: inherit; padding: 0; } .input { caret-color: var(--_caret-color); overflow-x: hidden; text-align: inherit; } .input::placeholder { color: currentColor; opacity: 1; } .input::-webkit-calendar-picker-indicator { display: none; } .input::-webkit-search-decoration, .input::-webkit-search-cancel-button { display: none; } @media (forced-colors: active) { .input { background: none; } } .no-spinner .input::-webkit-inner-spin-button, .no-spinner .input::-webkit-outer-spin-button { display: none; } .no-spinner .input[type='number'] { -moz-appearance: textfield; } :focus-within .input { caret-color: var(--_focus-caret-color); } .error:focus-within .input { caret-color: var(--_error-focus-caret-color); } .text-field:not(.disabled) .prefix { color: var(--_input-text-prefix-color); } .text-field:not(.disabled) .suffix { color: var(--_input-text-suffix-color); } .text-field:not(.disabled) .input::placeholder { color: var(--_input-text-placeholder-color); } .prefix, .suffix { text-wrap: nowrap; width: min-content; } .prefix { padding-inline-end: var(--_input-text-prefix-trailing-space); } .suffix { padding-inline-start: var(--_input-text-suffix-leading-space); } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "textfield/internal/shared-styles.ts"
           }
         }
       ]

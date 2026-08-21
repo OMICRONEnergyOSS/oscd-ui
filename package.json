@@ -150,6 +150,8 @@
     "./scl-select/oscd-scl-select.js": "./dist/scl-select/oscd-scl-select.js",
     "./scl-textfield/OscdSclTextField.js": "./dist/scl-textfield/OscdSclTextField.js",
     "./scl-textfield/oscd-scl-text-field.js": "./dist/scl-textfield/oscd-scl-text-field.js",
+    "./search-field/OscdOutlinedSearchField.js": "./dist/search-field/OscdOutlinedSearchField.js",
+    "./search-field/oscd-outlined-search-field.js": "./dist/search-field/oscd-outlined-search-field.js",
     "./select/OscdFilledSelect.js": "./dist/select/OscdFilledSelect.js",
     "./select/OscdOutlinedSelect.js": "./dist/select/OscdOutlinedSelect.js",
     "./select/OscdSelectOption.js": "./dist/select/OscdSelectOption.js",
@@ -182,7 +184,7 @@
     "./tree-grid/oscd-tree-grid.js": "./dist/tree-grid/oscd-tree-grid.js"
   },
   "dependencies": {
-    "@omicronenergy/oscd-material-web-base": "^2.4.0",
+    "@omicronenergy/oscd-material-web-base": "^2.4.2",
     "@open-wc/scoped-elements": "^3.0.5",
     "@webcomponents/scoped-custom-element-registry": "^0.0.10",
     "lit": "^3.3.0",
