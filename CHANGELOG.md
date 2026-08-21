@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.18](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.17...oscd-ui-v0.0.18) (2026-08-21)
+
+
+### Features
+
+* add search-field component ([579f293](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/579f293bed1a4b8b2f831c16720d4caa90ebab33))
+
 ## [0.0.17](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.16...oscd-ui-v0.0.17) (2026-08-11)
 
 
