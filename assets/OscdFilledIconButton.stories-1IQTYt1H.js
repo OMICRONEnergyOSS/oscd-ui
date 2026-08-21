@@ -1,4 +1,0 @@
-import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdFilledIconButton-CKILjsRA.js";import{n as r,t as i}from"./getStorybookMeta-GO6mpvl0.js";var a=e((()=>{t(),customElements.define(`oscd-filled-icon-button`,n)})),o,s,c,l,u,d;e((()=>{a(),r(),{args:o,argTypes:s,meta:c}=i({tagName:`oscd-filled-icon-button`}),l={title:`Iconbuttons / Filled Icon Button`,tags:[`autodocs`],...c},u={argTypes:s,args:o},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...u.parameters?.docs?.source}}},d=[`Default`]}))();export{u as Default,d as __namedExportsOrder,l as default};

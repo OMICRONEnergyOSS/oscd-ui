@@ -1,1 +1,0 @@
-import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdSelectOption-DCQz-3ZN.js";var r=e((()=>{t(),customElements.define(`oscd-select-option`,n)}));export{r as t};

@@ -1,0 +1,1 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdTextButton-BFBNhLbK.js";var r=e((()=>{t(),customElements.define(`oscd-text-button`,n)}));export{r as t};
