@@ -2,6 +2,7 @@ import { css, html, LitElement, TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+import { OscdIcon } from '../icon/OscdIcon.js';
 import { OscdIconButton } from '../iconbutton/OscdIconButton.js';
 
 type Value = {
@@ -49,6 +50,7 @@ export type TreeNode = {
  */
 export class OscdActionTree extends ScopedElementsMixin(LitElement) {
   static scopedElements = {
+    'oscd-icon': OscdIcon,
     'oscd-icon-button': OscdIconButton,
   };
 
@@ -156,7 +158,9 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
       return html`<span class="leading-icon">${node.icon}</span>`;
     }
     if (typeof node.icon === 'string') {
-      return html`<span class="leading-icon ms">${node.icon}</span>`;
+      return html`<span class="leading-icon"
+        ><oscd-icon>${node.icon}</oscd-icon></span
+      >`;
     }
     return html``; // no icon
   }
@@ -218,12 +222,12 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
                   <div class="val-inner">
                     ${cell.edit
                       ? html`
-                          <icon-button
+                          <oscd-icon-button
                             aria-label="Edit value ${i + 1}"
                             @click=${cell.edit}
                           >
-                            <span class="ms">edit</span>
-                          </icon-button>
+                            <oscd-icon>edit</oscd-icon>
+                          </oscd-icon-button>
                         `
                       : ''}
                     <span class="val-text">${cell.val ?? ''}</span>
@@ -265,16 +269,8 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
   }
 
   static override styles = css`
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0');
     :host {
-      font-family:
-        'Roboto',
-        system-ui,
-        -apple-system,
-        'Segoe UI',
-        Arial,
-        sans-serif;
+      font-family: var(--md-sys-typescale-body-large-font, Roboto);
       font-weight: 400;
       color: var(--action-tree-font-color, #000000);
       --md-icon-button-icon-size: 20px;
@@ -333,7 +329,7 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
       color: inherit;
     }
     /* remove extra spacing on icon-button in value cells */
-    .val-cell icon-button {
+    .val-cell oscd-icon-button {
       margin-right: 0;
       width: 24px;
       height: 24px;
@@ -417,27 +413,6 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
       text-align: center;
       font-size: 12px;
     }
-    /* Material Symbols icon style */
-    .ms {
-      font-family: 'Material Symbols Outlined';
-      font-weight: 400;
-      font-style: normal;
-      font-size: 18px;
-      line-height: 1;
-      letter-spacing: normal;
-      text-transform: none;
-      display: inline-block;
-      white-space: nowrap;
-      direction: ltr;
-      -webkit-font-feature-settings: 'liga';
-      -webkit-font-smoothing: antialiased;
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 20;
-      color: inherit;
-    }
     .leading-icon {
       color: inherit;
       width: 18px;
@@ -445,6 +420,7 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      --md-icon-size: 18px;
     }
 
     .icon-btn {
@@ -479,13 +455,7 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
     }
     /* explicit styling for no data message */
     .no-data {
-      font-family:
-        'Roboto',
-        system-ui,
-        -apple-system,
-        'Segoe UI',
-        Arial,
-        sans-serif;
+      font-family: var(--md-sys-typescale-body-large-font, Roboto);
       font-weight: 400;
       color: inherit;
       padding: 8px 12px;

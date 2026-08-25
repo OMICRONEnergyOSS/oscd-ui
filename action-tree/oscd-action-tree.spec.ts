@@ -160,7 +160,7 @@ describe('ActionTree Component', () => {
       await timeout(100);
 
       // Find and click the edit button for Beh's second value
-      const editButton = tree.shadowRoot?.querySelector('icon-button');
+      const editButton = tree.shadowRoot?.querySelector('oscd-icon-button');
 
       expect(editButton).to.exist;
 
@@ -190,7 +190,7 @@ describe('ActionTree Component', () => {
       await timeout(100);
 
       // Find all edit buttons
-      const editButtons = tree.shadowRoot?.querySelectorAll('icon-button');
+      const editButtons = tree.shadowRoot?.querySelectorAll('oscd-icon-button');
       expect(editButtons?.length).to.be.greaterThan(1);
 
       // Click first edit button
