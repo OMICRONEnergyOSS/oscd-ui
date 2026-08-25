@@ -884,7 +884,7 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       color: var(--oscd-tree-color, var(--md-sys-color-on-surface, #1d1b20));
       font-family: var(
         --oscd-tree-font-family,
-        var(--oscd-text-font, sans-serif)
+        var(--md-sys-typescale-body-large-font, Roboto)
       );
       outline: none;
       /*
@@ -968,10 +968,13 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
     }
 
     .row[data-selection-mode='single'][data-selected='true'] {
-      color: var(--oscd-tree-row-selected-text-color, var(--oscd-base3, #fff));
+      color: var(
+        --oscd-tree-row-selected-text-color,
+        var(--md-sys-color-on-primary, #fff)
+      );
       background: var(
         --oscd-tree-row-selected-color,
-        var(--oscd-primary, #0b335b)
+        var(--md-sys-color-primary, #6750a4)
       );
     }
 
@@ -980,7 +983,28 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       ) {
       background: var(
         --oscd-tree-row-selected-hover-color,
-        var(--oscd-tree-row-selected-color, var(--oscd-primary, #0b335b))
+        var(
+          --oscd-tree-row-selected-color,
+          var(--md-sys-color-primary, #6750a4)
+        )
+      );
+    }
+
+    /*
+     * When a selected row is also the keyboard-active row while the tree has
+     * focus, the ":host(:focus-within) .row[data-active='true']" rule above
+     * has higher specificity than the selected-row rule and would otherwise
+     * win the cascade for "color", overriding the selected text color with
+     * "inherit" while leaving the selected background untouched. Restate the
+     * selected text color here, at higher specificity than both rules, so a
+     * focused+selected row keeps its selected-background/selected-foreground
+     * pairing while still showing the active outline.
+     */
+    :host(:focus-within)
+      .row[data-selection-mode='single'][data-selected='true'][data-active='true'] {
+      color: var(
+        --oscd-tree-row-selected-text-color,
+        var(--md-sys-color-on-primary, #fff)
       );
     }
 

@@ -98,10 +98,7 @@ export class TreeItem extends LitElement {
         --oscd-tree-item-font-family,
         var(
           --md-list-item-label-text-font,
-          var(
-            --md-sys-typescale-body-large-font,
-            var(--oscd-text-font, sans-serif)
-          )
+          var(--md-sys-typescale-body-large-font, Roboto)
         )
       );
       font-size: var(
@@ -118,16 +115,33 @@ export class TreeItem extends LitElement {
     }
 
     :host([selected]) .headline {
+      /*
+       * Falls back to currentColor (like the resting ".headline" rule below)
+       * rather than a fixed on-surface ink, so the label tracks whatever
+       * "color" the containing row already resolved to for its selected
+       * state (e.g. Tree.js's selected/active row rules), instead of
+       * silently overriding it with an unrelated fixed color.
+       */
       color: var(
         --oscd-tree-item-selected-headline-color,
-        var(
-          --md-list-item-label-text-color,
-          var(--md-sys-color-on-surface, #1d1b20)
-        )
+        var(--md-list-item-label-text-color, currentColor)
       );
       font-weight: var(
         --oscd-tree-item-selected-headline-weight,
         var(--md-sys-typescale-body-large-weight-prominent, 500)
+      );
+    }
+
+    /*
+     * Like the selected headline rule above, falls back to currentColor so
+     * the supporting text also tracks the row's selected-state color instead
+     * of staying pinned to the resting on-surface-variant grey (which has
+     * poor contrast once the row's background switches to a selected color).
+     */
+    :host([selected]) .supporting-text {
+      color: var(
+        --oscd-tree-item-selected-supporting-text-color,
+        var(--md-list-item-supporting-text-color, currentColor)
       );
     }
 

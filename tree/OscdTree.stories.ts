@@ -572,7 +572,14 @@ export const Filtered: StoryObj = {
 };
 
 export const StackedKeyboardNavigation: StoryObj = {
-  render: () => {
+  args: {
+    ['selectedIdsByTree']: {} as Record<string, string[]>,
+  },
+  render: argz => {
+    const [_, updateArgs] = useArgs();
+    const selectedIdsByTree =
+      (argz['selectedIdsByTree'] as Record<string, string[]>) ?? {};
+
     const focusFirstTree = (event: Event) => {
       const button = event.currentTarget as HTMLButtonElement;
       const tree = button.parentElement?.querySelector<OscdTree>('oscd-tree');
@@ -605,16 +612,32 @@ export const StackedKeyboardNavigation: StoryObj = {
       targetTree.focus();
     };
 
+    const handleStackedSelection = (
+      prefix: string,
+      event: CustomEvent<TreeSelectionChangeEventDetail<DemoTreeNode>>,
+    ) => {
+      handleSelection(event);
+      updateArgs({
+        selectedIdsByTree: {
+          ...selectedIdsByTree,
+          [prefix]: event.detail.selectedIds,
+        },
+      });
+    };
+
     const renderStackedTree = (prefix: string) =>
       html`<oscd-tree
         .data=${[
           { id: `${prefix}:one`, label: `${prefix} / One`, children: [] },
           { id: `${prefix}:two`, label: `${prefix} / Two`, children: [] },
         ]}
-        selectionMode="none"
+        selectionMode="single"
+        .selectedIds=${selectedIdsByTree[prefix] ?? []}
         .renderItem=${renderCompactItem}
         @navigation-boundary=${handleBoundary}
-        @selected-ids-changed=${handleSelection}
+        @selected-ids-changed=${(
+          event: CustomEvent<TreeSelectionChangeEventDetail<DemoTreeNode>>,
+        ) => handleStackedSelection(prefix, event)}
       ></oscd-tree>`;
 
     return html`<div
@@ -631,7 +654,10 @@ export const StackedKeyboardNavigation: StoryObj = {
       <p>
         Demo shows 3 Trees, with a border around the focused tree and a border
         around the active node to show how you can use keyboard navigation
-        accross multiple trees.
+        accross multiple trees. Each tree uses single-selection, so clicking or
+        pressing Enter on a row also exercises the selected+active (focused)
+        state, showing selected-background/on-selected-foreground pairing
+        alongside the active outline.
       </p>
       <button type="button" @click=${focusFirstTree}>Focus first tree</button>
       ${renderStackedTree('Tree A')} ${renderStackedTree('Tree B')}
