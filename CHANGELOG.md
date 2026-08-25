@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.19](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.18...oscd-ui-v0.0.19) (2026-08-25)
+
+
+### Bug Fixes
+
+* correct tree item styling for selected, active items ([314beb7](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/314beb7d6adf03c76bf72c713405c05982ca72e8))
+* corrected OscdActionTree font usage ([d00911a](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/d00911a1ab1b49697614566a904f02e2f7c4678f))
+* correction to failing tests after refactor ([2088e37](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/2088e371038401bfb4e7a7a7e684361cf3587e23))
+
 ## [0.0.18](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.17...oscd-ui-v0.0.18) (2026-08-21)
 
 
