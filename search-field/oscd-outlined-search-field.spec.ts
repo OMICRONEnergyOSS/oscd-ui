@@ -70,28 +70,21 @@ describe('OscdOutlinedSearchField', () => {
   });
 
   it('hides the placeholder while focused', async () => {
-    const innerField = searchField.shadowRoot!.querySelector(
-      'oscd-outlined-text-field',
-    )!;
-
-    expect(innerField.getAttribute('placeholder')).to.equal('Search');
+    expect(searchField.getAttribute('placeholder')).to.equal('Search');
 
     searchField.focus();
     await searchField.updateComplete;
 
-    expect(innerField.getAttribute('placeholder')).to.equal('');
+    // An empty placeholder string is reflected by removing the attribute.
+    expect(searchField.getAttribute('placeholder')).to.be.null;
   });
 
   it('restores the placeholder once focus leaves and the value is empty', async () => {
-    const innerField = searchField.shadowRoot!.querySelector(
-      'oscd-outlined-text-field',
-    )!;
-
     searchField.focus();
     await searchField.updateComplete;
-    innerField.dispatchEvent(new Event('blur'));
+    searchField.dispatchEvent(new Event('blur'));
     await searchField.updateComplete;
 
-    expect(innerField.getAttribute('placeholder')).to.equal('Search');
+    expect(searchField.getAttribute('placeholder')).to.equal('Search');
   });
 });
