@@ -100,14 +100,18 @@ export class OscdSelectionList extends FilterListBase {
         ),
       })}"
     >
-      ${this.multiselect
-        ? renderListItemCheckbox(item)
-        : renderListItemRadioButton(item, 'radio-group')}
+      ${
+        this.multiselect
+          ? renderListItemCheckbox(item)
+          : renderListItemRadioButton(item, 'radio-group')
+      }
 
       <div slot="headline">${item.headline}</div>
-      ${item.supportingText
-        ? html`<div slot="supporting-text">${item.supportingText}</div>`
-        : html``}
+      ${
+        item.supportingText
+          ? html`<div slot="supporting-text">${item.supportingText}</div>`
+          : html``
+      }
     </oscd-list-item>`;
   }
 

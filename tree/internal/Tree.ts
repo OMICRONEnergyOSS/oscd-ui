@@ -774,11 +774,13 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       tabindex="-1"
       @click=${(event: MouseEvent) => this.handleToggleClick(row, event)}
     >
-      ${expandable
-        ? html`<oscd-icon
-            >${expanded ? this.expandIcon : this.collapseIcon}</oscd-icon
-          >`
-        : nothing}
+      ${
+        expandable
+          ? html`<oscd-icon
+              >${expanded ? this.expandIcon : this.collapseIcon}</oscd-icon
+            >`
+          : nothing
+      }
     </button>`;
   }
 
@@ -827,16 +829,20 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       <oscd-ripple for=${row.htmlId} ?disabled=${disabled}></oscd-ripple>
       <oscd-focus-ring for=${row.htmlId} inward></oscd-focus-ring>
       <span part="indent" class="indent" aria-hidden="true"></span>
-      ${this.togglePosition === 'leading'
-        ? this.renderToggle(row, context)
-        : nothing}
+      ${
+        this.togglePosition === 'leading'
+          ? this.renderToggle(row, context)
+          : nothing
+      }
       ${this.renderSelection(row)}
       <span part="content" class="content"
         >${(this.renderItem ?? fallbackRenderItem)(context)}</span
       >
-      ${this.togglePosition === 'trailing'
-        ? this.renderToggle(row, context)
-        : nothing}
+      ${
+        this.togglePosition === 'trailing'
+          ? this.renderToggle(row, context)
+          : nothing
+      }
     </div>`;
   }
 

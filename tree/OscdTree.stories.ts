@@ -176,9 +176,11 @@ const renderMixedIconItem = ({
     ?active=${active}
     ?disabled=${disabled}
   >
-    ${node.kind === 'ied'
-      ? html`<oscd-icon slot="start">${kindIcon(node.kind)}</oscd-icon>`
-      : ''}
+    ${
+      node.kind === 'ied'
+        ? html`<oscd-icon slot="start">${kindIcon(node.kind)}</oscd-icon>`
+        : ''
+    }
     <span slot="headline">${node.label}</span>
     <span slot="supporting-text">${node.description}</span>
   </oscd-tree-item>`;

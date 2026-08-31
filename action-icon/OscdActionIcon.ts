@@ -50,9 +50,9 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
   private renderIcon(): TemplateResult {
     return html`<span>
       <slot name="icon"
-        >${this.icon
-          ? html`<oscd-icon>${this.icon}</oscd-icon>`
-          : nothing}</slot
+        >${
+          this.icon ? html`<oscd-icon>${this.icon}</oscd-icon>` : nothing
+        }</slot
       ></span
     > `;
   }

@@ -52,8 +52,7 @@ function installLifecycleWrappers(target: Record<PropertyKey, unknown>): void {
   target[localstorageLifecycleWrapped] = true;
 
   const connected = target['connectedCallback'] as
-    | ((this: LitHost) => void)
-    | undefined;
+    ((this: LitHost) => void) | undefined;
   target['connectedCallback'] = function connectedCallback(
     this: LitHost,
   ): void {

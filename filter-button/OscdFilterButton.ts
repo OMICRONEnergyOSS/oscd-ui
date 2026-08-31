@@ -64,9 +64,11 @@ export class OscdFilterButton extends ScopedElementsMixin(OscdSelectionList) {
           class="filter-button-icon-slot"
           @slotchange=${() => this.requestUpdate()}
         ></slot>
-        ${!this._iconSlot || this._iconSlot.length === 0
-          ? html`<oscd-icon class="default-icon">filter_list</oscd-icon>`
-          : nothing}
+        ${
+          !this._iconSlot || this._iconSlot.length === 0
+            ? html`<oscd-icon class="default-icon">filter_list</oscd-icon>`
+            : nothing
+        }
       </oscd-icon-button>
       <oscd-dialog @close="${() => this.onClose()}">
         <div slot="headline">${this.header}</div>

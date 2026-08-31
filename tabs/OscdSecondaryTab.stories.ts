@@ -16,9 +16,9 @@ export default {
     template(
       argz,
       html`
-        ${argz['has-icon']
-          ? html`<oscd-icon>shop</oscd-icon>`
-          : nothing}${textContent}
+        ${
+          argz['has-icon'] ? html`<oscd-icon>shop</oscd-icon>` : nothing
+        }${textContent}
       `,
     ),
 };

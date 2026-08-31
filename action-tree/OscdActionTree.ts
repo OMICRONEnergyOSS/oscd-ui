@@ -190,25 +190,27 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
         <td class="guideline" style="padding-left:${level * 1.5}em;">
           <div class="row-inner">
             <span class="row-left">
-              ${hasToggle
-                ? html`
-                    <span
-                      class="tree-fold ${isFolded ? 'folded' : ''}"
-                      @click=${() => this.toggleFold(path, node)}
-                      @keydown=${(e: KeyboardEvent) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          this.toggleFold(path, node);
-                        }
-                      }}
-                      tabindex="0"
-                      role="button"
-                      aria-label="Toggle fold"
-                    >
-                      ⌃
-                    </span>
-                  `
-                : html`<span class="tree-fold"></span>`}
+              ${
+                hasToggle
+                  ? html`
+                      <span
+                        class="tree-fold ${isFolded ? 'folded' : ''}"
+                        @click=${() => this.toggleFold(path, node)}
+                        @keydown=${(e: KeyboardEvent) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.toggleFold(path, node);
+                          }
+                        }}
+                        tabindex="0"
+                        role="button"
+                        aria-label="Toggle fold"
+                      >
+                        ⌃
+                      </span>
+                    `
+                  : html`<span class="tree-fold"></span>`
+              }
               ${this.renderLeadingIcon(node)}
               <span class="tree-key">${node.name}</span>
             </span>
@@ -217,23 +219,27 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
         ${Array.from({ length: this.maxLeafCols }, (_, i) => {
           const cell = leaf[i];
           return html`<td class="val-cell">
-            ${cell
-              ? html`
-                  <div class="val-inner">
-                    ${cell.edit
-                      ? html`
-                          <oscd-icon-button
-                            aria-label="Edit value ${i + 1}"
-                            @click=${cell.edit}
-                          >
-                            <oscd-icon>edit</oscd-icon>
-                          </oscd-icon-button>
-                        `
-                      : ''}
-                    <span class="val-text">${cell.val ?? ''}</span>
-                  </div>
-                `
-              : ''}
+            ${
+              cell
+                ? html`
+                    <div class="val-inner">
+                      ${
+                        cell.edit
+                          ? html`
+                              <oscd-icon-button
+                                aria-label="Edit value ${i + 1}"
+                                @click=${cell.edit}
+                              >
+                                <oscd-icon>edit</oscd-icon>
+                              </oscd-icon-button>
+                            `
+                          : ''
+                      }
+                      <span class="val-text">${cell.val ?? ''}</span>
+                    </div>
+                  `
+                : ''
+            }
           </td>`;
         })}
       </tr>

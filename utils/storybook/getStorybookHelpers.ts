@@ -27,11 +27,13 @@ export const storybookHelperDecorator: DecoratorFunction = (
     ? `* {\n${variableDeclarations}\n}`
     : undefined;
   return html`
-    ${styles
-      ? html`<style>
-          ${styles}
-        </style>`
-      : nothing}
+    ${
+      styles
+        ? html`<style>
+            ${styles}
+          </style>`
+        : nothing
+    }
     ${storyFn()}
   `;
 };
