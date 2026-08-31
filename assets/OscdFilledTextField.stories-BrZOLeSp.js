@@ -1,0 +1,4 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./getStorybookMeta-B4IvGxX7.js";import{n as r,t as i}from"./OscdFilledTextField-cV6Cl4TR.js";var a=e((()=>{r(),customElements.define(`oscd-filled-text-field`,i)})),o,s,c,l,u,d;e((()=>{a(),t(),{args:o,argTypes:s,meta:c}=n({tagName:`oscd-filled-text-field`}),l={title:`Textfields / Filled Text Field`,tags:[`autodocs`],...c},u={argTypes:s,args:o},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...u.parameters?.docs?.source}}},d=[`Default`]}))();export{u as Default,d as __namedExportsOrder,l as default};
