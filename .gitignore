@@ -26,3 +26,6 @@ coverage
 storybook-static
 
 packageExports.json
+
+## generated ace-builds worker copy (recreated by copyAceWorkerToSrc on build)
+/ace-editor/ace
