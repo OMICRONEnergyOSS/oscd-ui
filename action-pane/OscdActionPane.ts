@@ -85,9 +85,9 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
   private renderHeader(): TemplateResult {
     const content = html`<span
         ><slot name="icon"
-          >${this.icon
-            ? html`<oscd-icon>${this.icon}</oscd-icon>`
-            : nothing}</slot
+          >${
+            this.icon ? html`<oscd-icon>${this.icon}</oscd-icon>` : nothing
+          }</slot
         ></span
       >
       ${this.label ?? nothing}

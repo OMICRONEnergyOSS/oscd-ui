@@ -102,11 +102,13 @@ export class OscdActionList extends FilterListBase {
               </oscd-menu-item>`,
           )}
         </oscd-menu> </span
-      >${item.divider
-        ? html`<oscd-divider
-            class="${classMap({ hidden: !this.searchRegex.test(term(item)) })}"
-          ></oscd-divider>`
-        : html``}
+      >${
+        item.divider
+          ? html`<oscd-divider
+              class="${classMap({ hidden: !this.searchRegex.test(term(item)) })}"
+            ></oscd-divider>`
+          : html``
+      }
     `;
   }
 
@@ -119,13 +121,15 @@ export class OscdActionList extends FilterListBase {
             hidden: !this.searchRegex.test(term(item)),
           })}"
         ></oscd-list-item
-        >${item.divider
-          ? html`<oscd-divider
-              class="${classMap({
-                hidden: !this.searchRegex.test(term(item)),
-              })}"
-            ></oscd-divider>`
-          : html``}`;
+        >${
+          item.divider
+            ? html`<oscd-divider
+                class="${classMap({
+                  hidden: !this.searchRegex.test(term(item)),
+                })}"
+              ></oscd-divider>`
+            : html``
+        }`;
     }
 
     return html`<oscd-list-item
@@ -136,11 +140,13 @@ export class OscdActionList extends FilterListBase {
         @click=${() => action.callback(item)}
       >
         <oscd-icon slot="start">${action.icon}</oscd-icon> </oscd-list-item
-      >${item.divider
-        ? html`<oscd-divider
-            class="${classMap({ hidden: !this.searchRegex.test(term(item)) })}"
-          ></oscd-divider>`
-        : html``}`;
+      >${
+        item.divider
+          ? html`<oscd-divider
+              class="${classMap({ hidden: !this.searchRegex.test(term(item)) })}"
+            ></oscd-divider>`
+          : html``
+      }`;
   }
 
   private renderOtherActions(): TemplateResult {
@@ -161,12 +167,16 @@ export class OscdActionList extends FilterListBase {
 
   private renderActions(): TemplateResult {
     return html`
-      ${this.items.some(item => item.actions && item.actions[0])
-        ? this.renderFirstAction()
-        : html``}
-      ${this.items.some(item => item.actions && item.actions.length > 1)
-        ? this.renderOtherActions()
-        : html``}
+      ${
+        this.items.some(item => item.actions && item.actions[0])
+          ? this.renderFirstAction()
+          : html``
+      }
+      ${
+        this.items.some(item => item.actions && item.actions.length > 1)
+          ? this.renderOtherActions()
+          : html``
+      }
     `;
   }
 
@@ -181,20 +191,28 @@ ${item.headline && item.supportingText ? '-' : ''}${item.supportingText}"
         @click=${() => item.primaryAction && item.primaryAction(item)}
       >
         <div slot="headline" class="firstLine">${item.headline}</div>
-        ${item.supportingText
-          ? html`<div slot="supporting-text">${item.supportingText}</div>`
-          : html``}
-        ${item.startingIcon
-          ? html`<oscd-icon slot="start">${item.startingIcon}</oscd-icon>`
-          : html``}
-        ${item.endingIcon
-          ? html`<oscd-icon slot="end">${item.endingIcon}</oscd-icon>`
-          : html``} </oscd-list-item
-      >${item.divider
-        ? html`<oscd-divider
-            class="${classMap({ hidden: !this.searchRegex.test(term(item)) })}"
-          ></oscd-divider>`
-        : html``}`;
+        ${
+          item.supportingText
+            ? html`<div slot="supporting-text">${item.supportingText}</div>`
+            : html``
+        }
+        ${
+          item.startingIcon
+            ? html`<oscd-icon slot="start">${item.startingIcon}</oscd-icon>`
+            : html``
+        }
+        ${
+          item.endingIcon
+            ? html`<oscd-icon slot="end">${item.endingIcon}</oscd-icon>`
+            : html``
+        } </oscd-list-item
+      >${
+        item.divider
+          ? html`<oscd-divider
+              class="${classMap({ hidden: !this.searchRegex.test(term(item)) })}"
+            ></oscd-divider>`
+          : html``
+      }`;
   }
 
   private renderListItem(item: ActionItem): TemplateResult {

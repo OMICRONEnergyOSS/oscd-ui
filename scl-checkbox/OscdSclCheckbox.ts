@@ -128,9 +128,9 @@ export class OscdSclCheckbox extends ScopedElementsMixin(LitElement) {
         <div class="input container">
           <label
             class="input element"
-            style="${this.disabled || this.isNull
-              ? `color:rgba(0, 0, 0, 0.38)`
-              : ``}"
+            style="${
+              this.disabled || this.isNull ? `color:rgba(0, 0, 0, 0.38)` : ``
+            }"
           >
             <oscd-checkbox
               touch-target="wrapper"

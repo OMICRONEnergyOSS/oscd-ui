@@ -71,9 +71,11 @@ export class OutlinedSearchField extends OutlinedTextField {
     return html`
       <span class="icon trailing" slot="end">
         <slot name="trailing-icon"></slot>
-        ${this.hasCustomSlot('trailing-icon')
-          ? nothing
-          : this.renderDefaultClearFieldIconButton()}
+        ${
+          this.hasCustomSlot('trailing-icon')
+            ? nothing
+            : this.renderDefaultClearFieldIconButton()
+        }
       </span>
     `;
   }
@@ -82,9 +84,11 @@ export class OutlinedSearchField extends OutlinedTextField {
     return html`
       <span class="icon leading" slot="start">
         <slot name="leading-icon"></slot>
-        ${this.hasCustomSlot('leading-icon')
-          ? nothing
-          : renderDefaultLeadingIcon()}
+        ${
+          this.hasCustomSlot('leading-icon')
+            ? nothing
+            : renderDefaultLeadingIcon()
+        }
       </span>
     `;
   }

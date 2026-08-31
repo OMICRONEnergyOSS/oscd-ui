@@ -377,10 +377,9 @@ export class OscdTreeGrid extends ScopedElementsMixin(LitElement) {
       .type=${noninteractive ? 'text' : 'link'}
       style="${noninteractive ? 'opacity: 0.38' : ''}"
       ${ref(afterRender)}
-      >${icon
-        ? html`<oscd-icon slot="end">${icon}</oscd-icon>`
-        : html``}${this.treeNode(path).text ??
-      path[path.length - 1]}</oscd-list-item
+      >${icon ? html`<oscd-icon slot="end">${icon}</oscd-icon>` : html``}${
+        this.treeNode(path).text ?? path[path.length - 1]
+      }</oscd-list-item
     >`;
   }
 
