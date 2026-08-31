@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.20](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.19...oscd-ui-v0.0.20) (2026-08-31)
+
+
+### Features
+
+* add ace-editor (formerly scl-editor) and sync with main ([fa567f5](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/fa567f5895a92a5cbcd1a53f1d4b4560746ab6ed))
+
+
+### Bug Fixes
+
+* dependabot vunerabilities (fixed with npm audit fix) ([e9385de](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/e9385de3a832f58c35a9daaec929f3c81b140f44))
+
 ## [0.0.19](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.18...oscd-ui-v0.0.19) (2026-08-25)
 
 
