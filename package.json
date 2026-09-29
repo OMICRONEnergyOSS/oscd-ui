@@ -45,6 +45,7 @@
     "!catalog"
   ],
   "exports": {
+    "./oscd-md3-mappings.js": "./dist/oscd-md3-mappings.js",
     "./action-icon/OscdActionIcon.js": "./dist/action-icon/OscdActionIcon.js",
     "./action-icon/oscd-action-icon.js": "./dist/action-icon/oscd-action-icon.js",
     "./action-list/OscdActionList.js": "./dist/action-list/OscdActionList.js",

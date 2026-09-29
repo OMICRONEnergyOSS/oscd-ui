@@ -27,7 +27,8 @@ declare global {
  * `--oscd-search-field-placeholder-color`.
  *
  * Like the outlined text field it wraps, the container has no background by
- * default; consumers can set one via `--oscd-search-field-container-color`.
+ * default. Container styling is available through the wrapped field's
+ * supported `--md-outlined-text-field-*` tokens.
  * */
 export class OscdOutlinedSearchField extends ScopedElementsMixin(
   OutlinedSearchField,
