@@ -76,7 +76,7 @@ describe('OscdActionIcon', () => {
         secondary
         highlighted
         hideActions
-        style="--oscd-action-icon-theme-secondary: rgb(10, 20, 30)"
+        style="--md-sys-color-secondary: rgb(10, 20, 30)"
       ></oscd-action-icon>`,
     );
     const symbol = icon.shadowRoot?.querySelector('oscd-icon');

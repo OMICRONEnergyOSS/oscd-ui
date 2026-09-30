@@ -525,7 +525,7 @@ export class OscdTreeGrid extends ScopedElementsMixin(LitElement) {
     }
 
     oscd-list-item.filter {
-      color: var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.38));
+      color: var(--md-sys-color-on-surface-variant, #49454f);
     }
   `;
 }

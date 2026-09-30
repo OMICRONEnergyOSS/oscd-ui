@@ -144,29 +144,54 @@
           "name": "OscdActionIcon",
           "cssProperties": [
             {
-              "description": "Border and hover color.",
-              "name": "--oscd-action-icon-theme-primary",
-              "default": "var(--md-sys-color-primary)"
+              "description": "Icon color.",
+              "name": "--oscd-action-icon-icon-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
             },
             {
-              "description": "Font color inside hover field.",
-              "name": "--oscd-action-icon-theme-on-primary",
-              "default": "var(--md-sys-color-on-primary)"
+              "description": "Icon outline.",
+              "name": "--oscd-action-icon-icon-outline-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
             },
             {
-              "description": "Secondary border and hover color.",
-              "name": "--oscd-action-icon-theme-secondary",
-              "default": "var(--md-sys-color-secondary)"
+              "description": "Icon outline when secondary.",
+              "name": "--oscd-action-icon-secondary-icon-outline-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
             },
             {
-              "description": "Icon and label color.",
-              "name": "--oscd-action-icon-theme-on-surface",
-              "default": "var(--md-sys-color-on-surface)"
+              "description": "Slotted action color.",
+              "name": "--oscd-action-icon-action-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
             },
             {
-              "description": "Font for label and hover text.",
-              "name": "--oscd-action-icon-theme-font",
-              "default": "var(--md-sys-color-font)"
+              "description": "Footer label color.",
+              "name": "--oscd-action-icon-footer-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Footer label font.",
+              "name": "--oscd-action-icon-footer-font-family",
+              "default": "var(--md-ref-typeface-plain, Roboto)"
+            },
+            {
+              "description": "Hover label color.",
+              "name": "--oscd-action-icon-header-color",
+              "default": "var(--md-sys-color-on-primary, #fff)"
+            },
+            {
+              "description": "Hover label background.",
+              "name": "--oscd-action-icon-header-container-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
+            },
+            {
+              "description": "Hover label background when secondary.",
+              "name": "--oscd-action-icon-secondary-header-container-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
+            },
+            {
+              "description": "Hover label font.",
+              "name": "--oscd-action-icon-header-font-family",
+              "default": "var(--md-ref-typeface-plain, Roboto)"
             }
           ],
           "slots": [
@@ -334,34 +359,34 @@
           "name": "OscdActionPane",
           "cssProperties": [
             {
-              "description": "Color for border on even levels.",
-              "name": "--oscd-action-pane-theme-primary",
-              "default": "var(--md-sys-color-primary)"
+              "description": "Pane background.",
+              "name": "--oscd-action-pane-container-color",
+              "default": "var(--md-sys-color-surface, #fef7ff)"
             },
             {
-              "description": "Pane color for the uneven levels.",
-              "name": "--oscd-action-pane-theme-on-primary",
-              "default": "var(--md-sys-color-on)-primary"
+              "description": "Background on even nesting levels.",
+              "name": "--oscd-action-pane-contrasted-container-color",
+              "default": "var(--md-sys-color-on-primary, #fff)"
             },
             {
-              "description": "Color for border on uneven levels.",
-              "name": "--oscd-action-pane-theme-secondary",
-              "default": "var(--md-sys-color-secondary)"
+              "description": "Pane outline.",
+              "name": "--oscd-action-pane-outline-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
             },
             {
-              "description": "Pane color for the even levels.",
-              "name": "--oscd-action-pane-theme-surface",
-              "default": "var(--md-sys-color-surface)"
+              "description": "Outline when secondary.",
+              "name": "--oscd-action-pane-secondary-outline-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
             },
             {
-              "description": "Icon and label color.",
-              "name": "--oscd-action-pane-theme-on-surface",
-              "default": "var(--md-sys-color-on-surface)"
+              "description": "Heading text color.",
+              "name": "--oscd-action-pane-headline-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
             },
             {
-              "description": "Font for label.",
-              "name": "--oscd-action-pane-theme-font",
-              "default": "var(--md-sys-color-font)"
+              "description": "Heading font.",
+              "name": "--oscd-action-pane-headline-font-family",
+              "default": "var(--md-ref-typeface-plain, Roboto)"
             }
           ],
           "slots": [

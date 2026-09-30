@@ -30,6 +30,25 @@ const tree = {
 };
 
 describe('oscd-tree-grid', () => {
+  it('uses the MD3 subdued foreground for filter rows', async () => {
+    const el = await fixture<OscdTreeGrid>(
+      html`<oscd-tree-grid
+        .tree=${tree}
+        .paths=${[['a', 'ab', 'abc']]}
+        style="
+          --md-sys-color-on-surface-variant: rgb(30, 40, 50);
+          --mdc-theme-text-hint-on-background: red;
+        "
+      ></oscd-tree-grid>`,
+    );
+    const filterRow = el.shadowRoot?.querySelector('oscd-list-item.filter');
+    if (!filterRow) {
+      throw new Error('Expected tree-grid filter row');
+    }
+
+    expect(getComputedStyle(filterRow).color).to.equal('rgb(30, 40, 50)');
+  });
+
   it('preselects provided `paths`', async () => {
     const el = await fixture<OscdTreeGrid>(
       html`<oscd-tree-grid

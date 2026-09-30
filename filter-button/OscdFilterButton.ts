@@ -89,10 +89,6 @@ export class OscdFilterButton extends ScopedElementsMixin(OscdSelectionList) {
 
   static override styles = css`
     ${OscdSelectionList.styles}
-    oscd-icon-button {
-      color: var(--mdc-theme-on-surface);
-    }
-
     oscd-dialog {
       max-height: calc(100vh - 150px);
     }
