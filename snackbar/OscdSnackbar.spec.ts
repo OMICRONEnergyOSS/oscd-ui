@@ -37,6 +37,119 @@ describe('OscdSnackbar', () => {
     expect(notification?.classList.contains('success')).to.equal(true);
   });
 
+  it('announces variant labels and hides the decorative icon', async () => {
+    snackbar.mode = 'stack';
+    snackbar.maxVisible = 4;
+    const variants = [
+      ['info', 'Info:', 'status'],
+      ['success', 'Success:', 'status'],
+      ['warning', 'Warning:', 'status'],
+      ['error', 'Error:', 'alert'],
+    ] as const;
+
+    variants.forEach(([variant]) => {
+      snackbar.show({
+        message: `${variant} message`,
+        variant,
+        autoDismiss: false,
+      });
+    });
+    await snackbar.updateComplete;
+
+    variants.forEach(([variant, label, role]) => {
+      const notification = snackbar.shadowRoot?.querySelector(
+        `.snackbar.${variant}`,
+      );
+
+      expect(notification?.getAttribute('role')).to.equal(role);
+      expect(
+        notification?.querySelector('.visually-hidden')?.textContent?.trim(),
+      ).to.equal(label);
+      expect(
+        notification
+          ?.querySelector('.variant-icon')
+          ?.getAttribute('aria-hidden'),
+      ).to.equal('true');
+      expect(notification?.textContent).to.contain(`${variant} message`);
+    });
+  });
+
+  it('accepts a localized variant label override', async () => {
+    snackbar.show({
+      message: 'Upload successful',
+      variant: 'success',
+      variantLabel: 'Erfolgreich:',
+      autoDismiss: false,
+    });
+    await snackbar.updateComplete;
+
+    expect(
+      snackbar.shadowRoot
+        ?.querySelector('.visually-hidden')
+        ?.textContent?.trim(),
+    ).to.equal('Erfolgreich:');
+  });
+
+  it('applies all per-variant color facets', async () => {
+    snackbar.style.setProperty(
+      '--oscd-snackbar-success-container-color',
+      'rgb(1, 2, 3)',
+    );
+    snackbar.style.setProperty(
+      '--oscd-snackbar-success-supporting-text-color',
+      'rgb(4, 5, 6)',
+    );
+    snackbar.style.setProperty(
+      '--oscd-snackbar-success-icon-color',
+      'rgb(7, 8, 9)',
+    );
+    snackbar.style.setProperty(
+      '--oscd-snackbar-success-action-label-text-color',
+      'rgb(10, 11, 12)',
+    );
+    snackbar.style.setProperty(
+      '--oscd-snackbar-success-close-icon-color',
+      'rgb(13, 14, 15)',
+    );
+    snackbar.show({
+      message: 'Upload successful',
+      variant: 'success',
+      autoDismiss: false,
+      action: {
+        label: 'Open',
+        onClick: () => undefined,
+      },
+    });
+    await snackbar.updateComplete;
+
+    const notification =
+      snackbar.shadowRoot?.querySelector<HTMLElement>('.snackbar.success');
+    const variantIcon =
+      notification?.querySelector<HTMLElement>('.variant-icon');
+    const action = notification?.querySelector<HTMLElement>('.action');
+    const close = notification?.querySelector<HTMLElement>('.close');
+
+    expect(
+      notification ? getComputedStyle(notification).backgroundColor : '',
+    ).to.equal('rgb(1, 2, 3)');
+    expect(notification ? getComputedStyle(notification).color : '').to.equal(
+      'rgb(4, 5, 6)',
+    );
+    expect(variantIcon ? getComputedStyle(variantIcon).color : '').to.equal(
+      'rgb(7, 8, 9)',
+    );
+    expect(action ? getComputedStyle(action).color : '').to.equal(
+      'rgb(10, 11, 12)',
+    );
+    expect(
+      close
+        ? getComputedStyle(close).getPropertyValue(
+            '--md-icon-button-icon-color',
+          )
+        : '',
+    ).to.equal('rgb(13, 14, 15)');
+  });
+
   it('replaces the current notification by default', async () => {
     snackbar.show({
       message: 'First message',

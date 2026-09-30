@@ -21,6 +21,8 @@ export type SnackbarAction = {
 export type SnackbarShowOptions = {
   message: string;
   variant?: SnackbarVariant;
+  /** Translated replacement for the default visually hidden variant label. */
+  variantLabel?: string;
   autoDismiss?: SnackbarAutoDismiss;
   dismissible?: boolean;
   action?: SnackbarAction;
@@ -31,6 +33,7 @@ type SnackbarNotification = Required<
   Pick<SnackbarShowOptions, 'message' | 'variant' | 'dismissible'>
 > & {
   id: string;
+  variantLabel?: string;
   action?: SnackbarAction;
   autoDismiss?: SnackbarAutoDismiss;
   closing?: boolean;
@@ -44,6 +47,13 @@ const iconByVariant: Record<SnackbarVariant, string> = {
   success: 'check_circle',
   warning: 'warning',
   error: 'cancel',
+};
+
+const labelByVariant: Record<SnackbarVariant, string> = {
+  info: 'Info:',
+  success: 'Success:',
+  warning: 'Warning:',
+  error: 'Error:',
 };
 
 let nextSnackbarId = 0;
@@ -65,30 +75,40 @@ declare global {
  * @cssprop [--oscd-snackbar-min-width=min(360px, 80vw)] - Minimum snackbar item width.
  * @cssprop [--oscd-snackbar-min-height=48px] - Minimum snackbar item height.
  * @cssprop [--oscd-snackbar-container-padding=12px 16px] - Snackbar item padding.
- * @cssprop [--oscd-snackbar-elevation-level=3] - Snackbar elevation level.
+ * @cssprop [--oscd-snackbar-container-elevation=3] - Snackbar container elevation level.
  * @cssprop [--oscd-snackbar-enter-duration=160ms] - Show animation duration.
  * @cssprop [--oscd-snackbar-exit-duration=160ms] - Hide animation duration.
- * @cssprop [--oscd-snackbar-text-color=var(--md-sys-color-on-surface, #233042)] - Snackbar text color.
+ * @cssprop [--oscd-snackbar-container-color=var(--md-sys-color-inverse-surface, #313033)] - Snackbar container color.
+ * @cssprop [--oscd-snackbar-supporting-text-color=var(--md-sys-color-inverse-on-surface, #f4eff4)] - Snackbar supporting text color.
+ * @cssprop [--oscd-snackbar-icon-color=var(--md-sys-color-inverse-on-surface, #f4eff4)] - Snackbar icon color.
+ * @cssprop [--oscd-snackbar-action-label-text-color=var(--md-sys-color-inverse-primary, #d0bcff)] - Snackbar action label color.
+ * @cssprop [--oscd-snackbar-close-icon-color=var(--md-sys-color-inverse-on-surface, #f4eff4)] - Snackbar close icon color.
+ * @cssprop [--oscd-snackbar-container-shape=var(--md-sys-shape-corner-extra-small, 4px)] - Snackbar container shape.
  * @cssprop [--oscd-snackbar-font-family=var(--md-sys-typescale-body-large-font)] - Snackbar font family.
  * @cssprop [--oscd-snackbar-font-size=var(--md-sys-typescale-body-large-size)] - Snackbar font size.
  * @cssprop [--oscd-snackbar-line-height=var(--md-sys-typescale-body-large-line-height)] - Snackbar line height.
  * @cssprop [--oscd-snackbar-message-line-clamp=3] - Maximum visible message lines before truncation.
  *
- * @cssprop [--oscd-snackbar-info-container-color=var(--md-sys-color-secondary-container)] - Info snackbar container color.
- * @cssprop [--oscd-snackbar-info-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Info text color.
- * @cssprop [--oscd-snackbar-info-icon-color=var(--md-sys-color-on-secondary-container)] - Info icon color.
- *
- * @cssprop [--oscd-snackbar-success-container-color=var(--md-sys-color-surface, #fef7ff)] - Success snackbar container color.
- * @cssprop [--oscd-snackbar-success-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Success text color.
- * @cssprop [--oscd-snackbar-success-icon-color=var(--md-sys-color-on-surface, #1d1b20)] - Success icon color.
- *
- * @cssprop [--oscd-snackbar-warning-container-color=var(--md-sys-color-error-container, #fff584)] - Warning snackbar container color.
- * @cssprop [--oscd-snackbar-warning-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Warning text color.
- * @cssprop [--oscd-snackbar-warning-icon-color=var(--md-sys-color-on-error-container, #f5a400)] - Warning icon color.
- *
- * @cssprop [--oscd-snackbar-error-container-color=var(--md-sys-color-error-container, #ffd9df)] - Error snackbar container color.
- * @cssprop [--oscd-snackbar-error-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Error text color.
- * @cssprop [--oscd-snackbar-error-icon-color=var(--md-sys-color-error, #d52031)] - Error icon color.
+ * @cssprop [--oscd-snackbar-info-container-color=var(--oscd-snackbar-container-color)] - Info container color.
+ * @cssprop [--oscd-snackbar-info-supporting-text-color=var(--oscd-snackbar-supporting-text-color)] - Info supporting text color.
+ * @cssprop [--oscd-snackbar-info-icon-color=var(--oscd-snackbar-icon-color)] - Info icon color.
+ * @cssprop [--oscd-snackbar-info-action-label-text-color=var(--oscd-snackbar-action-label-text-color)] - Info action label color.
+ * @cssprop [--oscd-snackbar-info-close-icon-color=var(--oscd-snackbar-close-icon-color)] - Info close icon color.
+ * @cssprop [--oscd-snackbar-success-container-color=var(--oscd-snackbar-container-color)] - Success container color.
+ * @cssprop [--oscd-snackbar-success-supporting-text-color=var(--oscd-snackbar-supporting-text-color)] - Success supporting text color.
+ * @cssprop [--oscd-snackbar-success-icon-color=var(--oscd-snackbar-icon-color)] - Success icon color.
+ * @cssprop [--oscd-snackbar-success-action-label-text-color=var(--oscd-snackbar-action-label-text-color)] - Success action label color.
+ * @cssprop [--oscd-snackbar-success-close-icon-color=var(--oscd-snackbar-close-icon-color)] - Success close icon color.
+ * @cssprop [--oscd-snackbar-warning-container-color=var(--oscd-snackbar-container-color)] - Warning container color.
+ * @cssprop [--oscd-snackbar-warning-supporting-text-color=var(--oscd-snackbar-supporting-text-color)] - Warning supporting text color.
+ * @cssprop [--oscd-snackbar-warning-icon-color=var(--oscd-snackbar-icon-color)] - Warning icon color.
+ * @cssprop [--oscd-snackbar-warning-action-label-text-color=var(--oscd-snackbar-action-label-text-color)] - Warning action label color.
+ * @cssprop [--oscd-snackbar-warning-close-icon-color=var(--oscd-snackbar-close-icon-color)] - Warning close icon color.
+ * @cssprop [--oscd-snackbar-error-container-color=var(--md-sys-color-error-container, #f9dedc)] - Error container color.
+ * @cssprop [--oscd-snackbar-error-supporting-text-color=var(--md-sys-color-on-error-container, #410e0b)] - Error supporting text color.
+ * @cssprop [--oscd-snackbar-error-icon-color=var(--md-sys-color-error, #b3261e)] - Error icon color.
+ * @cssprop [--oscd-snackbar-error-action-label-text-color=var(--md-sys-color-on-error-container, #410e0b)] - Error action label color.
+ * @cssprop [--oscd-snackbar-error-close-icon-color=var(--md-sys-color-on-error-container, #410e0b)] - Error close icon color.
  *
  * @csspart snackbar - Snackbar surface.
  * @csspart icon - Leading variant icon.
@@ -104,6 +124,7 @@ declare global {
  * const id = snackbar.show({
  *   message: 'Validation failed',
  *   variant: 'error',
+ *   variantLabel: 'Error:',
  *   autoDismiss: false,
  *   action: {
  *     label: 'See More',
@@ -158,13 +179,15 @@ export class OscdSnackbar extends ScopedElementsMixin(LitElement) {
    * Shows a notification and returns an id that can be passed to `close()`.
    * In `stack` mode, notifications beyond `maxVisible` are queued until space
    * becomes available. Auto-dismiss timing starts when a notification becomes
-   * visible, not while it is queued.
+   * visible, not while it is queued. `variantLabel` overrides the visually
+   * hidden default label for localization.
    */
   show(options: SnackbarShowOptions): string {
     const notification: SnackbarNotification = {
       id: `snackbar-${++nextSnackbarId}`,
       message: options.message,
       variant: options.variant ?? 'info',
+      variantLabel: options.variantLabel,
       dismissible: options.dismissible ?? true,
       action: options.action,
       autoDismiss: options.autoDismiss,
@@ -393,9 +416,12 @@ export class OscdSnackbar extends ScopedElementsMixin(LitElement) {
       part="snackbar"
       role=${notification.variant === 'error' ? 'alert' : 'status'}
     >
-      <oscd-icon class="variant-icon" part="icon"
+      <oscd-icon class="variant-icon" part="icon" aria-hidden="true"
         >${iconByVariant[notification.variant]}</oscd-icon
       >
+      <span class="visually-hidden"
+        >${notification.variantLabel ?? labelByVariant[notification.variant]}
+      </span>
       <span class="message" part="message">${notification.message}</span>
       ${this.renderAction(notification)} ${this.renderCloseButton(notification)}
       <oscd-elevation part="elevation"></oscd-elevation>
@@ -437,10 +463,33 @@ export class OscdSnackbar extends ScopedElementsMixin(LitElement) {
       max-width: 100%;
       min-height: var(--oscd-snackbar-min-height, 48px);
       padding: var(--oscd-snackbar-container-padding, 12px 16px);
-      --md-elevation-level: var(--oscd-snackbar-elevation-level, 3);
-      color: var(
-        --oscd-snackbar-text-color,
-        var(--md-sys-color-on-surface, #233042)
+      --_container-color: var(
+        --oscd-snackbar-container-color,
+        var(--md-sys-color-inverse-surface, #313033)
+      );
+      --_supporting-text-color: var(
+        --oscd-snackbar-supporting-text-color,
+        var(--md-sys-color-inverse-on-surface, #f4eff4)
+      );
+      --_icon-color: var(
+        --oscd-snackbar-icon-color,
+        var(--md-sys-color-inverse-on-surface, #f4eff4)
+      );
+      --_action-label-text-color: var(
+        --oscd-snackbar-action-label-text-color,
+        var(--md-sys-color-inverse-primary, #d0bcff)
+      );
+      --_close-icon-color: var(
+        --oscd-snackbar-close-icon-color,
+        var(--md-sys-color-inverse-on-surface, #f4eff4)
+      );
+      --md-elevation-level: var(--oscd-snackbar-container-elevation, 3);
+      --md-icon-button-icon-color: var(--_close-icon-color);
+      color: var(--_supporting-text-color);
+      background: var(--_container-color);
+      border-radius: var(
+        --oscd-snackbar-container-shape,
+        var(--md-sys-shape-corner-extra-small, 4px)
       );
       font-family: var(
         --oscd-snackbar-font-family,
@@ -466,46 +515,139 @@ export class OscdSnackbar extends ScopedElementsMixin(LitElement) {
     }
 
     .snackbar.info {
-      background: var(
+      --_container-color: var(
         --oscd-snackbar-info-container-color,
-        var(--md-sys-color-secondary-container)
+        var(
+          --oscd-snackbar-container-color,
+          var(--md-sys-color-inverse-surface, #313033)
+        )
       );
-      color: var(
-        --oscd-snackbar-info-text-color,
-        var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))
+      --_supporting-text-color: var(
+        --oscd-snackbar-info-supporting-text-color,
+        var(
+          --oscd-snackbar-supporting-text-color,
+          var(--md-sys-color-inverse-on-surface, #f4eff4)
+        )
+      );
+      --_icon-color: var(
+        --oscd-snackbar-info-icon-color,
+        var(
+          --oscd-snackbar-icon-color,
+          var(--md-sys-color-inverse-on-surface, #f4eff4)
+        )
+      );
+      --_action-label-text-color: var(
+        --oscd-snackbar-info-action-label-text-color,
+        var(
+          --oscd-snackbar-action-label-text-color,
+          var(--md-sys-color-inverse-primary, #d0bcff)
+        )
+      );
+      --_close-icon-color: var(
+        --oscd-snackbar-info-close-icon-color,
+        var(
+          --oscd-snackbar-close-icon-color,
+          var(--md-sys-color-inverse-on-surface, #f4eff4)
+        )
       );
     }
 
     .snackbar.success {
-      background: var(
+      --_container-color: var(
         --oscd-snackbar-success-container-color,
-        var(--md-sys-color-surface, #fef7ff)
+        var(
+          --oscd-snackbar-container-color,
+          var(--md-sys-color-inverse-surface, #313033)
+        )
       );
-      color: var(
-        --oscd-snackbar-success-text-color,
-        var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))
+      --_supporting-text-color: var(
+        --oscd-snackbar-success-supporting-text-color,
+        var(
+          --oscd-snackbar-supporting-text-color,
+          var(--md-sys-color-inverse-on-surface, #f4eff4)
+        )
+      );
+      --_icon-color: var(
+        --oscd-snackbar-success-icon-color,
+        var(
+          --oscd-snackbar-icon-color,
+          var(--md-sys-color-inverse-on-surface, #f4eff4)
+        )
+      );
+      --_action-label-text-color: var(
+        --oscd-snackbar-success-action-label-text-color,
+        var(
+          --oscd-snackbar-action-label-text-color,
+          var(--md-sys-color-inverse-primary, #d0bcff)
+        )
+      );
+      --_close-icon-color: var(
+        --oscd-snackbar-success-close-icon-color,
+        var(
+          --oscd-snackbar-close-icon-color,
+          var(--md-sys-color-inverse-on-surface, #f4eff4)
+        )
       );
     }
 
     .snackbar.warning {
-      background: var(
+      --_container-color: var(
         --oscd-snackbar-warning-container-color,
-        var(--md-sys-color-error-container, #fff584)
+        var(
+          --oscd-snackbar-container-color,
+          var(--md-sys-color-inverse-surface, #313033)
+        )
       );
-      color: var(
-        --oscd-snackbar-warning-text-color,
-        var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))
+      --_supporting-text-color: var(
+        --oscd-snackbar-warning-supporting-text-color,
+        var(
+          --oscd-snackbar-supporting-text-color,
+          var(--md-sys-color-inverse-on-surface, #f4eff4)
+        )
+      );
+      --_icon-color: var(
+        --oscd-snackbar-warning-icon-color,
+        var(
+          --oscd-snackbar-icon-color,
+          var(--md-sys-color-inverse-on-surface, #f4eff4)
+        )
+      );
+      --_action-label-text-color: var(
+        --oscd-snackbar-warning-action-label-text-color,
+        var(
+          --oscd-snackbar-action-label-text-color,
+          var(--md-sys-color-inverse-primary, #d0bcff)
+        )
+      );
+      --_close-icon-color: var(
+        --oscd-snackbar-warning-close-icon-color,
+        var(
+          --oscd-snackbar-close-icon-color,
+          var(--md-sys-color-inverse-on-surface, #f4eff4)
+        )
       );
     }
 
     .snackbar.error {
-      background: var(
+      --_container-color: var(
         --oscd-snackbar-error-container-color,
-        var(--md-sys-color-error-container, #ffd9df)
+        var(--md-sys-color-error-container, #f9dedc)
       );
-      color: var(
-        --oscd-snackbar-error-text-color,
-        var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))
+      --_supporting-text-color: var(
+        --oscd-snackbar-error-supporting-text-color,
+        var(--md-sys-color-on-error-container, #410e0b)
+      );
+      --_icon-color: var(
+        --oscd-snackbar-error-icon-color,
+        var(--md-sys-color-error, #b3261e)
+      );
+      --_action-label-text-color: var(
+        --oscd-snackbar-error-action-label-text-color,
+        var(--md-sys-color-on-error-container, #410e0b)
+      );
+      --_close-icon-color: var(
+        --oscd-snackbar-error-close-icon-color,
+        var(--md-sys-color-on-error-container, #410e0b)
       );
     }
 
@@ -514,31 +656,17 @@ export class OscdSnackbar extends ScopedElementsMixin(LitElement) {
       height: 24px;
       margin-inline-end: 16px;
       font-size: 24px;
-      color: var(
-        --oscd-snackbar-info-icon-color,
-        var(--md-sys-color-on-secondary-container)
-      );
+      color: var(--_icon-color);
     }
 
-    .success .variant-icon {
-      color: var(
-        --oscd-snackbar-success-icon-color,
-        var(--md-sys-color-on-surface, #1d1b20)
-      );
-    }
-
-    .warning .variant-icon {
-      color: var(
-        --oscd-snackbar-warning-icon-color,
-        var(--md-sys-color-on-error-container, #f5a400)
-      );
-    }
-
-    .error .variant-icon {
-      color: var(
-        --oscd-snackbar-error-icon-color,
-        var(--md-sys-color-error, #d52031)
-      );
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
     }
 
     .message {
@@ -561,7 +689,7 @@ export class OscdSnackbar extends ScopedElementsMixin(LitElement) {
       padding: 0;
       border: 0;
       background: none;
-      color: inherit;
+      color: var(--_action-label-text-color);
       cursor: pointer;
       font: inherit;
       font-size: var(--md-sys-typescale-label-large-size);

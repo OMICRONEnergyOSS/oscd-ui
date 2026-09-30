@@ -22152,8 +22152,8 @@
               "default": "12px 16px"
             },
             {
-              "description": "Snackbar elevation level.",
-              "name": "--oscd-snackbar-elevation-level",
+              "description": "Snackbar container elevation level.",
+              "name": "--oscd-snackbar-container-elevation",
               "default": "3"
             },
             {
@@ -22167,9 +22167,34 @@
               "default": "160ms"
             },
             {
-              "description": "Snackbar text color.",
-              "name": "--oscd-snackbar-text-color",
-              "default": "var(--md-sys-color-on-surface, #233042)"
+              "description": "Snackbar container color.",
+              "name": "--oscd-snackbar-container-color",
+              "default": "var(--md-sys-color-inverse-surface, #313033)"
+            },
+            {
+              "description": "Snackbar supporting text color.",
+              "name": "--oscd-snackbar-supporting-text-color",
+              "default": "var(--md-sys-color-inverse-on-surface, #f4eff4)"
+            },
+            {
+              "description": "Snackbar icon color.",
+              "name": "--oscd-snackbar-icon-color",
+              "default": "var(--md-sys-color-inverse-on-surface, #f4eff4)"
+            },
+            {
+              "description": "Snackbar action label color.",
+              "name": "--oscd-snackbar-action-label-text-color",
+              "default": "var(--md-sys-color-inverse-primary, #d0bcff)"
+            },
+            {
+              "description": "Snackbar close icon color.",
+              "name": "--oscd-snackbar-close-icon-color",
+              "default": "var(--md-sys-color-inverse-on-surface, #f4eff4)"
+            },
+            {
+              "description": "Snackbar container shape.",
+              "name": "--oscd-snackbar-container-shape",
+              "default": "var(--md-sys-shape-corner-extra-small, 4px)"
             },
             {
               "description": "Snackbar font family.",
@@ -22192,64 +22217,104 @@
               "default": "3"
             },
             {
-              "description": "Info snackbar container color.",
+              "description": "Info container color.",
               "name": "--oscd-snackbar-info-container-color",
-              "default": "var(--md-sys-color-secondary-container)"
+              "default": "var(--oscd-snackbar-container-color)"
             },
             {
-              "description": "Info text color.",
-              "name": "--oscd-snackbar-info-text-color",
-              "default": "var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))"
+              "description": "Info supporting text color.",
+              "name": "--oscd-snackbar-info-supporting-text-color",
+              "default": "var(--oscd-snackbar-supporting-text-color)"
             },
             {
               "description": "Info icon color.",
               "name": "--oscd-snackbar-info-icon-color",
-              "default": "var(--md-sys-color-on-secondary-container)"
+              "default": "var(--oscd-snackbar-icon-color)"
             },
             {
-              "description": "Success snackbar container color.",
+              "description": "Info action label color.",
+              "name": "--oscd-snackbar-info-action-label-text-color",
+              "default": "var(--oscd-snackbar-action-label-text-color)"
+            },
+            {
+              "description": "Info close icon color.",
+              "name": "--oscd-snackbar-info-close-icon-color",
+              "default": "var(--oscd-snackbar-close-icon-color)"
+            },
+            {
+              "description": "Success container color.",
               "name": "--oscd-snackbar-success-container-color",
-              "default": "var(--md-sys-color-surface, #fef7ff)"
+              "default": "var(--oscd-snackbar-container-color)"
             },
             {
-              "description": "Success text color.",
-              "name": "--oscd-snackbar-success-text-color",
-              "default": "var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))"
+              "description": "Success supporting text color.",
+              "name": "--oscd-snackbar-success-supporting-text-color",
+              "default": "var(--oscd-snackbar-supporting-text-color)"
             },
             {
               "description": "Success icon color.",
               "name": "--oscd-snackbar-success-icon-color",
-              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+              "default": "var(--oscd-snackbar-icon-color)"
             },
             {
-              "description": "Warning snackbar container color.",
+              "description": "Success action label color.",
+              "name": "--oscd-snackbar-success-action-label-text-color",
+              "default": "var(--oscd-snackbar-action-label-text-color)"
+            },
+            {
+              "description": "Success close icon color.",
+              "name": "--oscd-snackbar-success-close-icon-color",
+              "default": "var(--oscd-snackbar-close-icon-color)"
+            },
+            {
+              "description": "Warning container color.",
               "name": "--oscd-snackbar-warning-container-color",
-              "default": "var(--md-sys-color-error-container, #fff584)"
+              "default": "var(--oscd-snackbar-container-color)"
             },
             {
-              "description": "Warning text color.",
-              "name": "--oscd-snackbar-warning-text-color",
-              "default": "var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))"
+              "description": "Warning supporting text color.",
+              "name": "--oscd-snackbar-warning-supporting-text-color",
+              "default": "var(--oscd-snackbar-supporting-text-color)"
             },
             {
               "description": "Warning icon color.",
               "name": "--oscd-snackbar-warning-icon-color",
-              "default": "var(--md-sys-color-on-error-container, #f5a400)"
+              "default": "var(--oscd-snackbar-icon-color)"
             },
             {
-              "description": "Error snackbar container color.",
+              "description": "Warning action label color.",
+              "name": "--oscd-snackbar-warning-action-label-text-color",
+              "default": "var(--oscd-snackbar-action-label-text-color)"
+            },
+            {
+              "description": "Warning close icon color.",
+              "name": "--oscd-snackbar-warning-close-icon-color",
+              "default": "var(--oscd-snackbar-close-icon-color)"
+            },
+            {
+              "description": "Error container color.",
               "name": "--oscd-snackbar-error-container-color",
-              "default": "var(--md-sys-color-error-container, #ffd9df)"
+              "default": "var(--md-sys-color-error-container, #f9dedc)"
             },
             {
-              "description": "Error text color.",
-              "name": "--oscd-snackbar-error-text-color",
-              "default": "var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))"
+              "description": "Error supporting text color.",
+              "name": "--oscd-snackbar-error-supporting-text-color",
+              "default": "var(--md-sys-color-on-error-container, #410e0b)"
             },
             {
               "description": "Error icon color.",
               "name": "--oscd-snackbar-error-icon-color",
-              "default": "var(--md-sys-color-error, #d52031)"
+              "default": "var(--md-sys-color-error, #b3261e)"
+            },
+            {
+              "description": "Error action label color.",
+              "name": "--oscd-snackbar-error-action-label-text-color",
+              "default": "var(--md-sys-color-on-error-container, #410e0b)"
+            },
+            {
+              "description": "Error close icon color.",
+              "name": "--oscd-snackbar-error-close-icon-color",
+              "default": "var(--md-sys-color-on-error-container, #410e0b)"
             }
           ],
           "cssParts": [
@@ -22384,7 +22449,7 @@
                   }
                 }
               ],
-              "description": "Shows a notification and returns an id that can be passed to `close()`.\nIn `stack` mode, notifications beyond `maxVisible` are queued until space\nbecomes available. Auto-dismiss timing starts when a notification becomes\nvisible, not while it is queued."
+              "description": "Shows a notification and returns an id that can be passed to `close()`.\nIn `stack` mode, notifications beyond `maxVisible` are queued until space\nbecomes available. Auto-dismiss timing starts when a notification becomes\nvisible, not while it is queued. `variantLabel` overrides the visually hidden\ndefault label for localization."
             },
             {
               "kind": "method",
