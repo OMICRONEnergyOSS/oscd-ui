@@ -1,13 +1,16 @@
 import { LitElement, css, html } from 'lit';
-import { oscdMd3Mappings } from '../oscd-md3-mappings.js';
+import {
+  oscdMd3Mappings,
+  oscdPaletteComponentMappings,
+} from '../oscd-md3-mappings.js';
 
 export class OscdStorybookTheme extends LitElement {
   static styles = [
     oscdMd3Mappings,
+    oscdPaletteComponentMappings,
     css`
       :host {
         display: block;
-        min-height: 100vh;
         background-color: var(--md-sys-color-surface);
         color: var(--md-sys-color-on-surface);
         font-family: var(--oscd-theme-text-font, 'Roboto'), sans-serif;

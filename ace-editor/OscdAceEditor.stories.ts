@@ -11,6 +11,10 @@ export default {
   ...meta,
   title: 'Editors / Ace Editor',
   tags: ['autodocs'],
+  parameters: {
+    ...meta.parameters,
+    layout: 'fullscreen',
+  },
 };
 
 export const Default: StoryObj = {
@@ -18,9 +22,14 @@ export const Default: StoryObj = {
   args: {
     ...args,
     value: `<?xml version="1.0" encoding="UTF-8"?>
-<SCL version="2007" revision="B" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:ens1="http://example.org/somePreexistingExtensionNamespace">
+<SCL
+  version="2007"
+  revision="B"
+  xmlns="http://www.iec.ch/61850/2003/SCL"
+  xmlns:ens1="http://example.org/somePreexistingExtensionNamespace"
+>
   <Substation ens1:foo="a" name="A1" desc="test substation"></Substation>
 </SCL>`,
-    style: 'height: 400px; width: 600px;',
+    style: 'height: 100vh; width: 100%;',
   },
 };

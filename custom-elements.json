@@ -8,7 +8,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nIncludes the OpenSCD Ace theme, which derives its colors from `--oscd-theme*`\nCSS variables.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.",
+          "description": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from the existing\n`--oscd-theme-*` palette without adding palette slots.",
           "name": "OscdAceEditor",
           "members": [
             {
@@ -78,7 +78,7 @@
           },
           "tagName": "oscd-ace-editor",
           "customElement": true,
-          "summary": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nIncludes the OpenSCD Ace theme, which derives its colors from `--oscd-theme*`\nCSS variables.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.",
+          "summary": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from the existing\n`--oscd-theme-*` palette without adding palette slots.",
           "attributes": [
             {
               "name": "value",
@@ -93,7 +93,108 @@
             }
           ],
           "modulePath": "ace-editor/OscdAceEditor.ts",
-          "cssProperties": [],
+          "cssProperties": [
+            {
+              "description": "Editor background for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-container-color",
+              "default": "var(--md-sys-color-surface, #fef7ff)"
+            },
+            {
+              "description": "Default editor text for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-text-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Gutter background for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-gutter-color",
+              "default": "var(--md-sys-color-surface-container-low, #f7f2fa)"
+            },
+            {
+              "description": "Gutter text for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-gutter-text-color",
+              "default": "var(--md-sys-color-on-surface-variant, #49454f)"
+            },
+            {
+              "description": "Active line background for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-active-line-color",
+              "default": "var(--md-sys-color-surface-container, #f3edf7)"
+            },
+            {
+              "description": "Selection background for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-selection-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
+            },
+            {
+              "description": "Cursor color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-cursor-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
+            },
+            {
+              "description": "Editor font for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-font-family",
+              "default": "monospace"
+            },
+            {
+              "description": "Keyword color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-keyword-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
+            },
+            {
+              "description": "String color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-string-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Tag color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-tag-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
+            },
+            {
+              "description": "Attribute name color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-attribute-name-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
+            },
+            {
+              "description": "Comment color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-comment-color",
+              "default": "var(--md-sys-color-on-surface-variant, #49454f)"
+            },
+            {
+              "description": "Number color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-number-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Invalid syntax text color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-invalid-color",
+              "default": "var(--md-sys-color-error, #b3261e)"
+            },
+            {
+              "description": "Storage and support symbol color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-storage-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
+            },
+            {
+              "description": "Operator and XML punctuation color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-operator-color",
+              "default": "var(--md-sys-color-on-surface-variant, #49454f)"
+            },
+            {
+              "description": "Parameter color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-parameter-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
+            },
+            {
+              "description": "Regular expression color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-regex-color",
+              "default": "var(--md-sys-color-error, #b3261e)"
+            },
+            {
+              "description": "Debug execution-step marker color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-step-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
+            }
+          ],
           "cssParts": [],
           "cssStates": [],
           "slots": []
@@ -22073,7 +22174,7 @@
             {
               "description": "Success snackbar container color.",
               "name": "--oscd-snackbar-success-container-color",
-              "default": "var(--md-sys-color-tertiary-container, #d8f8bd)"
+              "default": "var(--md-sys-color-surface, #fef7ff)"
             },
             {
               "description": "Success text color.",
@@ -22083,7 +22184,7 @@
             {
               "description": "Success icon color.",
               "name": "--oscd-snackbar-success-icon-color",
-              "default": "var(--md-sys-color-on-tertiary-container, #5ba300)"
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
             },
             {
               "description": "Warning snackbar container color.",

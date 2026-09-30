@@ -1,5 +1,5 @@
 /*
- * Custom Ace theme that follows OpenSCD CSS theming variables
+ * Custom Ace theme styled through oscd-ace-editor component tokens.
  */
 
 type AceDefine = (
@@ -96,169 +96,219 @@ aceDefine(
     const css = String.raw;
     exports.cssText = css`
       .ace-oscd .ace_gutter {
-        background: var(--oscd-base2, #f3f5f6);
-        color: var(--oscd-base00, #46505d);
+        background: var(
+          --oscd-ace-editor-gutter-color,
+          var(--md-sys-color-surface-container-low, #f7f2fa)
+        );
+        color: var(
+          --oscd-ace-editor-gutter-text-color,
+          var(--md-sys-color-on-surface-variant, #49454f)
+        );
         overflow: hidden;
       }
 
       .ace-oscd .ace_print-margin {
         width: 1px;
-        background: var(--oscd-base2, #f3f5f6);
+        background: var(
+          --oscd-ace-editor-gutter-color,
+          var(--md-sys-color-surface-container-low, #f7f2fa)
+        );
       }
 
       .ace-oscd {
-        background-color: var(--oscd-base3, #ffffff);
-        color: var(--oscd-base00, #46505d);
-        font-family: var(--oscd-text-font-mono, 'Roboto Mono'), monospace;
-      }
-
-      .ace-oscd .ace_identifier {
-        color: var(--oscd-base00, #46505d);
-      }
-
-      .ace-oscd .ace_keyword {
-        color: var(--oscd-secondary, #0b335b);
-      }
-
-      .ace-oscd .ace_numeric {
-        color: var(--oscd-base00, #46505d);
-      }
-
-      .ace-oscd .ace_storage {
-        color: var(--oscd-primary, #2485e5);
+        background-color: var(
+          --oscd-ace-editor-container-color,
+          var(--md-sys-color-surface, #fef7ff)
+        );
+        color: var(
+          --oscd-ace-editor-text-color,
+          var(--md-sys-color-on-surface, #1d1b20)
+        );
+        font-family: var(--oscd-ace-editor-font-family, monospace);
       }
 
       .ace-oscd .ace_keyword.ace_operator,
       .ace-oscd .ace_lparen,
       .ace-oscd .ace_rparen,
       .ace-oscd .ace_punctuation {
-        color: var(--oscd-base01, #3d4651);
+        color: var(
+          --oscd-ace-editor-syntax-operator-color,
+          var(--md-sys-color-on-surface-variant, #49454f)
+        );
+      }
+
+      .ace-oscd .ace_keyword,
+      .ace-oscd .ace_set.ace_statement,
+      .ace-oscd .ace_constant.ace_buildin,
+      .ace-oscd .ace_support.ace_function,
+      .ace-oscd .ace_class,
+      .ace-oscd .ace_variable,
+      .ace-oscd .ace_heading {
+        color: var(
+          --oscd-ace-editor-syntax-keyword-color,
+          var(--md-sys-color-secondary, #625b71)
+        );
+      }
+
+      .ace-oscd .ace_storage,
+      .ace-oscd .ace_constant.ace_library,
+      .ace-oscd .ace_support.ace_constant,
+      .ace-oscd .ace_support.ace_other,
+      .ace-oscd .ace_support.ace_storedprocedure,
+      .ace-oscd .ace_list {
+        color: var(
+          --oscd-ace-editor-syntax-storage-color,
+          var(--md-sys-color-primary, #6750a4)
+        );
       }
 
       .ace-oscd .ace_set.ace_statement {
-        color: var(--oscd-secondary, #0b335b);
         text-decoration: underline;
       }
 
       .ace-oscd .ace_cursor {
-        color: var(--oscd-base00, #46505d);
+        color: var(
+          --oscd-ace-editor-cursor-color,
+          var(--md-sys-color-primary, #6750a4)
+        );
       }
 
       .ace-oscd .ace_invisible {
-        color: var(--oscd-base1, #96a1b0);
-      }
-
-      .ace-oscd .ace_constant.ace_buildin {
-        color: var(--oscd-secondary, #0b335b);
+        color: var(
+          --oscd-ace-editor-gutter-text-color,
+          var(--md-sys-color-on-surface-variant, #49454f)
+        );
       }
 
       .ace-oscd .ace_constant.ace_language {
-        color: var(--oscd-base01, #3d4651);
-      }
-
-      .ace-oscd .ace_constant.ace_library {
-        color: var(--oscd-primary, #2485e5);
+        color: var(
+          --oscd-ace-editor-syntax-operator-color,
+          var(--md-sys-color-on-surface-variant, #49454f)
+        );
       }
 
       .ace-oscd .ace_invalid {
-        background-color: var(--oscd-error, #dc322f);
-        color: var(--oscd-base3, #ffffff);
-      }
-
-      .ace-oscd .ace_support.ace_function {
-        color: var(--oscd-secondary, #0b335b);
-      }
-
-      .ace-oscd .ace_support.ace_constant {
-        color: var(--oscd-primary, #2485e5);
-      }
-
-      .ace-oscd .ace_class {
-        color: var(--oscd-secondary, #0b335b);
-      }
-
-      .ace-oscd .ace_support.ace_other {
-        color: var(--oscd-primary, #2485e5);
+        color: var(
+          --oscd-ace-editor-syntax-invalid-color,
+          var(--md-sys-color-error, #b3261e)
+        );
       }
 
       .ace-oscd .ace_variable.ace_parameter {
         font-style: italic;
-        color: var(--oscd-warning, #b58900);
+        color: var(
+          --oscd-ace-editor-syntax-parameter-color,
+          var(--md-sys-color-secondary, #625b71)
+        );
       }
 
       .ace-oscd .ace_comment {
-        color: var(--oscd-base01, #96a1b0);
+        color: var(
+          --oscd-ace-editor-syntax-comment-color,
+          var(--md-sys-color-on-surface-variant, #49454f)
+        );
       }
 
-      .ace-oscd .ace_constant.ace_numeric {
-        color: var(--oscd-base00, #46505d);
-      }
-
-      .ace-oscd .ace_variable {
-        color: var(--oscd-secondary, #0b335b);
+      .ace-oscd .ace_numeric,
+      .ace-oscd .ace_constant.ace_numeric,
+      .ace-oscd .ace_identifier {
+        color: var(
+          --oscd-ace-editor-syntax-number-color,
+          var(--md-sys-color-on-surface, #1d1b20)
+        );
       }
 
       .ace-oscd .ace_xml-pe {
-        color: var(--oscd-base01, #3d4651);
+        color: var(
+          --oscd-ace-editor-syntax-operator-color,
+          var(--md-sys-color-on-surface-variant, #49454f)
+        );
       }
 
-      .ace-oscd .ace_support.ace_storedprocedure {
-        color: var(--oscd-primary, #2485e5);
+      .ace-oscd .ace_meta.ace_tag {
+        color: var(
+          --oscd-ace-editor-syntax-tag-color,
+          var(--md-sys-color-secondary, #625b71)
+        );
       }
 
-      .ace-oscd .ace_heading {
-        color: var(--oscd-secondary, #0b335b);
-      }
-
-      .ace-oscd .ace_list {
-        color: var(--oscd-primary, #2485e5);
+      .ace-oscd .ace_string.ace_regex {
+        color: var(
+          --oscd-ace-editor-syntax-regex-color,
+          var(--md-sys-color-error, #b3261e)
+        );
       }
 
       .ace-oscd .ace_marker-layer .ace_selection {
-        background: var(--oscd-primary, #2485e5);
+        background: var(
+          --oscd-ace-editor-selection-color,
+          var(--md-sys-color-primary, #6750a4)
+        );
         opacity: 0.2;
       }
 
       .ace-oscd .ace_marker-layer .ace_step {
-        background: var(--oscd-warning, #b58900);
+        background: var(
+          --oscd-ace-editor-step-color,
+          var(--md-sys-color-secondary, #625b71)
+        );
       }
 
       .ace-oscd .ace_marker-layer .ace_stack {
-        background: var(--oscd-secondary, #0b335b);
+        background: var(
+          --oscd-ace-editor-syntax-keyword-color,
+          var(--md-sys-color-primary, #6750a4)
+        );
       }
 
       .ace-oscd .ace_marker-layer .ace_bracket {
         margin: -1px 0 0 -1px;
-        border: 1px solid var(--oscd-base1, #96a1b0);
+        border: 1px solid
+          var(
+            --oscd-ace-editor-gutter-text-color,
+            var(--md-sys-color-on-surface-variant, #49454f)
+          );
       }
 
       .ace-oscd .ace_marker-layer .ace_active-line {
-        background: var(--oscd-base2, #f3f5f6);
+        background: var(
+          --oscd-ace-editor-active-line-color,
+          var(--md-sys-color-surface-container, #f3edf7)
+        );
       }
 
       .ace-oscd .ace_gutter-active-line {
-        background-color: var(--oscd-base2, #f3f5f6);
+        background-color: var(
+          --oscd-ace-editor-active-line-color,
+          var(--md-sys-color-surface-container, #f3edf7)
+        );
       }
 
       .ace-oscd .ace_marker-layer .ace_selected-word {
-        background: var(--oscd-base3, #ffffff);
-        border: 1px solid var(--oscd-base1, #96a1b0);
-      }
-
-      .ace-oscd .ace_meta.ace_tag {
-        color: var(--oscd-secondary, #0b335b);
-      }
-
-      .ace-oscd .ace_string.ace_regex {
-        color: var(--oscd-error, #dc322f);
+        background: var(
+          --oscd-ace-editor-selection-color,
+          var(--md-sys-color-primary, #6750a4)
+        );
+        opacity: 0.2;
+        border: 1px solid
+          var(
+            --oscd-ace-editor-gutter-text-color,
+            var(--md-sys-color-on-surface-variant, #49454f)
+          );
       }
 
       .ace-oscd .ace_string {
-        color: var(--oscd-base00, white);
+        color: var(
+          --oscd-ace-editor-syntax-string-color,
+          var(--md-sys-color-on-surface, #1d1b20)
+        );
       }
 
       .ace-oscd .ace_entity.ace_other.ace_attribute-name {
-        color: var(--oscd-primary, #2485e5);
+        color: var(
+          --oscd-ace-editor-syntax-attribute-name-color,
+          var(--md-sys-color-primary, #6750a4)
+        );
       }
 
       .ace-oscd .ace_indent-guide {
@@ -266,8 +316,16 @@ aceDefine(
           to right,
           transparent 0,
           transparent calc(100% - 1px),
-          var(--oscd-base2, #f3f5f6) calc(100% - 1px),
-          var(--oscd-base2, #f3f5f6) 100%
+          var(
+              --oscd-ace-editor-gutter-color,
+              var(--md-sys-color-surface-container-low, #f7f2fa)
+            )
+            calc(100% - 1px),
+          var(
+              --oscd-ace-editor-gutter-color,
+              var(--md-sys-color-surface-container-low, #f7f2fa)
+            )
+            100%
         );
       }
 
@@ -276,23 +334,40 @@ aceDefine(
           to right,
           transparent 0,
           transparent calc(100% - 1px),
-          var(--oscd-base1, #96a1b0) calc(100% - 1px),
-          var(--oscd-base1, #96a1b0) 100%
+          var(
+              --oscd-ace-editor-active-line-color,
+              var(--md-sys-color-surface-container, #f3edf7)
+            )
+            calc(100% - 1px),
+          var(
+              --oscd-ace-editor-active-line-color,
+              var(--md-sys-color-surface-container, #f3edf7)
+            )
+            100%
         );
       }
 
       .ace-oscd.ace_focus .ace_marker-layer .ace_selection {
-        background: var(--oscd-primary, #2485e5);
+        background: var(
+          --oscd-ace-editor-selection-color,
+          var(--md-sys-color-primary, #6750a4)
+        );
         opacity: 0.24;
       }
 
-      .ace-oscd .ace_fold {
-        background: var(--oscd-primary, #2485e5);
-        border-color: transparent;
+      .ace-oscd .ace_bracket {
+        color: var(
+          --oscd-ace-editor-gutter-text-color,
+          var(--md-sys-color-on-surface-variant, #49454f)
+        );
       }
 
-      .ace-oscd .ace_bracket {
-        color: var(--oscd-base01, #3d4651);
+      .ace-oscd .ace_fold {
+        background: var(
+          --oscd-ace-editor-syntax-keyword-color,
+          var(--md-sys-color-primary, #6750a4)
+        );
+        border-color: transparent;
       }
     `;
 

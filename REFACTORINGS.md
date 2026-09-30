@@ -434,6 +434,25 @@ grid lines now default to MD3 `on-surface` and `outline-variant`; the
 component no longer overrides the inherited `on-surface-variant` system role.
 Transparent row backgrounds and the 200ms fold duration remain unchanged.
 
+**Batch 3 (A-24):** The custom `ace/theme/oscd` theme now uses 20 documented
+`--oscd-ace-editor-*` tokens and restores distinct keyword, storage, operator,
+parameter, string, number, regex, and XML colors from existing palette slots.
+Other Ace themes are unaffected. `oscdPaletteComponentMappings` seeds these
+tokens from `--oscd-theme-*`, including warning and error colors, without
+requiring new palette slots. The success snackbar now defaults to MD3 surface
+and on-surface colors, so the active palette supplies both. The Storybook Ace
+story fills its preview, formats the sample XML across lines, and sizes the
+inner Ace element to its configured height with a 250px minimum.
+`OscdAceEditor` TSDoc and the component manifest describe the token contract.
+The success snackbar uses surface/on-surface roles rather than a tertiary role,
+so its default remains palette-driven and neutral. The manifest remains
+manually updated until full regeneration in A-35.
+`npm run build -- --pretty false`, `npx wtr
+dist/oscd-md3-mappings.spec.js dist/ace-editor/OscdAceEditor.spec.js
+dist/snackbar/OscdSnackbar.spec.js --config web-test-runner.config.js`
+(20 passing), targeted ESLint on the six changed TypeScript/Storybook files,
+and `git diff --check` passed.
+
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
       `--md-outlined-text-field-*` tokens for supported customization.
@@ -449,7 +468,7 @@ Transparent row backgrounds and the 200ms fold duration remain unchanged.
       `--md-sys-color-on-primary` / `--md-ref-typeface-plain`. Fix the
       `@cssprop` docs. Since this removes existing styling inputs, include it
       in the 0.1.0 breaking batch. (F-B2, F-B3)
-- [ ] **A-24** Ace theme (`ace/theme/oscd` only): replace every palette-layer
+- [x] **A-24** Ace theme (`ace/theme/oscd` only): replace every palette-layer
       read with the Q4 token set, each defaulting to a sys role with its MD3
       baseline fallback. Map Ace's internal selectors onto those concepts.
       Document the tokens as `@cssprop` on `oscd-ace-editor`, stating they only
