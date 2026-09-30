@@ -10,11 +10,16 @@ import { OscdIcon } from '../icon/OscdIcon.js';
  * @slot action - May contain up to eight icon buttons.
  * @slot icon - If filled overrides the icon property.
  * @slot - The default slot will be rendered into the pane body in a single column.
- * @cssprop [--oscd-action-icon-theme-primary=var(--md-sys-color-primary)] - Border and hover color.
- * @cssprop [--oscd-action-icon-theme-on-primary=var(--md-sys-color-on-primary)] - Font color inside hover field.
- * @cssprop [--oscd-action-icon-theme-secondary=var(--md-sys-color-secondary)] - Secondary border and hover color.
- * @cssprop [--oscd-action-icon-theme-on-surface=var(--md-sys-color-on-surface)] - Icon and label color.
- * @cssprop [--oscd-action-icon-theme-font=var(--md-sys-color-font)] - Font for label and hover text.
+ * @cssprop [--oscd-action-icon-icon-color=var(--md-sys-color-on-surface, #1d1b20)] - Icon color.
+ * @cssprop [--oscd-action-icon-icon-outline-color=var(--md-sys-color-primary, #6750a4)] - Icon outline.
+ * @cssprop [--oscd-action-icon-secondary-icon-outline-color=var(--md-sys-color-secondary, #625b71)] - Icon outline when secondary.
+ * @cssprop [--oscd-action-icon-action-color=var(--md-sys-color-on-surface, #1d1b20)] - Slotted action color.
+ * @cssprop [--oscd-action-icon-footer-color=var(--md-sys-color-on-surface, #1d1b20)] - Footer label color.
+ * @cssprop [--oscd-action-icon-footer-font-family=var(--md-ref-typeface-plain, Roboto)] - Footer label font.
+ * @cssprop [--oscd-action-icon-header-color=var(--md-sys-color-on-primary, #fff)] - Hover label color.
+ * @cssprop [--oscd-action-icon-header-container-color=var(--md-sys-color-primary, #6750a4)] - Hover label background.
+ * @cssprop [--oscd-action-icon-secondary-header-container-color=var(--md-sys-color-secondary, #625b71)] - Hover label background when secondary.
+ * @cssprop [--oscd-action-icon-header-font-family=var(--md-ref-typeface-plain, Roboto)] - Hover label font.
  *
  * @summary A responsive container rendering actions in a header.
  * @tag oscd-action-icon
@@ -91,12 +96,12 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
     oscd-icon {
       display: block;
       color: var(
-        --oscd-action-icon-theme-on-surface,
-        var(--md-sys-color-on-surface)
+        --oscd-action-icon-icon-color,
+        var(--md-sys-color-on-surface, #1d1b20)
       );
       outline-color: var(
-        --oscd-action-icon-theme-primary,
-        var(--md-sys-color-primary)
+        --oscd-action-icon-icon-outline-color,
+        var(--md-sys-color-primary, #6750a4)
       );
       outline-style: solid;
       margin: 0px;
@@ -109,8 +114,8 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
     :host([secondary]) ::slotted([slot='icon']),
     :host([secondary]) oscd-icon {
       outline-color: var(
-        --oscd-action-icon-theme-secondary,
-        var(--md-sys-color-secondary)
+        --oscd-action-icon-secondary-icon-outline-color,
+        var(--md-sys-color-secondary, #625b71)
       );
     }
 
@@ -140,8 +145,8 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
 
     ::slotted([slot='action']) {
       color: var(
-        --oscd-action-icon-theme-on-surface,
-        var(--md-sys-color-on-surface)
+        --oscd-action-icon-action-color,
+        var(--md-sys-color-on-surface, #1d1b20)
       );
       transition:
         transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -191,10 +196,13 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
 
     footer {
       color: var(
-        --oscd-action-icon-theme-on-surface,
-        var(--md-sys-color-on-surface)
+        --oscd-action-icon-footer-color,
+        var(--md-sys-color-on-surface, #1d1b20)
       );
-      font-family: var(--oscd-action-icon-theme-font, var(--oscd-text-font));
+      font-family: var(
+        --oscd-action-icon-footer-font-family,
+        var(--md-ref-typeface-plain, Roboto)
+      );
       font-weight: 300;
       overflow: hidden;
       white-space: nowrap;
@@ -212,14 +220,17 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
 
     header {
       color: var(
-        --oscd-action-icon-theme-on-primary,
-        var(--md-sys-color-on-primary)
+        --oscd-action-icon-header-color,
+        var(--md-sys-color-on-primary, #fff)
       );
       background-color: var(
-        --oscd-action-icon-theme-primary,
-        var(--md-sys-color-primary)
+        --oscd-action-icon-header-container-color,
+        var(--md-sys-color-primary, #6750a4)
       );
-      font-family: var(--oscd-action-icon-theme-font, var(--oscd-text-font));
+      font-family: var(
+        --oscd-action-icon-header-font-family,
+        var(--md-ref-typeface-plain, Roboto)
+      );
       font-weight: 500;
       font-size: 1.2em;
       position: absolute;
@@ -236,8 +247,8 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
 
     :host([secondary]) header {
       background-color: var(
-        --oscd-action-icon-theme-secondary,
-        var(--md-sys-color-secondary)
+        --oscd-action-icon-secondary-header-container-color,
+        var(--md-sys-color-secondary, #625b71)
       );
     }
 

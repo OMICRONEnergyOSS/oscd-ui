@@ -417,17 +417,28 @@ All public-token renames and removals land together in `0.1.0`. Old names are
 simply gone: no `var(--new, var(--old, …))` fallbacks, no runtime shims. The
 A-36 guide is the migration path.
 
+First batch (A-22, A-23, A-30): tree-grid filter rows now use MD3
+`on-surface-variant` instead of the MDC hint token; filter-button no longer
+sets an inert MDC colour on its embedded icon button. Action-pane and
+action-icon replace the old `--oscd-*-theme-*` names with facet-specific
+`--oscd-action-{pane,icon}-*` tokens at the point of use. Each defaults to its
+MD3 system role and baseline, or `--md-ref-typeface-plain` with a Roboto
+fallback for fonts; the `--oscd-base2` and `--oscd-text-font` reads are gone.
+TSDoc and the manifest list the new overrides. The remaining Phase 3 tasks,
+full manifest regeneration (A-35) and migration guide (A-36) are deferred to
+later batches; do not release this breaking batch alone.
+
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
       `--md-outlined-text-field-*` tokens for supported customization.
       (F-C7)
-- [ ] **A-23** Remove the legacy `--mdc-*` reads: in tree-grid, replace
+- [x] **A-23** Remove the legacy `--mdc-*` reads: in tree-grid, replace
       `--mdc-theme-text-hint-on-background` with a sys-role equivalent (F-B4).
       In filter-button, replace `color: var(--mdc-theme-on-surface)` with
       `--md-icon-button-icon-color` (or delete it, see the audit) (F-B6).
       Grep-verified: these are the only two `--mdc-*` reads in component
       source. This removes legacy styling inputs and ships in 0.1.0.
-- [ ] **A-22** Action-pane/action-icon: remove the `--oscd-base2` /
+- [x] **A-22** Action-pane/action-icon: remove the `--oscd-base2` /
       `--oscd-text-font` fallback reads in favour of
       `--md-sys-color-on-primary` / `--md-ref-typeface-plain`. Fix the
       `@cssprop` docs. Since this removes existing styling inputs, include it
@@ -442,8 +453,9 @@ A-36 guide is the migration path.
 - [ ] **A-28** Action-tree: rename its tokens to `--oscd-action-tree-*`
       and default them to sys roles. Remove the old names without fallbacks;
       this is part of the 0.1.0 batch (Q3). (F-B5)
-- [ ] **A-30** Action-pane/action-icon: drop `--oscd-*-theme-*` in favour of
-      sys roles (rung 1). (F-C1)
+- [x] **A-30** Action-pane/action-icon: replace `--oscd-*-theme-*` with
+      facet-specific `--oscd-action-{pane,icon}-*` tokens defaulting to MD3
+      roles; retain per-component overrides (rung 3). (F-C1)
 - [ ] **A-31** Align the app bar's main row to the MD3 small top-app-bar
       defaults (the 64px height excludes the separate sub-bar, which remains
       unchanged and is out of scope for this refactor): resting container

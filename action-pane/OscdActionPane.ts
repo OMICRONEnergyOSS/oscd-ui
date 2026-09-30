@@ -30,12 +30,12 @@ function closestTo<E extends Element>(node: Node, selector: string): E | null {
  * @slot action - Places element in <nav/> section.
  * @slot icon - Action Pane Icon.
  * @slot - The default slot will be rendered into the pane body in a single column.
- * @cssprop [--oscd-action-pane-theme-primary=var(--md-sys-color-primary)] - Color for border on even levels.
- * @cssprop [--oscd-action-pane-theme-on-primary=var(--md-sys-color-on)-primary] - Pane color for the uneven levels.
- * @cssprop [--oscd-action-pane-theme-secondary=var(--md-sys-color-secondary)] - Color for border on uneven levels.
- * @cssprop [--oscd-action-pane-theme-surface=var(--md-sys-color-surface)] - Pane color for the even levels.
- * @cssprop [--oscd-action-pane-theme-on-surface=var(--md-sys-color-on-surface)] - Icon and label color.
- * @cssprop [--oscd-action-pane-theme-font=var(--md-sys-color-font)] - Font for label.
+ * @cssprop [--oscd-action-pane-container-color=var(--md-sys-color-surface, #fef7ff)] - Pane background.
+ * @cssprop [--oscd-action-pane-contrasted-container-color=var(--md-sys-color-on-primary, #fff)] - Background on even nesting levels.
+ * @cssprop [--oscd-action-pane-outline-color=var(--md-sys-color-primary, #6750a4)] - Pane outline.
+ * @cssprop [--oscd-action-pane-secondary-outline-color=var(--md-sys-color-secondary, #625b71)] - Outline when secondary.
+ * @cssprop [--oscd-action-pane-headline-color=var(--md-sys-color-on-surface, #1d1b20)] - Heading text color.
+ * @cssprop [--oscd-action-pane-headline-font-family=var(--md-ref-typeface-plain, Roboto)] - Heading font.
  *
  * @summary A responsive container rendering actions in a header.
  * @tag oscd-action-pane
@@ -140,23 +140,23 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
     section {
       position: relative;
       background-color: var(
-        --oscd-action-pane-theme-surface,
-        var(--md-sys-color-surface)
+        --oscd-action-pane-container-color,
+        var(--md-sys-color-surface, #fef7ff)
       );
       transition: all 200ms linear;
       outline-style: solid;
       margin: 0px;
       outline-width: 0px;
       outline-color: var(
-        --oscd-action-pane-theme-primary,
-        var(--md-sys-color-primary)
+        --oscd-action-pane-outline-color,
+        var(--md-sys-color-primary, #6750a4)
       );
     }
 
     section.secondary {
       outline-color: var(
-        --oscd-action-pane-theme-secondary,
-        var(--md-sys-color-secondary)
+        --oscd-action-pane-secondary-outline-color,
+        var(--md-sys-color-secondary, #625b71)
       );
     }
 
@@ -179,8 +179,8 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
 
     .contrasted {
       background-color: var(
-        --oscd-action-pane-theme-on-primary,
-        var(--oscd-base2)
+        --oscd-action-pane-contrasted-container-color,
+        var(--md-sys-color-on-primary, #fff)
       );
     }
 
@@ -189,10 +189,13 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
     h3,
     h4 {
       color: var(
-        --oscd-action-pane-theme-on-surface,
-        var(--md-sys-color-on-surface)
+        --oscd-action-pane-headline-color,
+        var(--md-sys-color-on-surface, #1d1b20)
       );
-      font-family: var(--oscd-action-pane-theme-font, var(--oscd-text-font));
+      font-family: var(
+        --oscd-action-pane-headline-font-family,
+        var(--md-ref-typeface-plain, Roboto)
+      );
       font-weight: 300;
       overflow: clip visible;
       white-space: nowrap;
