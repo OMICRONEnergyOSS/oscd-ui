@@ -502,6 +502,19 @@ dist/snackbar/OscdSnackbar.spec.js --config web-test-runner.config.js`
 (17 passing), targeted ESLint on the component/spec/story, the TSDoc-manifest
 comparison, and `git diff --check` passed.
 
+**Batch 7 (A-34):** Navigation Drawer Header no longer declares the
+`--oscd-navigation-drawer-header-*` aliases or unused unprefixed color
+properties. Its embedded MD list item now keeps its `body-large` headline and
+`body-medium` supporting-text defaults through MD3 typescale/system roles,
+without blocking inherited `--md-list-item-*` overrides. The component docs
+and manifest list the 10 supported label/supporting-text facets, and a focused
+spec verifies inherited token values remain effective. Existing downstream
+uses of removed aliases remain documented in the migration-impact table for
+the later consumer update. `npm run build -- --pretty false`, `npx wtr
+dist/navigation-drawer/OscdNavigationDrawerHeader.spec.js --config
+web-test-runner.config.js` (1 passing), targeted ESLint, the TSDoc-manifest
+comparison, and `git diff --check` passed.
+
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
       `--md-outlined-text-field-*` tokens for supported customization.
@@ -574,7 +587,7 @@ comparison, and `git diff --check` passed.
       OpenSCD palette contract. Make clear that consumers can choose other
       colours; info, warning and success do not acquire MD3 semantic roles.
       Reuse the example snippet in the migration guide (A-36).
-- [ ] **A-34** Navigation drawer header: remove the redundant
+- [x] **A-34** Navigation drawer header: remove the redundant
       `--oscd-navigation-drawer-header-*` aliases and let consumers style the
       embedded MD3 list item through its `--md-list-item-*` tokens. Set the
       component's default typography from MD3 typescale/system roles; do not
