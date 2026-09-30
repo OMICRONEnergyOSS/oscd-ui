@@ -13932,6 +13932,58 @@
           "kind": "class",
           "description": "A header for the navigation drawer.",
           "name": "OscdNavigationDrawerHeader",
+          "cssProperties": [
+            {
+              "description": "Embedded list-item headline color.",
+              "name": "--md-list-item-label-text-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Embedded list-item headline font.",
+              "name": "--md-list-item-label-text-font",
+              "default": "var(--md-sys-typescale-body-large-font, var(--md-ref-typeface-plain, Roboto))"
+            },
+            {
+              "description": "Embedded list-item headline size.",
+              "name": "--md-list-item-label-text-size",
+              "default": "var(--md-sys-typescale-body-large-size, 1rem)"
+            },
+            {
+              "description": "Embedded list-item headline line height.",
+              "name": "--md-list-item-label-text-line-height",
+              "default": "var(--md-sys-typescale-body-large-line-height, 1.5rem)"
+            },
+            {
+              "description": "Embedded list-item headline weight.",
+              "name": "--md-list-item-label-text-weight",
+              "default": "var(--md-sys-typescale-body-large-weight, var(--md-ref-typeface-weight-regular, 400))"
+            },
+            {
+              "description": "Embedded list-item supporting text color.",
+              "name": "--md-list-item-supporting-text-color",
+              "default": "var(--md-sys-color-on-surface-variant, #49454f)"
+            },
+            {
+              "description": "Embedded list-item supporting text font.",
+              "name": "--md-list-item-supporting-text-font",
+              "default": "var(--md-sys-typescale-body-medium-font, var(--md-ref-typeface-plain, Roboto))"
+            },
+            {
+              "description": "Embedded list-item supporting text size.",
+              "name": "--md-list-item-supporting-text-size",
+              "default": "var(--md-sys-typescale-body-medium-size, 0.875rem)"
+            },
+            {
+              "description": "Embedded list-item supporting text line height.",
+              "name": "--md-list-item-supporting-text-line-height",
+              "default": "var(--md-sys-typescale-body-medium-line-height, 1.25rem)"
+            },
+            {
+              "description": "Embedded list-item supporting text weight.",
+              "name": "--md-list-item-supporting-text-weight",
+              "default": "var(--md-sys-typescale-body-medium-weight, var(--md-ref-typeface-weight-regular, 400))"
+            }
+          ],
           "members": [],
           "superclass": {
             "name": "ListItem",
