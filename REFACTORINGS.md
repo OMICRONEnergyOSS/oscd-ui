@@ -539,6 +539,13 @@ successfully but emitted unresolved dependency warnings for source-relative
 Storybook docs are ready; resolving those analyzer warnings is not part of
 A-35.
 
+**Batch 10 (A-36):** Added `MIGRATION-0.1.0.md` with component-by-component
+token migrations, visual changes, practical theming examples, opt-in mapper
+setup, the upstream action-pane/action-icon migration, and the colored
+Snackbar recipe. Linked the version-specific guide from the README and
+changelog. Documentation links and token names were checked, and
+`git diff --check` passed.
+
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
       `--md-outlined-text-field-*` tokens for supported customization.
@@ -628,14 +635,13 @@ A-35.
       deliberately. (F-E3)
 - [x] **A-35** Regenerate `custom-elements.json` and check the Storybook
       docs tables.
-- [ ] **A-36** Write the developer-facing migration guide for the release
-      that lands Phases 2–3 (see "Migration impact"). The format is still to be
-      agreed. It covers, per component: old → new token table, visual changes
-      without an API change, and "how to fix" snippets. It also covers
-      consumers coming from `@openenergytools/oscd-action-{pane,icon}`.
-      Include the A-33b example snippet showing how to colour warning,
-      success and info via the new per-variant tokens (Q1 makes them plain by
-      default). Linked from the CHANGELOG entry and README.
+- [x] **A-36** Write `MIGRATION-0.1.0.md` for the release that lands
+      Phases 2–3 (see "Migration impact"). Cover per-component old → new
+      token tables, visual changes without existing API removals, and
+      "how to fix" snippets. Include consumers coming from
+      `@openenergytools/oscd-action-{pane,icon}` and the A-33b example showing
+      how to colour warning, success, and info via the new per-variant tokens.
+      Link the guide from the CHANGELOG and README.
 
 ### Phase 4 — Cross-repo follow-ups (tracked here, done in their repos)
 

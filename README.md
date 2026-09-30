@@ -10,6 +10,9 @@ https://material-web.dev/about/intro/
 For palettes, MD3 system tokens and the optional Lit mappings, see the
 [theming guide](./THEMING.md).
 
+For the planned 0.1.0 breaking theming changes, see the
+[migration guide](./MIGRATION-0.1.0.md).
+
 The predecessor [Material Web Components (mwc)](https://github.com/material-components/material-components-web) are officially depricated and the newer [Material Design components (md)](https://github.com/material-components/material-web) are in maintenance mode. So we plan to maintain this set of components moving forward no matter what happens to the [@omicronenergy/oscd-material-web-base](https://github.com/material-components/material-web) project.
 
 For plugins which used the mwc-\* components, these used the older Material Icons (legacy) which were glyph-based and relatively simple but fixed to a style. @omicronenergy/oscd-ui components all use the newer Material Symbol font icons, which are variable fonts and far more flexible.

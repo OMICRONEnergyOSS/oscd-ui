@@ -1,5 +1,8 @@
 # Changelog
 
+For the planned `0.1.0` breaking theming changes, see the
+[migration guide](./MIGRATION-0.1.0.md).
+
 ## [0.0.20](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.19...oscd-ui-v0.0.20) (2026-08-31)
 
 
