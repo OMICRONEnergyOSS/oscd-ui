@@ -470,6 +470,20 @@ dist/app-bar/OscdAppBar.spec.js --config web-test-runner.config.js`
 (3 passing), targeted ESLint on the component, stories and spec, and
 `git diff --check` passed.
 
+**Batch 5 (A-32):** Tree row indentation now uses private `--_level`; defaults
+for indentation, row size/shape, and toggle size are applied where consumed so
+they can inherit from a theme root. TreeItem now consumes embedded
+`--md-list-item-*` tokens directly for label/supporting typography, disabled
+opacity, row height, and leading/trailing icon colors. Row focus and ripple
+customization now use embedded `--md-focus-ring-*` and `--md-ripple-*` tokens
+directly; redundant `--oscd-tree-*` aliases were removed, including checkbox
+and icon sizing aliases. The tree-specific row, selection, and indentation
+facets remain. The manifest has no Tree CSS-property entries to update; full
+manifest regeneration remains in A-35. `npm run build -- --pretty false`,
+`npx wtr dist/tree/oscd-tree.spec.js --config web-test-runner.config.js`
+(18 passing), targeted ESLint on the changed Tree source/spec files, and
+`git diff --check` passed.
+
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
       `--md-outlined-text-field-*` tokens for supported customization.
@@ -513,7 +527,7 @@ dist/app-bar/OscdAppBar.spec.js --config web-test-runner.config.js`
       `on-scroll-container-elevation`; rename private tokens to `--_*` and
       apply defaults at point of use. Cover the resting and consumer-set
       scrolled states in stories/specs. (F-C3, F-C4, F-D2)
-- [ ] **A-32** Tree: remove the aliases of embedded MD3 tokens, move the
+- [x] **A-32** Tree: remove the aliases of embedded MD3 tokens, move the
       `:host` declarations to point-of-use defaults, and rename
       `--oscd-tree-row-level` to `--_level`. (F-C5, F-C6)
 - [ ] **A-33** Snackbar: rung-3 `--oscd-snackbar-*` tokens named after the
