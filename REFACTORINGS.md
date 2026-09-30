@@ -369,14 +369,47 @@ The Omicron palette moves out of the preview head and into
 
 ### Phase 2 — Non-breaking component fixes
 
-- [ ] **A-20** Fix inverted fallbacks in app bar and navigation drawer header.
+- [x] **A-20** Fix inverted fallbacks in app bar and navigation drawer header.
       (F-D1)
-- [ ] **A-21** Replace `--oscd-outlined-text-field-container-shape` with
+- [x] **A-21** Replace `--oscd-outlined-text-field-container-shape` with
       `--md-outlined-text-field-container-shape`. This is a _visible_ change:
       the fields become rounded, as originally intended. (F-C2)
-- [ ] **A-25** Replace hand-rolled shadows with `oscd-elevation`. (F-D6)
-- [ ] **A-26** Snackbar: make the `@cssprop` docs match the code (a stopgap
+- [x] **A-25** Replace hand-rolled shadows with `oscd-elevation`. (F-D6)
+- [x] **A-26** Snackbar: make the `@cssprop` docs match the code (a stopgap
       until A-33). (F-D4)
+
+### Phase 2 completion summary
+
+- `app-bar/OscdAppBar.ts` and `navigation-drawer/OscdNavigationDrawerHeader.ts`:
+  correct the literal fallbacks for `on-primary` and `primary` to `#fff` and
+  `#6750a4`; leave the public tokens unchanged for Phase 3.
+- `action-list/OscdActionList.ts`, `selection-list/OscdSelectionList.ts`, and
+  `tree-grid/OscdTreeGrid.ts`: use the MD3 text-field shape token that the
+  outlined field reads (32px in the lists, 28px in the grid).
+- `action-icon/OscdActionIcon.ts` and `action-pane/OscdActionPane.ts`: anchor
+  scoped elevation elements to the icon/label and pane section; level 3 applies
+  to the same focus/hover states as the former fixed shadows. Co-located specs
+  cover focus and scoped element registration; the pane spec also covers
+  heading levels, nested surfaces, slots, and public style states.
+- `snackbar/OscdSnackbar.ts` and `custom-elements.json`: document the actual
+  existing fallback chains; the snackbar's visual defaults remain unchanged
+  until A-33.
+- Verification: `npm run build -- --pretty false`, targeted `npx wtr` over
+  the affected compiled component specs (32 passing), targeted `npx eslint`,
+  and `git diff --check` passed. Storybook browser checks confirmed 32px/28px
+  search-field tokens and active MD3 elevation shadows. Phase 3 token renames
+  remain deferred.
+- Follow-up: `action-pane/OscdActionPane.spec.ts` now also tests heading rank,
+  nested and explicit levels, slotted content, and secondary/highlighted states.
+  `npm run build -- --pretty false`, the single compiled pane spec (5 passing),
+  targeted `npx eslint`, and `git diff --check` passed.
+- Follow-up: `action-icon/OscdActionIcon.spec.ts` now also covers label and
+  icon rendering, icon and action slots, focus behavior, and secondary,
+  highlighted, and hideActions styling. `npm run build -- --pretty false`,
+  `npx wtr dist/action-icon/OscdActionIcon.spec.js
+  dist/action-pane/OscdActionPane.spec.js --config web-test-runner.config.js`
+  (10 passing), `npx eslint action-icon/OscdActionIcon.spec.ts --quiet`, and
+  `git diff --check` passed.
 
 ### Phase 3 — Token renames and removals (one breaking release, see Q3)
 

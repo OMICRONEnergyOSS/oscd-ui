@@ -11,11 +11,11 @@ const overrideStyles = css`
   :host {
     --navigation-drawer-header-color: var(
       --oscd-navigation-drawer-header-color,
-      var(--md-sys-color-on-primary, #1d1b20)
+      var(--md-sys-color-on-primary, #fff)
     );
     --navigation-drawer-header-background-color: var(
       --oscd-navigation-drawer-header-background-color,
-      var(--md-sys-color-primary, #fff)
+      var(--md-sys-color-primary, #6750a4)
     );
 
     --md-list-item-label-text-font: var(

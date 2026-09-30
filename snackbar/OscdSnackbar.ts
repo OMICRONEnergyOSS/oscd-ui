@@ -68,27 +68,27 @@ declare global {
  * @cssprop [--oscd-snackbar-elevation-level=3] - Snackbar elevation level.
  * @cssprop [--oscd-snackbar-enter-duration=160ms] - Show animation duration.
  * @cssprop [--oscd-snackbar-exit-duration=160ms] - Hide animation duration.
- * @cssprop [--oscd-snackbar-text-color=#233042] - Snackbar text color.
+ * @cssprop [--oscd-snackbar-text-color=var(--md-sys-color-on-surface, #233042)] - Snackbar text color.
  * @cssprop [--oscd-snackbar-font-family=var(--md-sys-typescale-body-large-font)] - Snackbar font family.
  * @cssprop [--oscd-snackbar-font-size=var(--md-sys-typescale-body-large-size)] - Snackbar font size.
  * @cssprop [--oscd-snackbar-line-height=var(--md-sys-typescale-body-large-line-height)] - Snackbar line height.
  * @cssprop [--oscd-snackbar-message-line-clamp=3] - Maximum visible message lines before truncation.
  *
  * @cssprop [--oscd-snackbar-info-container-color=var(--md-sys-color-secondary-container)] - Info snackbar container color.
- * @cssprop [--oscd-snackbar-info-text-color=var(--oscd-snackbar-text-color)] - Info text color.
+ * @cssprop [--oscd-snackbar-info-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Info text color.
  * @cssprop [--oscd-snackbar-info-icon-color=var(--md-sys-color-on-secondary-container)] - Info icon color.
  *
- * @cssprop [--oscd-snackbar-success-container-color=#d8f8bd] - Success snackbar container color.
- * @cssprop [--oscd-snackbar-success-text-color=var(--oscd-snackbar-text-color)] - Success text color.
- * @cssprop [--oscd-snackbar-success-icon-color=#5ba300] - Success icon color.
+ * @cssprop [--oscd-snackbar-success-container-color=var(--md-sys-color-tertiary-container, #d8f8bd)] - Success snackbar container color.
+ * @cssprop [--oscd-snackbar-success-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Success text color.
+ * @cssprop [--oscd-snackbar-success-icon-color=var(--md-sys-color-on-tertiary-container, #5ba300)] - Success icon color.
  *
- * @cssprop [--oscd-snackbar-warning-container-color=#fff584] - Warning snackbar container color.
- * @cssprop [--oscd-snackbar-warning-text-color=var(--oscd-snackbar-text-color)] - Warning text color.
- * @cssprop [--oscd-snackbar-warning-icon-color=#f5a400] - Warning icon color.
+ * @cssprop [--oscd-snackbar-warning-container-color=var(--md-sys-color-error-container, #fff584)] - Warning snackbar container color.
+ * @cssprop [--oscd-snackbar-warning-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Warning text color.
+ * @cssprop [--oscd-snackbar-warning-icon-color=var(--md-sys-color-on-error-container, #f5a400)] - Warning icon color.
  *
- * @cssprop [--oscd-snackbar-error-container-color=#ffd9df] - Error snackbar container color.
- * @cssprop [--oscd-snackbar-error-text-color=var(--oscd-snackbar-text-color)] - Error text color.
- * @cssprop [--oscd-snackbar-error-icon-color=#d52031] - Error icon color.
+ * @cssprop [--oscd-snackbar-error-container-color=var(--md-sys-color-error-container, #ffd9df)] - Error snackbar container color.
+ * @cssprop [--oscd-snackbar-error-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Error text color.
+ * @cssprop [--oscd-snackbar-error-icon-color=var(--md-sys-color-error, #d52031)] - Error icon color.
  *
  * @csspart snackbar - Snackbar surface.
  * @csspart icon - Leading variant icon.

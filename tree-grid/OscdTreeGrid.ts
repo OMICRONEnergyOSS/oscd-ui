@@ -493,7 +493,7 @@ export class OscdTreeGrid extends ScopedElementsMixin(LitElement) {
 
   private renderFilterField() {
     return html`<oscd-outlined-textfield
-      style="--oscd-outlined-text-field-container-shape: 28px;"
+      style="--md-outlined-text-field-container-shape: 28px;"
       icon="search"
       ${ref(elm => {
         if (!elm) {

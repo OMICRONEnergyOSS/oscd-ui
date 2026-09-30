@@ -132,7 +132,7 @@ export class OscdSelectionList extends FilterListBase {
 
     oscd-outlined-text-field {
       background-color: var(--md-sys-color-surface, #fef7ff);
-      --oscd-outlined-text-field-container-shape: 32px;
+      --md-outlined-text-field-container-shape: 32px;
       padding: 8px;
     }
 
