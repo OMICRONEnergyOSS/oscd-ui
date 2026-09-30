@@ -1,10 +1,14 @@
 import { expect, fixture } from '@open-wc/testing';
 import { css, html, LitElement } from 'lit';
-import { oscdMd3Mappings } from './oscd-md3-mappings.js';
+import {
+  oscdMd3Mappings,
+  oscdPaletteComponentMappings,
+} from './oscd-md3-mappings.js';
 
 class MappedHost extends LitElement {
   static override styles = [
     oscdMd3Mappings,
+    oscdPaletteComponentMappings,
     css`
       :host {
         display: block;
@@ -22,11 +26,11 @@ describe('opt-in MD3 mappings', () => {
     );
   }
 
-  it('declares only the 27 roles used by this component library', () => {
+  it('declares only the 25 roles used by this component library', () => {
     const roles = [
       ...oscdMd3Mappings.cssText.matchAll(/--md-sys-color-([a-z-]+):/g),
     ].map(match => match[1]);
-    expect(roles).to.have.length(27);
+    expect(roles).to.have.length(25);
     expect(roles).to.include('error-container');
     expect(roles).not.to.include('on-secondary');
   });
@@ -78,6 +82,24 @@ describe('opt-in MD3 mappings', () => {
     expect(
       getComputedStyle(host).getPropertyValue('--md-sys-color-primary').trim(),
     ).to.equal('#2aa198');
+  });
+
+  it('seeds Ace syntax tokens from existing palette slots', async () => {
+    const host = await mappedHost();
+    host.style.setProperty('--oscd-theme-secondary', '#2485e5');
+    host.style.setProperty('--oscd-theme-warning', '#b58900');
+    host.style.setProperty('--oscd-theme-base01', '#3d4651');
+
+    const style = getComputedStyle(host);
+    expect(
+      style.getPropertyValue('--oscd-ace-editor-syntax-keyword-color').trim(),
+    ).to.equal('#2485e5');
+    expect(
+      style.getPropertyValue('--oscd-ace-editor-syntax-parameter-color').trim(),
+    ).to.equal('#b58900');
+    expect(
+      style.getPropertyValue('--oscd-ace-editor-syntax-operator-color').trim(),
+    ).to.equal('#3d4651');
   });
 
   it('keeps shadow and scrim black with a dark palette', async () => {

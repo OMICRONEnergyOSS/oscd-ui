@@ -73,7 +73,18 @@ export const globalTypes = {
 };
 
 export const decorators = [
-  Story => html`<oscd-storybook-theme>${Story()}</oscd-storybook-theme>`,
+  Story => html`
+    <style>
+      :root {
+        --md-sys-color-surface: var(--oscd-theme-base3, #fef7ff);
+      }
+
+      #storybook-root, .docs-story {
+        background-color: var(--md-sys-color-surface);
+      }
+    </style>
+    <oscd-storybook-theme>${Story()}</oscd-storybook-theme>
+  `,
 ];
 
 const preview = {

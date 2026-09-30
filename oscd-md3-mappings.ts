@@ -27,7 +27,31 @@ export const oscdMd3Mappings = css`
     --md-sys-color-surface-container-high: var(--oscd-theme-base2, #ece6f0);
     --md-sys-color-surface-container-highest: var(--oscd-theme-base2, #e6e0e9);
     --md-sys-color-surface-container-low: var(--oscd-theme-base3, #f7f2fa);
-    --md-sys-color-tertiary: var(--oscd-theme-secondary, #7d5260);
-    --md-sys-color-tertiary-container: var(--oscd-theme-base2, #ffd8e4);
+  }
+`;
+
+export const oscdPaletteComponentMappings = css`
+  :host {
+    --oscd-ace-editor-syntax-keyword-color: var(
+      --oscd-theme-secondary,
+      #0b335b
+    );
+    --oscd-ace-editor-syntax-string-color: var(--oscd-theme-base00, #46505d);
+    --oscd-ace-editor-syntax-tag-color: var(--oscd-theme-secondary, #0b335b);
+    --oscd-ace-editor-syntax-attribute-name-color: var(
+      --oscd-theme-primary,
+      #2485e5
+    );
+    --oscd-ace-editor-syntax-comment-color: var(--oscd-theme-base01, #3d4651);
+    --oscd-ace-editor-syntax-number-color: var(--oscd-theme-base00, #46505d);
+    --oscd-ace-editor-syntax-invalid-color: var(--oscd-theme-error, #dc322f);
+    --oscd-ace-editor-syntax-storage-color: var(--oscd-theme-primary, #2485e5);
+    --oscd-ace-editor-syntax-operator-color: var(--oscd-theme-base01, #3d4651);
+    --oscd-ace-editor-syntax-parameter-color: var(
+      --oscd-theme-warning,
+      #b58900
+    );
+    --oscd-ace-editor-syntax-regex-color: var(--oscd-theme-error, #dc322f);
+    --oscd-ace-editor-step-color: var(--oscd-theme-warning, #b58900);
   }
 `;

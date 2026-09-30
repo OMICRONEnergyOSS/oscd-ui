@@ -78,9 +78,9 @@ declare global {
  * @cssprop [--oscd-snackbar-info-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Info text color.
  * @cssprop [--oscd-snackbar-info-icon-color=var(--md-sys-color-on-secondary-container)] - Info icon color.
  *
- * @cssprop [--oscd-snackbar-success-container-color=var(--md-sys-color-tertiary-container, #d8f8bd)] - Success snackbar container color.
+ * @cssprop [--oscd-snackbar-success-container-color=var(--md-sys-color-surface, #fef7ff)] - Success snackbar container color.
  * @cssprop [--oscd-snackbar-success-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Success text color.
- * @cssprop [--oscd-snackbar-success-icon-color=var(--md-sys-color-on-tertiary-container, #5ba300)] - Success icon color.
+ * @cssprop [--oscd-snackbar-success-icon-color=var(--md-sys-color-on-surface, #1d1b20)] - Success icon color.
  *
  * @cssprop [--oscd-snackbar-warning-container-color=var(--md-sys-color-error-container, #fff584)] - Warning snackbar container color.
  * @cssprop [--oscd-snackbar-warning-text-color=var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))] - Warning text color.
@@ -479,7 +479,7 @@ export class OscdSnackbar extends ScopedElementsMixin(LitElement) {
     .snackbar.success {
       background: var(
         --oscd-snackbar-success-container-color,
-        var(--md-sys-color-tertiary-container, #d8f8bd)
+        var(--md-sys-color-surface, #fef7ff)
       );
       color: var(
         --oscd-snackbar-success-text-color,
@@ -523,7 +523,7 @@ export class OscdSnackbar extends ScopedElementsMixin(LitElement) {
     .success .variant-icon {
       color: var(
         --oscd-snackbar-success-icon-color,
-        var(--md-sys-color-on-tertiary-container, #5ba300)
+        var(--md-sys-color-on-surface, #1d1b20)
       );
     }
 
