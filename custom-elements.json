@@ -8,91 +8,8 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from the existing\n`--oscd-theme-*` palette without adding palette slots.",
+          "description": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from an OpenSCD\npalette without adding palette slots.",
           "name": "OscdAceEditor",
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ 'ace-editor': AceEditor, 'ace-editor-base': AceEditorBase, }"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string | undefined"
-              },
-              "attribute": "value",
-              "inheritedFrom": {
-                "name": "AceEditor",
-                "module": "ace-editor/internal/AceEditor.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "aceEditorBase",
-              "type": {
-                "text": "AceEditorBase"
-              },
-              "inheritedFrom": {
-                "name": "AceEditor",
-                "module": "ace-editor/internal/AceEditor.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "editor",
-              "type": {
-                "text": "AceGlobal.Ace.Editor | undefined"
-              },
-              "privacy": "public",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "AceEditor",
-                "module": "ace-editor/internal/AceEditor.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "type": {
-                "text": "CustomEvent<string>"
-              },
-              "description": "Fired when the editor content changes. `detail` contains the current editor content.",
-              "name": "change"
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "AceEditor",
-            "module": "/ace-editor/internal/AceEditor.js"
-          },
-          "tagName": "oscd-ace-editor",
-          "customElement": true,
-          "summary": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from the existing\n`--oscd-theme-*` palette without adding palette slots.",
-          "attributes": [
-            {
-              "name": "value",
-              "type": {
-                "text": "string | undefined"
-              },
-              "fieldName": "value",
-              "inheritedFrom": {
-                "name": "AceEditor",
-                "module": "ace-editor/internal/AceEditor.ts"
-              }
-            }
-          ],
-          "modulePath": "ace-editor/OscdAceEditor.ts",
           "cssProperties": [
             {
               "description": "Editor background for `ace/theme/oscd` only.",
@@ -195,6 +112,89 @@
               "default": "var(--md-sys-color-secondary, #625b71)"
             }
           ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'ace-editor': AceEditor, 'ace-editor-base': AceEditorBase, }"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string | undefined"
+              },
+              "attribute": "value",
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "aceEditorBase",
+              "type": {
+                "text": "AceEditorBase"
+              },
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "editor",
+              "type": {
+                "text": "AceGlobal.Ace.Editor | undefined"
+              },
+              "privacy": "public",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "type": {
+                "text": "CustomEvent<string>"
+              },
+              "description": "Fired when the editor content changes. `detail` contains the current editor content.",
+              "name": "change"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "AceEditor",
+            "module": "/ace-editor/internal/AceEditor.js"
+          },
+          "tagName": "oscd-ace-editor",
+          "customElement": true,
+          "summary": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from an OpenSCD\npalette without adding palette slots.",
+          "attributes": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string | undefined"
+              },
+              "fieldName": "value",
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            }
+          ],
+          "modulePath": "ace-editor/OscdAceEditor.ts",
           "cssParts": [],
           "cssStates": [],
           "slots": []
@@ -231,433 +231,6 @@
           "declaration": {
             "name": "OscdAceEditor",
             "module": "ace-editor/OscdAceEditor.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "action-icon/OscdActionIcon.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "A responsive container rendering actions in a header.",
-          "name": "OscdActionIcon",
-          "cssProperties": [
-            {
-              "description": "Icon color.",
-              "name": "--oscd-action-icon-icon-color",
-              "default": "var(--md-sys-color-on-surface, #1d1b20)"
-            },
-            {
-              "description": "Icon outline.",
-              "name": "--oscd-action-icon-icon-outline-color",
-              "default": "var(--md-sys-color-primary, #6750a4)"
-            },
-            {
-              "description": "Icon outline when secondary.",
-              "name": "--oscd-action-icon-secondary-icon-outline-color",
-              "default": "var(--md-sys-color-secondary, #625b71)"
-            },
-            {
-              "description": "Slotted action color.",
-              "name": "--oscd-action-icon-action-color",
-              "default": "var(--md-sys-color-on-surface, #1d1b20)"
-            },
-            {
-              "description": "Footer label color.",
-              "name": "--oscd-action-icon-footer-color",
-              "default": "var(--md-sys-color-on-surface, #1d1b20)"
-            },
-            {
-              "description": "Footer label font.",
-              "name": "--oscd-action-icon-footer-font-family",
-              "default": "var(--md-ref-typeface-plain, Roboto)"
-            },
-            {
-              "description": "Hover label color.",
-              "name": "--oscd-action-icon-header-color",
-              "default": "var(--md-sys-color-on-primary, #fff)"
-            },
-            {
-              "description": "Hover label background.",
-              "name": "--oscd-action-icon-header-container-color",
-              "default": "var(--md-sys-color-primary, #6750a4)"
-            },
-            {
-              "description": "Hover label background when secondary.",
-              "name": "--oscd-action-icon-secondary-header-container-color",
-              "default": "var(--md-sys-color-secondary, #625b71)"
-            },
-            {
-              "description": "Hover label font.",
-              "name": "--oscd-action-icon-header-font-family",
-              "default": "var(--md-ref-typeface-plain, Roboto)"
-            }
-          ],
-          "slots": [
-            {
-              "description": "May contain up to eight icon buttons.",
-              "name": "action"
-            },
-            {
-              "description": "If filled overrides the icon property.",
-              "name": "icon"
-            },
-            {
-              "description": "The default slot will be rendered into the pane body in a single column.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ 'oscd-icon': OscdIcon, }"
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "caption text, displayed in the header",
-              "attribute": "label"
-            },
-            {
-              "kind": "field",
-              "name": "icon",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "icon name, displayed unless the \"icon\" slot is filled",
-              "attribute": "icon"
-            },
-            {
-              "kind": "field",
-              "name": "secondary",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "color header with secondary theme color while focus is within",
-              "attribute": "secondary"
-            },
-            {
-              "kind": "field",
-              "name": "highlighted",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "highlight pane with dotted outline",
-              "attribute": "highlighted"
-            },
-            {
-              "kind": "field",
-              "name": "hideActions",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "disables CSS adoption to action buttons",
-              "attribute": "hideActions"
-            },
-            {
-              "kind": "method",
-              "name": "renderIcon",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "label",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "caption text, displayed in the header",
-              "fieldName": "label"
-            },
-            {
-              "name": "icon",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "icon name, displayed unless the \"icon\" slot is filled",
-              "fieldName": "icon"
-            },
-            {
-              "name": "secondary",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "color header with secondary theme color while focus is within",
-              "fieldName": "secondary"
-            },
-            {
-              "name": "highlighted",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "highlight pane with dotted outline",
-              "fieldName": "highlighted"
-            },
-            {
-              "name": "hideActions",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "disables CSS adoption to action buttons",
-              "fieldName": "hideActions"
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "oscd-action-icon",
-          "customElement": true,
-          "summary": "A responsive container rendering actions in a header.",
-          "modulePath": "action-icon/OscdActionIcon.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdActionIcon",
-          "declaration": {
-            "name": "OscdActionIcon",
-            "module": "action-icon/OscdActionIcon.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "action-pane/OscdActionPane.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "A responsive container rendering actions in a header.",
-          "name": "OscdActionPane",
-          "cssProperties": [
-            {
-              "description": "Pane background.",
-              "name": "--oscd-action-pane-container-color",
-              "default": "var(--md-sys-color-surface, #fef7ff)"
-            },
-            {
-              "description": "Background on even nesting levels.",
-              "name": "--oscd-action-pane-contrasted-container-color",
-              "default": "var(--md-sys-color-on-primary, #fff)"
-            },
-            {
-              "description": "Pane outline.",
-              "name": "--oscd-action-pane-outline-color",
-              "default": "var(--md-sys-color-primary, #6750a4)"
-            },
-            {
-              "description": "Outline when secondary.",
-              "name": "--oscd-action-pane-secondary-outline-color",
-              "default": "var(--md-sys-color-secondary, #625b71)"
-            },
-            {
-              "description": "Heading text color.",
-              "name": "--oscd-action-pane-headline-color",
-              "default": "var(--md-sys-color-on-surface, #1d1b20)"
-            },
-            {
-              "description": "Heading font.",
-              "name": "--oscd-action-pane-headline-font-family",
-              "default": "var(--md-ref-typeface-plain, Roboto)"
-            }
-          ],
-          "slots": [
-            {
-              "description": "Places element in <nav/> section.",
-              "name": "action"
-            },
-            {
-              "description": "Action Pane Icon.",
-              "name": "icon"
-            },
-            {
-              "description": "The default slot will be rendered into the pane body in a single column.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ 'oscd-icon': OscdIcon, }"
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "caption text, displayed in the header",
-              "attribute": "label"
-            },
-            {
-              "kind": "field",
-              "name": "icon",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "icon name, displayed unless the \"icon\" slot is filled",
-              "attribute": "icon"
-            },
-            {
-              "kind": "field",
-              "name": "secondary",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "color header with secondary theme color while focus is within",
-              "attribute": "secondary"
-            },
-            {
-              "kind": "field",
-              "name": "highlighted",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "highlight pane with dotted outline",
-              "attribute": "highlighted"
-            },
-            {
-              "kind": "field",
-              "name": "level",
-              "type": {
-                "text": "number"
-              },
-              "default": "1",
-              "description": "nesting level, default (closest pane ancestor's level) + 1",
-              "attribute": "level"
-            },
-            {
-              "kind": "field",
-              "name": "parentPane",
-              "type": {
-                "text": "OscdActionPane | undefined"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "resolvedLevel",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "renderHeader",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "label",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "caption text, displayed in the header",
-              "fieldName": "label"
-            },
-            {
-              "name": "icon",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "icon name, displayed unless the \"icon\" slot is filled",
-              "fieldName": "icon"
-            },
-            {
-              "name": "secondary",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "color header with secondary theme color while focus is within",
-              "fieldName": "secondary"
-            },
-            {
-              "name": "highlighted",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "highlight pane with dotted outline",
-              "fieldName": "highlighted"
-            },
-            {
-              "name": "level",
-              "type": {
-                "text": "number"
-              },
-              "default": "1",
-              "description": "nesting level, default (closest pane ancestor's level) + 1",
-              "fieldName": "level"
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "oscd-action-pane",
-          "customElement": true,
-          "summary": "A responsive container rendering actions in a header.",
-          "modulePath": "action-pane/OscdActionPane.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdActionPane",
-          "declaration": {
-            "name": "OscdActionPane",
-            "module": "action-pane/OscdActionPane.ts"
           }
         }
       ]
@@ -1011,6 +584,433 @@
     },
     {
       "kind": "javascript-module",
+      "path": "action-icon/OscdActionIcon.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A responsive container rendering actions in a header.",
+          "name": "OscdActionIcon",
+          "cssProperties": [
+            {
+              "description": "Icon color.",
+              "name": "--oscd-action-icon-icon-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Icon outline.",
+              "name": "--oscd-action-icon-icon-outline-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
+            },
+            {
+              "description": "Icon outline when secondary.",
+              "name": "--oscd-action-icon-secondary-icon-outline-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
+            },
+            {
+              "description": "Slotted action color.",
+              "name": "--oscd-action-icon-action-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Footer label color.",
+              "name": "--oscd-action-icon-footer-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Footer label font.",
+              "name": "--oscd-action-icon-footer-font-family",
+              "default": "var(--md-ref-typeface-plain, Roboto)"
+            },
+            {
+              "description": "Hover label color.",
+              "name": "--oscd-action-icon-header-color",
+              "default": "var(--md-sys-color-on-primary, #fff)"
+            },
+            {
+              "description": "Hover label background.",
+              "name": "--oscd-action-icon-header-container-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
+            },
+            {
+              "description": "Hover label background when secondary.",
+              "name": "--oscd-action-icon-secondary-header-container-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
+            },
+            {
+              "description": "Hover label font.",
+              "name": "--oscd-action-icon-header-font-family",
+              "default": "var(--md-ref-typeface-plain, Roboto)"
+            }
+          ],
+          "slots": [
+            {
+              "description": "May contain up to eight icon buttons.",
+              "name": "action"
+            },
+            {
+              "description": "If filled overrides the icon property.",
+              "name": "icon"
+            },
+            {
+              "description": "The default slot will be rendered into the pane body in a single column.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'oscd-elevation': OscdElevation, 'oscd-icon': OscdIcon, }"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "caption text, displayed in the header",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "icon name, displayed unless the \"icon\" slot is filled",
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "secondary",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "color header with secondary theme color while focus is within",
+              "attribute": "secondary"
+            },
+            {
+              "kind": "field",
+              "name": "highlighted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "highlight pane with dotted outline",
+              "attribute": "highlighted"
+            },
+            {
+              "kind": "field",
+              "name": "hideActions",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "disables CSS adoption to action buttons",
+              "attribute": "hideActions"
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "caption text, displayed in the header",
+              "fieldName": "label"
+            },
+            {
+              "name": "icon",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "icon name, displayed unless the \"icon\" slot is filled",
+              "fieldName": "icon"
+            },
+            {
+              "name": "secondary",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "color header with secondary theme color while focus is within",
+              "fieldName": "secondary"
+            },
+            {
+              "name": "highlighted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "highlight pane with dotted outline",
+              "fieldName": "highlighted"
+            },
+            {
+              "name": "hideActions",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "disables CSS adoption to action buttons",
+              "fieldName": "hideActions"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-action-icon",
+          "customElement": true,
+          "summary": "A responsive container rendering actions in a header.",
+          "modulePath": "action-icon/OscdActionIcon.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdActionIcon",
+          "declaration": {
+            "name": "OscdActionIcon",
+            "module": "action-icon/OscdActionIcon.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "action-pane/OscdActionPane.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A responsive container rendering actions in a header.",
+          "name": "OscdActionPane",
+          "cssProperties": [
+            {
+              "description": "Pane background.",
+              "name": "--oscd-action-pane-container-color",
+              "default": "var(--md-sys-color-surface, #fef7ff)"
+            },
+            {
+              "description": "Background on even nesting levels.",
+              "name": "--oscd-action-pane-contrasted-container-color",
+              "default": "var(--md-sys-color-on-primary, #fff)"
+            },
+            {
+              "description": "Pane outline.",
+              "name": "--oscd-action-pane-outline-color",
+              "default": "var(--md-sys-color-primary, #6750a4)"
+            },
+            {
+              "description": "Outline when secondary.",
+              "name": "--oscd-action-pane-secondary-outline-color",
+              "default": "var(--md-sys-color-secondary, #625b71)"
+            },
+            {
+              "description": "Heading text color.",
+              "name": "--oscd-action-pane-headline-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Heading font.",
+              "name": "--oscd-action-pane-headline-font-family",
+              "default": "var(--md-ref-typeface-plain, Roboto)"
+            }
+          ],
+          "slots": [
+            {
+              "description": "Places element in <nav/> section.",
+              "name": "action"
+            },
+            {
+              "description": "Action Pane Icon.",
+              "name": "icon"
+            },
+            {
+              "description": "The default slot will be rendered into the pane body in a single column.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'oscd-elevation': OscdElevation, 'oscd-icon': OscdIcon, }"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "caption text, displayed in the header",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "icon name, displayed unless the \"icon\" slot is filled",
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "secondary",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "color header with secondary theme color while focus is within",
+              "attribute": "secondary"
+            },
+            {
+              "kind": "field",
+              "name": "highlighted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "highlight pane with dotted outline",
+              "attribute": "highlighted"
+            },
+            {
+              "kind": "field",
+              "name": "level",
+              "type": {
+                "text": "number"
+              },
+              "default": "1",
+              "description": "nesting level, default (closest pane ancestor's level) + 1",
+              "attribute": "level"
+            },
+            {
+              "kind": "field",
+              "name": "parentPane",
+              "type": {
+                "text": "OscdActionPane | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "resolvedLevel",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "renderHeader",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "caption text, displayed in the header",
+              "fieldName": "label"
+            },
+            {
+              "name": "icon",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "icon name, displayed unless the \"icon\" slot is filled",
+              "fieldName": "icon"
+            },
+            {
+              "name": "secondary",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "color header with secondary theme color while focus is within",
+              "fieldName": "secondary"
+            },
+            {
+              "name": "highlighted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "highlight pane with dotted outline",
+              "fieldName": "highlighted"
+            },
+            {
+              "name": "level",
+              "type": {
+                "text": "number"
+              },
+              "default": "1",
+              "description": "nesting level, default (closest pane ancestor's level) + 1",
+              "fieldName": "level"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-action-pane",
+          "customElement": true,
+          "summary": "A responsive container rendering actions in a header.",
+          "modulePath": "action-pane/OscdActionPane.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdActionPane",
+          "declaration": {
+            "name": "OscdActionPane",
+            "module": "action-pane/OscdActionPane.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "action-tree/OscdActionTree.ts",
       "declarations": [
         {
@@ -1221,109 +1221,254 @@
     },
     {
       "kind": "javascript-module",
-      "path": "app-bar/OscdAppBar.ts",
+      "path": "checkbox/OscdCheckbox.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.\n\nThe main row follows the MD3 small top-app-bar defaults. Set `scrolled` when\nthe consumer determines that the page has scrolled. The sub-bar keeps its\nprimary-colored appearance in either state.",
-          "name": "OscdAppBar",
-          "cssProperties": [
-            {
-              "description": "Main-row container color at rest.",
-              "name": "--oscd-app-bar-container-color",
-              "default": "var(--md-sys-color-surface, #fef7ff)"
-            },
-            {
-              "description": "Main-row elevation at rest.",
-              "name": "--oscd-app-bar-container-elevation",
-              "default": "0"
-            },
-            {
-              "description": "Main-row shadow color.",
-              "name": "--oscd-app-bar-container-shadow-color",
-              "default": "var(--md-sys-color-shadow, #000)"
-            },
-            {
-              "description": "Headline color.",
-              "name": "--oscd-app-bar-headline-color",
-              "default": "var(--md-sys-color-on-surface, #1d1b20)"
-            },
-            {
-              "description": "Headline font family.",
-              "name": "--oscd-app-bar-headline-font",
-              "default": "var(--md-sys-typescale-title-large-font, var(--md-ref-typeface-brand, Roboto))"
-            },
-            {
-              "description": "Headline font size.",
-              "name": "--oscd-app-bar-headline-size",
-              "default": "var(--md-sys-typescale-title-large-size, 1.375rem)"
-            },
-            {
-              "description": "Headline line height.",
-              "name": "--oscd-app-bar-headline-line-height",
-              "default": "var(--md-sys-typescale-title-large-line-height, 1.75rem)"
-            },
-            {
-              "description": "Headline font weight.",
-              "name": "--oscd-app-bar-headline-weight",
-              "default": "var(--md-sys-typescale-title-large-weight, 400)"
-            },
-            {
-              "description": "Leading icon color.",
-              "name": "--oscd-app-bar-leading-icon-color",
-              "default": "var(--md-sys-color-on-surface, #1d1b20)"
-            },
-            {
-              "description": "Trailing icon color.",
-              "name": "--oscd-app-bar-trailing-icon-color",
-              "default": "var(--md-sys-color-on-surface-variant, #49454f)"
-            },
-            {
-              "description": "Main-row container color when `scrolled` is true.",
-              "name": "--oscd-app-bar-on-scroll-container-color",
-              "default": "var(--md-sys-color-surface-container, #f3edf7)"
-            },
-            {
-              "description": "Main-row elevation when `scrolled` is true.",
-              "name": "--oscd-app-bar-on-scroll-container-elevation",
-              "default": "2"
-            }
-          ],
-          "slots": [
-            {
-              "description": "Slot for action icons at the start of the app bar.",
-              "name": "alignStart"
-            },
-            {
-              "description": "Slot for the headline content.",
-              "name": "alignMiddle"
-            },
-            {
-              "description": "Slot for action icons at the end of the app bar.",
-              "name": "alignEnd"
-            },
-            {
-              "description": "Slot for additional content which will appear immediately under the main app bar.",
-              "name": "Default"
-            }
-          ],
+          "description": "Checkboxes allow users to select one or more items from a set.\nCheckboxes can turn an option on or off.\n\nUse checkboxes to:\n- Select one or more options from a list\n- Present a list containing sub-selections\n- Turn an item on or off in a desktop environment",
+          "name": "OscdCheckbox",
           "members": [
             {
               "kind": "field",
-              "name": "scrolled",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-ripple': OscdRipple, 'md-focus-ring': OscdFocusRing, }"
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "checked",
               "type": {
                 "text": "boolean"
               },
               "default": "false",
-              "description": "Whether the consumer has set the app bar to its on-scroll state.",
-              "attribute": "scrolled",
-              "reflects": true
+              "description": "Whether or not the checkbox is selected.",
+              "attribute": "checked",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
             },
             {
               "kind": "field",
-              "name": "scopedElements",
-              "static": true,
-              "readonly": true
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether or not the checkbox is indeterminate.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes",
+              "attribute": "indeterminate",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, require the checkbox to be selected when participating in\nform submission.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#validation",
+              "attribute": "required",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "'on'",
+              "description": "The value of the checkbox that is submitted with a form when selected.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value",
+              "attribute": "value",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "prevChecked",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "prevDisabled",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "prevIndeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "input",
+              "type": {
+                "text": "HTMLInputElement | null"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "[getFormValue]",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "[getFormState]",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formStateRestoreCallback",
+              "parameters": [
+                {
+                  "name": "state",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "[createValidator]",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "[getValidityAnchor]",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
             }
           ],
           "mixins": [
@@ -1333,22 +1478,94 @@
             }
           ],
           "superclass": {
-            "name": "LitElement",
-            "package": "lit"
+            "name": "Checkbox",
+            "package": "@omicronenergy/oscd-material-web-base/checkbox/internal/checkbox.js"
           },
-          "tagName": "oscd-app-bar",
+          "tagName": "oscd-checkbox",
           "customElement": true,
-          "summary": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.\n\nThe main row follows the MD3 small top-app-bar defaults. Set `scrolled` when\nthe consumer determines that the page has scrolled. The sub-bar keeps its\nprimary-colored appearance in either state.",
-          "modulePath": "app-bar/OscdAppBar.ts"
+          "summary": "Checkboxes allow users to select one or more items from a set.\nCheckboxes can turn an option on or off.\n\nUse checkboxes to:\n- Select one or more options from a list\n- Present a list containing sub-selections\n- Turn an item on or off in a desktop environment",
+          "attributes": [
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether or not the checkbox is selected.",
+              "fieldName": "checked",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether or not the checkbox is indeterminate.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes",
+              "fieldName": "indeterminate",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When true, require the checkbox to be selected when participating in\nform submission.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#validation",
+              "fieldName": "required",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "'on'",
+              "description": "The value of the checkbox that is submitted with a form when selected.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value",
+              "fieldName": "value",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "description": "{Event} The native `change` event on [`<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) --bubbles",
+              "name": "change",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            },
+            {
+              "description": "{InputEvent} The native `input` event on [`<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) --bubbles --composed",
+              "name": "input",
+              "inheritedFrom": {
+                "name": "Checkbox",
+                "module": "checkbox/internal/checkbox.ts"
+              }
+            }
+          ],
+          "modulePath": "checkbox/OscdCheckbox.ts"
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "OscdAppBar",
+          "name": "OscdCheckbox",
           "declaration": {
-            "name": "OscdAppBar",
-            "module": "app-bar/OscdAppBar.ts"
+            "name": "OscdCheckbox",
+            "module": "checkbox/OscdCheckbox.ts"
           }
         }
       ]
@@ -3605,254 +3822,118 @@
     },
     {
       "kind": "javascript-module",
-      "path": "checkbox/OscdCheckbox.ts",
+      "path": "app-bar/OscdAppBar.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "Checkboxes allow users to select one or more items from a set.\nCheckboxes can turn an option on or off.\n\nUse checkboxes to:\n- Select one or more options from a list\n- Present a list containing sub-selections\n- Turn an item on or off in a desktop environment",
-          "name": "OscdCheckbox",
+          "description": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.\n\nThe main row follows the MD3 small top-app-bar defaults. Set `scrolled` when\nthe consumer determines that the page has scrolled. The sub-bar keeps its\nprimary-colored appearance in either state.",
+          "name": "OscdAppBar",
+          "cssProperties": [
+            {
+              "description": "Main-row container color at rest.",
+              "name": "--oscd-app-bar-container-color",
+              "default": "var(--md-sys-color-surface, #fef7ff)"
+            },
+            {
+              "description": "Main-row elevation at rest.",
+              "name": "--oscd-app-bar-container-elevation",
+              "default": "0"
+            },
+            {
+              "description": "Main-row shadow color.",
+              "name": "--oscd-app-bar-container-shadow-color",
+              "default": "var(--md-sys-color-shadow, #000)"
+            },
+            {
+              "description": "Headline color.",
+              "name": "--oscd-app-bar-headline-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Headline font family.",
+              "name": "--oscd-app-bar-headline-font",
+              "default": "var(--md-sys-typescale-title-large-font, var(--md-ref-typeface-brand, Roboto))"
+            },
+            {
+              "description": "Headline font size.",
+              "name": "--oscd-app-bar-headline-size",
+              "default": "var(--md-sys-typescale-title-large-size, 1.375rem)"
+            },
+            {
+              "description": "Headline line height.",
+              "name": "--oscd-app-bar-headline-line-height",
+              "default": "var(--md-sys-typescale-title-large-line-height, 1.75rem)"
+            },
+            {
+              "description": "Headline font weight.",
+              "name": "--oscd-app-bar-headline-weight",
+              "default": "var(--md-sys-typescale-title-large-weight, 400)"
+            },
+            {
+              "description": "Leading icon color.",
+              "name": "--oscd-app-bar-leading-icon-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Trailing icon color.",
+              "name": "--oscd-app-bar-trailing-icon-color",
+              "default": "var(--md-sys-color-on-surface-variant, #49454f)"
+            },
+            {
+              "description": "Main-row container color when `scrolled` is true.",
+              "name": "--oscd-app-bar-on-scroll-container-color",
+              "default": "var(--md-sys-color-surface-container, #f3edf7)"
+            },
+            {
+              "description": "Main-row elevation when `scrolled` is true.",
+              "name": "--oscd-app-bar-on-scroll-container-elevation",
+              "default": "2"
+            }
+          ],
+          "slots": [
+            {
+              "description": "Slot for action icons at the start of the app bar.",
+              "name": "alignStart"
+            },
+            {
+              "description": "Slot for the headline content.",
+              "name": "alignMiddle"
+            },
+            {
+              "description": "Slot for action icons at the end of the app bar.",
+              "name": "alignEnd"
+            },
+            {
+              "description": "Slot for additional content which will appear immediately under the main app bar.",
+              "name": "Default"
+            }
+          ],
           "members": [
             {
               "kind": "field",
               "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
               "static": true,
-              "default": "{ 'md-ripple': OscdRipple, 'md-focus-ring': OscdFocusRing, }"
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "checked",
+              "name": "scrolled",
               "type": {
                 "text": "boolean"
               },
               "default": "false",
-              "description": "Whether or not the checkbox is selected.",
-              "attribute": "checked",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
+              "attribute": "scrolled",
+              "reflects": true
+            }
+          ],
+          "attributes": [
             {
-              "kind": "field",
-              "name": "indeterminate",
+              "name": "scrolled",
               "type": {
                 "text": "boolean"
               },
               "default": "false",
-              "description": "Whether or not the checkbox is indeterminate.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes",
-              "attribute": "indeterminate",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, require the checkbox to be selected when participating in\nform submission.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#validation",
-              "attribute": "required",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "'on'",
-              "description": "The value of the checkbox that is submitted with a form when selected.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value",
-              "attribute": "value",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "prevChecked",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "prevDisabled",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "prevIndeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "input",
-              "type": {
-                "text": "HTMLInputElement | null"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "[getFormValue]",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "[getFormState]",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formStateRestoreCallback",
-              "parameters": [
-                {
-                  "name": "state",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "[createValidator]",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "[getValidityAnchor]",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
+              "fieldName": "scrolled"
             }
           ],
           "mixins": [
@@ -3862,94 +3943,22 @@
             }
           ],
           "superclass": {
-            "name": "Checkbox",
-            "package": "@omicronenergy/oscd-material-web-base/checkbox/internal/checkbox.js"
+            "name": "LitElement",
+            "package": "lit"
           },
-          "tagName": "oscd-checkbox",
+          "tagName": "oscd-app-bar",
           "customElement": true,
-          "summary": "Checkboxes allow users to select one or more items from a set.\nCheckboxes can turn an option on or off.\n\nUse checkboxes to:\n- Select one or more options from a list\n- Present a list containing sub-selections\n- Turn an item on or off in a desktop environment",
-          "attributes": [
-            {
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Whether or not the checkbox is selected.",
-              "fieldName": "checked",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Whether or not the checkbox is indeterminate.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes",
-              "fieldName": "indeterminate",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When true, require the checkbox to be selected when participating in\nform submission.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#validation",
-              "fieldName": "required",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "'on'",
-              "description": "The value of the checkbox that is submitted with a form when selected.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value",
-              "fieldName": "value",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "description": "{Event} The native `change` event on [`<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) --bubbles",
-              "name": "change",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            },
-            {
-              "description": "{InputEvent} The native `input` event on [`<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) --bubbles --composed",
-              "name": "input",
-              "inheritedFrom": {
-                "name": "Checkbox",
-                "module": "checkbox/internal/checkbox.ts"
-              }
-            }
-          ],
-          "modulePath": "checkbox/OscdCheckbox.ts"
+          "summary": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.\n\nThe main row follows the MD3 small top-app-bar defaults. Set `scrolled` when\nthe consumer determines that the page has scrolled. The sub-bar keeps its\nprimary-colored appearance in either state.",
+          "modulePath": "app-bar/OscdAppBar.ts"
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "OscdCheckbox",
+          "name": "OscdAppBar",
           "declaration": {
-            "name": "OscdCheckbox",
-            "module": "checkbox/OscdCheckbox.ts"
+            "name": "OscdAppBar",
+            "module": "app-bar/OscdAppBar.ts"
           }
         }
       ]
@@ -9419,35 +9428,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "icon/OscdIcon.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Icon component that renders SCL domain icons by name or falls back to\nMaterial Symbols font ligatures.",
-          "name": "OscdIcon",
-          "members": [],
-          "superclass": {
-            "name": "Icon",
-            "module": "/icon/internal/icon.js"
-          },
-          "tagName": "oscd-icon",
-          "customElement": true,
-          "modulePath": "icon/OscdIcon.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdIcon",
-          "declaration": {
-            "name": "OscdIcon",
-            "module": "icon/OscdIcon.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "iconbutton/OscdFilledIconButton.ts",
       "declarations": [
         {
@@ -11586,6 +11566,35 @@
           "declaration": {
             "name": "OscdOutlinedIconButton",
             "module": "iconbutton/OscdOutlinedIconButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "icon/OscdIcon.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Icon component that renders SCL domain icons by name or falls back to\nMaterial Symbols font ligatures.",
+          "name": "OscdIcon",
+          "members": [],
+          "superclass": {
+            "name": "Icon",
+            "module": "/icon/internal/icon.js"
+          },
+          "tagName": "oscd-icon",
+          "customElement": true,
+          "modulePath": "icon/OscdIcon.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdIcon",
+          "declaration": {
+            "name": "OscdIcon",
+            "module": "icon/OscdIcon.ts"
           }
         }
       ]
@@ -15582,305 +15591,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "scl-select/OscdSclSelect.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "OscdSclSelect",
-          "members": [
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ 'oscd-switch': OscdSwitch, 'oscd-filled-select': OscdFilledSelect, 'oscd-select-option': OscdSelectOption, }"
-            },
-            {
-              "kind": "field",
-              "name": "nullable",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Whether [[`value`]] may be set to `null` by nullSwitch",
-              "attribute": "nullable"
-            },
-            {
-              "kind": "field",
-              "name": "selectValue",
-              "type": {
-                "text": "string"
-              },
-              "privacy": "private",
-              "default": "''"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "description": "SCL attributes `value`, can only be `null` if [[`nullable`]].",
-              "type": {
-                "text": "string | null"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "selectOptions",
-              "type": {
-                "text": "string[]"
-              },
-              "default": "[]",
-              "description": "Value array be be renders as selection option inside the selection input",
-              "attribute": "selectOptions"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled"
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "attribute": "label"
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "required"
-            },
-            {
-              "kind": "field",
-              "name": "supportingText",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "attribute": "supportingText"
-            },
-            {
-              "kind": "field",
-              "name": "error",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "error"
-            },
-            {
-              "kind": "field",
-              "name": "errorText",
-              "type": {
-                "text": "string | undefined"
-              },
-              "attribute": "errorText"
-            },
-            {
-              "kind": "field",
-              "name": "isNull",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "parkedValue",
-              "type": {
-                "text": "string | null"
-              },
-              "privacy": "private",
-              "default": "null"
-            },
-            {
-              "kind": "field",
-              "name": "null",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "setCustomValidity",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "message",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "checkValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderNullSwitch",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "renderSelectOption",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "selectOption",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "Event"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "nullable",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Whether [[`value`]] may be set to `null` by nullSwitch",
-              "fieldName": "nullable"
-            },
-            {
-              "name": "selectOptions",
-              "type": {
-                "text": "string[]"
-              },
-              "default": "[]",
-              "description": "Value array be be renders as selection option inside the selection input",
-              "fieldName": "selectOptions"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "fieldName": "label"
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "required"
-            },
-            {
-              "name": "supportingText",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "fieldName": "supportingText"
-            },
-            {
-              "name": "error",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "error"
-            },
-            {
-              "name": "errorText",
-              "type": {
-                "text": "string | undefined"
-              },
-              "fieldName": "errorText"
-            }
-          ],
-          "mixins": [
-            {
-              "name": "ScopedElementsMixin",
-              "package": "@open-wc/scoped-elements/lit-element.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "oscd-scl-select",
-          "customElement": true,
-          "modulePath": "scl-select/OscdSclSelect.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdSclSelect",
-          "declaration": {
-            "name": "OscdSclSelect",
-            "module": "scl-select/OscdSclSelect.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "scl-textfield/OscdSclTextField.ts",
       "declarations": [
         {
@@ -16390,11 +16100,310 @@
     },
     {
       "kind": "javascript-module",
+      "path": "scl-select/OscdSclSelect.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdSclSelect",
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'oscd-switch': OscdSwitch, 'oscd-filled-select': OscdFilledSelect, 'oscd-select-option': OscdSelectOption, }"
+            },
+            {
+              "kind": "field",
+              "name": "nullable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether [[`value`]] may be set to `null` by nullSwitch",
+              "attribute": "nullable"
+            },
+            {
+              "kind": "field",
+              "name": "selectValue",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "private",
+              "default": "''"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "SCL attributes `value`, can only be `null` if [[`nullable`]].",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selectOptions",
+              "type": {
+                "text": "string[]"
+              },
+              "default": "[]",
+              "description": "Value array be be renders as selection option inside the selection input",
+              "attribute": "selectOptions"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "required"
+            },
+            {
+              "kind": "field",
+              "name": "supportingText",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "attribute": "supportingText"
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "error"
+            },
+            {
+              "kind": "field",
+              "name": "errorText",
+              "type": {
+                "text": "string | undefined"
+              },
+              "attribute": "errorText"
+            },
+            {
+              "kind": "field",
+              "name": "isNull",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "parkedValue",
+              "type": {
+                "text": "string | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "null",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "message",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderNullSwitch",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSelectOption",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "selectOption",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "Event"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "nullable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether [[`value`]] may be set to `null` by nullSwitch",
+              "fieldName": "nullable"
+            },
+            {
+              "name": "selectOptions",
+              "type": {
+                "text": "string[]"
+              },
+              "default": "[]",
+              "description": "Value array be be renders as selection option inside the selection input",
+              "fieldName": "selectOptions"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "label"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "required"
+            },
+            {
+              "name": "supportingText",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "fieldName": "supportingText"
+            },
+            {
+              "name": "error",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "error"
+            },
+            {
+              "name": "errorText",
+              "type": {
+                "text": "string | undefined"
+              },
+              "fieldName": "errorText"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-scl-select",
+          "customElement": true,
+          "modulePath": "scl-select/OscdSclSelect.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdSclSelect",
+          "declaration": {
+            "name": "OscdSclSelect",
+            "module": "scl-select/OscdSclSelect.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "search-field/OscdOutlinedSearchField.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "An `oscd-outlined-text-field` specialized for search input.\n\nBehaves like a standard outlined text field, but comes by default with a\nleading search icon and a trailing \"clear\" button (shown once\n[[`value`]] is non-empty), a placeholder rendered at 50% opacity (relative\nto the input text color) that is hidden while the field has focus.\n\nThe default leading/trailing icons can be overridden by slotting content\ninto the `leading-icon`/`trailing-icon` slots, exactly as with\n`oscd-outlined-text-field`. The placeholder color can be overridden via\n`--oscd-search-field-placeholder-color`.\n\nLike the outlined text field it wraps, the container has no background by\ndefault; consumers can set one via `--oscd-search-field-container-color`.",
+          "description": "An `oscd-outlined-text-field` specialized for search input.\n\nBehaves like a standard outlined text field, but comes by default with a\nleading search icon and a trailing \"clear\" button (shown once\n[[`value`]] is non-empty), a placeholder rendered at 50% opacity (relative\nto the input text color) that is hidden while the field has focus.\n\nThe default leading/trailing icons can be overridden by slotting content\ninto the `leading-icon`/`trailing-icon` slots, exactly as with\n`oscd-outlined-text-field`. The placeholder color can be overridden via\n`--oscd-search-field-placeholder-color`.\n\nLike the outlined text field it wraps, the container has no background by\ndefault. Container styling is available through the wrapped field's\nsupported `--md-outlined-text-field-*` tokens.",
           "name": "OscdOutlinedSearchField",
           "members": [
             {
@@ -17449,7 +17458,7 @@
           },
           "tagName": "oscd-outlined-search-field",
           "customElement": true,
-          "summary": "An `oscd-outlined-text-field` specialized for search input.\n\nBehaves like a standard outlined text field, but comes by default with a\nleading search icon and a trailing \"clear\" button (shown once\n[[`value`]] is non-empty), a placeholder rendered at 50% opacity (relative\nto the input text color) that is hidden while the field has focus.\n\nThe default leading/trailing icons can be overridden by slotting content\ninto the `leading-icon`/`trailing-icon` slots, exactly as with\n`oscd-outlined-text-field`. The placeholder color can be overridden via\n`--oscd-search-field-placeholder-color`.\n\nLike the outlined text field it wraps, the container has no background by\ndefault; consumers can set one via `--oscd-search-field-container-color`.",
+          "summary": "An `oscd-outlined-text-field` specialized for search input.\n\nBehaves like a standard outlined text field, but comes by default with a\nleading search icon and a trailing \"clear\" button (shown once\n[[`value`]] is non-empty), a placeholder rendered at 50% opacity (relative\nto the input text color) that is hidden while the field has focus.\n\nThe default leading/trailing icons can be overridden by slotting content\ninto the `leading-icon`/`trailing-icon` slots, exactly as with\n`oscd-outlined-text-field`. The placeholder color can be overridden via\n`--oscd-search-field-placeholder-color`.\n\nLike the outlined text field it wraps, the container has no background by\ndefault. Container styling is available through the wrapped field's\nsupported `--md-outlined-text-field-*` tokens.",
           "attributes": [
             {
               "name": "clearLabel",
@@ -22501,7 +22510,7 @@
                   }
                 }
               ],
-              "description": "Shows a notification and returns an id that can be passed to `close()`.\nIn `stack` mode, notifications beyond `maxVisible` are queued until space\nbecomes available. Auto-dismiss timing starts when a notification becomes\nvisible, not while it is queued. `variantLabel` overrides the visually hidden\ndefault label for localization."
+              "description": "Shows a notification and returns an id that can be passed to `close()`.\nIn `stack` mode, notifications beyond `maxVisible` are queued until space\nbecomes available. Auto-dismiss timing starts when a notification becomes\nvisible, not while it is queued. `variantLabel` overrides the visually\nhidden default label for localization."
             },
             {
               "kind": "method",
@@ -27006,7 +27015,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Displays hierarchical data as an accessible, keyboard-navigable tree.\n\n`oscd-tree` is data-driven: callers provide nested node data through `data`,\nand the tree manages expansion, selection, active-row navigation, row\nindentation, and ARIA attributes. Row content stays flexible through the\n`renderItem` callback.\n\nThe tree owns the row frame. This includes indentation, expand/collapse\naffordances, selection affordances, keyboard handling, focus handling, and\naccessibility attributes. `renderItem` only supplies the content rendered\ninside each row frame.\n\nThe expand/collapse toggle is customizable: `collapseIcon` and `expandIcon`\noverride the icon names (defaults `chevron_right` / `expand_more`), and\n`togglePosition` places the toggle either `'leading'` (default) or\n`'trailing'`, in which case toggles line up on the row's trailing edge\nregardless of nesting depth. Keyboard expansion is unaffected by the toggle\nposition.\n\nLeaf rows have no toggle. `renderLeafAccessory` can render an interactive\naccessory (such as a pin/unpin button) into a leaf row's toggle column so it\naligns with the chevrons of expandable rows. The tree isolates pointer and\n`Enter`/`Space` interaction on the accessory so activating it does not select\nthe row; a returned focusable element adds one tab stop per row.\n\nA leading icon (the `start` slot of `oscd-tree-item`) occupies exactly one\nindent step, so when only some rows have icons (e.g. iconed parents with\nicon-less children) the children's text aligns automatically under the\nparent's text at any depth. The single `--oscd-tree-indent-step` property\n(default `24px`) drives both indentation and the leading icon column; set it\nlarge enough to hold your icon (e.g. `40px`) when using leading icons. See\nOscdTreeItem for details.\n\nEvery node may provide a stable `id`. If no ID is supplied, the tree uses\n`getNodeId` when provided, then falls back to an index-path ID such as\n`0/1/2`. Index-path IDs are convenient for static demos but are not stable\nwhen nodes are inserted, removed, sorted, filtered, or lazily loaded, and\nshould not be persisted.\n\n`selectedIds` and `expandedIds` are controlled state. They can be persisted\nby the caller, but persisted IDs must be scoped to the data set/context that\nproduced them. Reset or re-key those arrays when `data` changes to a\ndifferent logical tree, otherwise unrelated nodes with matching IDs may\nappear selected or expanded.\n\n`children` has three meanings:\n\n- `children === undefined`: children are unknown or not loaded yet.\n- `children === []`: children are known and the node is a leaf.\n- `children.length > 0`: children are known and the node is a branch.\n\nExpansion of nodes with unknown children can be intercepted with the\ncancelable `node-expand` event.",
+          "description": "Displays hierarchical data as an accessible, keyboard-navigable tree.\n\n`oscd-tree` is data-driven: callers provide nested node data through `data`,\nand the tree manages expansion, selection, active-row navigation, row\nindentation, and ARIA attributes. Row content stays flexible through the\n`renderItem` callback.\n\nThe tree owns the row frame. This includes indentation, expand/collapse\naffordances, selection affordances, keyboard handling, focus handling, and\naccessibility attributes. `renderItem` only supplies the content rendered\ninside each row frame.\n\nThe expand/collapse toggle is customizable: `collapseIcon` and `expandIcon`\noverride the icon names (defaults `chevron_right` / `expand_more`), and\n`togglePosition` places the toggle either `'leading'` (default) or\n`'trailing'`, in which case toggles line up on the row's trailing edge\nregardless of nesting depth. Keyboard expansion is unaffected by the toggle\nposition.\n\nLeaf rows have no toggle. `renderLeafAccessory` can render an interactive\naccessory (such as a pin/unpin button) into a leaf row's toggle column so it\naligns with the chevrons of expandable rows. The tree isolates pointer and\n`Enter`/`Space` interaction on the accessory so activating it does not select\nthe row; a returned focusable element adds one tab stop per row.\n\nA leading icon (the `start` slot of `oscd-tree-item`) occupies exactly one\nindent step, so when only some rows have icons (e.g. iconed parents with\nicon-less children) the children's text aligns automatically under the\nparent's text at any depth. The single `--oscd-tree-indent-step` property\n(default `24px`) drives both indentation and the leading icon column; set it\nlarge enough to hold your icon (e.g. `40px`) when using leading icons. See\nOscdTreeItem for details.\n\nRow ripple and focus styling uses the embedded `--md-ripple-*` and\n`--md-focus-ring-*` tokens directly.\n\nEvery node may provide a stable `id`. If no ID is supplied, the tree uses\n`getNodeId` when provided, then falls back to an index-path ID such as\n`0/1/2`. Index-path IDs are convenient for static demos but are not stable\nwhen nodes are inserted, removed, sorted, filtered, or lazily loaded, and\nshould not be persisted.\n\n`selectedIds` and `expandedIds` are controlled state. They can be persisted\nby the caller, but persisted IDs must be scoped to the data set/context that\nproduced them. Reset or re-key those arrays when `data` changes to a\ndifferent logical tree, otherwise unrelated nodes with matching IDs may\nappear selected or expanded.\n\n`children` has three meanings:\n\n- `children === undefined`: children are unknown or not loaded yet.\n- `children === []`: children are known and the node is a leaf.\n- `children.length > 0`: children are known and the node is a branch.\n\nExpansion of nodes with unknown children can be intercepted with the\ncancelable `node-expand` event.",
           "name": "OscdTree",
           "events": [
             {
@@ -28124,7 +28133,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Default content component for rows rendered inside `oscd-tree`.\n\n`oscd-tree-item` is intended to be returned from an `oscd-tree` `renderItem`\ncallback. It renders the caller-visible row content only. The parent\n`oscd-tree` owns the tree row frame, indentation, expand/collapse affordance,\nselection affordance, keyboard handling, and ARIA attributes.\n\nUse the `headline` slot for the primary label, `supporting-text` for\nsecondary/path text, `start` for an optional leading icon, and `end` for\noptional trailing status or actions.\n\n## Leading icon alignment\n\nWhen only some rows carry a leading icon (e.g. top-level rows have icons but\ntheir children do not), you usually want the icon-less children's text to sit\ndirectly under their iconed parent's text. This works automatically: a\nleading icon occupies exactly one indent step, so an icon-less child —\nindented one step by the tree — aligns its text with the parent's, at any\ndepth, with no per-row configuration.\n\nThe leading icon column and the per-level indentation are both driven by the\nsingle `--oscd-tree-indent-step` custom property (default `24px`), so they can\nnever drift out of alignment. Set it large enough to comfortably hold your\nicon — e.g. `--oscd-tree-indent-step: 40px` — which also widens the gap\nbetween the icon and the text (the gap is `step - icon size`). The rarely\nneeded `--oscd-tree-item-leading-size` can decouple just the column width, but\nkeeping it equal to the indent step is what preserves the alignment.",
+          "description": "Default content component for rows rendered inside `oscd-tree`.\n\n`oscd-tree-item` is intended to be returned from an `oscd-tree` `renderItem`\ncallback. It renders the caller-visible row content only. The parent\n`oscd-tree` owns the tree row frame, indentation, expand/collapse affordance,\nselection affordance, keyboard handling, and ARIA attributes.\n\nUse the `headline` slot for the primary label, `supporting-text` for\nsecondary/path text, `start` for an optional leading icon, and `end` for\noptional trailing status or actions.\n\n## Leading icon alignment\n\nWhen only some rows carry a leading icon (e.g. top-level rows have icons but\ntheir children do not), you usually want the icon-less children's text to sit\ndirectly under their iconed parent's text. This works automatically: a\nleading icon occupies exactly one indent step, so an icon-less child —\nindented one step by the tree — aligns its text with the parent's, at any\ndepth, with no per-row configuration.\n\nThe leading icon column and the per-level indentation are both driven by the\nsingle `--oscd-tree-indent-step` custom property (default `24px`), so they can\nnever drift out of alignment. Set it large enough to comfortably hold your\nicon — e.g. `--oscd-tree-indent-step: 40px` — which also widens the gap\nbetween the icon and the text (the gap is `step - icon size`). The rarely\nneeded `--oscd-tree-item-leading-size` can decouple just the column width, but\nkeeping it equal to the indent step is what preserves the alignment.\n\nText and icon styling uses the embedded `--md-list-item-*` tokens directly.",
           "name": "OscdTreeItem",
           "slots": [
             {
@@ -28944,6 +28953,88 @@
     },
     {
       "kind": "javascript-module",
+      "path": "labs/item/OscdItem.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdItem",
+          "members": [
+            {
+              "kind": "field",
+              "name": "multiline",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Only needed for SSR.\n\nAdd this attribute when an item has two lines to avoid a Flash Of Unstyled\nContent. This attribute is not needed for single line items or items with\nthree or more lines.",
+              "attribute": "multiline",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Item",
+                "module": "labs/item/internal/item.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "textSlots",
+              "type": {
+                "text": "HTMLSlotElement[]"
+              },
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "Item",
+                "module": "labs/item/internal/item.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleTextSlotChange",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "Item",
+                "module": "labs/item/internal/item.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "Item",
+            "package": "@omicronenergy/oscd-material-web-base/labs/item/internal/item.js"
+          },
+          "tagName": "oscd-item",
+          "customElement": true,
+          "attributes": [
+            {
+              "name": "multiline",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Only needed for SSR.\n\nAdd this attribute when an item has two lines to avoid a Flash Of Unstyled\nContent. This attribute is not needed for single line items or items with\nthree or more lines.",
+              "fieldName": "multiline",
+              "inheritedFrom": {
+                "name": "Item",
+                "module": "labs/item/internal/item.ts"
+              }
+            }
+          ],
+          "modulePath": "labs/item/OscdItem.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdItem",
+          "declaration": {
+            "name": "OscdItem",
+            "module": "labs/item/OscdItem.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "labs/card/OscdElevatedCard.ts",
       "declarations": [
         {
@@ -29073,88 +29164,6 @@
           "declaration": {
             "name": "OscdOutlinedCard",
             "module": "labs/card/OscdOutlinedCard.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "labs/item/OscdItem.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "OscdItem",
-          "members": [
-            {
-              "kind": "field",
-              "name": "multiline",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Only needed for SSR.\n\nAdd this attribute when an item has two lines to avoid a Flash Of Unstyled\nContent. This attribute is not needed for single line items or items with\nthree or more lines.",
-              "attribute": "multiline",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "Item",
-                "module": "labs/item/internal/item.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "textSlots",
-              "type": {
-                "text": "HTMLSlotElement[]"
-              },
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "Item",
-                "module": "labs/item/internal/item.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleTextSlotChange",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "Item",
-                "module": "labs/item/internal/item.ts"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "Item",
-            "package": "@omicronenergy/oscd-material-web-base/labs/item/internal/item.js"
-          },
-          "tagName": "oscd-item",
-          "customElement": true,
-          "attributes": [
-            {
-              "name": "multiline",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Only needed for SSR.\n\nAdd this attribute when an item has two lines to avoid a Flash Of Unstyled\nContent. This attribute is not needed for single line items or items with\nthree or more lines.",
-              "fieldName": "multiline",
-              "inheritedFrom": {
-                "name": "Item",
-                "module": "labs/item/internal/item.ts"
-              }
-            }
-          ],
-          "modulePath": "labs/item/OscdItem.ts"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OscdItem",
-          "declaration": {
-            "name": "OscdItem",
-            "module": "labs/item/OscdItem.ts"
           }
         }
       ]

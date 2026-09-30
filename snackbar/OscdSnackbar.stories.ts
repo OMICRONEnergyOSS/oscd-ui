@@ -30,8 +30,9 @@ type ValueElement = HTMLElement & {
   value: string;
 };
 
-const meta: Meta<StoryArgs> = {
+const meta: Meta<OscdSnackbar & StoryArgs> = {
   title: 'Feedback / Snackbar',
+  component: 'oscd-snackbar',
   tags: ['autodocs'],
   argTypes: {
     message: { control: 'text' },
