@@ -10,7 +10,7 @@ export const dividerOverrides: StorybookOverrides = {
       render: args => {
         const { template } = getStorybookHelpers<OscdDivider>('oscd-divider');
         return html`<div
-          style="width: 300px; background-color: var(--oscd-base3);"
+          style="width: 300px; background-color: var(--md-sys-color-surface);"
         >
           <p style="padding: 16px;">Content above the divider</p>
           ${template(

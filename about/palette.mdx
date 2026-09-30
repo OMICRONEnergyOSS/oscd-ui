@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { oscdMd3Mappings } from '../oscd-md3-mappings.js';
+
+<Meta title="Foundations/Palette" />
+
+# Palette
+
+Select Solarized light, Solarized dark or Omicron from the Palette toolbar.
+The OpenSCD slots are listed first, followed by the 27 MD3 roles oscd-ui uses.
+[The mapping table](https://github.com/OMICRONEnergyOSS/oscd-ui/blob/main/THEMING.md#material-role-mapping)
+shows which slot supplies each MD3 role and its fallback.
+
+<oscd-storybook-theme style={{ backgroundColor: 'transparent', color: 'inherit', minHeight: '0' }}>
+  <table>
+    <thead>
+      <tr><th>Token</th><th>Colour</th></tr>
+    </thead>
+    <tbody>
+      <tr><th colSpan={2}>OpenSCD colours</th></tr>
+      {['primary', 'secondary', 'error', 'warning'].map(role => (
+        <tr key={role}>
+          <td><code>--oscd-theme-{role}</code></td>
+          <td><div style={{ width: '96px', height: '24px', backgroundColor: `var(--oscd-theme-${role})`, border: '1px solid currentColor' }} /></td>
+        </tr>
+      ))}
+      <tr><th colSpan={2}>OpenSCD base colours</th></tr>
+      {['base03', 'base02', 'base01', 'base00', 'base0', 'base1', 'base2', 'base3'].map(role => (
+        <tr key={role}>
+          <td><code>--oscd-theme-{role}</code></td>
+          <td><div style={{ width: '96px', height: '24px', backgroundColor: `var(--oscd-theme-${role})`, border: '1px solid currentColor' }} /></td>
+        </tr>
+      ))}
+      <tr><th colSpan={2}>MD3 roles used by oscd-ui</th></tr>
+      {[...oscdMd3Mappings.cssText.matchAll(/--md-sys-color-([a-z-]+):/g)].map(([, role]) => (
+        <tr key={role}>
+          <td><code>--md-sys-color-{role}</code></td>
+          <td><div style={{ width: '96px', height: '24px', backgroundColor: `var(--md-sys-color-${role})`, border: '1px solid currentColor' }} /></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</oscd-storybook-theme>

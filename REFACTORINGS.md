@@ -320,32 +320,30 @@ Status: `[ ]` open, `[~]` in progress, `[x]` done.
 
 ### Phase 1 — Storybook palettes and selector
 
-- [ ] **A-10** Replace the `*` block in `preview-head.html` with palette files
+- [x] **A-10** Replace the `*` block in `preview-head.html` with palette files
       `.storybook/palettes/{solarized-light,solarized-dark,omicron}.css`. The
       Solarized files define private `--_solarized-*` references and alias them
       to the established `--oscd-theme-*` slots for each mode; A-03 documents
       any contrast-recommendation deviations without blocking a palette.
       Each is scoped as `:root[data-palette='<id>'] { … }`. Apply the A-04
-      Lit mappings on the root Lit component hosting the Storybook preview,
-      not on `:root`; verify how the preview's `body` receives its sys roles
-      before keeping its existing body styling. The mappings cover the roles
+      Lit mappings on the global Lit preview host, not on `:root`. Style the
+      canvas on that host; document `body` stays neutral because it cannot
+      inherit the host's system roles. The mappings cover the roles
       oscd-ui's components actually read (27 today, see F-A8). (F-A1, F-A2,
       F-A6, F-A8, F-A9)
-- [ ] **A-11** Delete `.storybook/theming.css` and
+- [x] **A-11** Delete `.storybook/theming.css` and
       `utils/storybook/themingDecorator.ts`. (F-A3, F-A4)
-- [ ] **A-12** Palette selector:
-  - _Minimal_: `@storybook/addon-themes` with
-    `withThemeByDataAttribute({ attributeName: 'data-palette', themes: {…},
-defaultTheme: 'solarized-light' })`, replacing the hand-rolled
-    `globalTypes.theme`. Verify it supports Storybook 10 before adopting it;
-    otherwise keep `globalTypes` but have it actually drive `data-palette`.
-    (F-A5)
-  - _Scalable_: see Phase 5.
-- [ ] **A-13** Fix stories that read the palette layer. (F-A7)
-- [ ] **A-14** Add a "Palette" docs page that renders every sys role as a
+- [x] **A-12** Use `globalTypes.palette` for the three options (default:
+      Solarized light). Sync `data-palette` on `<html>` from Storybook's
+      globals-updated event, including docs-only pages that do not run story
+      decorators. No additional addon needed; see Phase 5 for user palettes.
+      (F-A5)
+- [x] **A-13** Fix stories that read the palette layer. (F-A7)
+- [x] **A-14** Add a "Palette" docs page that renders every sys role as a
       swatch for the active palette. It makes missing or bent roles visible and
-      is the visual check for every later phase.
-- [ ] **A-15** Add a docs-only Storybook page, `Foundations/Theming`, for the
+      is the visual check for every later phase. Keep the docs table on
+      Storybook's neutral background; only its swatches change with the palette.
+- [x] **A-15** Add a docs-only Storybook page, `Foundations/Theming`, for the
       A-04 mapper. Show its root-level import/use snippet, a few illustrative
       `--oscd-theme-*` → `--md-sys-*` rows, and a live before/after example:
       palette values alone use Material fallbacks; the same oscd-ui component

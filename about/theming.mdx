@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import '../button/oscd-filled-button.js';
+
+<Meta title="Foundations/Theming" />
+
+# Theming
+
+oscd-ui uses MD3 defaults unless a Lit shell or plugin root opts into the
+OpenSCD palette mappings. Add the mappings first in the root's styles:
+
+```ts
+import { css, LitElement } from 'lit';
+import { oscdMd3Mappings } from '@omicronenergy/oscd-ui/oscd-md3-mappings.js';
+
+class PluginRoot extends LitElement {
+  static override styles = [oscdMd3Mappings, css`:host { display: block; }`];
+}
+```
+
+The mapping is independent of the active palette:
+
+| Palette slot | MD3 role |
+| --- | --- |
+| `--oscd-theme-primary` | `--md-sys-color-primary` |
+| `--oscd-theme-base3` | `--md-sys-color-surface` |
+| `--oscd-theme-base00` | `--md-sys-color-on-surface` |
+
+See [the complete role mapping table](https://github.com/OMICRONEnergyOSS/oscd-ui/blob/main/THEMING.md#material-role-mapping).
+
+## Before and after
+
+Both buttons below see the selected `--oscd-theme-*` palette. Without the
+mapper, the first uses Material's fallback colours; within the Lit preview
+host, the second inherits the mapped palette:
+
+<div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', padding: '16px' }}>
+  <div style={{ padding: '16px' }}>
+    <p>Palette only</p>
+    <oscd-filled-button>Material defaults</oscd-filled-button>
+  </div>
+  <oscd-storybook-theme style={{ minHeight: '0' }}>
+    <div style={{ padding: '16px' }}>
+      <p>Palette + mappings</p>
+      <oscd-filled-button>Selected palette</oscd-filled-button>
+    </div>
+  </oscd-storybook-theme>
+</div>
