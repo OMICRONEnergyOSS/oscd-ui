@@ -527,6 +527,18 @@ scripts/check-component-tokens.mjs`, and `git diff --check` passed. A dedicated
 the status check required in branch protection remains a repository settings
 action outside the workflow file.
 
+**Batch 9 (A-35):** Regenerated `custom-elements.json` through the configured
+CEM pipeline, refreshing component metadata and preserving the 119 existing
+module paths. Linked Snackbar Storybook autodocs to `oscd-snackbar` so its
+CSS-property table is populated from the manifest. The live Storybook docs
+tables contain all 10 Navigation Drawer Header and all 40 Snackbar CSS
+properties, with no removed header aliases. The Storybook production build
+and `npx tsc --noEmit` passed. `npm run custom-elements-manifest` completed
+successfully but emitted unresolved dependency warnings for source-relative
+`.js` imports; no manifest modules were dropped. The generated manifest and
+Storybook docs are ready; resolving those analyzer warnings is not part of
+A-35.
+
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
       `--md-outlined-text-field-*` tokens for supported customization.
@@ -614,7 +626,7 @@ action outside the workflow file.
       string-based script, with no allow-list; make it a required check only
       once the cleanup lets it pass. A future exception changes the rule
       deliberately. (F-E3)
-- [ ] **A-35** Regenerate `custom-elements.json` and check the Storybook
+- [x] **A-35** Regenerate `custom-elements.json` and check the Storybook
       docs tables.
 - [ ] **A-36** Write the developer-facing migration guide for the release
       that lands Phases 2–3 (see "Migration impact"). The format is still to be
