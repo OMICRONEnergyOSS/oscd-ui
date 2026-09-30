@@ -453,6 +453,23 @@ dist/snackbar/OscdSnackbar.spec.js --config web-test-runner.config.js`
 (20 passing), targeted ESLint on the six changed TypeScript/Storybook files,
 and `git diff --check` passed.
 
+**Batch 4 (A-31):** The app bar's main row now uses the MD3 small top-app-bar
+resting defaults: surface, level-0 elevation, 64px height, title-large
+headline, on-surface headline/leading icon and on-surface-variant trailing
+icon. Consumers control the reflected `scrolled` state; it switches the main
+row to surface-container and level-2 elevation. The separate sub-bar retains
+its existing primary colors. Legacy app-bar tokens are replaced with 12
+documented `--oscd-app-bar-*` facet tokens, and leaked `--app-bar-*` height
+inputs are removed. Storybook has resting and scrolled examples; the
+navigation-drawer story now uses the renamed app-bar tokens to retain its
+primary-colored appearance. `OscdAppBar.spec.ts` covers sizing, default and
+scrolled colors/elevation, reflected state, icon roles, and unchanged sub-bar.
+The component manifest was updated manually pending A-35.
+`npm run build -- --pretty false`, `npx wtr
+dist/app-bar/OscdAppBar.spec.js --config web-test-runner.config.js`
+(3 passing), targeted ESLint on the component, stories and spec, and
+`git diff --check` passed.
+
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
       `--md-outlined-text-field-*` tokens for supported customization.
@@ -481,7 +498,7 @@ and `git diff --check` passed.
 - [x] **A-30** Action-pane/action-icon: replace `--oscd-*-theme-*` with
       facet-specific `--oscd-action-{pane,icon}-*` tokens defaulting to MD3
       roles; retain per-component overrides (rung 3). (F-C1)
-- [ ] **A-31** Align the app bar's main row to the MD3 small top-app-bar
+- [x] **A-31** Align the app bar's main row to the MD3 small top-app-bar
       defaults (the 64px height excludes the separate sub-bar, which remains
       unchanged and is out of scope for this refactor): resting container
       `surface`, level-0 elevation, 64px height,

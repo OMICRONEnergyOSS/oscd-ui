@@ -1225,44 +1225,68 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.",
+          "description": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.\n\nThe main row follows the MD3 small top-app-bar defaults. Set `scrolled` when\nthe consumer determines that the page has scrolled. The sub-bar keeps its\nprimary-colored appearance in either state.",
           "name": "OscdAppBar",
           "cssProperties": [
             {
-              "description": "The elevation level of the app bar.",
-              "name": "--oscd-app-bar-elevation"
+              "description": "Main-row container color at rest.",
+              "name": "--oscd-app-bar-container-color",
+              "default": "var(--md-sys-color-surface, #fef7ff)"
             },
             {
-              "description": "The shadow color of the app bar.",
-              "name": "--oscd-app-bar-shadow-color"
+              "description": "Main-row elevation at rest.",
+              "name": "--oscd-app-bar-container-elevation",
+              "default": "0"
             },
             {
-              "description": "The color of the app bar.",
-              "name": "--oscd-app-bar-color"
+              "description": "Main-row shadow color.",
+              "name": "--oscd-app-bar-container-shadow-color",
+              "default": "var(--md-sys-color-shadow, #000)"
             },
             {
-              "description": "The background color of the app bar.",
-              "name": "--oscd-app-bar-background-color"
+              "description": "Headline color.",
+              "name": "--oscd-app-bar-headline-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
             },
             {
-              "description": "The font family of the app bar title.",
-              "name": "--oscd-app-bar-title-font-family"
+              "description": "Headline font family.",
+              "name": "--oscd-app-bar-headline-font",
+              "default": "var(--md-sys-typescale-title-large-font, var(--md-ref-typeface-brand, Roboto))"
             },
             {
-              "description": "The font size of the app bar title.",
-              "name": "--oscd-app-bar-title-font-size"
+              "description": "Headline font size.",
+              "name": "--oscd-app-bar-headline-size",
+              "default": "var(--md-sys-typescale-title-large-size, 1.375rem)"
             },
             {
-              "description": "The line height of the app bar title.",
-              "name": "--oscd-app-bar-title-line-height"
+              "description": "Headline line height.",
+              "name": "--oscd-app-bar-headline-line-height",
+              "default": "var(--md-sys-typescale-title-large-line-height, 1.75rem)"
             },
             {
-              "description": "The font weight of the app bar title.",
-              "name": "--oscd-app-bar-title-font-weight"
+              "description": "Headline font weight.",
+              "name": "--oscd-app-bar-headline-weight",
+              "default": "var(--md-sys-typescale-title-large-weight, 400)"
             },
             {
-              "description": "The color of the icon button in the app bar.",
-              "name": "--md-icon-button-icon-color"
+              "description": "Leading icon color.",
+              "name": "--oscd-app-bar-leading-icon-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Trailing icon color.",
+              "name": "--oscd-app-bar-trailing-icon-color",
+              "default": "var(--md-sys-color-on-surface-variant, #49454f)"
+            },
+            {
+              "description": "Main-row container color when `scrolled` is true.",
+              "name": "--oscd-app-bar-on-scroll-container-color",
+              "default": "var(--md-sys-color-surface-container, #f3edf7)"
+            },
+            {
+              "description": "Main-row elevation when `scrolled` is true.",
+              "name": "--oscd-app-bar-on-scroll-container-elevation",
+              "default": "2"
             }
           ],
           "slots": [
@@ -1271,7 +1295,7 @@
               "name": "alignStart"
             },
             {
-              "description": "Slot for the middle content of the app bar.",
+              "description": "Slot for the headline content.",
               "name": "alignMiddle"
             },
             {
@@ -1284,6 +1308,17 @@
             }
           ],
           "members": [
+            {
+              "kind": "field",
+              "name": "scrolled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether the consumer has set the app bar to its on-scroll state.",
+              "attribute": "scrolled",
+              "reflects": true
+            },
             {
               "kind": "field",
               "name": "scopedElements",
@@ -1303,7 +1338,7 @@
           },
           "tagName": "oscd-app-bar",
           "customElement": true,
-          "summary": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.",
+          "summary": "A component that renders an app bar.\n\nThe app bar is a top-level navigation component that displays information and actions relating to the current screen.\nIt can contain a title, navigation icons, and action icons.\nThe app bar is typically used in conjunction with a navigation drawer or bottom navigation.\n\nThe main row follows the MD3 small top-app-bar defaults. Set `scrolled` when\nthe consumer determines that the page has scrolled. The sub-bar keeps its\nprimary-colored appearance in either state.",
           "modulePath": "app-bar/OscdAppBar.ts"
         }
       ],

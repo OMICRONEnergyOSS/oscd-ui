@@ -71,6 +71,10 @@ const meta: Meta<OscdAppBar & typeof args> = {
       control: { type: 'text' },
       description: 'App Bar Title',
     },
+    scrolled: {
+      control: { type: 'boolean' },
+      description: 'Consumer-set state for the MD3 on-scroll app bar style.',
+    },
     ...argTypes,
   },
 };
@@ -81,6 +85,14 @@ type Story = StoryObj;
 export const Default: Story = {
   args: {
     title: 'My App Bar',
+    scrolled: false,
+  },
+};
+
+export const Scrolled: Story = {
+  args: {
+    title: 'My App Bar',
+    scrolled: true,
   },
 };
 

@@ -45,8 +45,10 @@ const meta: Meta<OscdNavigationDrawer & { label: string }> = {
     return html`
       <style>
         oscd-app-bar {
-          --oscd-app-bar-background-color: var(--md-sys-color-primary);
-          --oscd-app-bar-color: var(--md-sys-color-on-primary);
+          --oscd-app-bar-container-color: var(--md-sys-color-primary);
+          --oscd-app-bar-headline-color: var(--md-sys-color-on-primary);
+          --oscd-app-bar-leading-icon-color: var(--md-sys-color-on-primary);
+          --oscd-app-bar-trailing-icon-color: var(--md-sys-color-on-primary);
         }
       </style>
 
