@@ -417,7 +417,7 @@ All public-token renames and removals land together in `0.1.0`. Old names are
 simply gone: no `var(--new, var(--old, …))` fallbacks, no runtime shims. The
 A-36 guide is the migration path.
 
-First batch (A-22, A-23, A-30): tree-grid filter rows now use MD3
+**Batch 1 (A-22, A-23, A-30):** tree-grid filter rows now use MD3
 `on-surface-variant` instead of the MDC hint token; filter-button no longer
 sets an inert MDC colour on its embedded icon button. Action-pane and
 action-icon replace the old `--oscd-*-theme-*` names with facet-specific
@@ -427,6 +427,12 @@ fallback for fonts; the `--oscd-base2` and `--oscd-text-font` reads are gone.
 TSDoc and the manifest list the new overrides. The remaining Phase 3 tasks,
 full manifest regeneration (A-35) and migration guide (A-36) are deferred to
 later batches; do not release this breaking batch alone.
+
+**Batch 2 (A-28):** Action Tree's undocumented `--action-tree-*` properties
+are renamed to documented `--oscd-action-tree-*` component facets. Text and
+grid lines now default to MD3 `on-surface` and `outline-variant`; the
+component no longer overrides the inherited `on-surface-variant` system role.
+Transparent row backgrounds and the 200ms fold duration remain unchanged.
 
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
@@ -450,7 +456,7 @@ later batches; do not release this breaking batch alone.
       apply while `ace/theme/oscd` is active (P7). Fix the TSDoc that says the
       theme derives from `--oscd-theme*` (P1). This public-token change ships
       in 0.1.0. (F-B1)
-- [ ] **A-28** Action-tree: rename its tokens to `--oscd-action-tree-*`
+- [x] **A-28** Action-tree: rename its tokens to `--oscd-action-tree-*`
       and default them to sys roles. Remove the old names without fallbacks;
       this is part of the 0.1.0 batch (Q3). (F-B5)
 - [x] **A-30** Action-pane/action-icon: replace `--oscd-*-theme-*` with

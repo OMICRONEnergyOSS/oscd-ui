@@ -47,6 +47,12 @@ export type TreeNode = {
  * - Each node can have an optional icon, info text, leaf values, and child nodes.
  * - Leaf values can have associated edit actions.
  * - Automatically folds new nodes when data is updated.
+ *
+ * @cssprop [--oscd-action-tree-font-color=var(--md-sys-color-on-surface, #1d1b20)] - Tree text color.
+ * @cssprop [--oscd-action-tree-horizontal-grid-color=var(--md-sys-color-outline-variant, #cac4d0)] - Horizontal grid line color.
+ * @cssprop [--oscd-action-tree-vertical-grid-color=var(--md-sys-color-outline-variant, #cac4d0)] - Vertical grid line color.
+ * @cssprop [--oscd-action-tree-background-color=transparent] - Row background color.
+ * @cssprop [--oscd-action-tree-fold-duration=200ms] - Fold icon transition duration.
  */
 export class OscdActionTree extends ScopedElementsMixin(LitElement) {
   static scopedElements = {
@@ -278,9 +284,11 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
     :host {
       font-family: var(--md-sys-typescale-body-large-font, Roboto);
       font-weight: 400;
-      color: var(--action-tree-font-color, #000000);
+      color: var(
+        --oscd-action-tree-font-color,
+        var(--md-sys-color-on-surface, #1d1b20)
+      );
       --md-icon-button-icon-size: 20px;
-      --md-sys-color-on-surface-variant: var(--action-tree-font-color, #000000);
     }
     .tree-grid {
       width: auto; /* don't stretch to 100% */
@@ -289,7 +297,11 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
     }
     .tree-grid th,
     .tree-grid td {
-      border-bottom: 1px solid var(--action-tree-horizontal-grid-color, #eee);
+      border-bottom: 1px solid
+        var(
+          --oscd-action-tree-horizontal-grid-color,
+          var(--md-sys-color-outline-variant, #cac4d0)
+        );
       padding: 0.3em 0.5em;
       vertical-align: middle; /* center content vertically */
       font-weight: 400;
@@ -300,7 +312,11 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
     .tree-grid th:first-child {
       min-width: 360px;
       padding-right: 12px;
-      border-right: 1px solid var(--action-tree-vertical-grid-color, #ddd); /* vertical separator */
+      border-right: 1px solid
+        var(
+          --oscd-action-tree-vertical-grid-color,
+          var(--md-sys-color-outline-variant, #cac4d0)
+        ); /* vertical separator */
       text-align: left;
     }
     .val-col,
@@ -311,7 +327,11 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
     }
     /* vertical separator after each value column */
     .val-cell {
-      border-right: 1px solid var(--action-tree-vertical-grid-color, #ddd);
+      border-right: 1px solid
+        var(
+          --oscd-action-tree-vertical-grid-color,
+          var(--md-sys-color-outline-variant, #cac4d0)
+        );
     }
     /* Remove border from last column */
     .val-cell:last-child {
@@ -370,12 +390,13 @@ export class OscdActionTree extends ScopedElementsMixin(LitElement) {
 
     /* Uniform background for all rows */
     .tree-row:not(.child-hidden) {
-      background-color: var(--action-tree-background-color, transparent);
+      background-color: var(--oscd-action-tree-background-color, transparent);
     }
 
     /* Smooth transition for fold icon */
     .tree-fold {
-      transition: transform var(--action-tree-fold-duration, 200ms) ease-in-out;
+      transition: transform var(--oscd-action-tree-fold-duration, 200ms)
+        ease-in-out;
       transform: rotate(180deg); /* Default: point down when expanded */
     }
     .tree-fold.folded {

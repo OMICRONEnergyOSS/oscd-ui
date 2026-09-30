@@ -916,6 +916,33 @@
           "kind": "class",
           "description": "",
           "name": "OscdActionTree",
+          "cssProperties": [
+            {
+              "description": "Tree text color.",
+              "name": "--oscd-action-tree-font-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)"
+            },
+            {
+              "description": "Horizontal grid line color.",
+              "name": "--oscd-action-tree-horizontal-grid-color",
+              "default": "var(--md-sys-color-outline-variant, #cac4d0)"
+            },
+            {
+              "description": "Vertical grid line color.",
+              "name": "--oscd-action-tree-vertical-grid-color",
+              "default": "var(--md-sys-color-outline-variant, #cac4d0)"
+            },
+            {
+              "description": "Row background color.",
+              "name": "--oscd-action-tree-background-color",
+              "default": "transparent"
+            },
+            {
+              "description": "Fold icon transition duration.",
+              "name": "--oscd-action-tree-fold-duration",
+              "default": "200ms"
+            }
+          ],
           "members": [
             {
               "kind": "field",
