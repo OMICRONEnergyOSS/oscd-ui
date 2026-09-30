@@ -35,6 +35,8 @@ declare global {
  * needed `--oscd-tree-item-leading-size` can decouple just the column width, but
  * keeping it equal to the indent step is what preserves the alignment.
  *
+ * Text and icon styling uses the embedded `--md-list-item-*` tokens directly.
+ *
  * @example
  * ```ts
  * const renderItem = ({ node, selected, active, disabled }) => html`

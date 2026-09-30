@@ -822,7 +822,7 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       data-selected=${selected ? 'true' : 'false'}
       data-selection-mode=${this.selectionMode}
       data-disabled=${disabled ? 'true' : 'false'}
-      style=${`--oscd-tree-row-level: ${row.level};`}
+      style=${`--_level: ${row.level};`}
       @click=${(event: MouseEvent) => this.handleRowClick(row, event)}
       @keydown=${(event: KeyboardEvent) => this.handleKeyDown(row, event)}
     >
@@ -887,46 +887,18 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
        * default for every consumer.
        */
       min-width: 0;
-      color: var(--oscd-tree-color, var(--md-sys-color-on-surface, #1d1b20));
-      font-family: var(
-        --oscd-tree-font-family,
-        var(--md-sys-typescale-body-large-font, Roboto)
-      );
       outline: none;
-      /*
-       * Drives both the per-level indentation and the leading icon column width
-       * of each row (see OscdTreeItem). Keeping these fused means a leading icon
-       * occupies exactly one indent step, so icon-less descendants align their
-       * text under an iconed ancestor's text automatically. Set it large enough
-       * to hold your leading icon comfortably (e.g. 40px) when using icons.
-       */
-      --oscd-tree-indent-step: 24px;
-      --oscd-tree-toggle-size: 32px;
-      --oscd-tree-toggle-icon-size: 24px;
-      --oscd-tree-row-height: 44px;
-      --oscd-tree-row-shape: var(--md-sys-shape-corner-small, 4px);
-      --md-ripple-hover-color: var(
-        --oscd-tree-row-hover-state-layer-color,
-        var(--md-sys-color-on-surface, #1d1b20)
-      );
-      --md-ripple-hover-opacity: var(
-        --oscd-tree-row-hover-state-layer-opacity,
-        0.08
-      );
-      --md-ripple-pressed-color: var(
-        --oscd-tree-row-pressed-state-layer-color,
-        var(--md-sys-color-on-surface, #1d1b20)
-      );
-      --md-ripple-pressed-opacity: var(
-        --oscd-tree-row-pressed-state-layer-opacity,
-        0.12
-      );
     }
 
     .tree {
       display: flex;
       flex-direction: column;
       min-width: 0;
+      color: var(--oscd-tree-color, var(--md-sys-color-on-surface, #1d1b20));
+      font-family: var(
+        --oscd-tree-font-family,
+        var(--md-sys-typescale-body-large-font, Roboto)
+      );
       gap: var(--oscd-tree-row-gap, 0);
     }
 
@@ -936,8 +908,11 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       align-items: center;
       box-sizing: border-box;
       min-width: 0;
-      min-height: var(--oscd-tree-row-height);
-      border-radius: var(--oscd-tree-row-shape);
+      min-height: var(--oscd-tree-row-height, 44px);
+      border-radius: var(
+        --oscd-tree-row-shape,
+        var(--md-sys-shape-corner-small, 4px)
+      );
       color: inherit;
       cursor: default;
       outline: none;
@@ -955,18 +930,18 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
 
     oscd-ripple,
     oscd-focus-ring {
-      border-radius: var(--oscd-tree-row-shape);
+      border-radius: var(
+        --oscd-tree-row-shape,
+        var(--md-sys-shape-corner-small, 4px)
+      );
     }
 
     oscd-focus-ring {
       z-index: 1;
-      --md-focus-ring-shape: var(--oscd-tree-row-shape);
-      --md-focus-ring-color: var(
-        --oscd-tree-row-focus-ring-color,
-        var(--md-sys-color-primary, #6750a4)
+      --md-focus-ring-shape: var(
+        --oscd-tree-row-shape,
+        var(--md-sys-shape-corner-small, 4px)
       );
-      --md-focus-ring-width: var(--oscd-tree-row-focus-ring-width, 2px);
-      --md-focus-ring-duration: var(--oscd-tree-row-focus-ring-duration, 0ms);
     }
 
     .row[data-disabled='true'] {
@@ -1016,11 +991,9 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
 
     .indent {
       flex: 0 0
-        calc(
-          max(0, var(--oscd-tree-row-level) - 1) * var(--oscd-tree-indent-step)
-        );
+        calc(max(0, var(--_level) - 1) * var(--oscd-tree-indent-step, 24px));
       inline-size: calc(
-        max(0, var(--oscd-tree-row-level) - 1) * var(--oscd-tree-indent-step)
+        max(0, var(--_level) - 1) * var(--oscd-tree-indent-step, 24px)
       );
     }
 
@@ -1028,9 +1001,9 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      flex: 0 0 var(--oscd-tree-toggle-size);
-      inline-size: var(--oscd-tree-toggle-size);
-      block-size: var(--oscd-tree-toggle-size);
+      flex: 0 0 var(--oscd-tree-toggle-size, 32px);
+      inline-size: var(--oscd-tree-toggle-size, 32px);
+      block-size: var(--oscd-tree-toggle-size, 32px);
       border: 0;
       border-radius: 50%;
       padding: 0;
@@ -1042,11 +1015,11 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
     .leaf-toggle {
       flex-basis: var(
         --oscd-tree-leaf-toggle-size,
-        var(--oscd-tree-toggle-size)
+        var(--oscd-tree-toggle-size, 32px)
       );
       inline-size: var(
         --oscd-tree-leaf-toggle-size,
-        var(--oscd-tree-toggle-size)
+        var(--oscd-tree-toggle-size, 32px)
       );
     }
 
@@ -1066,17 +1039,13 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       );
     }
 
-    .toggle oscd-icon {
-      --md-icon-size: var(--oscd-tree-toggle-icon-size, 24px);
-    }
-
     .accessory {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      flex: 0 0 var(--oscd-tree-toggle-size);
-      inline-size: var(--oscd-tree-toggle-size);
-      block-size: var(--oscd-tree-toggle-size);
+      flex: 0 0 var(--oscd-tree-toggle-size, 32px);
+      inline-size: var(--oscd-tree-toggle-size, 32px);
+      block-size: var(--oscd-tree-toggle-size, 32px);
       /*
        * Accessory visibility at rest. Defaults to fully opaque so accessories
        * are always shown; consumers can set --oscd-tree-accessory-rest-opacity
@@ -1097,19 +1066,12 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       margin-inline-start: var(--oscd-tree-trailing-toggle-gap, 4px);
     }
 
-    .accessory oscd-icon {
-      --md-icon-size: var(
-        --oscd-tree-accessory-icon-size,
-        var(--oscd-tree-toggle-icon-size, 24px)
-      );
-    }
-
     .accessory button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      inline-size: var(--oscd-tree-toggle-size);
-      block-size: var(--oscd-tree-toggle-size);
+      inline-size: var(--oscd-tree-toggle-size, 32px);
+      block-size: var(--oscd-tree-toggle-size, 32px);
       border: 0;
       border-radius: 50%;
       padding: 0;
@@ -1132,14 +1094,6 @@ export class Tree<T extends TreeNode = TreeNode> extends ScopedElementsMixin(
       --md-focus-ring-width: 0;
       --md-ripple-hover-opacity: 0;
       --md-ripple-pressed-opacity: 0;
-      --md-checkbox-container-size: var(
-        --oscd-tree-selection-checkbox-size,
-        18px
-      );
-      --md-checkbox-icon-size: var(
-        --oscd-tree-selection-checkbox-icon-size,
-        18px
-      );
     }
 
     .content {

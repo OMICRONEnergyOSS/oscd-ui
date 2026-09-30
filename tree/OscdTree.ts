@@ -49,6 +49,9 @@ declare global {
  * large enough to hold your icon (e.g. `40px`) when using leading icons. See
  * {@link OscdTreeItem} for details.
  *
+ * Row ripple and focus styling uses the embedded `--md-ripple-*` and
+ * `--md-focus-ring-*` tokens directly.
+ *
  * Every node may provide a stable `id`. If no ID is supplied, the tree uses
  * `getNodeId` when provided, then falls back to an index-path ID such as
  * `0/1/2`. Index-path IDs are convenient for static demos but are not stable
