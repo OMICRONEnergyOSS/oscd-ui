@@ -21981,7 +21981,7 @@
             {
               "description": "Snackbar text color.",
               "name": "--oscd-snackbar-text-color",
-              "default": "#233042"
+              "default": "var(--md-sys-color-on-surface, #233042)"
             },
             {
               "description": "Snackbar font family.",
@@ -22011,7 +22011,7 @@
             {
               "description": "Info text color.",
               "name": "--oscd-snackbar-info-text-color",
-              "default": "var(--oscd-snackbar-text-color)"
+              "default": "var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))"
             },
             {
               "description": "Info icon color.",
@@ -22021,47 +22021,47 @@
             {
               "description": "Success snackbar container color.",
               "name": "--oscd-snackbar-success-container-color",
-              "default": "#d8f8bd"
+              "default": "var(--md-sys-color-tertiary-container, #d8f8bd)"
             },
             {
               "description": "Success text color.",
               "name": "--oscd-snackbar-success-text-color",
-              "default": "var(--oscd-snackbar-text-color)"
+              "default": "var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))"
             },
             {
               "description": "Success icon color.",
               "name": "--oscd-snackbar-success-icon-color",
-              "default": "#5ba300"
+              "default": "var(--md-sys-color-on-tertiary-container, #5ba300)"
             },
             {
               "description": "Warning snackbar container color.",
               "name": "--oscd-snackbar-warning-container-color",
-              "default": "#fff584"
+              "default": "var(--md-sys-color-error-container, #fff584)"
             },
             {
               "description": "Warning text color.",
               "name": "--oscd-snackbar-warning-text-color",
-              "default": "var(--oscd-snackbar-text-color)"
+              "default": "var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))"
             },
             {
               "description": "Warning icon color.",
               "name": "--oscd-snackbar-warning-icon-color",
-              "default": "#f5a400"
+              "default": "var(--md-sys-color-on-error-container, #f5a400)"
             },
             {
               "description": "Error snackbar container color.",
               "name": "--oscd-snackbar-error-container-color",
-              "default": "#ffd9df"
+              "default": "var(--md-sys-color-error-container, #ffd9df)"
             },
             {
               "description": "Error text color.",
               "name": "--oscd-snackbar-error-text-color",
-              "default": "var(--oscd-snackbar-text-color)"
+              "default": "var(--oscd-snackbar-text-color, var(--md-sys-color-on-surface, #233042))"
             },
             {
               "description": "Error icon color.",
               "name": "--oscd-snackbar-error-icon-color",
-              "default": "#d52031"
+              "default": "var(--md-sys-color-error, #d52031)"
             }
           ],
           "cssParts": [

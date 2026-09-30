@@ -248,7 +248,7 @@ ${item.headline && item.supportingText ? '-' : ''}${item.supportingText}"
 
     oscd-outlined-text-field {
       background-color: var(--md-sys-color-surface, #fef7ff);
-      --oscd-outlined-text-field-container-shape: 32px;
+      --md-outlined-text-field-container-shape: 32px;
       padding: 8px;
     }
 

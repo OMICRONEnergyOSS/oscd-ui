@@ -3,6 +3,7 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+import { OscdElevation } from '../elevation/OscdElevation.js';
 import { OscdIcon } from '../icon/OscdIcon.js';
 
 function closestTo<E extends Element>(node: Node, selector: string): E | null {
@@ -41,6 +42,7 @@ function closestTo<E extends Element>(node: Node, selector: string): E | null {
  */
 export class OscdActionPane extends ScopedElementsMixin(LitElement) {
   static scopedElements = {
+    'oscd-elevation': OscdElevation,
     'oscd-icon': OscdIcon,
   };
 
@@ -118,6 +120,7 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
         contrasted: this.resolvedLevel % 2 === 0,
       })}"
     >
+      <oscd-elevation></oscd-elevation>
       ${this.renderHeader()}
       <div><slot></slot></div>
     </section>`;
@@ -129,16 +132,13 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
     }
 
     :host(:focus-within) section {
-      /* TODO consider using oscd-elevation instead */
-      box-shadow:
-        0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12),
-        0 5px 5px -3px rgba(0, 0, 0, 0.2);
+      --md-elevation-level: 3;
       outline-width: 1px;
       transition: all 250ms linear;
     }
 
     section {
+      position: relative;
       background-color: var(
         --oscd-action-pane-theme-surface,
         var(--md-sys-color-surface)

@@ -2,6 +2,7 @@ import { css, html, LitElement, nothing, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+import { OscdElevation } from '../elevation/OscdElevation.js';
 import { OscdIcon } from '../icon/OscdIcon.js';
 
 /**
@@ -20,6 +21,7 @@ import { OscdIcon } from '../icon/OscdIcon.js';
  */
 export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
   static scopedElements = {
+    'oscd-elevation': OscdElevation,
     'oscd-icon': OscdIcon,
   };
 
@@ -48,7 +50,8 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
   }
 
   private renderIcon(): TemplateResult {
-    return html`<span>
+    return html`<span class="icon-container">
+      <oscd-elevation></oscd-elevation>
       <slot name="icon"
         >${
           this.icon ? html`<oscd-icon>${this.icon}</oscd-icon>` : nothing
@@ -58,7 +61,11 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
   }
 
   override render() {
-    return html`${this.label ? html`<header>${this.label}</header>` : nothing}
+    const label = this.label
+      ? html`<header><oscd-elevation></oscd-elevation>${this.label}</header>`
+      : nothing;
+
+    return html`${label}
       <section>${this.renderIcon()}<slot name="action"></slot></section>
       ${this.label ? html`<footer>${this.label}</footer>` : nothing}`;
   }
@@ -74,6 +81,12 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
       align-self: center;
     }
 
+    .icon-container {
+      display: block;
+      position: relative;
+      transition: transform 150ms linear;
+    }
+
     ::slotted([slot='icon']),
     oscd-icon {
       display: block;
@@ -81,9 +94,6 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
         --oscd-action-icon-theme-on-surface,
         var(--md-sys-color-on-surface)
       );
-      transition:
-        transform 150ms linear,
-        box-shadow 200ms linear;
       outline-color: var(
         --oscd-action-icon-theme-primary,
         var(--md-sys-color-primary)
@@ -116,23 +126,16 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
       outline-width: 4px;
     }
 
-    :host(:focus-within:not([hideActions])) ::slotted([slot='icon']),
-    :host(:focus-within:not([hideActions])) oscd-icon {
+    :host(:focus-within:not([hideActions])) .icon-container {
+      --md-elevation-level: 3;
       transform: scale(0.8);
-      transition: all 250ms linear;
-      box-shadow:
-        0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12),
-        0 5px 5px -3px rgba(0, 0, 0, 0.2);
+      transition: transform 250ms linear;
     }
 
     ::slotted([slot='icon']:hover),
     oscd-icon:hover {
       outline-style: dashed;
       outline-width: 2px;
-      transition:
-        transform 200ms linear,
-        box-shadow 250ms linear;
     }
 
     ::slotted([slot='action']) {
@@ -242,10 +245,7 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
       position: absolute;
       opacity: 1;
       transform: translate(0, -40px);
-      box-shadow:
-        0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12),
-        0 5px 5px -3px rgba(0, 0, 0, 0.2);
+      --md-elevation-level: 3;
       transition:
         transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 250ms linear;
@@ -254,10 +254,7 @@ export class OscdActionIcon extends ScopedElementsMixin(LitElement) {
     :host(:focus-within) header {
       position: absolute;
       opacity: 1;
-      box-shadow:
-        0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12),
-        0 5px 5px -3px rgba(0, 0, 0, 0.2);
+      --md-elevation-level: 3;
       transition:
         transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 250ms linear;

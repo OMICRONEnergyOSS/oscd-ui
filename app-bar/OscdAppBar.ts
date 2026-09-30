@@ -55,11 +55,11 @@ export class OscdAppBar extends ScopedElementsMixin(LitElement) {
       );
       --app-bar-color: var(
         --oscd-app-bar-color,
-        var(--md-sys-color-on-primary, #1d1b20)
+        var(--md-sys-color-on-primary, #fff)
       );
       --app-bar-background-color: var(
         --oscd-app-bar-background-color,
-        var(--md-sys-color-primary, #fff)
+        var(--md-sys-color-primary, #6750a4)
       );
       --app-bar-title-font-family: var(
         --oscd-app-bar-title-font-family,
