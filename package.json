@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "format": "eslint . --ext .ts --fix",
+    "check:component-tokens": "node scripts/check-component-tokens.js",
     "copyAceWorkerToSrc": "mkdir -p ./ace-editor/ace && cp -r node_modules/ace-builds/src-min-noconflict/worker-xml.js ./ace-editor/ace/",
     "copyAceBuilds": "mkdir -p ./dist/ace-editor/ace/ && cp -r node_modules/ace-builds/src-noconflict/* ./dist/ace-editor/ace/",
     "build": "npm run copyAceWorkerToSrc && rimraf ./scripts/dist/ &&  npm run copyAceBuilds && tsc",

@@ -14,3 +14,13 @@ jobs:
     uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/workflows/unit-tests.yml@main
     # if the plugin has VRT's, then use this workflow instead:
     # uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/workflows/unit-and-vrt-tests.yml@main
+  component-token-guard:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run check:component-tokens

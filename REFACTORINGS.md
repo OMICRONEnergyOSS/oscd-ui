@@ -515,6 +515,18 @@ dist/navigation-drawer/OscdNavigationDrawerHeader.spec.js --config
 web-test-runner.config.js` (1 passing), targeted ESLint, the TSDoc-manifest
 comparison, and `git diff --check` passed.
 
+**Batch 8 (A-01):** Added `scripts/check-component-tokens.mjs`, a
+dependency-free string scan over first-party TypeScript/JavaScript source. It
+rejects reads of palette-layer and MDC token prefixes while excluding tests,
+Storybook, generated output, tooling scripts, and the intentional
+`oscd-md3-mappings.ts` adapter. The Ace editor TSDoc now describes the palette
+mapping without naming its token prefix, avoiding a documentation false
+positive. `npm run check:component-tokens`, `node --check
+scripts/check-component-tokens.mjs`, and `git diff --check` passed. A dedicated
+`component-token-guard` job was added to `.github/workflows/test.yml`. Making
+the status check required in branch protection remains a repository settings
+action outside the workflow file.
+
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
       `--md-outlined-text-field-*` tokens for supported customization.
@@ -593,7 +605,7 @@ comparison, and `git diff --check` passed.
       component's default typography from MD3 typescale/system roles; do not
       add rung-3 tokens for facets already exposed by the list item. (F-D5,
       F-C4)
-- [ ] **A-01** After A-22, A-23 and A-24 remove the existing palette-layer
+- [x] **A-01** After A-22, A-23 and A-24 remove the existing palette-layer
       and `--mdc-*` reads, add a CI guard that rejects their return in
       first-party component source: `--oscd-theme-*`, `--oscd-base*`,
       `--oscd-{primary,secondary,error,warning}`, `--oscd-text-font*`,

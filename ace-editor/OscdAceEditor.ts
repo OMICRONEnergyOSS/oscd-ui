@@ -31,8 +31,8 @@ export type { AceSettingsMenuModule, AceEditorWithSettingsMenu };
  * The OpenSCD theme appears in both Ace's light and dark theme lists. This is
  * intentional: Ace separates themes by category, while the OpenSCD theme uses
  * the same theme definition in both modes and adapts through CSS variables.
- * Import `oscdPaletteComponentMappings` to seed syntax colors from the existing
- * `--oscd-theme-*` palette without adding palette slots.
+ * Import `oscdPaletteComponentMappings` to seed syntax colors from an OpenSCD
+ * palette without adding palette slots.
  *
  * @cssprop [--oscd-ace-editor-container-color=var(--md-sys-color-surface, #fef7ff)] - Editor background for `ace/theme/oscd` only.
  * @cssprop [--oscd-ace-editor-text-color=var(--md-sys-color-on-surface, #1d1b20)] - Default editor text for `ace/theme/oscd` only.
