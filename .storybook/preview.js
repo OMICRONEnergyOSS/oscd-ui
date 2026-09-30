@@ -3,7 +3,14 @@
 import '@webcomponents/scoped-custom-element-registry';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import { setStorybookHelpersConfig } from '@wc-toolkit/storybook-helpers';
+import { addons } from 'storybook/preview-api';
+import { GLOBALS_UPDATED } from 'storybook/internal/core-events';
+import { html } from 'lit';
 import manifest from '../custom-elements.json' with { type: 'json' };
+import './palettes/solarized-light.css';
+import './palettes/solarized-dark.css';
+import './palettes/omicron.css';
+import './theme-preview.js';
 
 setStorybookHelpersConfig({
   /** hides the `arg ref` label on each control */
@@ -17,6 +24,10 @@ setStorybookHelpersConfig({
 });
 
 setCustomElementsManifest(manifest);
+
+addons.getChannel().on(GLOBALS_UPDATED, ({ globals }) => {
+  document.documentElement.setAttribute('data-palette', globals.palette);
+});
 
 const _customElementsDefine = window.customElements.define;
 window.customElements.define = (name, cl, conf) => {
@@ -37,35 +48,32 @@ export const parameters = {
     expanded: true,
   },
   options: {
-      storySort: {
-        order: ['Open SCD'],
-      },
+    storySort: {
+      order: ['Open SCD', 'Foundations'],
     },
+  },
 };
 
 export const globalTypes = {
-  theme: {
-    name: 'Theme',
-    description: 'Global theme for components',
-    defaultValue: 'light',
+  palette: {
+    name: 'Palette',
+    description: 'Preview palette',
+    defaultValue: 'solarized-light',
     toolbar: {
-      icon: 'circlehollow', // default icon
+      icon: 'paintbrush',
       items: [
-        { value: 'light', icon: 'moon', title: 'Light Mode' },
-        { value: 'dark', icon: 'sun', title: 'Dark Mode' },
+        { value: 'solarized-light', title: 'Solarized light' },
+        { value: 'solarized-dark', title: 'Solarized dark' },
+        { value: 'omicron', title: 'Omicron' },
       ],
-      showName: false,
+      showName: true,
       dynamicTitle: true,
     },
   },
 };
 
 export const decorators = [
-  (Story, context) => {
-    const theme = context.globals.theme;
-    document.documentElement.setAttribute('data-theme', theme);
-    return Story();
-  },
+  Story => html`<oscd-storybook-theme>${Story()}</oscd-storybook-theme>`,
 ];
 
 const preview = {

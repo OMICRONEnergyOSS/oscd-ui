@@ -118,7 +118,7 @@ mode; a light surface colour would break overlays.
 
 ### Solarized reference for Storybook
 
-Storybook's planned light/dark palettes use these private
+Storybook's light/dark palettes use these private
 `--_solarized-*` references. Both modes fill the same public slots;
 distributions may use different values.
 

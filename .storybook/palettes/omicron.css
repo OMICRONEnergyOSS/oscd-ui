@@ -1,0 +1,17 @@
+:root[data-palette='omicron'] {
+  --oscd-theme-primary: #0b335b;
+  --oscd-theme-secondary: #2485e5;
+  --oscd-theme-error: #dc322f;
+  --oscd-theme-warning: #b58900;
+  --oscd-theme-base03: #121417;
+  --oscd-theme-base02: #1a1e23;
+  --oscd-theme-base01: #3d4651;
+  --oscd-theme-base00: #46505d;
+  --oscd-theme-base0: #8b97a7;
+  --oscd-theme-base1: #96a1b0;
+  --oscd-theme-base2: #f3f5f6;
+  --oscd-theme-base3: #fff;
+  --oscd-theme-text-font: 'Roboto';
+  --oscd-theme-text-font-mono: 'Roboto Mono';
+  --oscd-theme-icon-font: 'Material Symbols Outlined';
+}

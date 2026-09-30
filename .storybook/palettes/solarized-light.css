@@ -1,0 +1,27 @@
+:root[data-palette='solarized-light'] {
+  --_solarized-base03: #002b36;
+  --_solarized-base02: #073642;
+  --_solarized-base01: #586e75;
+  --_solarized-base00: #657b83;
+  --_solarized-base0: #839496;
+  --_solarized-base1: #93a1a1;
+  --_solarized-base2: #eee8d5;
+  --_solarized-base3: #fdf6e3;
+  --_solarized-cyan: #2aa198;
+  --_solarized-violet: #6c71c4;
+  --_solarized-red: #dc322f;
+  --_solarized-yellow: #b58900;
+
+  --oscd-theme-base03: var(--_solarized-base03);
+  --oscd-theme-base02: var(--_solarized-base02);
+  --oscd-theme-base01: var(--_solarized-base01);
+  --oscd-theme-base00: var(--_solarized-base00);
+  --oscd-theme-base0: var(--_solarized-base0);
+  --oscd-theme-base1: var(--_solarized-base1);
+  --oscd-theme-base2: var(--_solarized-base2);
+  --oscd-theme-base3: var(--_solarized-base3);
+  --oscd-theme-primary: var(--_solarized-cyan);
+  --oscd-theme-secondary: var(--_solarized-violet);
+  --oscd-theme-error: var(--_solarized-red);
+  --oscd-theme-warning: var(--_solarized-yellow);
+}
