@@ -225,6 +225,80 @@ export const Variants: StoryObj = {
   },
 };
 
+export const ColoredVariants: StoryObj = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Set all five per-variant color facets on a wrapper to opt into colored variants. These example colors are consumer choices, not required palette slots.',
+      },
+    },
+  },
+  render: () => {
+    const snackbarRef = createRef<OscdSnackbar>();
+
+    queueMicrotask(() => {
+      const snackbar = snackbarRef.value;
+
+      if (!snackbar) {
+        return;
+      }
+
+      snackbar.mode = 'stack';
+      snackbar.maxVisible = 3;
+      snackbar.show({
+        message: 'Connection restored.',
+        variant: 'info',
+        autoDismiss: false,
+        action: {
+          label: 'Details',
+          onClick: () => undefined,
+        },
+      });
+      snackbar.show({
+        message: 'The selected value is outside the recommended range.',
+        variant: 'warning',
+        autoDismiss: false,
+        action: {
+          label: 'Review',
+          onClick: () => undefined,
+        },
+      });
+      snackbar.show({
+        message: 'Upload completed successfully.',
+        variant: 'success',
+        autoDismiss: false,
+        action: {
+          label: 'Open',
+          onClick: () => undefined,
+        },
+      });
+    });
+
+    return html`<div
+      style="
+        --oscd-snackbar-info-container-color: #1f74b0;
+        --oscd-snackbar-info-supporting-text-color: #fdf6e3;
+        --oscd-snackbar-info-icon-color: #fdf6e3;
+        --oscd-snackbar-info-action-label-text-color: #fdf6e3;
+        --oscd-snackbar-info-close-icon-color: #fdf6e3;
+        --oscd-snackbar-warning-container-color: #b58900;
+        --oscd-snackbar-warning-supporting-text-color: #002b36;
+        --oscd-snackbar-warning-icon-color: #002b36;
+        --oscd-snackbar-warning-action-label-text-color: #002b36;
+        --oscd-snackbar-warning-close-icon-color: #002b36;
+        --oscd-snackbar-success-container-color: #859900;
+        --oscd-snackbar-success-supporting-text-color: #002b36;
+        --oscd-snackbar-success-icon-color: #002b36;
+        --oscd-snackbar-success-action-label-text-color: #002b36;
+        --oscd-snackbar-success-close-icon-color: #002b36;
+      "
+    >
+      <oscd-snackbar ${ref(snackbarRef)}></oscd-snackbar>
+    </div>`;
+  },
+};
+
 const longValidationMessage = `This element is not expected. Expected is one of ({http://www.iec.ch/61850/2003/SCL}SubEquipment, {http://www.iec.ch/61850/2003/SCL}EqFunction, {http://www.iec.ch/61850/2003/SCL}Function, {http://www.iec.ch/61850/2003/SCL}LNode, {http://www.iec.ch/61850/2003/SCL}GeneralEquipment). Found {http://www.iec.ch/61850/2003/SCL}HzRtg at path /SCL/Substation/VoltageLevel/Bay/ConductingEquipment/Terminal.`;
 
 export const LongMessageWithDetails: StoryObj = {

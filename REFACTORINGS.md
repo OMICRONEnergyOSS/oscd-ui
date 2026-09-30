@@ -484,6 +484,24 @@ manifest regeneration remains in A-35. `npm run build -- --pretty false`,
 (18 passing), targeted ESLint on the changed Tree source/spec files, and
 `git diff --check` passed.
 
+**Batch 6 (A-33, A-33a, A-33b):** Snackbar base styling now follows the MD3
+snackbar facets: inverse-surface/on-inverse-surface, inverse-primary action
+label, extra-small shape, and level-3 elevation. Info, success, and warning
+retain those defaults; error uses error-container/on-error-container and the
+error icon role. All four variants expose container, supporting-text, icon,
+action-label, and close-icon color tokens. Variant labels are visually hidden
+English defaults that callers can localize per notification with
+`variantLabel`; decorative variant icons are hidden from assistive technology,
+while error/status live-region roles remain unchanged. Storybook demonstrates
+the 15 per-variant color overrides on a wrapper as a consumer recipe. The
+manifest was updated manually; its 40 Snackbar CSS tokens match the component
+TSDoc. The A-36 migration guide should reuse the story recipe, and full
+manifest regeneration remains in A-35.
+`npm run build -- --pretty false`, `npx wtr
+dist/snackbar/OscdSnackbar.spec.js --config web-test-runner.config.js`
+(17 passing), targeted ESLint on the component/spec/story, the TSDoc-manifest
+comparison, and `git diff --check` passed.
+
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
       `--md-outlined-text-field-*` tokens for supported customization.
@@ -530,19 +548,19 @@ manifest regeneration remains in A-35. `npm run build -- --pretty false`,
 - [x] **A-32** Tree: remove the aliases of embedded MD3 tokens, move the
       `:host` declarations to point-of-use defaults, and rename
       `--oscd-tree-row-level` to `--_level`. (F-C5, F-C6)
-- [ ] **A-33** Snackbar: rung-3 `--oscd-snackbar-*` tokens named after the
+- [x] **A-33** Snackbar: rung-3 `--oscd-snackbar-*` tokens named after the
       spec snackbar facets for the base look, plus per-variant tokens and
       defaults as decided in Q1. Old `-text-color` names are renamed to
       `-supporting-text-color`.
       (F-D3)
-- [ ] **A-33a** Snackbar accessibility: the variant must not be conveyed by
+- [x] **A-33a** Snackbar accessibility: the variant must not be conveyed by
       colour or by the raw icon ligature. Set `aria-hidden="true"` on the
       variant icon (today a screen reader may read the ligature, e.g.
       `check_circle`), and prefix the message with a visually hidden,
       localisable variant label ("Error:", "Warning:", "Success:", "Info:"). Keep
       `role="alert"` for error and `role="status"` otherwise. This is a
       behaviour change, not tokens; it needs specs.
-- [ ] **A-33b** Snackbar story "Coloured variants" next to the existing
+- [x] **A-33b** Snackbar story "Coloured variants" next to the existing
       `Variants` story in `snackbar/OscdSnackbar.stories.ts`. Show info,
       warning and success opted into colour through the per-variant tokens (Q1),
       set on a surrounding element so the story's source panel doubles as a
