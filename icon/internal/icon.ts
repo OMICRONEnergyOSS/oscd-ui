@@ -8,7 +8,7 @@ import { html } from 'lit';
 import { type TemplateResult } from 'lit';
 
 import { Icon as BaseIcon } from '@omicronenergy/oscd-material-web-base/icon/internal/icon.js';
-import { SCL_ICONS } from '../../scl-icon/OscdSclIcon.js';
+import { SCL_ICONS } from '../../scl-icon/internal/scl-icons.js';
 
 /**
  * Internal Icon base class that extends the Material Design Icon with
