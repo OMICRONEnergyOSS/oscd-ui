@@ -1,0 +1,103 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{_ as t,f as n,r,t as i}from"./lit-CCeopZMg.js";import{_ as a,f as o,h as s,n as c,r as l,t as u}from"./lit-element-DJJrs8Rf.js";import{n as d,t as f}from"./decorate-DTsqE9Ek.js";import{o as p,s as m}from"./OscdItem-Dtx8rqS-.js";import{n as h,r as g}from"./oscd-menu-item-C2fOXyia.js";import{n as _,t as v}from"./getStorybookMeta-2wzGcZy1.js";import{n as y,t as b}from"./OscdMenu-BF--c5U_.js";import{n as x,t as S}from"./OscdIconButton-CSrywsGE.js";import{n as C,t as w}from"./OscdSwitch-Ca2iYFDw.js";import{r as T,t as E}from"./if-defined-CkCJXdnf.js";import{n as D,t as O}from"./OscdFilledTextField-C_3AfXjt.js";var k,A=e((()=>{i(),l(),c(),m(),x(),y(),g(),C(),D(),E(),d(),k=class extends u(r){constructor(...e){super(...e),this.nullable=!1,this.textFieldValue=``,this.disabled=!1,this.label=``,this.required=!1,this.error=!1,this.suffixText=``,this.placeholder=``,this.type=`text`,this.pattern=``,this.max=``,this.min=``,this.maxLength=-1,this.minLength=-1,this.unit=``,this.multiplierIndex=0,this.multipliers=[null,``],this.isNull=!1}static{this.scopedElements={"oscd-filled-text-field":O,"oscd-switch":w,"oscd-icon":p,"oscd-icon-button":S,"oscd-menu":b,"oscd-menu-item":h}}set value(e){e===null?this.null=!0:(this.null=!1,this.textFieldValue=e)}get value(){return this.null?null:this.textFieldValue}get multiplier(){return this.unit===``?null:this.multipliers[this.multiplierIndex]??this.multipliers[0]??null}set multiplier(e){let t=this.multipliers.indexOf(e);t>=0&&(this.multiplierIndex=t),this.suffixText=(this.multiplier??``)+this.unit}get null(){return this.nullable&&this.isNull}set null(e){!this.nullable||e===this.isNull||(this.isNull=e)}reportValidity(){return this.textField.reportValidity()}setCustomValidity(e){this.textField?.setCustomValidity(e)}checkValidity(){return this.textField.checkValidity()}reset(){return this.textField.reset()}selectMultiplier(e){let t=e.detail.initiator.querySelector(`:scope > div`)?.textContent??null;t===`No multiplier`&&(t=null),t!==void 0&&(this.multiplier=t)}renderMultiplierList(){return n`${this.multipliers.map(e=>{let t=e===null?`No multiplier`:e;return n`<oscd-menu-item
+        ?selected=${e===this.multiplier}
+        value="${t}"
+        @close-menu="${this.selectMultiplier}"
+        ><div slot="headline">${t}</div>
+      </oscd-menu-item>`})}`}renderUnitSelector(){return this.multipliers.length&&this.unit?n`<div class="units container">
+        <oscd-icon-button
+          id="multiplier-anchor"
+          style="margin:5px;"
+          ?disabled=${this.null||this.disabled}
+          @click=${()=>this.multiplierMenu?.show()}
+          ><oscd-icon>more</oscd-icon></oscd-icon-button
+        >
+        <oscd-menu class="multipliers" anchor="multiplier-anchor"
+          >${this.renderMultiplierList()}</oscd-menu
+        >
+      </div>`:n``}renderNullSwitch(){return this.nullable?n`<oscd-switch
+        class="nullswitch element"
+        ?selected=${!this.null}
+        ?disabled=${this.disabled}
+        @input="${async e=>{e.stopPropagation()}}"
+        @change="${async e=>{this.null=!e.target.selected,await this.updateComplete,this.dispatchEvent(new Event(`input`))}}"
+      ></oscd-switch>`:n``}render(){return n`
+      <div style="display: flex; flex-direction: row;">
+        <div class="input container">
+          <oscd-filled-text-field
+            class="input element"
+            @input="${e=>{this.textFieldValue=e.target.value}}"
+            value="${this.textFieldValue}"
+            ?disabled=${this.disabled||this.isNull}
+            label=${T(this.label)}
+            ?required=${this.required}
+            supporting-text=${T(this.supportingText)}
+            ?error=${this.error}
+            error-text=${T(this.errorText)}
+            .pattern=${this.pattern}
+            placeholder=${T(this.placeholder)}
+            max=${T(this.max)}
+            min=${T(this.min)}
+            type=${T(this.type)}
+            maxLength=${T(this.maxLength)}
+            minLength=${T(this.minLength)}
+            suffix-text="${this.suffixText||this.unit}"
+          ></oscd-filled-text-field>
+        </div>
+        ${this.renderUnitSelector()}
+        <div class="nullswitch container">${this.renderNullSwitch()}</div>
+      </div>
+    `}static{this.styles=t`
+    .units.container {
+      position: relative;
+    }
+
+    .nullswitch.element {
+      margin-left: 12px;
+    }
+
+    .nullswitch.container {
+      display: flex;
+      align-items: center;
+      height: 56px;
+    }
+
+    .input.container {
+      flex: auto;
+    }
+
+    .input.element {
+      width: 100%;
+    }
+
+    oscd-icon-button {
+      --md-icon-button-icon-size: 48px;
+    }
+  `}},f([a({type:Boolean})],k.prototype,`nullable`,void 0),f([s()],k.prototype,`textFieldValue`,void 0),f([a({type:String})],k.prototype,`value`,null),f([a({type:Boolean})],k.prototype,`disabled`,void 0),f([a({type:String})],k.prototype,`label`,void 0),f([a({type:Boolean})],k.prototype,`required`,void 0),f([a({type:String})],k.prototype,`supportingText`,void 0),f([a({type:Boolean})],k.prototype,`error`,void 0),f([a({type:String})],k.prototype,`errorText`,void 0),f([a({type:String})],k.prototype,`suffixText`,void 0),f([a({type:String})],k.prototype,`placeholder`,void 0),f([a({type:String})],k.prototype,`type`,void 0),f([a({type:String})],k.prototype,`pattern`,void 0),f([a({type:String})],k.prototype,`max`,void 0),f([a({type:String})],k.prototype,`min`,void 0),f([a({type:Number})],k.prototype,`maxLength`,void 0),f([a({type:Number})],k.prototype,`minLength`,void 0),f([a({type:String})],k.prototype,`unit`,void 0),f([a({type:Array})],k.prototype,`multipliers`,void 0),f([a({type:String})],k.prototype,`multiplier`,null),f([s()],k.prototype,`isNull`,void 0),f([s()],k.prototype,`null`,null),f([o(`.nullswitch.element`)],k.prototype,`nullSwitch`,void 0),f([o(`.multipliers`)],k.prototype,`multiplierMenu`,void 0),f([o(`.input.element`)],k.prototype,`textField`,void 0)})),j=e((()=>{A(),window.customElements.define(`oscd-scl-text-field`,k)})),M,N,P,F,I,L,R,z;e((()=>{j(),_(),{args:M,argTypes:N,meta:P}=v({tagName:`oscd-scl-text-field`,options:{omitTextContent:!0}}),F={title:`Scl Inputs / Text Field`,tags:[`autodocs`],...P},I={argTypes:N,args:{...M,label:`Text Field`,placeholder:`Enter text here`,nullable:!0}},L={argTypes:N,args:{...M,label:`Text Field`,placeholder:`Enter text here`,nullable:!0,value:`Some text`}},R={argTypes:N,args:{...M,label:`Text Field`,placeholder:`Enter text here`,nullable:!0,value:`Some text`,error:!0,errorText:`There is an error`}},I.parameters={...I.parameters,docs:{...I.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args: {
+    ...args,
+    label: 'Text Field',
+    placeholder: 'Enter text here',
+    nullable: true
+  }
+}`,...I.parameters?.docs?.source}}},L.parameters={...L.parameters,docs:{...L.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args: {
+    ...args,
+    label: 'Text Field',
+    placeholder: 'Enter text here',
+    nullable: true,
+    value: 'Some text'
+  }
+}`,...L.parameters?.docs?.source}}},R.parameters={...R.parameters,docs:{...R.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args: {
+    ...args,
+    label: 'Text Field',
+    placeholder: 'Enter text here',
+    nullable: true,
+    value: 'Some text',
+    error: true,
+    errorText: 'There is an error'
+  }
+}`,...R.parameters?.docs?.source}}},z=[`NullableAndNull`,`NullableWithValue`,`InErrorState`]}))();export{R as InErrorState,I as NullableAndNull,L as NullableWithValue,z as __namedExportsOrder,F as default};

@@ -1,1 +1,0 @@
-import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdOutlinedSelect-CnwVpw3L.js";var r=e((()=>{t(),customElements.define(`oscd-outlined-select`,n)}));export{r as t};
