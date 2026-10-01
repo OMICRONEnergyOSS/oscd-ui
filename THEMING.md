@@ -70,47 +70,50 @@ Set `--oscd-theme-*` on the host or an ancestor. The `:host` mappings
 inherit to descendants; don't repeat them in children. They are a Lit
 `CSSResult`, **not** a document-wide stylesheet. Omit them if you set MD3
 tokens directly; importing them would overwrite those values on the host.
-Missing slots use MD3 baselines. Check contrast with partial palettes:
-the mappings neither derive colours nor validate pairs. Avoid mapping a
-system role on an element whose component token derives from it (CSS cycle).
+Missing palette slots use the Solarized reference palette. Check contrast
+with partial palettes: the mappings neither derive colours nor validate
+pairs. Avoid mapping a system role on an element whose component token derives
+from it (CSS cycle).
 
 ### Material role mapping
 
-`oscd-md3-mappings.ts` implements these **27 roles**: 26 from imported
-Material styles plus the snackbar's `error-container`. Fallbacks are the
-installed Material Web light baselines. Update the table and mappings if a
-new role is read; this is not the full MD3 scheme. Palette slot meanings
-are defined in oscd-api.
+`oscd-md3-mappings.ts` implements these **28 roles**: 26 from imported
+Material styles, the snackbar's `error-container`, and `on-secondary` used by
+the shell. When no `--oscd-theme-*` value is inherited, the mapper supplies
+the Solarized reference palette. Without the mapper, components use their
+Material Web baselines. Update the table and mappings if a new role is read;
+this is not the full MD3 scheme. Palette slot meanings are defined in oscd-api.
 
-| `--md-sys-color-*` role     | `--oscd-theme-*` slot | MD3 baseline | Foreground/background relationship                           |
-| --------------------------- | --------------------- | ------------ | ------------------------------------------------------------ |
-| `error`                     | `error`               | `#b3261e`    | Accent on surfaces; not a background by itself               |
-| `error-container`           | `base2`               | `#f9dedc`    | With `on-error-container`; no dedicated error-container slot |
-| `inverse-on-surface`        | `base3`               | `#f5eff7`    | On `inverse-surface`                                         |
-| `inverse-surface`           | `base03`              | `#322f35`    | With `inverse-on-surface`                                    |
-| `on-error`                  | `base3`               | `#fff`       | On `error`                                                   |
-| `on-error-container`        | `base00`              | `#410e0b`    | On `error-container`                                         |
-| `on-primary`                | `base3`               | `#fff`       | On `primary`                                                 |
-| `on-primary-container`      | `base00`              | `#21005d`    | On `primary-container`                                       |
-| `on-secondary-container`    | `base00`              | `#1d192b`    | On `secondary-container`                                     |
-| `on-surface`                | `base00`              | `#1d1b20`    | On `surface` and its containers                              |
-| `on-surface-variant`        | `base0`               | `#49454f`    | On surfaces; subdued foreground                              |
-| `on-tertiary-container`     | `base00`              | `#31111d`    | On `tertiary-container`                                      |
-| `outline`                   | `base01`              | `#79747e`    | Borders on surfaces                                          |
-| `outline-variant`           | `base1`               | `#cac4d0`    | Subtle dividers on surfaces                                  |
-| `primary`                   | `primary`             | `#6750a4`    | With `on-primary`                                            |
-| `primary-container`         | `base2`               | `#eaddff`    | With `on-primary-container`                                  |
-| `scrim`                     | —                     | `#000`       | Baseline black, independent of palette                       |
-| `secondary`                 | `secondary`           | `#625b71`    | Accent; no `on-secondary` read today                         |
-| `secondary-container`       | `base2`               | `#e8def8`    | With `on-secondary-container`                                |
-| `shadow`                    | —                     | `#000`       | Baseline black, independent of palette                       |
-| `surface`                   | `base3`               | `#fef7ff`    | With `on-surface`                                            |
-| `surface-container`         | `base2`               | `#f3edf7`    | With `on-surface`                                            |
-| `surface-container-high`    | `base2`               | `#ece6f0`    | With `on-surface`                                            |
-| `surface-container-highest` | `base2`               | `#e6e0e9`    | With `on-surface`                                            |
-| `surface-container-low`     | `base3`               | `#f7f2fa`    | With `on-surface`                                            |
-| `tertiary`                  | `secondary`           | `#7d5260`    | Secondary accent reused; no distinct tertiary slot           |
-| `tertiary-container`        | `base2`               | `#ffd8e4`    | With `on-tertiary-container`                                 |
+| `--md-sys-color-*` role     | `--oscd-theme-*` slot | Solarized default | Foreground/background relationship                           |
+| --------------------------- | --------------------- | ----------------- | ------------------------------------------------------------ |
+| `error`                     | `error`               | `#dc322f`          | Accent on surfaces; not a background by itself               |
+| `error-container`           | `base2`               | `#eee8d5`          | With `on-error-container`; no dedicated error-container slot |
+| `inverse-on-surface`        | `base3`               | `#fdf6e3`          | On `inverse-surface`                                         |
+| `inverse-surface`           | `base03`              | `#002b36`          | With `inverse-on-surface`                                    |
+| `on-error`                  | `base3`               | `#fdf6e3`          | On `error`                                                   |
+| `on-error-container`        | `base00`              | `#657b83`          | On `error-container`                                         |
+| `on-primary`                | `base3`               | `#fdf6e3`          | On `primary`                                                 |
+| `on-primary-container`      | `base00`              | `#657b83`          | On `primary-container`                                       |
+| `on-secondary`              | `base3`               | `#fdf6e3`          | On `secondary`; used by shell                                |
+| `on-secondary-container`    | `base00`              | `#657b83`          | On `secondary-container`                                     |
+| `on-surface`                | `base00`              | `#657b83`          | On `surface` and its containers                              |
+| `on-surface-variant`        | `base0`               | `#839496`          | On surfaces; subdued foreground                              |
+| `on-tertiary-container`     | `base00`              | `#657b83`          | On `tertiary-container`                                      |
+| `outline`                   | `base01`              | `#586e75`          | Borders on surfaces                                          |
+| `outline-variant`           | `base1`               | `#93a1a1`          | Subtle dividers on surfaces                                  |
+| `primary`                   | `primary`             | `#2aa198`          | With `on-primary`                                            |
+| `primary-container`         | `base2`               | `#eee8d5`          | With `on-primary-container`                                  |
+| `scrim`                     | —                     | `#000`             | Black, independent of palette                                |
+| `secondary`                 | `secondary`           | `#6c71c4`          | Accent; pairs with `on-secondary`                            |
+| `secondary-container`       | `base2`               | `#eee8d5`          | With `on-secondary-container`                                |
+| `shadow`                    | —                     | `#000`             | Black, independent of palette                                |
+| `surface`                   | `base3`               | `#fdf6e3`          | With `on-surface`                                            |
+| `surface-container`         | `base2`               | `#eee8d5`          | With `on-surface`                                            |
+| `surface-container-high`    | `base2`               | `#eee8d5`          | With `on-surface`                                            |
+| `surface-container-highest` | `base2`               | `#eee8d5`          | With `on-surface`                                            |
+| `surface-container-low`     | `base3`               | `#fdf6e3`          | With `on-surface`                                            |
+| `tertiary`                  | `secondary`           | `#6c71c4`          | Secondary accent reused; no distinct tertiary slot           |
+| `tertiary-container`        | `base2`               | `#eee8d5`          | With `on-tertiary-container`                                 |
 
 With fewer tonal steps than MD3, several containers share `base2` and
 `tertiary` reuses `secondary`. `scrim` and `shadow` stay black even in dark

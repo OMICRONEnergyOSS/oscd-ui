@@ -34,6 +34,8 @@ import { OscdElevation } from '../elevation/OscdElevation.js';
  * @slot Default - Slot for additional content which will appear immediately under the main app bar.
  *
  * @cssprop [--oscd-app-bar-container-color=var(--md-sys-color-surface, #fef7ff)] - Main-row container color at rest.
+ * @cssprop [--oscd-app-bar-container-height=64px] - Main-row height.
+ * @cssprop [--oscd-app-bar-container-small-height=64px] - Main-row height at viewport widths up to 599px.
  * @cssprop [--oscd-app-bar-container-elevation=0] - Main-row elevation at rest.
  * @cssprop [--oscd-app-bar-container-shadow-color=var(--md-sys-color-shadow, #000)] - Main-row shadow color.
  * @cssprop [--oscd-app-bar-headline-color=var(--md-sys-color-on-surface, #1d1b20)] - Headline color.
@@ -71,12 +73,18 @@ export class OscdAppBar extends ScopedElementsMixin(LitElement) {
       display: flex;
       flex-grow: 1;
       align-items: center;
-      height: 64px;
+      height: var(--oscd-app-bar-container-height, 64px);
       color: var(--md-sys-color-on-surface, #1d1b20);
       background-color: var(
         --oscd-app-bar-container-color,
         var(--md-sys-color-surface, #fef7ff)
       );
+    }
+
+    @media (max-width: 599px) {
+      .main-header {
+        height: var(--oscd-app-bar-container-small-height, 64px);
+      }
     }
 
     :host([scrolled]) .main-header {
