@@ -41,9 +41,10 @@ OpenSCD palette contract: no new general palette slots are invented.
   reference changes. Consumers use only `--oscd-theme-*`; the private
   `--_solarized-*` references are implementation details explained by the
   palette file's comments.
-- The MD3 mapper is a pure, mode-independent translation from those public
-  slots to `--md-sys-*` roles. It contains neither palette values nor colour
-  derivation. The active palette supplies the correct public values first.
+- The MD3 mapper is a mode-independent translation from those public slots to
+  `--md-sys-*` roles. As an opt-in OpenSCD adapter, it defaults missing palette
+  slots to the Solarized reference palette; inherited `--oscd-theme-*` values
+  override those defaults. It does not derive colours.
 - Solarized is the reference implementation palette, not the only valid
   palette and not a guarantee that every use meets MD3 contrast
   recommendations. Review its resolved role pairs and flag where they do
@@ -74,13 +75,14 @@ components) must not change the appearance.
   contract — what each slot means, no Material Web concept. `oscd-ui` owns
   the normative Material/MD3 adapter table (each `--md-sys-color-*` role
   oscd-ui's components actually read, the established palette slot it maps
-  from, its MD3 baseline fallback, and relevant foreground/background notes)
-  and the Solarized reference appendix, since both are Material-Web-specific
-  detail with no place in a framework-neutral document.   `oscd-ui` owns
-  optional Lit mappings that directly implement that table, scoped to the
-  roles its components actually read (27 today: 26 from imported styles plus
-  the snackbar's `error-container`, see F-A8/F-D3), not the full MD3
-  scheme. Shells and plugins that use oscd-ui may import the adapter at their
+  from, its Solarized default when that slot is unset, and relevant
+  foreground/background notes) and the Solarized reference appendix, since
+  both are Material-Web-specific details with no place in a framework-neutral
+  document. `oscd-ui` also owns   optional Lit mappings that directly implement that table, scoped to the
+  roles its components actually read (27 component roles: 26 from imported
+  styles plus the snackbar's `error-container`; the adapter also covers shell
+  `on-secondary`, for 28 total; see F-A8/F-D3), not the full MD3 scheme.
+  Shells and plugins that use oscd-ui may import the adapter at their
   root rather than maintaining copies. The distro API remains
   `--oscd-theme-*`; setting only `--md-sys-*` on the shell is unsupported
   when a plugin opts into the mapper, because it would otherwise overwrite
@@ -166,7 +168,7 @@ Storybook is a consumer like any other. It ships a set of palettes
 (Solarized light as the default, Solarized dark, Omicron) as
 `--oscd-theme-*` values on `:root`, switchable from the toolbar. Its Lit
 preview host includes the oscd-ui mappings first in `static styles`, producing
-the 27 roles oscd-ui actually reads for that host and its descendants.
+the 27 component roles for that host and its descendants.
 
 ### P7 — Document supported component overrides in TSDoc
 
@@ -203,6 +205,10 @@ IDs are referenced by the action items below.
 | F-A8 | The component styles oscd-ui imports from oscd-material-web-base@2.4.2 read **26** distinct `--md-sys-color-*` roles. oscd-ui's own snackbar also reads `error-container`, bringing the adapter target to **27** distinct roles. The shell mapping sets 17 roles, but only 14 of the imported 26: it also sets `on-secondary`, `surface-variant` and `surface-bright`, which the base doesn't read. That leaves **12 imported-style roles unmapped**, falling back to baseline purple/grey: `on-secondary-container` (85 reads), `on-error-container` (18), `outline` (17), `shadow` (14), `on-primary-container` (14), `on-tertiary-container` (10), `surface-container-low` (7), `primary-container` (6), `inverse-on-surface` (6), `tertiary-container` (3), `tertiary` (2), `inverse-surface` (1). The full MD3 scheme defines 47 roles (all appear in the package's token sources); 20 of those are unused by today's imported and own styles. | `oscd-material-web-base/**/*-styles.js` (imported ones); `snackbar/OscdSnackbar.ts`; `stee-re/oscd-shell/src/oscd-shell-design-tokens.ts` |
 | F-A9 | Existing mappings bend roles: `outline-variant`→`primary` (outline-variant is for dividers), `surface-variant`→`surface`, every `surface-container-*`→`base3` (so there's no tonal separation).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | shell tokens, preview head                                                                                        |
 
+F-A8 records the pre-A-04 gap. The shared mapper now covers all 27 component
+roles plus shell-used `on-secondary` with Solarized defaults; the shell no
+longer maintains a duplicate MD3 color map.
+
 ### B. Components reading the palette layer or legacy tokens (violates P1)
 
 | ID   | Component                               | Finding                                                                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -220,11 +226,11 @@ IDs are referenced by the action items below.
 | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | F-C1 | `--oscd-action-pane-theme-*` / `--oscd-action-icon-theme-*` collide with the distro `--oscd-theme-*` namespace, and just re-alias `--md-sys-color-*` roles (rung 1 already covers them).                                                                                                                                                                                                                                                                                                                                                                               | `OscdActionPane.ts:32-37`, `OscdActionIcon.ts:12-16`                                                            |
 | F-C2 | `--oscd-outlined-text-field-container-shape` is set in three places and read nowhere. The real token is `--md-outlined-text-field-container-shape`, so the rounded search fields don't work.                                                                                                                                                                                                                                                                                                                                                                           | `action-list/OscdActionList.ts:251`, `selection-list/OscdSelectionList.ts:135`, `tree-grid/OscdTreeGrid.ts:496` |
-| F-C3 | `oscd-app-bar` reads `--app-bar-height`/`--app-bar-small-height` without declaring them, so they're effectively public but unprefixed. oscd-shell _also_ declares `--app-bar-height` on its `:host` for its own use, and oscd-app-bar silently inherits that. It's accidental coupling, which shell's THEMING.md documents as "54px (oscd-ui default)".                                                                                                                                                                                                                | `app-bar/OscdAppBar.ts:105,110`; `oscd-shell/src/oscd-shell-design-tokens.ts:138-139`                           |
+| F-C3 | Resolved by A-41: oscd-ui exposes explicit 64px-default desktop/small-screen height facets; oscd-shell maps its public 54px/48px values to them instead of relying on an undeclared cross-shadow token.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `app-bar/OscdAppBar.ts`; `stee-re/oscd-shell/src/oscd-shell-design-tokens.ts`                                    |
 | F-C4 | Private tokens without `--_`: `--app-bar-*`, `--navigation-drawer-header-*`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | `OscdAppBar.ts:56-86`, `OscdNavigationDrawerHeader.ts:12-19`                                                    |
 | F-C5 | `oscd-tree` declares its own public tokens (`--oscd-tree-indent-step`, `-toggle-size`, `-toggle-icon-size`, `-row-height`, `-row-shape`) on `:host`, so they can't be inherited from an ancestor/theme root. The inline per-row `--oscd-tree-row-level` leaks a private value into the public namespace.                                                                                                                                                                                                                                                               | `tree/internal/Tree.ts:825,903-907`                                                                             |
 | F-C6 | Tree token aliasing: of its ~50 `--oscd-tree-*` tokens, many are pure aliases of embedded MD3 tokens (`--oscd-tree-item-headline-*` → `--md-list-item-label-text-*`, `--oscd-tree-row-focus-ring-*` → `--md-focus-ring-*`, `--oscd-tree-row-*-state-layer-*` → `--md-ripple-*`), so there are two public names per facet. The count itself isn't the issue.                                                                                                                                                                                                            | `tree/internal/Tree.ts`, `tree/internal/TreeItem.ts`                                                            |
-| F-C7 | Resolved: the wrapper TSDoc had promised unsupported `--oscd-search-field-container-color`; that promise is removed. Separately, consumers set `--oscd-action-icon-theme-surface`, which doesn't exist.                                                                                                                                                                                                                                                                                                                                                              | `search-field/OscdOutlinedSearchField.ts`; `oscd-editor-communication`                                         |
+| F-C7 | Resolved: the wrapper TSDoc had promised unsupported `--oscd-search-field-container-color`; that promise is removed.                                                                                                                                                                                                                                                                                                                                                                                                                                                  | `search-field/OscdOutlinedSearchField.ts`                                                                      |
 | F-C8 | Supported public component tokens are read but not documented as `@cssprop`, so they are missing from `custom-elements.json`, Storybook and IDE tooling. Counted from source on 2026-09-29: `oscd-tree` 53 of 53 undocumented; `oscd-navigation-drawer-header` 10 of 10; `oscd-app-bar` 8 of 16 (the `--app-bar-*` aliases); `oscd-action-tree` 5 of 5; `oscd-search-field` 1 of 1. Snackbar, action-pane and action-icon are complete but document the tokens this plan renames. Wrapped MD3 components document an MD3 component token only when they deliberately support it as an override. | per-component `@cssprop` blocks; `custom-elements.json`                                                         |
 
 ### D. Wrong fallbacks and semantics (violates P4 / spec reference)
@@ -243,7 +249,7 @@ IDs are referenced by the action items below.
 | ID   | Finding                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | F-E1 | `oscd-api/docs/theming.md` recommends declaring the palette and the `--md-sys-*` mapping on `*`. That blocks container-level overrides (every descendant re-declares the token) and contradicts oscd-shell's `:host`-only rule; our Storybook preview head is a near-verbatim copy of it (F-A1, F-A2). It also doesn't separate plugin code, which may read its own `--oscd-*` palette, from library components, which read only `--md-*` (P1). So oscd-ui components followed plugin guidance.                                                        |
-| F-E2 | Downstream consumers of tokens that this plan renames or removes (local scan, see "Migration impact"): `oscd-shell` (`--oscd-app-bar-*`, ~20 `--oscd-tree-*`, `--app-bar-height`), `oscd-editor-ied` (`--oscd-action-pane-theme-on-primary`), and externally `meinberg-sync/mbg-open-scd` (`--oscd-app-bar-*`, `--oscd-navigation-drawer-header-*`). `oscd-editor-communication` sets `--oscd-action-{icon,pane}-theme-*`, but on `@openenergytools/oscd-action-{icon,pane}`, not oscd-ui. Those `-theme-` names are inherited from that upstream API. |
+| F-E2 | Downstream consumers of tokens that this plan renames or removes (local scan, see "Migration impact"): `oscd-shell` (`--oscd-app-bar-*`, ~20 `--oscd-tree-*`, `--app-bar-height`), `oscd-editor-ied` (`--oscd-action-pane-theme-on-primary`), and externally `meinberg-sync/mbg-open-scd` (`--oscd-app-bar-*`, `--oscd-navigation-drawer-header-*`). |
 | F-E3 | No test in oscd-ui guards token discipline. Shell has `theming.spec.ts`; nothing here would catch a regression back to `--oscd-base*`.                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ### Not theming, noted for later
@@ -289,9 +295,11 @@ Status: `[ ]` open, `[~]` in progress, `[x]` done.
       examples, and how a consumer maps a palette. Include P0's Solarized
       reference → public slot → MD3 mapper model and its mode-independent
       mapper rule. Own the normative Material/MD3 adapter table (each
-      `--md-sys-color-*` role oscd-ui's components actually read — 27 today,
+      `--md-sys-color-*` role the adapter maps — 28 total (the 27 component
+      roles plus shell-used `on-secondary`),
       see F-A8, not the full MD3 scheme — the `--oscd-theme-*` slot it maps
-      from, its MD3 baseline fallback, and relevant foreground/background
+      from, its Solarized default when that slot is unset, and relevant
+      foreground/background
       notes) and a Solarized-reference appendix showing the light/dark
       `--_solarized-*` assignment: both are Material-Web-specific detail with
       no place in the framework-neutral `oscd-api` guide. Link to `oscd-api`
@@ -310,9 +318,11 @@ Status: `[ ]` open, `[~]` in progress, `[x]` done.
 - [x] **A-04** Export opt-in oscd-ui Lit MD3 mappings as a direct
       implementation of the normative table in oscd-ui's `THEMING.md` (A-02).
       It maps the established `--oscd-theme-*` palette to the
-      `--md-sys-color-*` roles oscd-ui's components actually read (27 today,
-      see F-A8, not the full MD3 scheme), using the table's slots and MD3
-      baseline fallbacks without adding palette values or colour derivation.
+      `--md-sys-color-*` roles the adapter maps (28 total: 27 component roles
+      plus shell-used `on-secondary`, see F-A8; not the full MD3 scheme),
+      using Solarized defaults for unset palette slots without colour
+      derivation. Without the opt-in mapper,
+      components retain their own MD3 baselines.
       It is applied only in the `static styles` array of a Lit shell/plugin
       root, after A-02 defines that table. Publish
       `oscd-md3-mappings.js` as a package entry point exporting
@@ -328,9 +338,9 @@ Status: `[ ]` open, `[~]` in progress, `[x]` done.
       Each is scoped as `:root[data-palette='<id>'] { … }`. Apply the A-04
       Lit mappings on the global Lit preview host, not on `:root`. Style the
       canvas on that host; document `body` stays neutral because it cannot
-      inherit the host's system roles. The mappings cover the roles
-      oscd-ui's components actually read (27 today, see F-A8). (F-A1, F-A2,
-      F-A6, F-A8, F-A9)
+      inherit the host's system roles. The mapper covers 27 component roles
+      plus shell-used `on-secondary` (28 total, see F-A8). (F-A1, F-A2, F-A6,
+      F-A8, F-A9)
 - [x] **A-11** Delete `.storybook/theming.css` and
       `utils/storybook/themingDecorator.ts`. (F-A3, F-A4)
 - [x] **A-12** Use `globalTypes.palette` for the three options (default:
@@ -346,8 +356,9 @@ Status: `[ ]` open, `[~]` in progress, `[x]` done.
 - [x] **A-15** Add a docs-only Storybook page, `Foundations/Theming`, for the
       A-04 mapper. Show its root-level import/use snippet, a few illustrative
       `--oscd-theme-*` → `--md-sys-*` rows, and a live before/after example:
-      palette values alone use Material fallbacks; the same oscd-ui component
-      with the mapper has the selected palette. Link to the complete normative
+      without a mapper uses Material baselines; the mapper alone supplies the
+      Solarized default palette; setting palette slots before importing the
+      mapper supplies a custom palette. Link to the complete normative
       mapping table in oscd-ui's `THEMING.md` (A-02); do not duplicate it
       here. (Q6)
 
@@ -361,8 +372,9 @@ Solarized pairs against its contrast recommendations.
 | `--oscd-theme-base2`: raised/highlighted surface  | `--_solarized-base2`  | `--_solarized-base02` |
 | `--oscd-theme-base00`: normal readable foreground | `--_solarized-base00` | `--_solarized-base0`  |
 
-The mapper always reads the stable public slot. It does not need to know
-whether the active palette is light or dark.
+The mapper always reads the stable public slot, with a Solarized default when
+that slot is unset. It does not need to know whether the active palette is
+light or dark.
 
 The Omicron palette moves out of the preview head and into
 `palettes/omicron.css`, unchanged in its intent.
@@ -515,14 +527,14 @@ dist/navigation-drawer/OscdNavigationDrawerHeader.spec.js --config
 web-test-runner.config.js` (1 passing), targeted ESLint, the TSDoc-manifest
 comparison, and `git diff --check` passed.
 
-**Batch 8 (A-01):** Added `scripts/check-component-tokens.mjs`, a
+**Batch 8 (A-01):** Added `scripts/check-component-tokens.js`, a
 dependency-free string scan over first-party TypeScript/JavaScript source. It
 rejects reads of palette-layer and MDC token prefixes while excluding tests,
 Storybook, generated output, tooling scripts, and the intentional
 `oscd-md3-mappings.ts` adapter. The Ace editor TSDoc now describes the palette
 mapping without naming its token prefix, avoiding a documentation false
 positive. `npm run check:component-tokens`, `node --check
-scripts/check-component-tokens.mjs`, and `git diff --check` passed. A dedicated
+scripts/check-component-tokens.js`, and `git diff --check` passed. A dedicated
 `component-token-guard` job was added to `.github/workflows/test.yml`. Making
 the status check required in branch protection remains a repository settings
 action outside the workflow file.
@@ -545,6 +557,18 @@ setup, the upstream action-pane/action-icon migration, and the colored
 Snackbar recipe. Linked the version-specific guide from the README and
 changelog. Documentation links and token names were checked, and
 `git diff --check` passed.
+
+### Phase 3 completion summary
+
+The oscd-ui-side Phase 3 implementation and documentation are complete:
+all Phase 3 checklist items (A-01, A-22–A-36) are checked, the regenerated
+manifest and 0.1.0 migration guide are in place, and the token guard passes
+with `npm run check:component-tokens`. This prepares the breaking changes for
+the planned 0.1.0 release; the package is still versioned 0.0.20, so the
+release itself has not been cut. Known consumer migrations and notification
+are tracked in Phase 4; their implementation and notification tasks are
+complete. oscd-shell CI VRT validation remains release-gated, and making the CI
+guard a required branch protection check remains a repository-settings action.
 
 - [x] **A-27** Removed the unsupported
       `--oscd-search-field-container-color` documentation; use the embedded
@@ -645,20 +669,26 @@ changelog. Documentation links and token names were checked, and
 
 ### Phase 4 — Cross-repo follow-ups (tracked here, done in their repos)
 
-- [ ] **A-41** `oscd-shell`: import the A-04 oscd-ui mapper at its root rather
-      than maintaining a local mapping, then migrate from `--oscd-app-bar-*`,
-      the `--app-bar-height` leak and the removed tree aliases. Add the `:host`
-      inheritance rule to `THEMING.md`; add focused coverage only where the
-      existing theming spec does not already exercise that behaviour. (F-A8,
-      F-C3, F-E2, Q6)
-- [ ] **A-42** `oscd-editor-ied`: migrate off
-      `--oscd-action-pane-theme-on-primary`. (F-E2)
-- [ ] **A-43** When `oscd-editor-communication` migrates from
-      `@openenergytools/oscd-action-{icon,pane}` to oscd-ui, apply the A-36
-      table. Drop the non-existent `--oscd-action-icon-theme-surface`. (F-E2,
-      F-C7)
-- [ ] **A-44** Notify `meinberg-sync/mbg-open-scd` (external, on
-      `^0.0.9`) with a link to the A-36 guide.
+The implementation and notification tasks in this phase are complete.
+oscd-shell's CI VRT check is release-gated and remains pending; it requires
+the published oscd-ui package rather than the local file link.
+
+- [x] **A-41** `oscd-shell`: import the A-04 mapper at the Lit root and remove
+      its duplicate MD3 color map. Bridge shell app-bar tokens to supported
+      facets, preserve its 54px/48px desktop/small-screen heights through
+      explicit oscd-ui facets, migrate removed tree aliases, and document
+      mapper inheritance. After the height-facet follow-up, oscd-shell
+      `npm test` (172 tests) and lint pass; oscd-ui tests (214) and lint pass.
+      CI VRT visual-parity validation is deferred until oscd-ui is released
+      and oscd-shell is repointed to the published package; the local file link
+      is unavailable in CI. (F-A8, F-C3, F-E2, Q6)
+- [x] **A-42** `oscd-editor-ied`: replace
+      `--oscd-action-pane-theme-on-primary` with the documented
+      `--oscd-action-pane-contrasted-container-color`. `npm test` (119 tests)
+      and `npm run lint` pass. (F-E2)
+- [x] **A-44** Notified `meinberg-sync/mbg-open-scd` about the A-36 guide.
+      The distro has no direct oscd-ui source imports; its relevant follow-up
+      is updating oscd-shell when the published release is available.
 
 ### Phase 5 — Stretch: user palettes in Storybook
 
@@ -675,25 +705,77 @@ changelog. Documentation links and token names were checked, and
 build error and no test failure. The override just stops applying, and the
 component falls back to its default look. With no compatibility layer (Q3),
 the written guide (A-36) and the lock-step fixes for known consumers
-(A-41..A-44) are the whole mitigation.
+(A-41, A-42, and A-44) are the whole mitigation.
 
-Local scan (2026-09-28) of every repo under `~/code` depending on
-`@omicronenergy/oscd-ui`:
+### Visual-parity audit
 
-| Consumer                                                                                 | Pinned                | Overrides tokens we rename?                                                                                                                                                              | Effect                                                                            |
-| ---------------------------------------------------------------------------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `stee-re/oscd-shell`                                                                     | `^0.0.19`             | 7 `--oscd-app-bar-*`, `--app-bar-height` leak (F-C3), ~20 `--oscd-tree-*` (3 are aliases removed by A-32: `row-focus-ring-color`, `item-leading-icon-color`, `item-trailing-icon-color`) | Breaks; fixed in lock-step (A-41)                                                 |
-| `oscd-editor-ied`                                                                        | `^0.0.11`             | `--oscd-action-pane-theme-on-primary`                                                                                                                                                    | Breaks; trivial (A-42)                                                            |
-| `meinberg-sync/mbg-open-scd` (**external**)                                              | `^0.0.9`              | 8 `--oscd-app-bar-*`, 10 `--oscd-navigation-drawer-header-*`                                                                                                                             | Breaks on upgrade (A-44)                                                          |
-| `stee-re/Sysconex`                                                                       | `^0.0.9`              | `--app-bar-height`                                                                                                                                                                       | Probably breaks on upgrade                                                        |
-| `oscd-editor-publisher`                                                                  | **`file:../oscd-ui`** | None, but uses action-list, tree-grid, tree                                                                                                                                              | Visual changes only, picked up **immediately** on the next local build            |
-| `oscd-editor-template`, `-subscriber-databinding`, `oscd-remove-ieds`, `oscd-editor-sld` | `^0.0.12`–`^0.0.20`   | None, but they use affected components (action-list, selection-list, snackbar)                                                                                                           | Visual changes only (rounded search fields from A-21, snackbar colours from A-33) |
-| `oscd-editor-source`, `-subscriber-msgbinding`, `oscd-menu-commons`, open-scd plugins    | various               | None                                                                                                                                                                                     | None                                                                              |
+Visual parity is the migration invariant; the Ace editor is the only
+currently approved visual exception. The 64px MD3 default is retained for
+standalone `oscd-ui` app bars, while the shell explicitly maps its existing
+54px desktop and 48px narrow-viewport design to the new height facets.
+
+The palette adapter creates a separate distro-level risk: the shell now
+declares mapped system roles on its host, which takes precedence over legacy
+`--md-sys-color-*` declarations inherited from `:root` or `*`. In the
+available `oscd-academy` and `oscd-ce` sources, examples of differing legacy
+values are `on-surface-variant` (base00 vs mapper base0),
+`surface-container*` (base3 vs mapper base2), and `outline-variant` (primary
+vs mapper base1). The mapper also fills roles those old maps left to Material
+defaults. These can visibly change components in the shell subtree even
+though public palette slots are unchanged.
+
+To preserve an existing distro appearance, keep its document-level mapping
+for components outside the shell and explicitly apply the prior
+`--md-sys-color-*` values to the `<oscd-shell>` host. This was verified to
+override the mapper on the host. Audit each actual distro and compare its
+before/after visuals; do not describe a role-map difference as a harmless
+token rename.
+
+Available source evidence:
+
+| Distro/worktree | Theme evidence | Status |
+| --- | --- | --- |
+| `OmicronEnergyOSS/oscd-academy` | `themes.css` assigns 16 MD3 roles on `:root` and public palette slots on `*`; shell subtree mappings can differ as above. | Owned; before/after visual comparison still required. |
+| `OmicronEnergyOSS/oscd-ce` | `themes.css` has a matching legacy MD3 map and public Solarized slots. | Owned; before/after visual comparison still required. |
+| `OmicronEnergyOSS/oscd-explorer` | No theme map in its entry CSS; shell consumers use the shell's own defaults. | Owned; shell/app-bar and plugin visuals still require comparison. |
+| `com-pas/oscd-bay-template-editor` | Demo sets public palette slots but no direct MD3 map. | External; palette-mapper visuals require owner-side verification. |
+| `temp/Sysconex` and `temp/mbg-open-scd` | Available themes set public palette slots; MBG checkout has generated bundles, not verified source. | Treat as potential visual impacts; verify ownership/source before fixes. |
+
+Local scan (2026-10-01) of package manifests in the available `~/code`
+worktrees that directly depend on `@omicronenergy/oscd-ui`:
+
+| Consumer | Declared dependency | Verified local impact | Follow-up |
+| --- | --- | --- | --- |
+| `stee-re/oscd-shell` | Local `file:` link for validation | A-41 migrated its mapper, app-bar facets, leaked height tokens, and three removed tree aliases. Package release range remains unchanged for later published-package validation. | A-41 validated; rerun against the packed 0.1.0 release before publishing. |
+| `OmicronEnergyOSS/oscd-editor-ied` | `^0.0.11` | `src/oscd-editor-ied.ts` sets the removed `--oscd-action-pane-theme-on-primary` and reads `--oscd-base2`. | Replace with the documented action-pane facet (A-42). |
+| `temp/Sysconex` | `^0.0.9` | `src/oscd-shell.ts` sets the removed `--app-bar-height`. | Update if this local checkout is still maintained; confirm ownership/status first. |
+| `temp/mbg-open-scd` (**external**) | `^0.0.20` direct; `oscd-shell` `^0.0.14` | No direct oscd-ui source imports found; the direct oscd-ui dependency appears redundant. The distro consumes oscd-ui through oscd-shell; generated bundles contain old tokens but are not evidence of editable source changes. | Notified upstream (A-44); update oscd-shell when the published release is available. |
+| `OmicronEnergyOSS/oscd-editor-publisher` | `file:../oscd-ui` | No removed-token overrides found; uses affected action-list, tree-grid, and tree components, so it consumes the refactor immediately from the local package. | Build and test against the local package. |
+| `OmicronEnergyOSS/oscd-editor-source` | `file:../oscd-ui` | Direct local-package dependency; no removed-token overrides found. | Include in local package validation. |
+| `oscd-editor-template` (`^0.0.20`), `oscd-editor-subscriber-databinding` (`^0.0.12`), `oscd-editor-subscriber-msgbinding` (`^0.0.12`), `stee-re/oscd-remove-ieds` (`^0.0.12`), `stee-re/oscd-editor-sld` (`^0.0.14`), `oscd-menu-commons` (`^0.0.9`), and `stee-re/open-scd/packages/plugins` (`0.0.11`) | As listed | No removed-token overrides found in the scanned first-party source. Some consume components with visual changes, including action-list, selection-list, and snackbar. | Upgrade and smoke-test; no token migration currently identified. |
+
+`temp/oscd-shell-temp` also declares `^0.0.6`, but appears to be a separate
+scratch checkout rather than an active downstream; exclude it unless confirmed
+otherwise.
+
+This is an inventory of local worktrees, not every published or external
+consumer. Source scans excluded generated bundles except where the external
+checkout has no verified source available; recheck external and scratch
+checkouts before scheduling changes.
+
+External CoMPAS handoffs, checked against the repositories' current default
+branches on 2026-10-01:
+
+| Repository | Declared oscd-ui dependency | Required action |
+| --- | --- | --- |
+| `com-pas/scl-template-update` | `^0.0.11` | Bump dependency and lockfile for 0.1.0; no removed-token override found. See [handoff](./MIGRATION-COM-PAS-SCL-TEMPLATE-UPDATE.md). |
+| `com-pas/oscd-bay-template-editor` | `^0.0.12` (lockfile `0.0.12`) | Bump dependency and lockfile for 0.1.0; coordinate its separate shell upgrade. No removed-token override found in local commit `13f63e9`. See [handoff](./MIGRATION-COM-PAS-OSCD-BAY-TEMPLATE-EDITOR.md). |
 
 Mitigating factors:
 
-- **Every upgrade is deliberate** (except `oscd-editor-publisher`'s
-  `file:` link). `^0.0.x` pins to an exact version in npm semver, and
+- **Registry upgrades are deliberate.** The publisher and editor-source use
+  local `file:../oscd-ui` links and therefore pick up these changes without a
+  registry upgrade. `^0.0.x` pins to an exact version in npm semver, and
   consumers are spread across 0.0.6 to 0.0.20.
 - **Plugins inherit their mapping from the shell.** Few plugins map
   `--md-sys-*` themselves. Inside a distro they inherit the shell's
@@ -764,10 +846,11 @@ Mitigating factors:
     mapping table and the Solarized reference appendix. `oscd-ui` ships the
     canonical, opt-in MD3 mapper as a convenience for consumers using its
     Material-based components. It maps the established stable palette slots
-    to the `--md-sys-*` roles oscd-ui's components actually read (27 today,
-    see F-A8, not the full MD3 scheme), contains no palette values or colour
-    derivation, and is imported at a shell/plugin root. It prevents duplicate
-    mappings from drifting.
+    to     the `--md-sys-*` roles the mapper covers (28 total: 27 component roles plus
+    shell-used `on-secondary`, see F-A8; not the full MD3 scheme), supplies
+    Solarized defaults for unset
+    palette slots without colour derivation, and is imported at a
+    shell/plugin root. It prevents duplicate mappings from drifting.
   - The mapper is an exported Lit `CSSResult` for the shell/plugin root's
     `static styles`, not a framework-neutral CSS entry point. It is not
     automatically applied: consumers deliberately setting `--md-sys-*`
@@ -777,11 +860,17 @@ Mitigating factors:
 
 ## Uncertainties and assumptions
 
+- **Mapper-default decision (2026-10-01):** `oscdMd3Mappings` is an opt-in
+  OpenSCD palette adapter, not a transparent conduit that retains Material
+  defaults when no palette is supplied. When imported with no
+  `--oscd-theme-*` overrides, it supplies the Solarized reference palette;
+  inherited palette values still take precedence. Without the adapter,
+  components keep their Material defaults.
 - Role counts and read frequencies (F-A8) come from grepping the
   `*-styles.js` files that oscd-ui actually imports from the installed
   `oscd-material-web-base@2.4.2`: 26 roles read there, plus `error-container`
-  read by oscd-ui's snackbar. The adapter table and mapper are scoped to
-  exactly those 27, not the full 47-role MD3 scheme; a base
+  read by oscd-ui's snackbar. The adapter also maps shell-used `on-secondary`,
+  for 28 mapped roles total. This is not the full 47-role MD3 scheme; a base
   upgrade that reads additional roles needs a deliberate table/mapper update,
   not silent forward-compatible coverage. An earlier draft wrongly proposed
   covering all 47.

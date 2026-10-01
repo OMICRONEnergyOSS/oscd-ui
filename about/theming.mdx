@@ -5,8 +5,10 @@ import '../button/oscd-filled-button.js';
 
 # Theming
 
-oscd-ui uses MD3 defaults unless a Lit shell or plugin root opts into the
-OpenSCD palette mappings. Add the mappings first in the root's styles:
+oscd-ui uses Material's MD3 defaults unless a Lit shell or plugin root opts
+into the OpenSCD palette mappings. The mapper supplies the Solarized reference
+palette when no `--oscd-theme-*` values are set; inherited palette values
+override those defaults. Add the mappings first in the root's styles:
 
 ```ts
 import { css, LitElement } from 'lit';
@@ -36,9 +38,10 @@ See [the complete role mapping table](https://github.com/OMICRONEnergyOSS/oscd-u
 
 ## Before and after
 
-Both buttons below see the selected `--oscd-theme-*` palette. Without the
-mapper, the first uses Material's fallback colours; within the Lit preview
-host, the second inherits the mapped palette:
+The preview host supplies the selected `--oscd-theme-*` palette. Without the
+mapper, the first button uses Material's baseline colours; with the mapper,
+the second inherits the selected palette. If no palette is supplied, the
+mapper defaults to Solarized:
 
 <div
   style={{
@@ -50,7 +53,7 @@ host, the second inherits the mapped palette:
 >
   <div style={{ padding: '16px' }}>
     <p>Palette only</p>
-    <oscd-filled-button>Material defaults</oscd-filled-button>
+    <oscd-filled-button>Material baseline</oscd-filled-button>
   </div>
   <oscd-storybook-theme style={{ minHeight: '0' }}>
     <div style={{ padding: '16px' }}>

@@ -26,24 +26,35 @@ describe('opt-in MD3 mappings', () => {
     );
   }
 
-  it('declares only the 25 roles used by this component library', () => {
+  it('declares the roles used by oscd-ui and the shell', () => {
     const roles = [
       ...oscdMd3Mappings.cssText.matchAll(/--md-sys-color-([a-z-]+):/g),
     ].map(match => match[1]);
-    expect(roles).to.have.length(25);
+    expect(roles).to.have.length(28);
     expect(roles).to.include('error-container');
-    expect(roles).not.to.include('on-secondary');
+    expect(roles).to.include('on-secondary');
+    expect(roles).to.include('tertiary');
+    expect(roles).to.include('tertiary-container');
   });
 
-  it('uses MD3 baseline values without palette slots', async () => {
+  it('uses the Solarized reference palette without palette slots', async () => {
     const host = await mappedHost();
     const style = getComputedStyle(host);
     expect(style.getPropertyValue('--md-sys-color-primary').trim()).to.equal(
-      '#6750a4',
+      '#2aa198',
+    );
+    expect(style.getPropertyValue('--md-sys-color-secondary').trim()).to.equal(
+      '#6c71c4',
+    );
+    expect(
+      style.getPropertyValue('--md-sys-color-on-secondary').trim(),
+    ).to.equal('#fdf6e3');
+    expect(style.getPropertyValue('--md-sys-color-surface').trim()).to.equal(
+      '#fdf6e3',
     );
     expect(
       style.getPropertyValue('--md-sys-color-error-container').trim(),
-    ).to.equal('#f9dedc');
+    ).to.equal('#eee8d5');
   });
 
   it('maps palette slots and allows descendant overrides', async () => {

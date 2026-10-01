@@ -49,6 +49,14 @@ describe('OscdAppBar', () => {
     ).to.equal('0');
   });
 
+  it('allows the main-row height to be customized', () => {
+    appBar.style.setProperty('--oscd-app-bar-container-height', '54px');
+
+    const mainHeader =
+      appBar.shadowRoot?.querySelector<HTMLElement>('.main-header');
+    expect(mainHeader && getComputedStyle(mainHeader).height).to.equal('54px');
+  });
+
   it('reflects the consumer-set scrolled state and applies its surface and elevation', async () => {
     appBar.style.setProperty(
       '--md-sys-color-surface-container',
