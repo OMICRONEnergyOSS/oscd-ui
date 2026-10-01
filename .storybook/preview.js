@@ -49,7 +49,11 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Open SCD', 'Foundations'],
+      order: [
+        'Open SCD',
+        ['Overview', 'Palette', 'Theming', 'Component Catalog'],
+        'Foundations',
+      ],
     },
   },
 };
