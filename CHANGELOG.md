@@ -3,6 +3,23 @@
 For the planned `0.1.0` breaking theming changes, see the
 [migration guide](./MIGRATION-0.1.0.md).
 
+## [0.1.0](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.20...oscd-ui-v0.1.0) (2026-10-01)
+
+
+### Features
+
+* add dynamic component catalog story ([681c376](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/681c376c3a77a6aa2cdd38921ca0c594b8f51fd7))
+* add opt-in MD3 theme mappings ([21c4abe](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/21c4abe767c611232e6e720b75ff472926e5bb94))
+* add Solarized MD3 defaults and app-bar height facets ([4aaa621](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/4aaa6212a633322aa746252091589e278143d5cc))
+* **storybook:** add switchable palettes and theming previews ([4161f78](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/4161f78172aef301ddc07f5f413bec0b534b6489))
+* switch to new logo ([8d91f58](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/8d91f58bec200c8e6ff787c1c98c1e49d285de1d))
+
+
+### Bug Fixes
+
+* complete non-breaking theming fixes ([83ea931](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/83ea9317259d22894d8c7b1f6fececdedf7db404))
+* resolve circular import bundler warning ([c6c1b63](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/c6c1b6361a5546f76511fb976414df3d399bd334))
+
 ## [0.0.20](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.19...oscd-ui-v0.0.20) (2026-08-31)
 
 
