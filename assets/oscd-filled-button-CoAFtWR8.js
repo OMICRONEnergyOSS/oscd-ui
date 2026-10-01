@@ -1,1 +1,0 @@
-import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdFilledButton-Dk6Pcent.js";var r=e((()=>{t(),customElements.define(`oscd-filled-button`,n)}));export{r as t};

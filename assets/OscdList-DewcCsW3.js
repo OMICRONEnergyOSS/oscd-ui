@@ -1,0 +1,8 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{_ as t,f as n,r,t as i}from"./lit-CCeopZMg.js";import{r as a,s as o}from"./lit-element-DJJrs8Rf.js";import{o as s,s as c}from"./delegate-BMczuBBm.js";import{a as l,i as u,r as d}from"./OscdItem-DxcQmniw.js";var f,p,m=e((()=>{c(),i(),a(),l(),f=new Set(Object.values(u)),p=class extends r{get items(){return this.listController.items}constructor(){super(),this.listController=new d({isItem:e=>e.hasAttribute(`md-list-item`),getPossibleItems:()=>this.slotItems,isRtl:()=>getComputedStyle(this).direction===`rtl`,deactivateItem:e=>{e.tabIndex=-1},activateItem:e=>{e.tabIndex=0},isNavigableKey:e=>f.has(e),isActivatable:e=>!e.disabled&&e.type!==`text`}),this.internals=this.attachInternals(),this.internals.role=`list`,this.addEventListener(`keydown`,this.listController.handleKeydown)}render(){return n`
+      <slot
+        @deactivate-items=${this.listController.onDeactivateItems}
+        @request-activation=${this.listController.onRequestActivation}
+        @slotchange=${this.listController.onSlotchange}>
+      </slot>
+    `}activateNextItem(){return this.listController.activateNextItem()}activatePreviousItem(){return this.listController.activatePreviousItem()}},s([o({flatten:!0})],p.prototype,`slotItems`,void 0)})),h,g=e((()=>{i(),h=t`:host{background:var(--md-list-container-color, var(--md-sys-color-surface, #fef7ff));color:unset;display:flex;flex-direction:column;outline:none;padding:8px 0;position:relative}
+`})),_,v=e((()=>{m(),g(),_=class extends p{static{this.styles=[h]}}}));export{v as n,_ as t};
