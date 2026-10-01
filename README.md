@@ -1,6 +1,6 @@
 [![Tests](https://github.com/OMICRONEnergyOSS/oscd-ui/actions/workflows/test.yml/badge.svg)](https://github.com/OMICRONEnergyOSS/oscd-ui/actions/workflows/test.yml) ![NPM Version](https://img.shields.io/npm/v/@omicronenergy/oscd-ui)
 
-# <img src="https://omicronenergyoss.github.io/oscd-ui/assets/oscd_logo.png" alt="Open SCD Logo" width="40" height="40" /> Open SCD UI Component Library
+# <img src="https://omicronenergyoss.github.io/oscd-ui/assets/openscd-logo.svg" alt="Open SCD Logo" width="40" height="40" /> Open SCD UI Component Library
 
 This library is intended to be used for OpenSCD Plugins. This library is intended to be used for OpenSCD Plugins. Currently this is a subset of the existing [@omicronenergy/oscd-material-web-base](https://github.com/material-components/material-web) components. We plan to add more and more of the [@omicronenergy/oscd-material-web-base](https://github.com/material-components/material-web) components as and when they are needed, adding our own as the need arrises.
 

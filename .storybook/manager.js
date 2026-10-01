@@ -6,6 +6,6 @@ addons.setConfig({
     ...themes.dark,
     brandTitle: "Open SCD UI Library",
     brandUrl: "https://openscd.org",
-    brandImage: "assets/oscd_logo.png",
+    brandImage: "assets/openscd-logo.svg",
   },
 });
