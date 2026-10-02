@@ -13,11 +13,16 @@ describe('OscdActionPane', () => {
     );
     const heading = pane.shadowRoot?.querySelector('h1');
 
+    if (!heading) {
+      throw new Error('Expected action pane heading');
+    }
+
     expect(heading?.getAttribute('title')).to.equal('Commands');
     expect(heading?.textContent).to.contain('Commands');
     expect(heading?.querySelector('oscd-icon')?.textContent).to.equal(
       'settings',
     );
+    expect(heading?.querySelector('.label')?.textContent).to.equal('Commands');
     const actionSlot = heading?.querySelector<HTMLSlotElement>(
       'nav slot[name="action"]',
     );
@@ -40,11 +45,13 @@ describe('OscdActionPane', () => {
     );
     const iconSlot =
       pane.shadowRoot?.querySelector<HTMLSlotElement>('slot[name="icon"]');
+    const assignedIcon = iconSlot?.assignedElements()[0];
 
     expect(iconSlot?.assignedElements().length).to.equal(1);
-    expect(iconSlot?.assignedElements()[0]?.textContent).to.equal(
-      'Custom icon',
-    );
+    if (!assignedIcon) {
+      throw new Error('Expected a slotted icon');
+    }
+    expect(assignedIcon?.textContent).to.equal('Custom icon');
   });
 
   it('uses nested levels for heading rank and alternating surface', async () => {

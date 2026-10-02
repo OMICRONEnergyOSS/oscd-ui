@@ -85,17 +85,14 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
   }
 
   private renderHeader(): TemplateResult {
-    const content = html`<span
+    const content = html`<span class="icon"
         ><slot name="icon"
           >${
             this.icon ? html`<oscd-icon>${this.icon}</oscd-icon>` : nothing
           }</slot
         ></span
-      >
-      ${this.label ?? nothing}
-      <nav>
-        <slot name="action"></slot>
-      </nav>`;
+      ><span class="label">${this.label ?? nothing}</span>
+      <nav><slot name="action"></slot></nav>`;
 
     const headingLevel = Math.floor(Math.max(this.resolvedLevel, 1));
     // Sometimes a TemplateResult is passed in as Label, not a string. So only when it's a string show a title.
@@ -203,18 +200,34 @@ export class OscdActionPane extends ScopedElementsMixin(LitElement) {
       margin: 0px;
       line-height: 52px;
       padding-left: 0.3em;
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      flex: none;
+    }
+
+    .label {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     nav {
-      float: right;
+      flex: none;
+      margin-left: auto;
       margin-right: 4px;
     }
 
-    oscd-icon,
     ::slotted([slot='icon']) {
-      vertical-align: middle;
-      position: relative;
-      top: -0.1em;
+      display: flex;
+      align-items: center;
+      line-height: var(--md-icon-size, 24px);
     }
   `;
 }
