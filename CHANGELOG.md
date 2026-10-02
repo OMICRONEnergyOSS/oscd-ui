@@ -3,6 +3,13 @@
 For the planned `0.1.0` breaking theming changes, see the
 [migration guide](./MIGRATION-0.1.0.md).
 
+## [0.1.1](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.1.0...oscd-ui-v0.1.1) (2026-10-02)
+
+
+### Bug Fixes
+
+* action-pane center label with icon ([ee78bfa](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/ee78bfaa3be54ba54d9751bd7e93911ef2841e21))
+
 ## [0.1.0](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.0.20...oscd-ui-v0.1.0) (2026-10-01)
 
 
