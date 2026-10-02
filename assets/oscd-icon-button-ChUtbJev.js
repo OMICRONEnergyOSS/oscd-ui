@@ -1,0 +1,1 @@
+import{i as e}from"./preload-helper-xPQekRTU.js";import{n as t,t as n}from"./OscdIconButton-BILB2RAM.js";var r=e((()=>{t(),customElements.define(`oscd-icon-button`,n)}));export{r as t};
