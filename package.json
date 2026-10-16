@@ -195,7 +195,7 @@
     "./tree-grid/oscd-tree-grid.js": "./dist/tree-grid/oscd-tree-grid.js"
   },
   "dependencies": {
-    "@omicronenergy/oscd-material-web-base": "^2.4.2",
+    "@omicronenergy/oscd-material-web-base": "^2.5.1",
     "@open-wc/scoped-elements": "^3.0.6",
     "@openscd/oscd-api": "^0.1.6",
     "@webcomponents/scoped-custom-element-registry": "^0.0.10",

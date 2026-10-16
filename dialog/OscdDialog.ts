@@ -14,7 +14,7 @@ import { OscdDivider } from '../divider/OscdDivider.js';
 import { CSSResultOrNative } from 'lit';
 
 import { Dialog } from '@omicronenergy/oscd-material-web-base/dialog/internal/dialog.js';
-import { styles } from '@omicronenergy/oscd-material-web-base/dialog/internal/dialog-styles.js';
+import { styles } from '@omicronenergy/oscd-material-web-base/dialog/internal/dialog-styles.cssresult.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 declare global {
