@@ -3,6 +3,14 @@
 For the planned `0.1.0` breaking theming changes, see the
 [migration guide](./MIGRATION-0.1.0.md).
 
+## [0.1.2](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.1.1...oscd-ui-v0.1.2) (2026-10-16)
+
+
+### Bug Fixes
+
+* **dialog:** add stacked dialog story and update base styles ([ad152db](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/ad152dbc2fad18bb7035a1dc3ddb8008aac2365c))
+* **icon:** size SCL SVGs and remove scl warning icon name conflict ([64689d3](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/64689d3a4bc5a116559ec81b672b8bfcee525fb9))
+
 ## [0.1.1](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.1.0...oscd-ui-v0.1.1) (2026-10-02)
 
 
