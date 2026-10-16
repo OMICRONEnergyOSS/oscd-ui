@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { CSSResultOrNative } from 'lit';
+import { css, type CSSResultOrNative } from 'lit';
 
 import { Icon } from './internal/icon.js';
 import { styles } from '@omicronenergy/oscd-material-web-base/icon/internal/icon-styles.js';
@@ -39,5 +39,15 @@ declare global {
  */
 export class OscdIcon extends Icon {
   /** @nocollapse */
-  static override styles: CSSResultOrNative[] = [styles];
+  static override styles: CSSResultOrNative[] = [
+    styles,
+    css`
+      :host > svg {
+        /* Legacy SVG templates include inline 24px dimensions. */
+        width: 100% !important;
+        height: 100% !important;
+        fill: currentColor;
+      }
+    `,
+  ];
 }

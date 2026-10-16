@@ -10,7 +10,10 @@ const excludedDirectories = new Set([
   'node_modules',
   'scripts',
 ]);
-const excludedPaths = new Set([join('ace-editor', 'ace')]);
+const excludedPaths = new Set([
+  join('ace-editor', 'ace'),
+  join('utils', 'storybook'),
+]);
 const excludedFiles = new Set(['oscd-md3-mappings.ts']);
 const excludedSuffixes = [
   '.spec.ts',

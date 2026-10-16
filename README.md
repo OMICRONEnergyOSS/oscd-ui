@@ -28,6 +28,18 @@ Use the following link in your html to make use Material icons with these compon
 The full set of available Material Symbol icons can be found here:
 https://fonts.google.com/icons
 
+`<oscd-icon>` accepts Material Symbols names (for example, `warning`) and SCL
+icon names (for example, `gooseIcon`). Set `--md-icon-size` to a CSS length to
+resize either kind, and use CSS `color` for monochrome icons; there is no
+`--md-icon-color` token. The legacy SVG warning is named `scl-warning`, including
+in `<oscd-scl-icon>` and the exported SCL icon helpers. Replace previous SCL
+`warning` lookups with `scl-warning` if you need that SVG rather than the stock
+Material symbol.
+
+The **Icons / Icon** Storybook story exposes the size in pixels with a number
+control and foreground/background dropdowns for all public palette color slots.
+The selected slots follow the active Storybook palette.
+
 ## Scoped Web Components
 
 All OSCD UI components are scoped web components, which means its possible to use plugins can use multiple different versions of @omicronenergy/oscd-ui without risk of conflict. More details on how to use these components in a scoped manor are below. General details on scoping web components can be found [here](https://open-wc.org/docs/development/scoped-elements/)

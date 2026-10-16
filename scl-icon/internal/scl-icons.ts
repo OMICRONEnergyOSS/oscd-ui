@@ -17,7 +17,7 @@ export type iconType =
   | 'dOIcon'
   | 'enumIcon'
   | 'info'
-  | 'warning'
+  | 'scl-warning'
   | 'error'
   | 'reset'
   | 'reportIcon'
@@ -113,7 +113,7 @@ export const dataTypeTemplateIcons: Partial<Record<string, SVGTemplateResult>> =
 
 export const iconColors: { [key: string]: string } = {
   info: '--cyan',
-  warning: '--yellow',
+  'scl-warning': '--yellow',
   error: '--red',
   action: '--blue',
 };
