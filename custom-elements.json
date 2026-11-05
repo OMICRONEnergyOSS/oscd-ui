@@ -3746,7 +3746,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from an OpenSCD\npalette without adding palette slots.",
+          "description": "A text editor with optional toolbar, validation and form association.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from an OpenSCD\npalette without adding palette slots.",
           "name": "OscdAceEditor",
           "cssProperties": [
             {
@@ -3845,7 +3845,7 @@
               "default": "var(--md-sys-color-error, #b3261e)"
             },
             {
-              "description": "Debug execution-step marker color for `ace/theme/oscd` only.",
+              "description": "Debug execution-step marker color for `ace/theme/oscd` only. `value` reads the live text; programmatic writes do not emit input events. `validator` optionally returns an error message or null. No SCL/schema validation is performed by default. `toolbar` enables the floating toolbar.",
               "name": "--oscd-ace-editor-step-color",
               "default": "var(--md-sys-color-secondary, #625b71)"
             }
@@ -3858,15 +3858,264 @@
                 "text": "object"
               },
               "static": true,
-              "default": "{ 'ace-editor': AceEditor, 'ace-editor-base': AceEditorBase, }"
+              "default": "{ 'ace-editor': AceEditor, 'ace-editor-base': AceEditorBase, 'oscd-outlined-icon-button': OscdOutlinedIconButton, 'oscd-filled-icon-button': OscdFilledIconButton, 'oscd-icon': OscdIcon, }"
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "toolbar",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "toolbar"
+            },
+            {
+              "kind": "field",
+              "name": "toolbarOpen",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "validationCallback",
+              "type": {
+                "text": "((value: string) => string | null) | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "customValidationMessage",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "private",
+              "default": "''"
+            },
+            {
+              "kind": "field",
+              "name": "validator",
+              "type": {
+                "text": "((value: string) => string | null) | null"
+              }
             },
             {
               "kind": "field",
               "name": "value",
               "type": {
-                "text": "string | undefined"
+                "text": "string"
               },
               "attribute": "value",
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "message",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleAceChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent<string>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleToggleToolbar",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleUndo",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleRedo",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleCollapse",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleExpand",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleSearch",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleSettings",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleFormat",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "notifyInput",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getValidationMessage",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updateFormState",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderToolbar",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "pendingValue",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "private",
               "inheritedFrom": {
                 "name": "AceEditor",
                 "module": "ace-editor/internal/AceEditor.ts"
@@ -3895,15 +4144,53 @@
                 "name": "AceEditor",
                 "module": "ace-editor/internal/AceEditor.ts"
               }
+            },
+            {
+              "kind": "method",
+              "name": "handleReady",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
             }
           ],
           "events": [
             {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "Fired on user edits."
+            },
+            {
+              "name": "change",
               "type": {
                 "text": "CustomEvent<string>"
               },
-              "description": "Fired when the editor content changes. `detail` contains the current editor content.",
-              "name": "change"
+              "description": "Fired on user edits, with text in detail. Retained for compatibility; this is not a blur event."
+            }
+          ],
+          "attributes": [
+            {
+              "name": "toolbar",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "toolbar"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "value"
             }
           ],
           "mixins": [
@@ -3918,20 +4205,7 @@
           },
           "tagName": "oscd-ace-editor",
           "customElement": true,
-          "summary": "Wraps the Ace editor for XML editing in OpenSCD.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from an OpenSCD\npalette without adding palette slots.",
-          "attributes": [
-            {
-              "name": "value",
-              "type": {
-                "text": "string | undefined"
-              },
-              "fieldName": "value",
-              "inheritedFrom": {
-                "name": "AceEditor",
-                "module": "ace-editor/internal/AceEditor.ts"
-              }
-            }
-          ],
+          "summary": "A text editor with optional toolbar, validation and form association.\n\nProvides syntax highlighting, code folding, and persisted editor settings.\nThe custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens\nbelow; they have no effect when another Ace theme is selected.\n\nThe OpenSCD theme appears in both Ace's light and dark theme lists. This is\nintentional: Ace separates themes by category, while the OpenSCD theme uses\nthe same theme definition in both modes and adapts through CSS variables.\nImport `oscdPaletteComponentMappings` to seed syntax colors from an OpenSCD\npalette without adding palette slots.",
           "modulePath": "ace-editor/OscdAceEditor.ts",
           "cssParts": [],
           "cssStates": [],
@@ -30218,11 +30492,18 @@
           "members": [
             {
               "kind": "field",
-              "name": "value",
+              "name": "pendingValue",
               "type": {
                 "text": "string | undefined"
               },
-              "attribute": "value"
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              }
             },
             {
               "kind": "field",
@@ -30239,15 +30520,16 @@
               },
               "privacy": "public",
               "readonly": true
-            }
-          ],
-          "attributes": [
+            },
             {
-              "name": "value",
-              "type": {
-                "text": "string | undefined"
-              },
-              "fieldName": "value"
+              "kind": "method",
+              "name": "handleReady",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
             }
           ],
           "superclass": {
@@ -34160,6 +34442,802 @@
           "declaration": {
             "name": "styles",
             "module": "menu/internal/submenu/sub-menu-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "scl-editor/OscdSclEditor.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Edit one XML element with its SCL namespace context.\n\nInherits the text editor, optional toolbar, form support and input/change\nevents. Set `element` to capture namespace context and load serialized XML;\nread it to parse a new element without mutating the original document.\nEmpty or malformed text returns null. Only XML well-formedness is checked,\nnot IEC 61850 schema validity. Text-only input uses the standard SCL namespace.",
+          "name": "OscdSclEditor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "namespaceContext",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "element",
+              "type": {
+                "text": "Element | null"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "validator",
+              "type": {
+                "text": "((value: string) => string | null) | null"
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'ace-editor': AceEditor, 'ace-editor-base': AceEditorBase, 'oscd-outlined-icon-button': OscdOutlinedIconButton, 'oscd-filled-icon-button': OscdFilledIconButton, 'oscd-icon': OscdIcon, }",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toolbar",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "toolbar",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toolbarOpen",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "validationCallback",
+              "type": {
+                "text": "((value: string) => string | null) | null"
+              },
+              "privacy": "private",
+              "default": "null",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "customValidationMessage",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "private",
+              "default": "''",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "value",
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "message",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleAceChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent<string>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleToggleToolbar",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleUndo",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleRedo",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleCollapse",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleExpand",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleSearch",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleSettings",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleFormat",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "notifyInput",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getValidationMessage",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updateFormState",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderToolbar",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "pendingValue",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "aceEditorBase",
+              "type": {
+                "text": "AceEditorBase"
+              },
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "editor",
+              "type": {
+                "text": "AceGlobal.Ace.Editor | undefined"
+              },
+              "privacy": "public",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleReady",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "inheritedFrom": {
+                "name": "AceEditor",
+                "module": "ace-editor/internal/AceEditor.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "OscdAceEditor",
+            "module": "/ace-editor/OscdAceEditor.js"
+          },
+          "tagName": "oscd-scl-editor",
+          "customElement": true,
+          "summary": "Edit one XML element with its SCL namespace context.\n\nInherits the text editor, optional toolbar, form support and input/change\nevents. Set `element` to capture namespace context and load serialized XML;\nread it to parse a new element without mutating the original document.\nEmpty or malformed text returns null. Only XML well-formedness is checked,\nnot IEC 61850 schema validity. Text-only input uses the standard SCL namespace.",
+          "cssProperties": [
+            {
+              "description": "Editor background for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-container-color",
+              "default": "var(--md-sys-color-surface, #fef7ff)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Default editor text for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-text-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Gutter background for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-gutter-color",
+              "default": "var(--md-sys-color-surface-container-low, #f7f2fa)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Gutter text for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-gutter-text-color",
+              "default": "var(--md-sys-color-on-surface-variant, #49454f)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Active line background for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-active-line-color",
+              "default": "var(--md-sys-color-surface-container, #f3edf7)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Selection background for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-selection-color",
+              "default": "var(--md-sys-color-primary, #6750a4)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Cursor color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-cursor-color",
+              "default": "var(--md-sys-color-primary, #6750a4)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Editor font for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-font-family",
+              "default": "monospace",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Keyword color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-keyword-color",
+              "default": "var(--md-sys-color-secondary, #625b71)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "String color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-string-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Tag color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-tag-color",
+              "default": "var(--md-sys-color-secondary, #625b71)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Attribute name color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-attribute-name-color",
+              "default": "var(--md-sys-color-primary, #6750a4)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Comment color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-comment-color",
+              "default": "var(--md-sys-color-on-surface-variant, #49454f)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Number color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-number-color",
+              "default": "var(--md-sys-color-on-surface, #1d1b20)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Invalid syntax text color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-invalid-color",
+              "default": "var(--md-sys-color-error, #b3261e)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Storage and support symbol color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-storage-color",
+              "default": "var(--md-sys-color-primary, #6750a4)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Operator and XML punctuation color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-operator-color",
+              "default": "var(--md-sys-color-on-surface-variant, #49454f)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Parameter color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-parameter-color",
+              "default": "var(--md-sys-color-secondary, #625b71)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Regular expression color for `ace/theme/oscd` only.",
+              "name": "--oscd-ace-editor-syntax-regex-color",
+              "default": "var(--md-sys-color-error, #b3261e)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "description": "Debug execution-step marker color for `ace/theme/oscd` only. `value` reads the live text; programmatic writes do not emit input events. `validator` optionally returns an error message or null. No SCL/schema validation is performed by default. `toolbar` enables the floating toolbar.",
+              "name": "--oscd-ace-editor-step-color",
+              "default": "var(--md-sys-color-secondary, #625b71)",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "toolbar",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "toolbar",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "value",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "Fired on user edits.",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent<string>"
+              },
+              "description": "Fired on user edits, with text in detail. Retained for compatibility; this is not a blur event.",
+              "inheritedFrom": {
+                "name": "OscdAceEditor",
+                "module": "ace-editor/OscdAceEditor.ts"
+              }
+            }
+          ],
+          "modulePath": "scl-editor/OscdSclEditor.ts",
+          "cssParts": [],
+          "cssStates": [],
+          "slots": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OscdSclEditor",
+          "declaration": {
+            "name": "OscdSclEditor",
+            "module": "scl-editor/OscdSclEditor.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "scl-editor/internal/namespace-utils.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "XmlParseError",
+          "superclass": {
+            "name": "Error",
+            "module": "scl-editor/internal/namespace-utils.ts"
+          }
+        },
+        {
+          "kind": "function",
+          "name": "createNamespaceContext",
+          "return": {
+            "type": {
+              "text": "Element"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "optional": true,
+              "type": {
+                "text": "Element"
+              }
+            }
+          ],
+          "description": "Snapshot all in-scope namespaces, including declarations below the SCL root."
+        },
+        {
+          "kind": "function",
+          "name": "serializeWithoutXmlnsContext",
+          "return": {
+            "type": {
+              "text": "string"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ],
+          "description": "Serialize without redundant inherited declarations; retain explicit ones."
+        },
+        {
+          "kind": "function",
+          "name": "parseInXmlnsContext",
+          "return": {
+            "type": {
+              "text": "Element"
+            }
+          },
+          "parameters": [
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "context",
+              "default": "createNamespaceContext()",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ],
+          "description": "Parse exactly one element in the captured namespace context, not an XSD check."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "XmlParseError",
+          "declaration": {
+            "name": "XmlParseError",
+            "module": "scl-editor/internal/namespace-utils.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createNamespaceContext",
+          "declaration": {
+            "name": "createNamespaceContext",
+            "module": "scl-editor/internal/namespace-utils.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "serializeWithoutXmlnsContext",
+          "declaration": {
+            "name": "serializeWithoutXmlnsContext",
+            "module": "scl-editor/internal/namespace-utils.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "parseInXmlnsContext",
+          "declaration": {
+            "name": "parseInXmlnsContext",
+            "module": "scl-editor/internal/namespace-utils.ts"
           }
         }
       ]

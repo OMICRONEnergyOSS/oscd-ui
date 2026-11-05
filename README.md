@@ -40,6 +40,37 @@ The **Icons / Icon** Storybook story exposes the size in pixels with a number
 control and foreground/background dropdowns for all public palette color slots.
 The selected slots follow the active Storybook palette.
 
+## Text and SCL element editors
+
+Use `ace-editor/OscdAceEditor.js` for string `.value` input and live text output.
+Use `scl-editor/OscdSclEditor.js` for `.element` input/output: it preserves the
+element's in-scope namespaces and parses a new element without modifying the
+original document. Its inherited `.value` exposes the editable text.
+`element` returns `null` for empty or malformed text; validation checks exactly
+one well-formed element, **not SCL schema conformance**. Empty input is allowed.
+The obsolete `xml-editor` export paths did not contain shipped modules; use
+`scl-editor` instead.
+
+Both components share Ace, persisted settings, an optional `.toolbar`, and native
+form association. Ace accepts an optional `.validator` callback returning `null`
+or an error message; SCL supplies namespace-aware XML validation by default.
+`setCustomValidity()` errors persist until explicitly cleared.
+User edits emit `input` plus a bubbling/composed `CustomEvent<string>('change')`
+whose `detail` is the current text. The existing text-bearing `change` contract
+is retained; it is **not** a blur event. Programmatic writes emit neither.
+Both preserve the cursor on unchanged value echoes and start at the beginning
+on actual text replacements.
+
+The **Editors / Ace Editor** stories show a shared publisher-demo document
+with five IEDs, communication and data templates, plus toolbar and custom
+validation examples in **SCL Doc as text**. **Editors / SCL Editor** shows
+**Full SCL Document** using the parsed document's `.documentElement` and
+**SCL Element** using its `PUB_A` IED with inherited SCL namespaces, plus
+toolbar, invalid text and empty-input examples. Both SCL examples pass an
+Element through `.element`, not an XMLDocument object.
+The fixture comes from `OMICRONEnergyOSS/oscd-editor-publisher/demo/sample.scd`;
+it is demonstration data, not a schema-conformance assertion.
+
 ## Scoped Web Components
 
 All OSCD UI components are scoped web components, which means its possible to use plugins can use multiple different versions of @omicronenergy/oscd-ui without risk of conflict. More details on how to use these components in a scoped manor are below. General details on scoping web components can be found [here](https://open-wc.org/docs/development/scoped-elements/)

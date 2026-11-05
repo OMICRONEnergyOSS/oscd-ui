@@ -1,6 +1,6 @@
-import { LitElement, html, css, type PropertyValueMap } from 'lit';
+import { LitElement, html, css } from 'lit';
 import * as AceGlobal from 'ace-builds';
-import { property, query } from 'lit/decorators.js';
+import { query } from 'lit/decorators.js';
 
 import './ace.config.js';
 
@@ -79,8 +79,20 @@ function manageAceOptionChange(editor: AceGlobal.Ace.Editor) {
 }
 
 export class AceEditor extends LitElement {
-  @property({ type: String })
-  value: string | undefined;
+  private pendingValue: string | undefined;
+
+  set value(value: string | undefined) {
+    const editor = this.editor;
+    if (editor === undefined) {
+      this.pendingValue = value ?? '';
+    } else if (editor.getValue() !== (value ?? '')) {
+      this.aceEditorBase.value = value ?? '';
+    }
+  }
+
+  get value(): string {
+    return this.editor?.getValue() ?? this.pendingValue ?? '';
+  }
 
   @query('ace-editor-base')
   aceEditorBase!: AceEditorBase;
@@ -106,25 +118,23 @@ export class AceEditor extends LitElement {
     window.ace?.config?.removeEventListener?.('editor', manageAceOptionChange);
   }
 
-  protected override updated(changedProps: PropertyValueMap<AceEditor>): void {
-    if (changedProps.has('value')) {
-      // Clear selection when content updates
-      setTimeout(() => {
-        if (this.aceEditorBase?.editor) {
-          /* For reasons unknown the ace editor initially selects all code, so we need to clear that*/
-          this.aceEditorBase.editor.selection.clearSelection();
-          this.aceEditorBase.editor.moveCursorTo(0, 0);
-        }
-      }, 10);
+  private handleReady(): void {
+    const editor = this.editor;
+    if (editor !== undefined && this.pendingValue !== undefined) {
+      if (editor.getValue() !== this.pendingValue) {
+        this.aceEditorBase.value = this.pendingValue;
+      }
+      this.pendingValue = undefined;
     }
   }
 
   override render() {
     return html`
       <ace-editor-base
+        .valueUpdateMode=${'start'}
         .mode=${aceOptions.mode}
         .theme=${aceOptions.theme}
-        .value=${this.value}
+        @ready=${this.handleReady}
       ></ace-editor-base>
     `;
   }

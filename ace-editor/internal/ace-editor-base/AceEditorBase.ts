@@ -126,7 +126,7 @@ class AceEditorBase extends HTMLElement {
     editor.setTheme(this.theme || 'ace/theme/oscd');
 
     const text = editor.getValue() || '';
-    if (text !== this.value) {
+    if (this._editor === undefined && text !== (this.value ?? '')) {
       editor.setValue(
         this.value || '',
         getValueUpdateNumber(this.valueUpdateMode),
@@ -216,13 +216,22 @@ class AceEditorBase extends HTMLElement {
     this._editor.off('blur', this.handleBlur);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   attributeChangedCallback(name: string): void {
-    this.initializeEditor();
+    this.notifyPropertyChanged(name);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   notifyPropertyChanged(name: string): void {
+    // Apply external text synchronously; input echoes must not schedule stale resets.
+    if (name === 'value' && this._editor !== undefined) {
+      const value = this.value ?? '';
+      if (value !== this._editor.getValue()) {
+        this._editor.setValue(
+          value,
+          getValueUpdateNumber(this.valueUpdateMode),
+        );
+      }
+      return;
+    }
     this.initializeEditor();
   }
 

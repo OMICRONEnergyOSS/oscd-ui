@@ -4,12 +4,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+import { css, html, nothing } from 'lit';
+import { property, state } from 'lit/decorators.js';
+
 import { AceEditor, AceGlobal } from './internal/AceEditor.js';
 import type {
   AceEditorWithSettingsMenu,
   AceSettingsMenuModule,
 } from './internal/AceEditor.js';
 import AceEditorBase from './internal/ace-editor-base/AceEditorBase.js';
+import { OscdOutlinedIconButton } from '../iconbutton/OscdOutlinedIconButton.js';
+import { OscdFilledIconButton } from '../iconbutton/OscdFilledIconButton.js';
+import { OscdIcon } from '../icon/OscdIcon.js';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -22,7 +28,7 @@ export type { AceSettingsMenuModule, AceEditorWithSettingsMenu };
 
 /**
  * @tagname oscd-ace-editor
- * @summary Wraps the Ace editor for XML editing in OpenSCD.
+ * @summary A text editor with optional toolbar, validation and form association.
  *
  * Provides syntax highlighting, code folding, and persisted editor settings.
  * The custom `ace/theme/oscd` theme uses the `--oscd-ace-editor-*` tokens
@@ -55,14 +61,279 @@ export type { AceSettingsMenuModule, AceEditorWithSettingsMenu };
  * @cssprop [--oscd-ace-editor-syntax-regex-color=var(--md-sys-color-error, #b3261e)] - Regular expression color for `ace/theme/oscd` only.
  * @cssprop [--oscd-ace-editor-step-color=var(--md-sys-color-secondary, #625b71)] - Debug execution-step marker color for `ace/theme/oscd` only.
  *
- * @event {CustomEvent<string>} change Fired when the editor content changes.
- * `detail` contains the current editor content.
- * @final
+ * `value` reads the live text; programmatic writes do not emit input events.
+ * `validator` optionally returns an error message or null. No SCL/schema
+ * validation is performed by default. `toolbar` enables the floating toolbar.
+ *
+ * @event {CustomEvent<string>} change Fired on user edits, with text in detail.
+ * Retained for compatibility; this is not a blur event.
+ * @event {InputEvent} input Fired on user edits.
  * @suppress {visibility}
  */
 export class OscdAceEditor extends ScopedElementsMixin(AceEditor) {
   static scopedElements = {
     'ace-editor': AceEditor,
     'ace-editor-base': AceEditorBase,
+    'oscd-outlined-icon-button': OscdOutlinedIconButton,
+    'oscd-filled-icon-button': OscdFilledIconButton,
+    'oscd-icon': OscdIcon,
   };
+
+  static formAssociated = true;
+
+  @property({ type: Boolean })
+  toolbar = false;
+
+  @state()
+  private toolbarOpen = false;
+
+  private internals?: ElementInternals;
+  private validationCallback: ((value: string) => string | null) | null = null;
+  private customValidationMessage = '';
+
+  @property({ attribute: false, noAccessor: true })
+  set validator(callback: ((value: string) => string | null) | null) {
+    this.validationCallback = callback;
+    this.updateFormState();
+  }
+
+  get validator(): ((value: string) => string | null) | null {
+    return this.validationCallback;
+  }
+
+  @property({ type: String, noAccessor: true })
+  override set value(value: string | undefined) {
+    super.value = value;
+    this.updateFormState();
+  }
+
+  override get value(): string {
+    return super.value;
+  }
+
+  override connectedCallback(): void {
+    this.internals ??= this.attachInternals();
+    super.connectedCallback();
+    this.updateFormState();
+  }
+
+  checkValidity(): boolean {
+    this.updateFormState();
+    return (
+      this.internals?.checkValidity() ?? this.getValidationMessage() === ''
+    );
+  }
+
+  reportValidity(): boolean {
+    this.updateFormState();
+    return (
+      this.internals?.reportValidity() ?? this.getValidationMessage() === ''
+    );
+  }
+
+  setCustomValidity(message: string): void {
+    this.customValidationMessage = message;
+    this.updateFormState();
+  }
+
+  formResetCallback(): void {
+    this.value = '';
+  }
+
+  private handleAceChange(event: CustomEvent<string>): void {
+    if (typeof event.detail !== 'string') {
+      return;
+    }
+    event.stopPropagation();
+    this.notifyInput();
+  }
+
+  private handleToggleToolbar(): void {
+    this.toolbarOpen = !this.toolbarOpen;
+  }
+
+  private handleUndo(): void {
+    this.editor?.execCommand('undo');
+  }
+
+  private handleRedo(): void {
+    this.editor?.execCommand('redo');
+  }
+
+  private handleCollapse(): void {
+    this.editor?.session.foldAll(1);
+  }
+
+  private handleExpand(): void {
+    this.editor?.session.unfold();
+  }
+
+  private handleSearch(): void {
+    this.editor?.execCommand('find');
+  }
+
+  private handleSettings(): void {
+    const editor: AceEditorWithSettingsMenu | undefined = this.editor;
+    editor?.showSettingsMenu?.();
+  }
+
+  private handleFormat(): void {
+    const editor = this.editor;
+    if (editor === undefined || this.value.trim() === '') {
+      return;
+    }
+    const selection = editor.getSelectedText();
+    const source = selection || this.value;
+    const range = editor.getSelectionRange();
+    const initialIndent = selection
+      ? (editor.session.getLine(range.start.row).match(/^\s*/)?.[0] ?? '')
+      : '';
+    let indent = '';
+    const nodes = source
+      .trim()
+      .replace(/^</, '')
+      .replace(/>$/, '')
+      .split(/>\s*</);
+    const formatted = nodes
+      .map(node => {
+        if (/^\/\w/.test(node)) {
+          indent = indent.slice(1);
+        }
+        const line = `${initialIndent}${indent}<${node}>`;
+        if (/^<?\w[^>]*[^/]$/.test(node)) {
+          indent += '\t';
+        }
+        return line;
+      })
+      .join('\n');
+    if (selection) {
+      editor.session.replace(range, formatted);
+    } else {
+      this.value = formatted + '\n';
+      this.notifyInput();
+    }
+  }
+
+  private notifyInput(): void {
+    this.updateFormState();
+    this.dispatchEvent(
+      new InputEvent('input', { bubbles: true, composed: true }),
+    );
+    this.dispatchEvent(
+      new CustomEvent('change', {
+        detail: this.value,
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  }
+
+  private getValidationMessage(): string {
+    return this.customValidationMessage || this.validator?.(this.value) || '';
+  }
+
+  protected updateFormState(): void {
+    const message = this.getValidationMessage();
+    this.internals?.setFormValue(this.value);
+    this.internals?.setValidity(message ? { customError: true } : {}, message);
+  }
+
+  private renderToolbar() {
+    return html`
+      <oscd-filled-icon-button
+        class="toolbar-toggle"
+        .ariaLabel=${this.toolbarOpen ? 'Hide toolbar' : 'Show toolbar'}
+        @click=${this.handleToggleToolbar}
+      >
+        <oscd-icon>${this.toolbarOpen ? 'close' : 'more_vert'}</oscd-icon>
+      </oscd-filled-icon-button>
+      ${
+        this.toolbarOpen
+          ? html`
+              <div class="toolbar" role="group" aria-label="Editor actions">
+                <oscd-outlined-icon-button
+                  .ariaLabel=${'Undo'}
+                  @click=${this.handleUndo}
+                >
+                  <oscd-icon>undo</oscd-icon>
+                </oscd-outlined-icon-button>
+                <oscd-outlined-icon-button
+                  .ariaLabel=${'Redo'}
+                  @click=${this.handleRedo}
+                >
+                  <oscd-icon>redo</oscd-icon>
+                </oscd-outlined-icon-button>
+                <oscd-outlined-icon-button
+                  .ariaLabel=${'Collapse all'}
+                  @click=${this.handleCollapse}
+                >
+                  <oscd-icon>collapse_all</oscd-icon>
+                </oscd-outlined-icon-button>
+                <oscd-outlined-icon-button
+                  .ariaLabel=${'Expand all'}
+                  @click=${this.handleExpand}
+                >
+                  <oscd-icon>expand_all</oscd-icon>
+                </oscd-outlined-icon-button>
+                <oscd-outlined-icon-button
+                  .ariaLabel=${'Search'}
+                  @click=${this.handleSearch}
+                >
+                  <oscd-icon>search</oscd-icon>
+                </oscd-outlined-icon-button>
+                <oscd-outlined-icon-button
+                  .ariaLabel=${'Format XML'}
+                  @click=${this.handleFormat}
+                >
+                  <oscd-icon>format_indent_increase</oscd-icon>
+                </oscd-outlined-icon-button>
+                <oscd-outlined-icon-button
+                  .ariaLabel=${'Settings'}
+                  @click=${this.handleSettings}
+                >
+                  <oscd-icon>settings</oscd-icon>
+                </oscd-outlined-icon-button>
+              </div>
+            `
+          : nothing
+      }
+    `;
+  }
+
+  override render() {
+    return html`
+      <div class="editor-container" @change=${this.handleAceChange}>
+        ${this.toolbar ? this.renderToolbar() : nothing} ${super.render()}
+      </div>
+    `;
+  }
+
+  static override styles = css`
+    ${AceEditor.styles}
+    .editor-container {
+      position: relative;
+      height: 100%;
+    }
+
+    .toolbar-toggle {
+      position: absolute;
+      top: 4px;
+      right: 20px;
+      z-index: 2;
+    }
+
+    .toolbar {
+      position: absolute;
+      top: 48px;
+      right: 16px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px;
+      border-radius: var(--md-sys-shape-corner-medium, 8px);
+      background: var(--md-sys-color-surface-container, #f3edf7);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+    }
+  `;
 }
