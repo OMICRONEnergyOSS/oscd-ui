@@ -3,6 +3,13 @@
 For the planned `0.1.0` breaking theming changes, see the
 [migration guide](./MIGRATION-0.1.0.md).
 
+## [0.1.3](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.1.2...oscd-ui-v0.1.3) (2026-11-05)
+
+
+### Bug Fixes
+
+* **editors:** reconcile Ace and SCL editors without input resets ([bea55b6](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/bea55b646e0976ab0ee1a733ee5d5e9ae36a8364))
+
 ## [0.1.2](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.1.1...oscd-ui-v0.1.2) (2026-10-16)
 
 
