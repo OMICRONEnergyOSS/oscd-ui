@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";function t(e,t){t.bubbles&&(!e.shadowRoot||t.composed)&&t.stopPropagation();let n=Reflect.construct(t.constructor,[t.type,t]),r=e.dispatchEvent(n);return r||t.preventDefault(),r}function n(){return(n=e((()=>{})))()}export{t as n,n as t};

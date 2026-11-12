@@ -1,1 +1,0 @@
-import{i as e}from"./preload-helper-xPQekRTU.js";function t(e,t=!0){return t&&getComputedStyle(e).getPropertyValue(`direction`).trim()===`rtl`}var n=e((()=>{}));export{t as n,n as t};

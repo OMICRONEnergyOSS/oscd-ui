@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{n as t,t as n}from"./OscdSecondaryTab-Tb0HQhAd.js";function r(){return(r=e((()=>{t(),customElements.define(`oscd-secondary-tab`,n)})))()}export{r as t};

@@ -1,0 +1,242 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{a as t,d as n,g as r,n as i,t as a}from"./lit-LihecQ0E.js";import{_ as o,n as s,r as c,t as l}from"./lit-element-CwUNoIyU.js";import{t as u}from"./decorate-2OK4V6AF.js";import{c as d,i as f,l as p,r as m}from"./delegate-DVmVP7ly.js";import{o as h,s as g}from"./OscdItem-C8-Le0Md.js";import{n as _,t as v}from"./getStorybookMeta-DLxhFeaY.js";function y(e,t){let n=e.nodeType===Node.ELEMENT_NODE?e.closest(t):null;if(n)return n;let r=e.getRootNode();return r instanceof ShadowRoot?y(r.host,t):null}var b;function x(){return(x=e((()=>{a(),c(),m(),s(),p(),g(),b=class extends l(i){constructor(...e){super(...e),this.secondary=!1,this.highlighted=!1,this.level=1}static{this.scopedElements={"oscd-elevation":d,"oscd-icon":h}}connectedCallback(){super.connectedCallback(),this.tabIndex=0,this.parentPane=y(this.parentNode,`oscd-action-pane`)??void 0}get resolvedLevel(){let e=this.parentPane?this.parentPane.resolvedLevel+1:this.level;return Math.floor(e)}renderHeader(){let e=n`<span class="icon"
+        ><slot name="icon"
+          >${this.icon?n`<oscd-icon>${this.icon}</oscd-icon>`:t}</slot
+        ></span
+      ><span class="label">${this.label??t}</span>
+      <nav><slot name="action"></slot></nav>`,r=Math.floor(Math.max(this.resolvedLevel,1)),i=this.label??``;switch(r){case 1:return n`<h1 title="${i}">${e}</h1>`;case 2:return n`<h2 title="${i}">${e}</h2>`;case 3:return n`<h3 title="${i}">${e}</h3>`;default:return n`<h4 title="${i}">${e}</h4>`}}render(){return n`<section
+      class="${f({secondary:this.secondary,highlighted:this.highlighted,contrasted:this.resolvedLevel%2==0})}"
+    >
+      <oscd-elevation></oscd-elevation>
+      ${this.renderHeader()}
+      <div><slot></slot></div>
+    </section>`}static{this.styles=r`
+    :host {
+      outline: none;
+    }
+
+    :host(:focus-within) section {
+      --md-elevation-level: 3;
+      outline-width: 1px;
+      transition: all 250ms linear;
+    }
+
+    section {
+      position: relative;
+      background-color: var(
+        --oscd-action-pane-container-color,
+        var(--md-sys-color-surface, #fef7ff)
+      );
+      transition: all 200ms linear;
+      outline-style: solid;
+      margin: 0px;
+      outline-width: 0px;
+      outline-color: var(
+        --oscd-action-pane-outline-color,
+        var(--md-sys-color-primary, #6750a4)
+      );
+    }
+
+    section.secondary {
+      outline-color: var(
+        --oscd-action-pane-secondary-outline-color,
+        var(--md-sys-color-secondary, #625b71)
+      );
+    }
+
+    section > div {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 8px 12px 16px;
+      clear: right;
+    }
+
+    .highlighted {
+      outline-style: dotted;
+      outline-width: 2px;
+    }
+
+    :host(:focus-within) .highlighted {
+      outline-style: solid;
+    }
+
+    .contrasted {
+      background-color: var(
+        --oscd-action-pane-contrasted-container-color,
+        var(--md-sys-color-on-primary, #fff)
+      );
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: var(
+        --oscd-action-pane-headline-color,
+        var(--md-sys-color-on-surface, #1d1b20)
+      );
+      font-family: var(
+        --oscd-action-pane-headline-font-family,
+        var(--md-ref-typeface-plain, Roboto)
+      );
+      font-weight: 300;
+      overflow: clip visible;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0px;
+      line-height: 52px;
+      padding-left: 0.3em;
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      flex: none;
+    }
+
+    .label {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    nav {
+      flex: none;
+      margin-left: auto;
+      margin-right: 4px;
+    }
+
+    ::slotted([slot='icon']) {
+      display: flex;
+      align-items: center;
+      line-height: var(--md-icon-size, 24px);
+    }
+  `}},u([o({type:String})],b.prototype,`label`,void 0),u([o({type:String})],b.prototype,`icon`,void 0),u([o({type:Boolean})],b.prototype,`secondary`,void 0),u([o({type:Boolean})],b.prototype,`highlighted`,void 0),u([o({type:Number})],b.prototype,`level`,void 0)})))()}function S(){return(S=e((()=>{x(),window.customElements.define(`oscd-action-pane`,b)})))()}var C,w,T,E,D,O,k;function A(){return(A=e((()=>{S(),_(),a(),{args:C,argTypes:w,meta:T}=v({tagName:`oscd-action-pane`}),E={title:`Action Controls/Action Pane`,tags:[`autodocs`],...T},D={argTypes:w,args:C,render:({label:e,icon:t})=>n`<div>
+      <oscd-action-pane .label=${e} .icon=${t} highlighted .level=${1}>
+        level 1, title, custom icon, highlighted
+        <oscd-icon slot="icon">delete</oscd-icon>
+        <oscd-action-pane .icon=${t} .label=${`label`} secondary>
+          set level 1, icon, secondary level below the rest
+          <oscd-action-pane .label=${e}>
+            level 2 selected
+            <oscd-action-pane
+              .label=${e}
+              .icon=${t}
+              secondary
+              highlighted
+            >
+              level 3, secondary highlighted
+              <oscd-action-pane> level 4 </oscd-action-pane>
+            </oscd-action-pane>
+          </oscd-action-pane>
+          <oscd-action-pane
+            .label=${e}
+            .icon=${t}
+            secondary
+          ></oscd-action-pane>
+        </oscd-action-pane>
+      </oscd-action-pane>
+      <div></div>
+    </div>`},O={argTypes:w,args:C,render:({label:e,icon:t})=>n`<div>
+      <oscd-action-pane .label=${e} .icon=${t} highlighted .level=${2}>
+        level 1, title, custom icon, highlighted
+        <oscd-icon slot="icon">delete</oscd-icon>
+        <oscd-action-pane .icon=${t} .label=${`label`} secondary>
+          level 2, icon, secondary level below the rest
+          <oscd-action-pane .label=${e}>
+            level 3 selected
+            <oscd-action-pane
+              .label=${e}
+              .icon=${t}
+              secondary
+              highlighted
+            >
+              level 4, secondary highlighted
+              <oscd-action-pane> level 4 </oscd-action-pane>
+            </oscd-action-pane>
+          </oscd-action-pane>
+          <oscd-action-pane
+            .label=${e}
+            .icon=${t}
+            secondary
+            level="4"
+          ></oscd-action-pane>
+        </oscd-action-pane>
+      </oscd-action-pane>
+      <div></div>
+    </div>`},D.parameters={...D.parameters,docs:{...D.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args,
+  render: ({
+    label,
+    icon
+  }) => {
+    return html\`<div>
+      <oscd-action-pane .label=\${label} .icon=\${icon} highlighted .level=\${1}>
+        level 1, title, custom icon, highlighted
+        <oscd-icon slot="icon">delete</oscd-icon>
+        <oscd-action-pane .icon=\${icon} .label=\${'label'} secondary>
+          set level 1, icon, secondary level below the rest
+          <oscd-action-pane .label=\${label}>
+            level 2 selected
+            <oscd-action-pane
+              .label=\${label}
+              .icon=\${icon}
+              secondary
+              highlighted
+            >
+              level 3, secondary highlighted
+              <oscd-action-pane> level 4 </oscd-action-pane>
+            </oscd-action-pane>
+          </oscd-action-pane>
+          <oscd-action-pane
+            .label=\${label}
+            .icon=\${icon}
+            secondary
+          ></oscd-action-pane>
+        </oscd-action-pane>
+      </oscd-action-pane>
+      <div></div>
+    </div>\`;
+  }
+}`,...D.parameters?.docs?.source}}},O.parameters={...O.parameters,docs:{...O.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args,
+  render: ({
+    label,
+    icon
+  }) => {
+    return html\`<div>
+      <oscd-action-pane .label=\${label} .icon=\${icon} highlighted .level=\${2}>
+        level 1, title, custom icon, highlighted
+        <oscd-icon slot="icon">delete</oscd-icon>
+        <oscd-action-pane .icon=\${icon} .label=\${'label'} secondary>
+          level 2, icon, secondary level below the rest
+          <oscd-action-pane .label=\${label}>
+            level 3 selected
+            <oscd-action-pane
+              .label=\${label}
+              .icon=\${icon}
+              secondary
+              highlighted
+            >
+              level 4, secondary highlighted
+              <oscd-action-pane> level 4 </oscd-action-pane>
+            </oscd-action-pane>
+          </oscd-action-pane>
+          <oscd-action-pane
+            .label=\${label}
+            .icon=\${icon}
+            secondary
+            level="4"
+          ></oscd-action-pane>
+        </oscd-action-pane>
+      </oscd-action-pane>
+      <div></div>
+    </div>\`;
+  }
+}`,...O.parameters?.docs?.source}}},k=[`CalculatedLevels`,`DefinedLevels`]})))()}A();export{D as CalculatedLevels,O as DefinedLevels,k as __namedExportsOrder,E as default};
