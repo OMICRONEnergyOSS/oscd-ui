@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{i as t,n,r,t as i}from"./list-item-styles-DtWqO-hi.js";var a;function o(){return(o=e((()=>{t(),i(),a=class extends r{static{this.styles=[n]}}})))()}export{o as n,a as t};

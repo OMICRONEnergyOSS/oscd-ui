@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{n as t,t as n}from"./OscdFilledButton-DbtUXXHz.js";function r(){return(r=e((()=>{t(),customElements.define(`oscd-filled-button`,n)})))()}export{r as t};

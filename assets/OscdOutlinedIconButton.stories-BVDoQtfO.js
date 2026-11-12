@@ -1,0 +1,4 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{n as t,t as n}from"./OscdOutlinedIconButton-DBiQgRxD.js";import{n as r,t as i}from"./getStorybookMeta-CDlhnKUP.js";function a(){return(a=e((()=>{t(),customElements.define(`oscd-outlined-icon-button`,n)})))()}var o,s,c,l,u,d;function f(){return(f=e((()=>{a(),r(),{args:o,argTypes:s,meta:c}=i({tagName:`oscd-outlined-icon-button`}),l={title:`Iconbuttons / Outlined Icon Button`,tags:[`autodocs`],...c},u={argTypes:s,args:o},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  argTypes,
+  args
+}`,...u.parameters?.docs?.source}}},d=[`Default`]})))()}f();export{u as Default,d as __namedExportsOrder,l as default};

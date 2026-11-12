@@ -1,4 +1,0 @@
-import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{n as t,t as n}from"./OscdItem-C8-Le0Md.js";import{n as r,t as i}from"./getStorybookMeta-DLxhFeaY.js";function a(){return(a=e((()=>{t(),customElements.define(`oscd-item`,n)})))()}var o,s,c,l,u,d;function f(){return(f=e((()=>{a(),r(),{args:o,argTypes:s,meta:c}=i({tagName:`oscd-item`}),l={title:`Labs / Item / Item`,tags:[`autodocs`],...c},u={argTypes:s,args:o},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
-  argTypes,
-  args
-}`,...u.parameters?.docs?.source}}},d=[`Default`]})))()}f();export{u as Default,d as __namedExportsOrder,l as default};
