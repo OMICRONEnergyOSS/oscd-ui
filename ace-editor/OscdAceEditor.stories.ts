@@ -61,7 +61,18 @@ export const FullSclDocument: Story = {
     },
   },
 };
-export const WithToolbar: Story = { args: { toolbar: true } };
+export const WithToolbar: Story = {
+  args: { toolbar: true },
+  render: args => html`
+    <oscd-ace-editor
+      .value=${args.value}
+      .toolbar=${args.toolbar}
+      style="height: 100vh; width: 100%;"
+    >
+      <button slot="toolbar-actions" type="button">Example action</button>
+    </oscd-ace-editor>
+  `,
+};
 
 const validateExample = (text: string): string | null => {
   const document = new DOMParser().parseFromString(text, 'application/xml');

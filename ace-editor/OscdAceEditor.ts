@@ -5,7 +5,7 @@
  */
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 import { css, html, nothing } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 
 import { AceEditor, AceGlobal } from './internal/AceEditor.js';
 import type {
@@ -14,7 +14,6 @@ import type {
 } from './internal/AceEditor.js';
 import AceEditorBase from './internal/ace-editor-base/AceEditorBase.js';
 import { OscdOutlinedIconButton } from '../iconbutton/OscdOutlinedIconButton.js';
-import { OscdFilledIconButton } from '../iconbutton/OscdFilledIconButton.js';
 import { OscdIcon } from '../icon/OscdIcon.js';
 
 declare global {
@@ -40,6 +39,10 @@ export type { AceSettingsMenuModule, AceEditorWithSettingsMenu };
  * Import `oscdPaletteComponentMappings` to seed syntax colors from an OpenSCD
  * palette without adding palette slots.
  *
+ * @cssprop [--oscd-ace-editor-toolbar-padding=0px] - Padding around the toolbar.
+ * @cssprop [--oscd-ace-editor-toolbar-background-color=transparent] - Toolbar background.
+ * @cssprop [--md-outlined-icon-button-icon-color=var(--md-sys-color-on-surface-variant, #49454f)] - Toolbar button icon color.
+ * @cssprop [--md-outlined-icon-button-outline-color=var(--md-sys-color-outline, #79747e)] - Toolbar button outline color.
  * @cssprop [--oscd-ace-editor-container-color=var(--md-sys-color-surface, #fef7ff)] - Editor background for `ace/theme/oscd` only.
  * @cssprop [--oscd-ace-editor-text-color=var(--md-sys-color-on-surface, #1d1b20)] - Default editor text for `ace/theme/oscd` only.
  * @cssprop [--oscd-ace-editor-gutter-color=var(--md-sys-color-surface-container-low, #f7f2fa)] - Gutter background for `ace/theme/oscd` only.
@@ -63,11 +66,13 @@ export type { AceSettingsMenuModule, AceEditorWithSettingsMenu };
  *
  * `value` reads the live text; programmatic writes do not emit input events.
  * `validator` optionally returns an error message or null. No SCL/schema
- * validation is performed by default. `toolbar` enables the floating toolbar.
+ * validation is performed by default. `toolbar` enables the top toolbar.
+ * The `toolbar-actions` slot accepts additional actions at the toolbar's end.
  *
  * @event {CustomEvent<string>} change Fired on user edits, with text in detail.
  * Retained for compatibility; this is not a blur event.
  * @event {InputEvent} input Fired on user edits.
+ * @slot toolbar-actions - Additional actions at the end of the toolbar.
  * @suppress {visibility}
  */
 export class OscdAceEditor extends ScopedElementsMixin(AceEditor) {
@@ -75,7 +80,6 @@ export class OscdAceEditor extends ScopedElementsMixin(AceEditor) {
     'ace-editor': AceEditor,
     'ace-editor-base': AceEditorBase,
     'oscd-outlined-icon-button': OscdOutlinedIconButton,
-    'oscd-filled-icon-button': OscdFilledIconButton,
     'oscd-icon': OscdIcon,
   };
 
@@ -83,9 +87,6 @@ export class OscdAceEditor extends ScopedElementsMixin(AceEditor) {
 
   @property({ type: Boolean })
   toolbar = false;
-
-  @state()
-  private toolbarOpen = false;
 
   private internals?: ElementInternals;
   private validationCallback: ((value: string) => string | null) | null = null;
@@ -141,15 +142,14 @@ export class OscdAceEditor extends ScopedElementsMixin(AceEditor) {
   }
 
   private handleAceChange(event: CustomEvent<string>): void {
-    if (typeof event.detail !== 'string') {
+    if (
+      typeof event.detail !== 'string' ||
+      !event.composedPath().includes(this.aceEditorBase)
+    ) {
       return;
     }
     event.stopPropagation();
     this.notifyInput();
-  }
-
-  private handleToggleToolbar(): void {
-    this.toolbarOpen = !this.toolbarOpen;
   }
 
   private handleUndo(): void {
@@ -240,63 +240,53 @@ export class OscdAceEditor extends ScopedElementsMixin(AceEditor) {
 
   private renderToolbar() {
     return html`
-      <oscd-filled-icon-button
-        class="toolbar-toggle"
-        .ariaLabel=${this.toolbarOpen ? 'Hide toolbar' : 'Show toolbar'}
-        @click=${this.handleToggleToolbar}
-      >
-        <oscd-icon>${this.toolbarOpen ? 'close' : 'more_vert'}</oscd-icon>
-      </oscd-filled-icon-button>
-      ${
-        this.toolbarOpen
-          ? html`
-              <div class="toolbar" role="group" aria-label="Editor actions">
-                <oscd-outlined-icon-button
-                  .ariaLabel=${'Undo'}
-                  @click=${this.handleUndo}
-                >
-                  <oscd-icon>undo</oscd-icon>
-                </oscd-outlined-icon-button>
-                <oscd-outlined-icon-button
-                  .ariaLabel=${'Redo'}
-                  @click=${this.handleRedo}
-                >
-                  <oscd-icon>redo</oscd-icon>
-                </oscd-outlined-icon-button>
-                <oscd-outlined-icon-button
-                  .ariaLabel=${'Collapse all'}
-                  @click=${this.handleCollapse}
-                >
-                  <oscd-icon>collapse_all</oscd-icon>
-                </oscd-outlined-icon-button>
-                <oscd-outlined-icon-button
-                  .ariaLabel=${'Expand all'}
-                  @click=${this.handleExpand}
-                >
-                  <oscd-icon>expand_all</oscd-icon>
-                </oscd-outlined-icon-button>
-                <oscd-outlined-icon-button
-                  .ariaLabel=${'Search'}
-                  @click=${this.handleSearch}
-                >
-                  <oscd-icon>search</oscd-icon>
-                </oscd-outlined-icon-button>
-                <oscd-outlined-icon-button
-                  .ariaLabel=${'Format XML'}
-                  @click=${this.handleFormat}
-                >
-                  <oscd-icon>format_indent_increase</oscd-icon>
-                </oscd-outlined-icon-button>
-                <oscd-outlined-icon-button
-                  .ariaLabel=${'Settings'}
-                  @click=${this.handleSettings}
-                >
-                  <oscd-icon>settings</oscd-icon>
-                </oscd-outlined-icon-button>
-              </div>
-            `
-          : nothing
-      }
+      <div class="toolbar" role="group" aria-label="Editor actions">
+        <div class="toolbar-controls">
+          <oscd-outlined-icon-button
+            .ariaLabel=${'Undo'}
+            @click=${this.handleUndo}
+          >
+            <oscd-icon>undo</oscd-icon>
+          </oscd-outlined-icon-button>
+          <oscd-outlined-icon-button
+            .ariaLabel=${'Redo'}
+            @click=${this.handleRedo}
+          >
+            <oscd-icon>redo</oscd-icon>
+          </oscd-outlined-icon-button>
+          <oscd-outlined-icon-button
+            .ariaLabel=${'Collapse all'}
+            @click=${this.handleCollapse}
+          >
+            <oscd-icon>collapse_all</oscd-icon>
+          </oscd-outlined-icon-button>
+          <oscd-outlined-icon-button
+            .ariaLabel=${'Expand all'}
+            @click=${this.handleExpand}
+          >
+            <oscd-icon>expand_all</oscd-icon>
+          </oscd-outlined-icon-button>
+          <oscd-outlined-icon-button
+            .ariaLabel=${'Search'}
+            @click=${this.handleSearch}
+          >
+            <oscd-icon>search</oscd-icon>
+          </oscd-outlined-icon-button>
+          <oscd-outlined-icon-button
+            .ariaLabel=${'Format XML'}
+            @click=${this.handleFormat}
+          >
+            <oscd-icon>format_indent_increase</oscd-icon>
+          </oscd-outlined-icon-button>
+          <oscd-outlined-icon-button
+            .ariaLabel=${'Settings'}
+            @click=${this.handleSettings}
+          >
+            <oscd-icon>settings</oscd-icon>
+          </oscd-outlined-icon-button>
+        </div>
+        <slot name="toolbar-actions"></slot>
+      </div>
     `;
   }
 
@@ -311,29 +301,41 @@ export class OscdAceEditor extends ScopedElementsMixin(AceEditor) {
   static override styles = css`
     ${AceEditor.styles}
     .editor-container {
-      position: relative;
+      display: flex;
+      flex-direction: column;
       height: 100%;
+      min-height: 0;
     }
 
-    .toolbar-toggle {
-      position: absolute;
-      top: 4px;
-      right: 20px;
-      z-index: 2;
+    ace-editor-base {
+      flex: 1;
+      min-height: 0;
     }
 
     .toolbar {
-      position: absolute;
-      top: 48px;
-      right: 16px;
-      z-index: 2;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
       gap: 4px;
-      padding: 4px;
-      border-radius: var(--md-sys-shape-corner-medium, 8px);
-      background: var(--md-sys-color-surface-container, #f3edf7);
-      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+      padding: var(--oscd-ace-editor-toolbar-padding, 0px);
+      background-color: var(
+        --oscd-ace-editor-toolbar-background-color,
+        transparent
+      );
+    }
+
+    .toolbar-controls {
+      display: flex;
+      gap: 8px;
+      min-width: 0;
+      overflow-x: auto;
+      /* Leave room for touch targets and animated focus rings. */
+      padding: 10px;
+    }
+
+    .toolbar-controls > oscd-outlined-icon-button {
+      flex-shrink: 0;
     }
   `;
 }

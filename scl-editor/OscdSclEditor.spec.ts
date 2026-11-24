@@ -56,6 +56,33 @@ describe('oscd-scl-editor', () => {
     expect(element.checkValidity()).to.equal(true);
   });
 
+  it('inherits the visible top toolbar', async () => {
+    element.style.width = '900px';
+    element.toolbar = true;
+    await element.updateComplete;
+    const toolbar = element.shadowRoot!.querySelector<HTMLElement>('.toolbar')!;
+    const editor =
+      element.shadowRoot!.querySelector<HTMLElement>('ace-editor-base')!;
+    expect(
+      toolbar.getBoundingClientRect().bottom <=
+        editor.getBoundingClientRect().top,
+    ).to.equal(true);
+    expect(
+      toolbar.querySelectorAll('oscd-outlined-icon-button').length,
+    ).to.equal(7);
+    const controls = toolbar.querySelector<HTMLElement>('.toolbar-controls')!;
+    expect(controls.scrollWidth).to.equal(controls.clientWidth);
+    expect(controls.scrollHeight).to.equal(controls.clientHeight);
+    element.toolbar = false;
+    await element.updateComplete;
+    element.toolbar = true;
+    await element.updateComplete;
+    const restored =
+      element.shadowRoot!.querySelector<HTMLElement>('.toolbar-controls')!;
+    expect(restored.scrollWidth).to.equal(restored.clientWidth);
+    expect(restored.scrollHeight).to.equal(restored.clientHeight);
+  });
+
   it('retains shared input fixes, events and context after reconnecting', async () => {
     const editor = element.editor!;
     let changes = 0;

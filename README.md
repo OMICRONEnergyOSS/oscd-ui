@@ -52,7 +52,18 @@ The obsolete `xml-editor` export paths did not contain shipped modules; use
 `scl-editor` instead.
 
 Both components share Ace, persisted settings, an optional `.toolbar`, and native
-form association. Ace accepts an optional `.validator` callback returning `null`
+form association. The toolbar appears above the editor when enabled; use the
+`toolbar-actions` slot for additional actions at its right end. Set
+`--oscd-ace-editor-toolbar-padding` and
+`--oscd-ace-editor-toolbar-background-color` to style its container. Its
+controls retain an internal inset for touch targets and focus rings. Its
+outlined icon buttons inherit Material tokens such as
+`--md-outlined-icon-button-icon-color`, `--md-outlined-icon-button-outline-color`
+and the corresponding hover, focus and pressed tokens. These inherited values
+may also affect other outlined icon buttons in the same scope. The unselected
+button background is transparent.
+
+Ace accepts an optional `.validator` callback returning `null`
 or an error message; SCL supplies namespace-aware XML validation by default.
 `setCustomValidity()` errors persist until explicitly cleared.
 User edits emit `input` plus a bubbling/composed `CustomEvent<string>('change')`

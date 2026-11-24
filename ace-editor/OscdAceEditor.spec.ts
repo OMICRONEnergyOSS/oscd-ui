@@ -128,10 +128,6 @@ describe('oscd-ace-editor', () => {
   it('shows a working toolbar that formats input and notifies the consumer', async () => {
     oscdAceEditor.toolbar = true;
     await oscdAceEditor.updateComplete;
-    const toggle =
-      oscdAceEditor.shadowRoot!.querySelector<HTMLElement>('.toolbar-toggle')!;
-    toggle.click();
-    await oscdAceEditor.updateComplete;
     oscdAceEditor.value = '<example><item/></example>';
     let changes = 0;
     oscdAceEditor.addEventListener('change', () => {
@@ -150,5 +146,151 @@ describe('oscd-ace-editor', () => {
     actions[5].click();
     expect(oscdAceEditor.value.includes('\n\t<item/>')).to.equal(true);
     expect(changes).to.equal(1);
+  });
+
+  it('avoids overflow at wide widths before and after toggling the toolbar', async () => {
+    oscdAceEditor.style.width = '900px';
+    oscdAceEditor.toolbar = true;
+    await oscdAceEditor.updateComplete;
+    await nextFrame();
+
+    for (let cycle = 0; cycle < 2; cycle += 1) {
+      const controls =
+        oscdAceEditor.shadowRoot!.querySelector<HTMLElement>(
+          '.toolbar-controls',
+        )!;
+      expect(controls.scrollWidth).to.equal(controls.clientWidth);
+      expect(controls.scrollHeight).to.equal(controls.clientHeight);
+      const buttons = controls.querySelectorAll<HTMLElement>(
+        'oscd-outlined-icon-button',
+      );
+      const toolbar = controls.parentElement!.getBoundingClientRect();
+      const button = buttons[0].getBoundingClientRect();
+      expect(button.top - toolbar.top).to.equal(toolbar.bottom - button.bottom);
+      expect(
+        buttons[1].getBoundingClientRect().left -
+          buttons[0].getBoundingClientRect().left >=
+          48,
+      ).to.equal(true);
+
+      oscdAceEditor.toolbar = false;
+      await oscdAceEditor.updateComplete;
+      oscdAceEditor.toolbar = true;
+      await oscdAceEditor.updateComplete;
+      await nextFrame();
+    }
+  });
+
+  it('applies toolbar tokens and inherited Material button colors', async () => {
+    oscdAceEditor.style.setProperty(
+      '--oscd-ace-editor-toolbar-padding',
+      '12px 16px',
+    );
+    oscdAceEditor.style.setProperty(
+      '--oscd-ace-editor-toolbar-background-color',
+      'rgb(12, 34, 56)',
+    );
+    oscdAceEditor.style.setProperty(
+      '--md-outlined-icon-button-icon-color',
+      'rgb(78, 90, 123)',
+    );
+    oscdAceEditor.toolbar = true;
+    await oscdAceEditor.updateComplete;
+    await waitUntil(() =>
+      Boolean(
+        oscdAceEditor.shadowRoot
+          ?.querySelector('oscd-outlined-icon-button')
+          ?.shadowRoot?.querySelector('button'),
+      ),
+    );
+    const toolbar =
+      oscdAceEditor.shadowRoot!.querySelector<HTMLElement>('.toolbar')!;
+    const button = toolbar
+      .querySelector('oscd-outlined-icon-button')!
+      .shadowRoot!.querySelector('button')!;
+    expect(getComputedStyle(toolbar).padding).to.equal('12px 16px');
+    expect(getComputedStyle(toolbar).backgroundColor).to.equal(
+      'rgb(12, 34, 56)',
+    );
+    expect(getComputedStyle(button).color).to.equal('rgb(78, 90, 123)');
+  });
+
+  it('places additional actions above the editor and keeps them visible on narrow widths', async () => {
+    oscdAceEditor.style.width = '320px';
+    oscdAceEditor.style.height = '400px';
+    const action = document.createElement('button');
+    action.slot = 'toolbar-actions';
+    action.textContent = 'Apply';
+    oscdAceEditor.appendChild(action);
+    oscdAceEditor.toolbar = true;
+    await oscdAceEditor.updateComplete;
+    await nextFrame();
+
+    const toolbar =
+      oscdAceEditor.shadowRoot!.querySelector<HTMLElement>('.toolbar')!;
+    const editor =
+      oscdAceEditor.shadowRoot!.querySelector<HTMLElement>('ace-editor-base')!;
+    const slot = toolbar.querySelector<HTMLSlotElement>('slot')!;
+    const controls = toolbar.querySelector<HTMLElement>('.toolbar-controls')!;
+    const bounds = oscdAceEditor.getBoundingClientRect();
+    expect(slot.assignedElements().includes(action)).to.equal(true);
+    expect(
+      toolbar.getBoundingClientRect().bottom <=
+        editor.getBoundingClientRect().top,
+    ).to.equal(true);
+    expect(editor.getBoundingClientRect().bottom <= bounds.bottom + 1).to.equal(
+      true,
+    );
+    expect(action.getBoundingClientRect().right <= bounds.right + 1).to.equal(
+      true,
+    );
+    expect(editor.getBoundingClientRect().height > 0).to.equal(true);
+    expect(controls.scrollWidth > controls.clientWidth).to.equal(true);
+    expect(controls.scrollHeight).to.equal(controls.clientHeight);
+    const lastAction = controls.querySelector<HTMLElement>(
+      'oscd-outlined-icon-button:last-child',
+    )!;
+    await waitUntil(() =>
+      Boolean(lastAction.shadowRoot?.querySelector('button')),
+    );
+    lastAction.shadowRoot!.querySelector('button')!.focus();
+    await waitUntil(() => controls.scrollLeft > 0);
+    const focusRing =
+      lastAction.shadowRoot!.querySelector<HTMLElement>('md-focus-ring')!;
+    await waitUntil(() => focusRing.hasAttribute('visible'));
+    const controlBounds = controls.getBoundingClientRect();
+    const lastBounds = lastAction.getBoundingClientRect();
+    const focusBounds = focusRing.getBoundingClientRect();
+    expect(lastBounds.right <= controlBounds.right).to.equal(true);
+    expect(focusBounds.right + 8 <= controlBounds.right + 1).to.equal(true);
+    expect(focusBounds.top - 8 >= controlBounds.top - 1).to.equal(true);
+    expect(focusBounds.bottom + 8 <= controlBounds.bottom + 1).to.equal(true);
+
+    oscdAceEditor.toolbar = false;
+    await oscdAceEditor.updateComplete;
+    expect(
+      oscdAceEditor.shadowRoot!.querySelector('.toolbar') === null,
+    ).to.equal(true);
+  });
+
+  it('does not treat a slotted action change as an editor input', async () => {
+    const action = document.createElement('button');
+    action.slot = 'toolbar-actions';
+    oscdAceEditor.appendChild(action);
+    oscdAceEditor.toolbar = true;
+    await oscdAceEditor.updateComplete;
+    let inputs = 0;
+    oscdAceEditor.addEventListener('input', () => {
+      inputs += 1;
+    });
+
+    action.dispatchEvent(
+      new CustomEvent('change', {
+        detail: 'action change',
+        bubbles: true,
+        composed: true,
+      }),
+    );
+    expect(inputs).to.equal(0);
   });
 });
