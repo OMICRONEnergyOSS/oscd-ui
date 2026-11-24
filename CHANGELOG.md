@@ -3,6 +3,13 @@
 For the planned `0.1.0` breaking theming changes, see the
 [migration guide](./MIGRATION-0.1.0.md).
 
+## [0.1.4](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.1.3...oscd-ui-v0.1.4) (2026-11-24)
+
+
+### Features
+
+* oscd-ace-editor - switch to conventional toolbar layout ([3d07c89](https://github.com/OMICRONEnergyOSS/oscd-ui/commit/3d07c891c12bd25aef8b8b53ca88d59218244d97))
+
 ## [0.1.3](https://github.com/OMICRONEnergyOSS/oscd-ui/compare/oscd-ui-v0.1.2...oscd-ui-v0.1.3) (2026-11-12)
 
 
