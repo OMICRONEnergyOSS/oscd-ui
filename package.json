@@ -222,7 +222,7 @@
     "@wc-toolkit/cem-inheritance": "^1.2.2",
     "@wc-toolkit/storybook-helpers": "^10.7.3",
     "@web/dev-server-polyfill": "^1.0.6",
-    "@web/test-runner": "0.20.2",
+    "@web/test-runner": "1.0.1",
     "@web/test-runner-commands": "^0.9.0",
     "@web/test-runner-core": "^0.13.4",
     "@web/test-runner-playwright": "0.11.1",
