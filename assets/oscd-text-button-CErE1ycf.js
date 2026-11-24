@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{n as t,t as n}from"./OscdTextButton-DyyM7vL0.js";function r(){return(r=e((()=>{t(),customElements.define(`oscd-text-button`,n)})))()}export{r as t};
